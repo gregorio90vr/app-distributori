@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>FuelFinder Mobile - Trova Distributori</title>
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <h1>⛽ FuelFinder Mobile</h1>
+        <div class="subtitle">Trova i distributori più economici</div>
+        <div class="header-timestamp">
+            <small class="header-timestamp-text" id="headerTimestamp">Caricamento...</small>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+        <div class="search-form">
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-map-marker-alt"></i> Indirizzo
+                </label>
+                <input type="text" id="address" class="form-control" placeholder="Inserisci indirizzo o città...">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-gas-pump"></i> Tipo Carburante
+                </label>
+                <select id="fuelType" class="form-control">
+                    <option value="Benzina" selected>Benzina</option>
+                    <option value="Gasolio">Gasolio</option>
+                    <option value="GPL">GPL</option>
+                    <option value="Metano">Metano</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-circle-dot"></i> Raggio di ricerca
+                </label>
+                <select id="radius" class="form-control">
+                    <option value="1">1 km</option>
+                    <option value="2">2 km</option>
+                    <option value="5" selected>5 km</option>
+                    <option value="10">10 km</option>
+                    <option value="15">15 km</option>
+                    <option value="20">20 km</option>
+                    <option value="30">30 km</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <button id="searchBtn" class="btn-mobile">
+                    <i class="fas fa-search"></i> Cerca Distributori
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <button id="locationBtn" class="btn-mobile btn-secondary">
+                    <i class="fas fa-location-crosshairs"></i> Usa Posizione Attuale
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div id="statusMessage" class="status-message">Pronto per la ricerca</div>
+        <button id="updateDataBtn" class="update-btn">
+            <i class="fas fa-refresh"></i> Aggiorna Dati
+        </button>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="nav-tabs-mobile" id="tabNavigation">
+        <button id="tabList" class="nav-tab-mobile active">
+            <i class="fas fa-list"></i> Lista
+        </button>
+        <button id="tabMap" class="nav-tab-mobile">
+            <i class="fas fa-map"></i> Mappa
+        </button>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section">
+        <div id="resultsHeader" class="results-header" style="display: none;">
+            <h2 id="resultsCount" class="results-count"></h2>
+            <p id="resultsSubtitle" class="results-subtitle"></p>
+        </div>
+        
+        <!-- Tab Content -->
+        <div id="tabContent">
+            <!-- Results List -->
+            <div id="resultsList" class="tab-content active">
+                <div id="stationsList"></div>
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>Nessun distributore trovato</h3>
+                    <p>Prova a modificare i criteri di ricerca</p>
+                </div>
+            </div>
+            
+            <!-- Map -->
+            <div id="resultsMap" class="tab-content">
+                <div class="map-container">
+                    <div class="map-wrapper">
+                        <div id="map" style="height: 100%; width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="loading"></div>
+            <p>Ricerca in corso...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
