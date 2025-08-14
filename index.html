@@ -13,150 +13,151 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Mobile Header -->
-    <div class="mobile-header">
-        <h1>⛽ FuelFinder Mobile</h1>
-        <div class="subtitle">Trova i distributori più economici</div>
-        <div class="header-timestamp">
-            <small class="header-timestamp-text" id="headerTimestamp">Caricamento...</small>
+    <!-- Header with Title and Tabs -->
+    <div class="header-section">
+        <div class="app-title">
+            <h1>Fuel Finder</h1>
+        </div>
+        <div class="tabs-container">
+            <button id="tabMap" class="tab-btn active">
+                <i class="fas fa-map"></i>
+                MAPPA
+            </button>
+            <button id="tabList" class="tab-btn">
+                <i class="fas fa-list"></i>
+                LISTA
+            </button>
         </div>
     </div>
 
-    <!-- Search Section -->
-    <div class="search-section">
-        <div class="search-form">
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-map-marker-alt"></i> Indirizzo
-                </label>
-                <input type="text" id="address" class="form-control" placeholder="Inserisci indirizzo o città...">
+    <!-- Main Results Area -->
+    <div class="results-section">
+        <div class="results-content">
+            <!-- Map Tab Content -->
+            <div id="mapContent" class="tab-content active">
+                <div id="mapContainer" class="map-container">
+                    <div id="map"></div>
+                </div>
+                <div id="emptyStateMap" class="empty-state" style="display: none;">
+                    <i class="fas fa-map"></i>
+                    <p>Effettua una ricerca per visualizzare i distributori sulla mappa</p>
+                </div>
             </div>
             
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-gas-pump"></i> Tipo Carburante
-                </label>
-                <select id="fuelType" class="form-control">
-                    <option value="Benzina" selected>Benzina</option>
-                    <option value="Gasolio">Gasolio</option>
-                    <option value="GPL">GPL</option>
-                    <option value="Metano">Metano</option>
-                </select>
+            <!-- Lista Tab Content -->
+            <div id="listContent" class="tab-content">
+                <div id="stationsList" class="stations-list"></div>
+                <div id="emptyStateList" class="empty-state" style="display: none;">
+                    <i class="fas fa-list"></i>
+                    <p>Effettua una ricerca per visualizzare l'elenco dei distributori</p>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Fixed Bottom Section (FIX) -->
+    <div class="fixed-bottom-section">
+        <!-- Main Action Bar -->
+        <div class="main-action-bar">
+            <button id="locationExpandBtn" class="expand-btn" data-target="location-panel">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Posizione</span>
+            </button>
             
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-circle-dot"></i> Raggio di ricerca
-                </label>
-                <select id="radius" class="form-control">
-                    <option value="1">1 km</option>
-                    <option value="2">2 km</option>
-                    <option value="5" selected>5 km</option>
-                    <option value="10">10 km</option>
-                    <option value="15">15 km</option>
-                    <option value="20">20 km</option>
-                    <option value="30">30 km</option>
-                </select>
+            <button id="searchBtn" class="primary-action-btn">
+                <i class="fas fa-search"></i>
+                <span>CERCA</span>
+            </button>
+            
+            <button id="settingsExpandBtn" class="expand-btn" data-target="settings-panel">
+                <i class="fas fa-cog"></i>
+                <span>Impostazioni</span>
+            </button>
+        </div>
+
+        <!-- Expandable Panels -->
+        <div id="location-panel" class="expandable-panel">
+            <div class="panel-content">
+                <div class="input-group">
+                    <label>Inserisci indirizzo</label>
+                    <input type="text" id="address" placeholder="Via, Città...">
+                </div>
+                <div class="panel-actions">
+                    <button id="locationBtn" class="panel-btn">
+                        <i class="fas fa-location-crosshairs"></i>
+                        Usa GPS
+                    </button>
+                    <button class="panel-btn close-panel" data-target="location-panel">
+                        <i class="fas fa-times"></i>
+                        Chiudi
+                    </button>
+                </div>
             </div>
-            
-            <!-- Cost Calculator Section -->
-            <div class="cost-calculator">
-                <button id="costToggle" class="cost-toggle-btn" type="button">
-                    <i class="fas fa-calculator"></i> Calcola costi
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </button>
-                
-                <div id="costCalculatorForm" class="cost-form collapsed">
-                    <div class="calc-mode-toggle">
-                        <div class="toggle-options">
-                            <input type="radio" id="modeLitri" name="calcMode" value="liters" checked>
-                            <label for="modeLitri" class="toggle-label">
-                                <i class="fas fa-gas-pump"></i> Litri
-                            </label>
-                            
-                            <input type="radio" id="modeBudget" name="calcMode" value="budget">
-                            <label for="modeBudget" class="toggle-label">
-                                <i class="fas fa-euro-sign"></i> Budget
-                            </label>
-                        </div>
+        </div>
+
+        <div id="settings-panel" class="expandable-panel">
+            <div class="panel-content">
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label>Carburante</label>
+                        <select id="fuelType">
+                            <option value="Benzina">Benzina</option>
+                            <option value="Gasolio">Gasolio</option>
+                            <option value="GPL">GPL</option>
+                            <option value="Metano">Metano</option>
+                        </select>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="calcValue" class="form-label" id="calcLabel">
-                            <i class="fas fa-gas-pump"></i> Litri serbatoio
-                        </label>
-                        <input type="number" id="calcValue" class="form-control" 
-                               value="55" min="10" max="200" step="5">
+                    <div class="setting-item">
+                        <label>Raggio</label>
+                        <select id="radius">
+                            <option value="1">1 km</option>
+                            <option value="2">2 km</option>
+                            <option value="5" selected>5 km</option>
+                            <option value="10">10 km</option>
+                            <option value="15">15 km</option>
+                            <option value="20">20 km</option>
+                            <option value="30">30 km</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label>Calcolo</label>
+                        <select id="calcMode">
+                            <option value="liters">Litri</option>
+                            <option value="budget">Budget</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label>Valore</label>
+                        <input type="number" id="calcValue" value="55" min="10" max="500">
                     </div>
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <button id="searchBtn" class="btn-mobile">
-                    <i class="fas fa-search"></i> Cerca Distributori
-                </button>
-            </div>
-            
-            <div class="form-group">
-                <button id="locationBtn" class="btn-mobile btn-secondary">
-                    <i class="fas fa-location-crosshairs"></i> Usa Posizione Attuale
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Status Bar -->
-    <div class="status-bar">
-        <div id="statusMessage" class="status-message">Pronto per la ricerca</div>
-        <button id="updateDataBtn" class="update-btn">
-            <i class="fas fa-refresh"></i> Aggiorna Dati
-        </button>
-    </div>
-
-    <!-- Tab Navigation (hidden by default) -->
-    <div class="nav-tabs-mobile" id="tabNavigation" style="display: none;">
-        <div class="results-summary" id="resultsSummary">
-            <span class="results-count-compact" id="resultsCountCompact">0 risultati</span>
-        </div>
-        <div class="tab-buttons">
-            <button id="tabList" class="nav-tab-mobile active">
-                <i class="fas fa-list"></i> Lista
-            </button>
-            <button id="tabMap" class="nav-tab-mobile">
-                <i class="fas fa-map"></i> Mappa
-            </button>
-        </div>
-    </div>
-
-    <!-- Results Section -->
-    <div class="results-section">        
-        <!-- Tab Content -->
-        <div id="tabContent">
-            <!-- Results List -->
-            <div id="resultsList" class="tab-content active">
-                <div id="stationsList"></div>
-                <div id="emptyState" class="empty-state" style="display: none;">
-                    <i class="fas fa-search"></i>
-                    <h3>Nessun distributore trovato</h3>
-                    <p>Prova a modificare i criteri di ricerca</p>
+                
+                <div class="panel-actions">
+                    <button id="updateDataBtn" class="panel-btn">
+                        <i class="fas fa-refresh"></i>
+                        Aggiorna Dati
+                    </button>
+                    <button class="panel-btn close-panel" data-target="settings-panel">
+                        <i class="fas fa-times"></i>
+                        Chiudi
+                    </button>
                 </div>
             </div>
-            
-            <!-- Map -->
-            <div id="resultsMap" class="tab-content">
-                <div class="map-container">
-                    <div class="map-wrapper">
-                        <div id="map" style="height: 100%; width: 100%;"></div>
-                    </div>
-                </div>
-            </div>
+        </div>
+        
+        <!-- Compact Status Bar -->
+        <div class="status-bar">
+            <span id="dataTimestamp" class="timestamp">--</span>
         </div>
     </div>
 
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
         <div class="loading-spinner">
-            <div class="loading"></div>
+            <div class="spinner"></div>
             <p>Ricerca in corso...</p>
         </div>
     </div>
