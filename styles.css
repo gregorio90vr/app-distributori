@@ -211,14 +211,41 @@ body {
     transform: scale(1.05);
 }
 
-/* Tab Navigation */
+/* Tab Navigation - Enhanced with Results Summary */
 .nav-tabs-mobile {
     background: var(--card-bg);
-    margin: 0 var(--spacing-md) var(--spacing-md);
+    margin: 0 var(--spacing-md) 0;
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
-    display: flex;
     overflow: hidden;
+    animation: slideInUp 0.4s ease-out;
+}
+
+/* Results Summary in Tab Header */
+.results-summary {
+    background: linear-gradient(45deg, var(--success-color), #00a047);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+}
+
+.results-count-compact {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.results-count-compact::before {
+    content: "📋";
+    font-size: 1.1em;
+}
+
+/* Tab Buttons Container */
+.tab-buttons {
+    display: flex;
 }
 
 .nav-tab-mobile {
@@ -230,6 +257,7 @@ body {
     transition: var(--transition);
     font-weight: 600;
     color: #666;
+    position: relative;
 }
 
 .nav-tab-mobile.active {
@@ -237,11 +265,73 @@ body {
     color: white;
 }
 
-.nav-tab-mobile:hover:not(.active) {
-    background: #e9ecef;
+.nav-tab-mobile.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--warning-color);
 }
 
-/* Results Section */
+.nav-tab-mobile:hover:not(.active) {
+    background: #e9ecef;
+    color: var(--secondary-color);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tab Highlight Animation for Auto-scroll */
+@keyframes tabHighlight {
+    0% {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: scale(1);
+    }
+    25% {
+        box-shadow: 0 8px 24px rgba(48, 79, 254, 0.4);
+        transform: scale(1.02);
+    }
+    50% {
+        box-shadow: 0 12px 32px rgba(48, 79, 254, 0.3);
+        transform: scale(1.01);
+    }
+    100% {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: scale(1);
+    }
+}
+
+/* Results Summary Pulse Animation */
+@keyframes summaryPulse {
+    0% {
+        background: linear-gradient(45deg, var(--success-color), #00a047);
+        transform: scale(1);
+    }
+    25% {
+        background: linear-gradient(45deg, #00e676, var(--success-color));
+        transform: scale(1.02);
+    }
+    50% {
+        background: linear-gradient(45deg, var(--warning-color), var(--success-color));
+        transform: scale(1.01);
+    }
+    100% {
+        background: linear-gradient(45deg, var(--success-color), #00a047);
+        transform: scale(1);
+    }
+}
+
+/* Results Section - Connected to Tab Navigation */
 .results-section {
     margin: 0 var(--spacing-md) var(--spacing-md);
 }
@@ -489,6 +579,26 @@ body {
     font-size: 0.9rem;
 }
 
+/* Station Footer */
+.station-footer {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.best-price-badge {
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.best-price-badge i {
+    font-size: 1.1rem;
+}
+
 /* Map Container */
 .map-container {
     background: var(--card-bg);
@@ -601,6 +711,40 @@ body {
     .status-bar .update-btn {
         align-self: stretch;
     }
+    
+    /* Tab Navigation Responsive */
+    .nav-tabs-mobile {
+        margin: 0 var(--spacing-sm) 0;
+    }
+    
+    .results-count-compact {
+        font-size: 0.85rem;
+    }
+    
+    .nav-tab-mobile {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+}
+
+/* Small screens - compact tab design */
+@media (max-width: 480px) {
+    .results-summary {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .results-count-compact {
+        font-size: 0.8rem;
+    }
+    
+    .nav-tab-mobile {
+        padding: var(--spacing-sm);
+        font-size: 0.85rem;
+    }
+    
+    .nav-tab-mobile i {
+        margin-right: 4px;
+    }
 }
 
 /* Dark mode support */
@@ -620,4 +764,204 @@ body {
         color: #f0f0f0;
         border-color: #555;
     }
+}
+
+/* Results Highlight Animation */
+@keyframes resultsHighlight {
+    0% {
+        box-shadow: 0 0 0 0px rgba(48, 79, 254, 0.8);
+        transform: scale(1);
+    }
+    25% {
+        box-shadow: 0 0 0 10px rgba(48, 79, 254, 0.4);
+        transform: scale(1.02);
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(48, 79, 254, 0.2);
+        transform: scale(1.01);
+    }
+    100% {
+        box-shadow: 0 0 0 0px rgba(48, 79, 254, 0);
+        transform: scale(1);
+    }
+}
+
+/* Enhance results visibility */
+.results-section {
+    transition: var(--transition);
+}
+
+.nav-tabs-mobile {
+    transition: var(--transition);
+}
+
+/* === COST CALCULATOR === */
+.cost-calculator {
+    margin-bottom: var(--spacing-lg);
+}
+
+.cost-toggle-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--success-color), #00a846);
+    color: white;
+    border: none;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(0, 200, 83, 0.3);
+}
+
+.cost-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 200, 83, 0.4);
+}
+
+.cost-toggle-btn:active {
+    transform: translateY(0);
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+.cost-toggle-btn.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.cost-form {
+    background: var(--card-bg);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border: 2px solid rgba(0, 200, 83, 0.2);
+    border-top: none;
+    padding: var(--spacing-lg);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cost-form.collapsed {
+    max-height: 0;
+    padding: 0 var(--spacing-lg);
+    opacity: 0;
+}
+
+.cost-form:not(.collapsed) {
+    max-height: 200px;
+    opacity: 1;
+}
+
+/* Toggle Switch for Calc Mode */
+.calc-mode-toggle {
+    margin-bottom: var(--spacing-lg);
+}
+
+.toggle-options {
+    display: flex;
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    padding: 4px;
+    position: relative;
+}
+
+.toggle-options input[type="radio"] {
+    display: none;
+}
+
+.toggle-label {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    border-radius: calc(var(--border-radius) - 4px);
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+}
+
+.toggle-label:hover {
+    color: var(--primary-color);
+}
+
+.toggle-options input[type="radio"]:checked + .toggle-label {
+    background: white;
+    color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-weight: 600;
+}
+
+.toggle-label i {
+    margin-right: var(--spacing-xs);
+}
+
+/* Cost Display in Results */
+.cost-info {
+    background: rgba(0, 200, 83, 0.1);
+    border: 1px solid rgba(0, 200, 83, 0.3);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.cost-info.best-deal {
+    background: rgba(0, 200, 83, 0.15);
+    border-color: var(--success-color);
+}
+
+.cost-info.extra-cost {
+    background: rgba(255, 152, 0, 0.1);
+    border-color: rgba(255, 152, 0, 0.3);
+}
+
+.cost-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.cost-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.cost-value.best {
+    color: var(--success-color);
+}
+
+.cost-value.extra {
+    color: #ff9800;
+}
+
+.cost-icon {
+    margin-right: var(--spacing-xs);
+    font-size: 1.2rem;
+}
+
+/* === MAP POPUP ENHANCEMENTS === */
+.leaflet-popup-content-wrapper {
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--card-shadow) !important;
+}
+
+.leaflet-popup-content {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    line-height: 1.5 !important;
+}
+
+/* Station markers on map */
+.station-marker {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.user-location-marker {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }

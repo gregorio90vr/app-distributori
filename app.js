@@ -7,6 +7,34 @@ let map = null;
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
+    
+    // Add debugging function to window for testing
+    window.testCostCalculation = function() {
+        console.log('=== TESTING COST CALCULATION ===');
+        
+        // Force open the cost calculator
+        const costCalculatorForm = document.getElementById('costCalculatorForm');
+        costCalculatorForm.classList.remove('collapsed');
+        
+        // Set test values
+        const modeInput = document.querySelector('input[name="calcMode"][value="liters"]');
+        if (modeInput) modeInput.checked = true;
+        
+        const valueInput = document.getElementById('calcValue');
+        if (valueInput) valueInput.value = '50';
+        
+        // If we have current results, force recalculation
+        if (currentResults.length > 0) {
+            console.log('Found', currentResults.length, 'existing results, recalculating costs');
+            showResults(currentResults);
+        } else {
+            console.log('No current results to test with');
+        }
+        
+        console.log('=== END TEST ===');
+    };
+    
+    console.log('Test function added to window.testCostCalculation()');
 });
 
 function initializeApp() {
@@ -41,6 +69,21 @@ function bindEventListeners() {
     document.getElementById('address').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             handleSearch();
+        }
+    });
+    
+    // Cost calculator toggle
+    document.getElementById('costToggle').addEventListener('click', toggleCostCalculator);
+    
+    // Cost calculation mode change
+    document.querySelectorAll('input[name="calcMode"]').forEach(radio => {
+        radio.addEventListener('change', handleCalcModeChange);
+    });
+    
+    // Cost value input change - update results if they exist
+    document.getElementById('calcValue').addEventListener('input', function() {
+        if (currentResults.length > 0) {
+            showResults(currentResults);
         }
     });
 }
@@ -98,10 +141,164 @@ function switchTab(tab) {
         setTimeout(() => {
             map.invalidateSize();
             if (currentResults.length > 0) {
-                updateMapMarkers();
+                // Apply cost calculations and update map
+                const resultsWithCosts = calculateCosts(currentResults);
+                updateMapMarkers(resultsWithCosts);
             }
         }, 100);
     }
+}
+
+// === COST CALCULATOR FUNCTIONS ===
+function toggleCostCalculator() {
+    const button = document.getElementById('costToggle');
+    const form = document.getElementById('costCalculatorForm');
+    
+    button.classList.toggle('expanded');
+    form.classList.toggle('collapsed');
+    
+    // Update button icon animation
+    const icon = button.querySelector('.toggle-icon');
+    if (button.classList.contains('expanded')) {
+        icon.style.transform = 'rotate(180deg)';
+        
+        // When opening, refresh results with cost calculations if they exist
+        if (currentResults.length > 0) {
+            console.log('Cost calculator opened - refreshing results with costs');
+            showResults(currentResults);
+        }
+    } else {
+        icon.style.transform = 'rotate(0deg)';
+        
+        // When closing, refresh results without cost calculations
+        if (currentResults.length > 0) {
+            console.log('Cost calculator closed - refreshing results without costs');
+            showResults(currentResults);
+        }
+    }
+}
+
+function handleCalcModeChange() {
+    const selectedMode = document.querySelector('input[name="calcMode"]:checked').value;
+    const label = document.getElementById('calcLabel');
+    const input = document.getElementById('calcValue');
+    
+    if (selectedMode === 'liters') {
+        label.innerHTML = '<i class="fas fa-gas-pump"></i> Litri serbatoio';
+        input.value = 55;
+        input.min = 10;
+        input.max = 200;
+        input.step = 5;
+    } else {
+        label.innerHTML = '<i class="fas fa-euro-sign"></i> Budget (€)';
+        input.value = 50;
+        input.min = 10;
+        input.max = 500;
+        input.step = 10;
+    }
+    
+    // Refresh results if they exist
+    if (currentResults.length > 0) {
+        showResults(currentResults);
+    }
+}
+
+function calculateCosts(stations) {
+    const costCalculatorForm = document.getElementById('costCalculatorForm');
+    const isCostCalculatorOpen = !costCalculatorForm.classList.contains('collapsed');
+    
+    console.log('calculateCosts called - Calculator open:', isCostCalculatorOpen);
+    
+    // If cost calculator is closed, return stations without cost info
+    if (!isCostCalculatorOpen) {
+        console.log('Cost calculator is closed - skipping cost calculations');
+        return stations.map(station => ({...station, costInfo: null}));
+    }
+    
+    const modeInput = document.querySelector('input[name="calcMode"]:checked');
+    const valueInput = document.getElementById('calcValue');
+    
+    if (!modeInput || !valueInput) {
+        console.log('Cost calculator inputs not found');
+        return stations.map(station => ({...station, costInfo: null}));
+    }
+    
+    const mode = modeInput.value;
+    const inputValue = parseFloat(valueInput.value) || 0;
+    
+    console.log(`Calculating costs: mode=${mode}, inputValue=${inputValue}, stations=${stations.length}`);
+    
+    if (inputValue <= 0 || stations.length === 0) {
+        console.log('Skipping cost calculation - invalid input or no stations');
+        return stations.map(station => ({...station, costInfo: null}));
+    }
+    
+    // Find best price for comparison
+    const prices = stations.map(s => s.price).filter(p => p > 0);
+    if (prices.length === 0) {
+        console.log('No valid prices found');
+        return stations.map(station => ({...station, costInfo: null}));
+    }
+    
+    const bestPrice = Math.min(...prices);
+    
+    console.log(`Best price: €${bestPrice}, total prices: ${prices.length}`);
+    
+    return stations.map(station => {
+        const price = station.price;
+        const isBest = Math.abs(price - bestPrice) < 0.0001; // Use small epsilon for float comparison
+        let costInfo = null;
+        
+        console.log(`Processing station ${station.name}: price=${price}, isBest=${isBest}`);
+        
+        if (price > 0) {
+            if (mode === 'liters') {
+                // Calculate cost for specified liters
+                const totalCost = parseFloat((price * inputValue).toFixed(2));
+                const extraCost = parseFloat(((price - bestPrice) * inputValue).toFixed(2));
+                
+                costInfo = {
+                    mode: 'liters',
+                    liters: inputValue,
+                    totalCost: totalCost,
+                    extraCost: extraCost,
+                    isBest: isBest,
+                    display: isBest ? `€${totalCost.toFixed(2)}` : `+€${extraCost.toFixed(2)}`,
+                    label: isBest ? `Miglior prezzo (${inputValue}L)` : `Extra costo (${inputValue}L)`,
+                    icon: isBest ? '🏆' : '💸'
+                };
+            } else {
+                // Calculate liters for specified budget
+                const litersObtained = parseFloat((inputValue / price).toFixed(2));
+                const bestLiters = parseFloat((inputValue / bestPrice).toFixed(2));
+                const lessLiters = parseFloat((bestLiters - litersObtained).toFixed(2));
+                
+                costInfo = {
+                    mode: 'budget',
+                    budget: inputValue,
+                    litersObtained: litersObtained,
+                    lessLiters: lessLiters,
+                    isBest: isBest,
+                    display: isBest ? `${litersObtained.toFixed(3)}L` : `-${lessLiters.toFixed(3)}L`,
+                    label: isBest ? `Più litri (€${inputValue})` : `Meno litri (€${inputValue})`,
+                    icon: isBest ? '🏆' : '💸'
+                };
+            }
+        }
+        
+        const result = {
+            ...station,
+            costInfo: costInfo
+        };
+        
+        if (costInfo) {
+            console.log(`Station ${station.name}: ${costInfo.display} - ${costInfo.label}`);
+        } else {
+            console.log(`Station ${station.name}: no cost info generated`);
+        }
+        
+        return result;
+    });
 }
 
 async function handleSearch() {
@@ -142,6 +339,14 @@ async function handleSearch() {
         } else {
             updateStatusMessage(`✅ Trovati ${results.length} distributori con ${fuelType} entro ${radius}km`);
             showResults(results);
+            
+            // Show success feedback on search button
+            showSearchSuccess();
+            
+            // Auto-scroll to results with smooth animation
+            setTimeout(() => {
+                scrollToResults();
+            }, 300);
             
             // Log some debug info
             console.log(`Nearest station: ${results[0].name} at ${results[0].distance.toFixed(2)}km`);
@@ -204,6 +409,14 @@ async function getCurrentLocation() {
             } else {
                 updateStatusMessage(`✅ Trovati ${results.length} distributori nelle vicinanze`);
                 showResults(results);
+                
+                // Show success feedback on search button
+                showSearchSuccess();
+                
+                // Auto-scroll to results with smooth animation
+                setTimeout(() => {
+                    scrollToResults();
+                }, 300);
             }
         }
         
@@ -323,10 +536,15 @@ async function searchFuelStations(coordinates, radius, fuelType) {
     updateStatusMessage('🔍 Ricerca distributori...');
     
     // Use real data if available, fallback to sample data
-    const stationsToSearch = typeof fuelStationsData !== 'undefined' ? fuelStationsData : sampleFuelStations;
+    const stationsToSearch = typeof realFuelStations !== 'undefined' ? realFuelStations : [];
     
     console.log(`Searching for ${fuelType} stations within ${radius}km of coordinates:`, coordinates);
     console.log(`Total stations to search:`, stationsToSearch.length);
+    
+    if (stationsToSearch.length === 0) {
+        console.log('No fuel stations data available');
+        return [];
+    }
     
     // Filter stations within radius and calculate distances
     const results = stationsToSearch
@@ -349,16 +567,17 @@ async function searchFuelStations(coordinates, radius, fuelType) {
             const withinRadius = station.distance <= radius;
             const hasValidPrice = station.price > 0;
             
-            if (!withinRadius) {
+            if (!withinRadius && station.distance <= radius + 1) {
                 console.log(`Station ${station.name} excluded: distance ${station.distance.toFixed(2)}km > ${radius}km`);
             }
-            if (!hasValidPrice) {
+            if (!hasValidPrice && station.distance <= radius) {
                 console.log(`Station ${station.name} excluded: no price for ${fuelType}`);
             }
             
             return withinRadius && hasValidPrice;
         })
-        .sort((a, b) => a.price - b.price); // Sort by price
+        .sort((a, b) => a.price - b.price) // Sort by price
+        .slice(0, 20); // Limit to 20 results for performance
     
     console.log(`Found ${results.length} stations within ${radius}km with ${fuelType} prices`);
     
@@ -380,33 +599,45 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
 function showResults(results) {
     currentResults = results;
     
-    const resultsHeader = document.getElementById('resultsHeader');
-    const resultsCount = document.getElementById('resultsCount');
-    const resultsSubtitle = document.getElementById('resultsSubtitle');
+    console.log('showResults called with', results.length, 'stations');
+    
+    const tabNavigation = document.getElementById('tabNavigation');
+    const resultsCountCompact = document.getElementById('resultsCountCompact');
     const emptyState = document.getElementById('emptyState');
     
     if (results.length === 0) {
-        resultsHeader.style.display = 'none';
+        // Hide tab navigation when no results
+        tabNavigation.style.display = 'none';
         emptyState.style.display = 'block';
         document.getElementById('stationsList').innerHTML = '';
+        updateHeaderWithResults(0);
         return;
     }
     
-    // Update header
-    resultsHeader.style.display = 'block';
+    // Apply cost calculations to results
+    console.log('About to calculate costs for stations:', results.map(s => s.name));
+    const resultsWithCosts = calculateCosts(results);
+    console.log('Cost calculations completed. Results with costs:', resultsWithCosts.map(s => ({
+        name: s.name,
+        price: s.price,
+        hasCostInfo: !!s.costInfo,
+        costDisplay: s.costInfo?.display
+    })));
+    
+    // Show and update tab navigation
+    tabNavigation.style.display = 'block';
+    resultsCountCompact.textContent = `${results.length} distributori trovati`;
     emptyState.style.display = 'none';
-    resultsCount.textContent = `🏪 ${results.length} distributori trovati`;
     
-    const fuelType = document.getElementById('fuelType').value;
-    const radius = document.getElementById('radius').value;
-    resultsSubtitle.textContent = `Carburante: ${fuelType} • Raggio: ${radius} km`;
+    // Update header indicator
+    updateHeaderWithResults(results.length);
     
-    // Render stations list
-    renderStationsList(results);
+    // Render stations list with cost calculations
+    renderStationsList(resultsWithCosts);
     
     // Update map if on map tab
     if (currentTab === 'map') {
-        updateMapMarkers();
+        updateMapMarkers(resultsWithCosts);
     }
 }
 
@@ -414,16 +645,37 @@ function renderStationsList(results) {
     const container = document.getElementById('stationsList');
     const fuelType = document.getElementById('fuelType').value;
     
+    console.log('renderStationsList called with', results.length, 'stations');
+    console.log('First station cost info:', results[0]?.costInfo);
+    
     if (results.length === 0) {
         container.innerHTML = '';
         return;
     }
     
-    const cheapestPrice = Math.min(...results.map(s => s.price));
+    const cheapestPrice = Math.min(...results.map(s => parseFloat(s.price.toFixed(3))));
     
     container.innerHTML = results.map((station, index) => {
         const isCheapest = station.price === cheapestPrice;
         const cardClass = isCheapest ? 'station-card best-price' : 'station-card';
+        
+        // Generate cost info HTML if available
+        let costInfoHtml = '';
+        if (station.costInfo && station.costInfo.display) {
+            console.log(`Rendering cost info for ${station.name}: ${station.costInfo.display}`);
+            const costClass = station.costInfo.isBest ? 'cost-info best-deal' : 'cost-info extra-cost';
+            const valueClass = station.costInfo.isBest ? 'cost-value best' : 'cost-value extra';
+            
+            costInfoHtml = `
+                <div class="${costClass}">
+                    <span class="cost-icon">${station.costInfo.icon}</span>
+                    <span class="cost-label">${station.costInfo.label.replace(/\([^)]*\)/, '')}</span>
+                    <span class="${valueClass}">${station.costInfo.display}</span>
+                </div>
+            `;
+        } else {
+            console.log(`No cost info for ${station.name}:`, station.costInfo);
+        }
         
         return `
             <div class="${cardClass}">
@@ -431,7 +683,7 @@ function renderStationsList(results) {
                     <div class="station-name">${station.name}</div>
                     <div class="station-brand">${station.brand}</div>
                     <div class="price-distance">
-                        <div class="price-badge">€${station.price.toFixed(2)}/L</div>
+                        <div class="price-badge">€${station.price.toFixed(3)}/L</div>
                         <div class="distance-badge">
                             <i class="fas fa-route"></i> ${station.distance.toFixed(1)} km
                         </div>
@@ -440,7 +692,9 @@ function renderStationsList(results) {
                 <div class="station-address">
                     <i class="fas fa-map-marker-alt"></i> ${station.address}
                 </div>
-                ${isCheapest ? '<div style="padding: 0 var(--spacing-lg) var(--spacing-sm); color: var(--success-color); font-weight: bold;"><i class="fas fa-trophy"></i> Prezzo più basso!</div>' : ''}
+                <div class="station-footer">
+                    ${costInfoHtml}
+                    </div>
             </div>
         `;
     }).join('');
@@ -458,8 +712,9 @@ function initializeMap() {
     }).addTo(map);
 }
 
-function updateMapMarkers() {
-    if (!map || currentResults.length === 0) return;
+function updateMapMarkers(stationsData = null) {
+    const stations = stationsData || currentResults;
+    if (!map || stations.length === 0) return;
     
     // Clear existing markers
     map.eachLayer(layer => {
@@ -469,7 +724,7 @@ function updateMapMarkers() {
     });
     
     const fuelType = document.getElementById('fuelType').value;
-    const cheapestPrice = Math.min(...currentResults.map(s => s.price));
+    const cheapestPrice = Math.min(...stations.map(s => s.price));
     
     // Add user location marker if available
     if (userLocation) {
@@ -485,7 +740,7 @@ function updateMapMarkers() {
     }
     
     // Add station markers
-    currentResults.forEach(station => {
+    stations.forEach(station => {
         const isCheapest = station.price === cheapestPrice;
         const color = isCheapest ? '#00c853' : '#f50057';
         const icon = isCheapest ? '🏆' : '⛽';
@@ -496,8 +751,22 @@ function updateMapMarkers() {
             className: 'station-marker'
         });
         
+        // Build cost info HTML for popup if available
+        let costInfoHtml = '';
+        if (station.costInfo && station.costInfo.display) {
+            const costColor = station.costInfo.isBest ? '#00c853' : '#ff9800';
+            costInfoHtml = `
+                <div style="margin: 8px 0; padding: 6px 10px; background: rgba(${station.costInfo.isBest ? '0,200,83' : '255,152,0'}, 0.1); border: 1px solid rgba(${station.costInfo.isBest ? '0,200,83' : '255,152,0'}, 0.3); border-radius: 8px;">
+                    <div style="font-size: 0.9em; color: #666; margin-bottom: 2px;">${station.costInfo.label}</div>
+                    <div style="font-weight: bold; color: ${costColor}; font-size: 1.1em;">
+                        ${station.costInfo.icon} ${station.costInfo.display}
+                    </div>
+                </div>
+            `;
+        }
+        
         const popupContent = `
-            <div style="min-width: 200px;">
+            <div style="min-width: 220px;">
                 <strong>${station.name}</strong><br>
                 <small>${station.brand}</small><br>
                 <div style="margin: 8px 0;">
@@ -508,6 +777,7 @@ function updateMapMarkers() {
                         ${station.distance.toFixed(1)} km
                     </span>
                 </div>
+                ${costInfoHtml}
                 <div style="color: #666; font-size: 0.9em;">${station.address}</div>
                 ${isCheapest ? '<div style="color: #00c853; font-weight: bold; margin-top: 4px;">🏆 Miglior prezzo!</div>' : ''}
             </div>
@@ -519,9 +789,9 @@ function updateMapMarkers() {
     });
     
     // Fit map bounds to show all markers
-    if (currentResults.length > 0) {
+    if (stations.length > 0) {
         const group = new L.featureGroup(
-            currentResults.map(station => L.marker([station.latitude, station.longitude]))
+            stations.map(station => L.marker([station.latitude, station.longitude]))
         );
         
         if (userLocation) {
@@ -529,5 +799,88 @@ function updateMapMarkers() {
         }
         
         map.fitBounds(group.getBounds().pad(0.1));
+    }
+}
+
+// Utility function to smooth scroll to results tabs - stops exactly at green bar
+function scrollToResults() {
+    const tabNavigation = document.getElementById('tabNavigation');
+    const resultsSummary = document.querySelector('.results-summary');
+    const mobileHeader = document.querySelector('.mobile-header');
+    
+    if (tabNavigation && tabNavigation.style.display !== 'none') {
+        // Calculate header height to offset scroll position
+        const headerHeight = mobileHeader ? mobileHeader.offsetHeight : 0;
+        
+        // Get the exact position of the tab navigation
+        const elementPosition = tabNavigation.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight;
+        
+        // Smooth scroll with precise positioning to show green bar below fixed header
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+        
+        // Add attention-grabbing animation to the green summary bar
+        if (resultsSummary) {
+            setTimeout(() => {
+                resultsSummary.style.animation = 'summaryPulse 2s ease-out';
+            }, 300); // Small delay for scroll completion
+        }
+        
+        // Subtle highlight for the entire tab navigation
+        setTimeout(() => {
+            tabNavigation.style.animation = 'tabHighlight 2s ease-out';
+        }, 300);
+        
+        // Clear animations after completion
+        setTimeout(() => {
+            if (resultsSummary) {
+                resultsSummary.style.animation = '';
+            }
+            tabNavigation.style.animation = '';
+        }, 2300);
+    }
+}
+
+// Utility function to show search success feedback
+function showSearchSuccess() {
+    const searchBtn = document.getElementById('searchBtn');
+    const originalText = searchBtn.innerHTML;
+    
+    // Temporarily change button to show success
+    searchBtn.innerHTML = '<i class="fas fa-check"></i> Risultati Trovati!';
+    searchBtn.style.background = 'linear-gradient(45deg, var(--success-color), #00a047)';
+    
+    // Reset after 2 seconds
+    setTimeout(() => {
+        searchBtn.innerHTML = originalText;
+        searchBtn.style.background = '';
+    }, 2000);
+}
+
+// Utility function to update header with results indicator
+function updateHeaderWithResults(count) {
+    const headerSubtitle = document.querySelector('.subtitle');
+    const originalSubtitle = 'Trova i distributori più economici';
+    
+    if (count > 0) {
+        // Show results count in header
+        headerSubtitle.innerHTML = `
+            <div>${originalSubtitle}</div>
+            <div style="background: rgba(0, 200, 83, 0.2); 
+                        color: var(--success-color); 
+                        padding: 4px 12px; 
+                        border-radius: 20px; 
+                        font-size: 0.85em; 
+                        margin-top: 8px; 
+                        display: inline-block;">
+                ✅ ${count} distributori trovati - <span style="text-decoration: underline; cursor: pointer;" onclick="scrollToResults()">Visualizza</span>
+            </div>
+        `;
+    } else {
+        // Reset to original subtitle
+        headerSubtitle.textContent = originalSubtitle;
     }
 }

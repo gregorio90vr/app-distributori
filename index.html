@@ -59,6 +59,38 @@
                 </select>
             </div>
             
+            <!-- Cost Calculator Section -->
+            <div class="cost-calculator">
+                <button id="costToggle" class="cost-toggle-btn" type="button">
+                    <i class="fas fa-calculator"></i> Calcola costi
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </button>
+                
+                <div id="costCalculatorForm" class="cost-form collapsed">
+                    <div class="calc-mode-toggle">
+                        <div class="toggle-options">
+                            <input type="radio" id="modeLitri" name="calcMode" value="liters" checked>
+                            <label for="modeLitri" class="toggle-label">
+                                <i class="fas fa-gas-pump"></i> Litri
+                            </label>
+                            
+                            <input type="radio" id="modeBudget" name="calcMode" value="budget">
+                            <label for="modeBudget" class="toggle-label">
+                                <i class="fas fa-euro-sign"></i> Budget
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="calcValue" class="form-label" id="calcLabel">
+                            <i class="fas fa-gas-pump"></i> Litri serbatoio
+                        </label>
+                        <input type="number" id="calcValue" class="form-control" 
+                               value="55" min="10" max="200" step="5">
+                    </div>
+                </div>
+            </div>
+            
             <div class="form-group">
                 <button id="searchBtn" class="btn-mobile">
                     <i class="fas fa-search"></i> Cerca Distributori
@@ -81,23 +113,23 @@
         </button>
     </div>
 
-    <!-- Tab Navigation -->
-    <div class="nav-tabs-mobile" id="tabNavigation">
-        <button id="tabList" class="nav-tab-mobile active">
-            <i class="fas fa-list"></i> Lista
-        </button>
-        <button id="tabMap" class="nav-tab-mobile">
-            <i class="fas fa-map"></i> Mappa
-        </button>
+    <!-- Tab Navigation (hidden by default) -->
+    <div class="nav-tabs-mobile" id="tabNavigation" style="display: none;">
+        <div class="results-summary" id="resultsSummary">
+            <span class="results-count-compact" id="resultsCountCompact">0 risultati</span>
+        </div>
+        <div class="tab-buttons">
+            <button id="tabList" class="nav-tab-mobile active">
+                <i class="fas fa-list"></i> Lista
+            </button>
+            <button id="tabMap" class="nav-tab-mobile">
+                <i class="fas fa-map"></i> Mappa
+            </button>
+        </div>
     </div>
 
     <!-- Results Section -->
-    <div class="results-section">
-        <div id="resultsHeader" class="results-header" style="display: none;">
-            <h2 id="resultsCount" class="results-count"></h2>
-            <p id="resultsSubtitle" class="results-subtitle"></p>
-        </div>
-        
+    <div class="results-section">        
         <!-- Tab Content -->
         <div id="tabContent">
             <!-- Results List -->
