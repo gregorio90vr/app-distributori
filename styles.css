@@ -93,11 +93,20 @@ body {
 }
 
 .form-label {
-    display: block;
+    display: flex;
+    align-items: center;
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
     color: var(--primary-color);
     font-size: 0.9rem;
+}
+
+.form-label i {
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color);
+    width: 16px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .form-control {
@@ -297,6 +306,135 @@ body {
     font-size: 0.8rem;
     font-weight: 700;
     text-align: center;
+}
+
+/* Fuel Calculation Input */
+.fuel-calculation-input, .calculation-input {
+    position: relative;
+}
+
+.calculation-input {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0;
+    transform: translateY(-10px);
+}
+
+.calculation-input.show {
+    opacity: 1;
+    max-height: 150px;
+    margin-top: var(--spacing-md);
+    transform: translateY(0);
+}
+
+.calculation-input-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Calculation Mode Select */
+#calculationMode {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23007bff' viewBox='0 0 16 16'%3e%3cpath d='M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 12px) center;
+    background-size: 16px;
+    padding-right: 40px;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.2s ease;
+}
+
+#calculationMode:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+}
+
+/* Calculation Value Input */
+#calculationValue {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+#calculationValue:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+    transform: scale(1.02);
+}
+
+#calculationValue::placeholder {
+    color: #aaa;
+    font-weight: normal;
+}
+
+/* Input Help Text */
+.input-help {
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs);
+    display: block;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 360px) {
+    .calculation-input.show {
+        max-height: 180px;
+    }
+    
+    #calculationMode {
+        font-size: 0.9rem;
+        padding-right: 35px;
+    }
+    
+    #calculationValue {
+        font-size: 1rem;
+    }
+}
+
+/* Cost Calculation Display */
+.cost-calculation {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    background: rgba(0, 123, 255, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    color: var(--secondary-color);
+}
+
+.cost-calculation.best-cost {
+    background: rgba(0, 200, 83, 0.1);
+    border-color: rgba(0, 200, 83, 0.3);
+    color: var(--success-color);
+}
+
+.cost-calculation.expensive-cost {
+    background: rgba(255, 68, 68, 0.1);
+    border-color: rgba(255, 68, 68, 0.3);
+    color: var(--error-color);
+}
+
+.cost-amount {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.cost-savings {
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .station-header {
