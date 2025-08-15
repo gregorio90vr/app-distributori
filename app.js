@@ -3,6 +3,7 @@ let currentTab = 'map'; // Start with map tab as shown in sketch
 let currentResults = [];
 let userLocation = null;
 let map = null;
+let dataTimestamp = null; // Global variable to store the extracted timestamp
 
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -16,8 +17,11 @@ function initializeApp() {
     // Initialize map
     initializeMap();
     
-    // Initialize timestamp
-    updateDataTimestamp();
+    // Pre-load the data timestamp for fallback use
+    getDataTimestamp().catch(console.error);
+    
+    // Initialize timestamp display (async)
+    updateDataTimestamp().catch(console.error);
 }
 
 function bindEventListeners() {
@@ -38,12 +42,33 @@ function bindEventListeners() {
     document.getElementById('locationExpandBtn').addEventListener('click', () => togglePanel('location-panel'));
     document.getElementById('settingsExpandBtn').addEventListener('click', () => togglePanel('settings-panel'));
     
-    // Close panel buttons
-    document.querySelectorAll('.close-panel').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const target = e.target.closest('.close-panel').dataset.target;
-            togglePanel(target, false);
-        });
+    // Close panel buttons - use event delegation for dynamic buttons
+    document.addEventListener('click', (e) => {
+        // Check if clicked element is or contains a close button
+        const closePanelBtn = e.target.closest('.close-panel-btn');
+        if (closePanelBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            const target = closePanelBtn.dataset.target;
+            console.log('Close button clicked for:', target); // Debug log
+            if (target) {
+                togglePanel(target, false);
+            }
+            return;
+        }
+        
+        // Legacy close panel buttons (for compatibility)
+        const legacyCloseBtn = e.target.closest('.close-panel');
+        if (legacyCloseBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            const target = legacyCloseBtn.dataset.target;
+            console.log('Legacy close button clicked for:', target); // Debug log
+            if (target) {
+                togglePanel(target, false);
+            }
+            return;
+        }
     });
     
     // Enter key in address field
@@ -62,6 +87,40 @@ function bindEventListeners() {
             showResults(currentResults);
         }
     });
+    
+    // Auto-update results when settings change
+    document.getElementById('fuelType').addEventListener('change', function() {
+        if (currentResults.length > 0) {
+            handleSearch();
+        }
+    });
+    
+    document.getElementById('radius').addEventListener('change', function() {
+        if (currentResults.length > 0 && userLocation) {
+            handleSearch();
+        }
+    });
+    
+    // Max stations slider
+    const maxStationsSlider = document.getElementById('maxStations');
+    const maxStationsValue = document.getElementById('maxStationsValue');
+    
+    maxStationsSlider.addEventListener('input', function() {
+        const value = parseInt(this.value);
+        maxStationsValue.textContent = value === 100 ? 'Tutti' : value;
+        
+        // Update slider background
+        const percentage = ((value - 5) / 95) * 100;
+        this.style.background = `linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) ${percentage}%, var(--border-color) ${percentage}%, var(--border-color) 100%)`;
+        
+        // Update results if they exist
+        if (currentResults.length > 0) {
+            showResults(currentResults);
+        }
+    });
+    
+    // Initialize slider appearance
+    maxStationsSlider.dispatchEvent(new Event('input'));
 }
 
 function updateStatusMessage(message) {
@@ -159,16 +218,16 @@ function calculateCosts(stations) {
                     liters: calcValue,
                     totalCost: totalCost,
                     extraCost: extraCost,
-                    isBest: Math.abs(price - bestPrice) < 1e-4,
+                    isBest: Math.abs(price - bestPrice) < 0.0001,
                     display: isBest ? `€${totalCost.toFixed(2)}` : `+€${extraCost.toFixed(2)}`,
                     label: isBest ? `Miglior prezzo (${calcValue}L)` : `Extra costo (${calcValue}L)`,
                     icon: isBest ? '🏆' : '💸'
                 };
             } else {
                 // Calculate liters for specified budget
-                const litersObtained = parseFloat((calcValue / price).toFixed(3));
-                const bestLiters = parseFloat((calcValue / bestPrice).toFixed(3));
-                const lessLiters = parseFloat((bestLiters - litersObtained).toFixed(3));
+                const litersObtained = parseFloat((calcValue / price).toFixed(2));
+                const bestLiters = parseFloat((calcValue / bestPrice).toFixed(2));
+                const lessLiters = parseFloat((bestLiters - litersObtained).toFixed(2));
                 
                 costInfo = {
                     mode: 'budget',
@@ -222,7 +281,12 @@ async function handleSearch() {
             updateStatusMessage(`❌ Nessun distributore con ${fuelType} trovato entro ${radius}km da ${address}`);
             showResults([]);
         } else {
-            updateStatusMessage(`✅ Trovati ${results.length} distributori con ${fuelType} entro ${radius}km`);
+            const maxStations = parseInt(document.getElementById('maxStations').value);
+            let statusMsg = `✅ Trovati ${results.length} distributori con ${fuelType} entro ${radius}km`;
+            if (maxStations < 100 && results.length > maxStations) {
+                statusMsg += ` (mostrati i ${maxStations} più economici)`;
+            }
+            updateStatusMessage(statusMsg);
             showResults(results);
         }
         
@@ -275,7 +339,12 @@ async function getCurrentLocation() {
                 updateStatusMessage(`❌ Nessun distributore con ${fuelType} trovato entro ${radius}km`);
                 showResults([]);
             } else {
-                updateStatusMessage(`✅ Trovati ${results.length} distributori nelle vicinanze`);
+                const maxStations = parseInt(document.getElementById('maxStations').value);
+                let statusMsg = `✅ Trovati ${results.length} distributori nelle vicinanze`;
+                if (maxStations < 100 && results.length > maxStations) {
+                    statusMsg += ` (mostrati i ${maxStations} più economici)`;
+                }
+                updateStatusMessage(statusMsg);
                 showResults(results);
             }
         }
@@ -305,8 +374,8 @@ async function handleDataUpdate() {
         await new Promise(resolve => setTimeout(resolve, 2000));
         updateStatusMessage('✅ Dati aggiornati con successo');
         
-        // Update timestamp
-        updateDataTimestamp();
+        // Update timestamp (async)
+        updateDataTimestamp().catch(console.error);
         
         // If we have current results, refresh them
         if (currentResults.length > 0) {
@@ -407,15 +476,21 @@ function showResults(results) {
     // Apply cost calculations to results
     const resultsWithCosts = calculateCosts(results);
     
+    // Get max stations setting
+    const maxStations = parseInt(document.getElementById('maxStations').value);
+    
+    // Limit results based on user setting (results are already sorted by price)
+    const limitedResults = maxStations === 100 ? resultsWithCosts : resultsWithCosts.slice(0, maxStations);
+    
     // Hide empty states
     document.getElementById('emptyStateMap').style.display = 'none';
     document.getElementById('emptyStateList').style.display = 'none';
     
-    // Render stations list
-    renderStationsList(resultsWithCosts);
+    // Render stations list with limited results
+    renderStationsList(limitedResults);
     
-    // Update map
-    updateMapMarkers(resultsWithCosts);
+    // Update map with limited results
+    updateMapMarkers(limitedResults);
 }
 
 function initializeMap() {
@@ -440,7 +515,7 @@ function renderStationsList(results) {
     const cheapestPrice = Math.min(...results.map(s => parseFloat(s.price.toFixed(3))));
     
     container.innerHTML = results.map((station, index) => {
-        const isCheapest = Math.abs(station.price - cheapestPrice) < 0.001;
+        const isCheapest = Math.abs(station.price - cheapestPrice) < 0.00001; // Reduced tolerance for better precision
         const cardClass = isCheapest ? 'station-card best-price' : 'station-card';
         
         // Generate cost info HTML if available
@@ -513,7 +588,7 @@ function updateMapMarkers(stationsData = null) {
     
     // Add station markers
     stations.forEach(station => {
-        const isCheapest = Math.abs(station.price - cheapestPrice) < 0.001;
+        const isCheapest = Math.abs(station.price - cheapestPrice) < 0.00001; // Reduced tolerance for better precision
         const color = isCheapest ? '#00c853' : '#f50057';
         const icon = isCheapest ? '🏆' : '⛽';
         
@@ -575,22 +650,99 @@ function updateMapMarkers(stationsData = null) {
 }
 
 // Data timestamp helper
-function updateDataTimestamp() {
-    const now = new Date();
-    const day = now.getDate().toString().padStart(2, '0');
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const year = now.getFullYear();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
+async function updateDataTimestamp() {
+    // Set initial loading state
+    const timestampElement = document.getElementById('dataTimestamp');
     
-    const timestampText = `${day}/${month}/${year} alle ${hours}:${minutes}`;
-    document.getElementById('dataTimestamp').textContent = timestampText;
+    if (!timestampElement) {
+        console.error('Timestamp element not found!');
+        return;
+    }
+    
+    timestampElement.textContent = '📊 Caricamento...';
+    timestampElement.style.visibility = 'visible'; // Force visibility
+    
+    // Extract timestamp from the data.js header comment
+    const timestampFromData = await getDataTimestamp();
+    
+    if (timestampFromData) {
+        timestampElement.textContent = `📊 Dati aggiornati al: ${timestampFromData}`;
+        console.log('Timestamp updated:', timestampFromData);
+    } else {
+        // Fallback: try one more time to get the timestamp
+        try {
+            const fallbackResponse = await fetch('data.js');
+            const fallbackContent = await fallbackResponse.text();
+            const fallbackMatch = fallbackContent.match(/Last updated:\s*(\d{2}\/\d{2}\/\d{4})\s*(\d{2}:\d{2})/);
+            
+            if (fallbackMatch) {
+                const fallbackTimestamp = `${fallbackMatch[1]} ${fallbackMatch[2]}`;
+                timestampElement.textContent = `📊 Dati: ${fallbackTimestamp}`;
+                dataTimestamp = fallbackTimestamp; // Store for future use
+                console.log('Timestamp fallback successful:', fallbackTimestamp);
+            } else {
+                timestampElement.textContent = '📊 Dati: Timestamp non trovato';
+                console.log('Timestamp pattern not found in data.js');
+            }
+        } catch (error) {
+            timestampElement.textContent = '📊 Dati: Errore caricamento';
+            console.log('Fallback fetch failed:', error);
+        }
+    }
+}
+
+// Function to extract timestamp from data.js
+async function getDataTimestamp() {
+    try {
+        // First try to use the DATA_TIMESTAMP constant
+        if (typeof DATA_TIMESTAMP !== 'undefined' && DATA_TIMESTAMP) {
+            console.log('Using DATA_TIMESTAMP constant:', DATA_TIMESTAMP);
+            // Store for global fallback use
+            dataTimestamp = DATA_TIMESTAMP;
+            return DATA_TIMESTAMP;
+        }
+        
+        console.log('DATA_TIMESTAMP not found, fetching data.js for timestamp extraction...');
+        // Fallback: Fetch the data.js file to read the header comment
+        const response = await fetch('data.js');
+        const content = await response.text();
+        
+        console.log('data.js fetched, first 200 chars:', content.substring(0, 200));
+        
+        // Extract the timestamp from the comment
+        const timestampMatch = content.match(/Last updated:\s*(\d{2}\/\d{2}\/\d{4})\s*(\d{2}:\d{2})/);
+        
+        if (timestampMatch) {
+            const date = timestampMatch[1];
+            const time = timestampMatch[2];
+            const extractedTimestamp = `${date} ${time}`;
+            
+            console.log('Timestamp extracted successfully from comments:', extractedTimestamp);
+            
+            // Store the extracted timestamp globally for fallback use
+            dataTimestamp = extractedTimestamp;
+            
+            return extractedTimestamp;
+        } else {
+            console.log('Timestamp pattern not found in data.js content');
+            return null;
+        }
+        
+    } catch (error) {
+        console.log('Could not fetch timestamp from data.js:', error);
+        return null;
+    }
 }
 
 // Panel management
 function togglePanel(panelId, forceState = null) {
     const panel = document.getElementById(panelId);
     const expandBtn = document.querySelector(`[data-target="${panelId}"]`);
+    
+    if (!panel) {
+        console.warn(`Panel not found: ${panelId}`);
+        return;
+    }
     
     // Close all other panels first
     document.querySelectorAll('.expandable-panel').forEach(p => {
@@ -600,7 +752,7 @@ function togglePanel(panelId, forceState = null) {
     });
     
     document.querySelectorAll('.expand-btn').forEach(btn => {
-        if (btn.dataset.target !== panelId) {
+        if (btn.dataset.target && btn.dataset.target !== panelId) {
             btn.classList.remove('active');
         }
     });
@@ -608,14 +760,25 @@ function togglePanel(panelId, forceState = null) {
     // Toggle target panel
     if (forceState !== null) {
         panel.classList.toggle('active', forceState);
-        expandBtn.classList.toggle('active', forceState);
+        if (expandBtn) {
+            expandBtn.classList.toggle('active', forceState);
+        }
     } else {
         panel.classList.toggle('active');
-        expandBtn.classList.toggle('active');
+        if (expandBtn) {
+            expandBtn.classList.toggle('active');
+        }
     }
     
     // Adjust bottom spacing for results section
     updateBottomSpacing();
+    
+    // If closing settings panel and have results, refresh them
+    if (forceState === false && panelId === 'settings-panel' && currentResults.length > 0) {
+        setTimeout(() => {
+            showResults(currentResults);
+        }, 300);
+    }
 }
 
 function closeAllPanels() {
@@ -634,13 +797,18 @@ function closeAllPanels() {
 }
 
 function updateBottomSpacing() {
-    const openPanels = document.querySelectorAll('.expandable-panel.active');
+    // With the new fixed positioning, we don't need to adjust bottom spacing
+    // The panels now overlay above the buttons instead of pushing them up
     const baseHeight = 70; // Base footer height
-    let additionalHeight = 0;
+    document.documentElement.style.setProperty('--bottom-height', `${baseHeight}px`);
     
-    openPanels.forEach(panel => {
-        additionalHeight += panel.scrollHeight;
-    });
+    // Optional: Add visual feedback when panels are open
+    const openPanels = document.querySelectorAll('.expandable-panel.active');
+    const mainActionBar = document.querySelector('.main-action-bar');
     
-    document.documentElement.style.setProperty('--bottom-height', `${baseHeight + additionalHeight}px`);
+    if (openPanels.length > 0) {
+        mainActionBar.style.borderTop = '2px solid var(--primary-color)';
+    } else {
+        mainActionBar.style.borderTop = 'none';
+    }
 }

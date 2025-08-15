@@ -288,6 +288,8 @@ class MIMITDataUpdater:
 // Last updated: {timestamp}
 // Total stations: {len(stations)}
 
+const DATA_TIMESTAMP = "{timestamp}";
+
 const realFuelStations = {json.dumps(stations, indent=2, ensure_ascii=False)};
 
 // Sample data for demo (kept for fallback)

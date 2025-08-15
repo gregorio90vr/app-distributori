@@ -73,76 +73,103 @@
                 <i class="fas fa-cog"></i>
                 <span>Impostazioni</span>
             </button>
+            
+            <button id="updateDataBtn" class="expand-btn">
+                <i class="fas fa-sync-alt"></i>
+                <span>Aggiorna</span>
+            </button>
         </div>
 
         <!-- Expandable Panels -->
         <div id="location-panel" class="expandable-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-map-marker-alt"></i> Posizione</h3>
+                <button class="close-panel-btn" data-target="location-panel">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             <div class="panel-content">
                 <div class="input-group">
-                    <label>Inserisci indirizzo</label>
-                    <input type="text" id="address" placeholder="Via, Città...">
+                    <label for="address"><i class="fas fa-search-location"></i> Indirizzo</label>
+                    <input type="text" id="address" placeholder="Es: Via Roma 1, Milano">
+                    <div class="input-help">Inserisci un indirizzo per risultati precisi</div>
                 </div>
                 <div class="panel-actions">
-                    <button id="locationBtn" class="panel-btn">
+                    <button id="locationBtn" class="action-btn primary">
                         <i class="fas fa-location-crosshairs"></i>
-                        Usa GPS
-                    </button>
-                    <button class="panel-btn close-panel" data-target="location-panel">
-                        <i class="fas fa-times"></i>
-                        Chiudi
+                        <span>Usa GPS</span>
                     </button>
                 </div>
             </div>
         </div>
 
         <div id="settings-panel" class="expandable-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-cog"></i> Impostazioni</h3>
+                <button class="close-panel-btn" data-target="settings-panel">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             <div class="panel-content">
-                <div class="settings-grid">
-                    <div class="setting-item">
-                        <label>Carburante</label>
-                        <select id="fuelType">
-                            <option value="Benzina">Benzina</option>
-                            <option value="Gasolio">Gasolio</option>
-                            <option value="GPL">GPL</option>
-                            <option value="Metano">Metano</option>
+                <div class="settings-section">
+                    <div class="setting-group">
+                        <label for="fuelType"><i class="fas fa-gas-pump"></i> Carburante</label>
+                        <select id="fuelType" class="setting-select">
+                            <option value="Benzina">⛽ Benzina</option>
+                            <option value="Gasolio">🚛 Gasolio</option>
+                            <option value="GPL">🔥 GPL</option>
+                            <option value="Metano">💨 Metano</option>
                         </select>
                     </div>
                     
-                    <div class="setting-item">
-                        <label>Raggio</label>
-                        <select id="radius">
-                            <option value="1">1 km</option>
-                            <option value="2">2 km</option>
-                            <option value="5" selected>5 km</option>
-                            <option value="10">10 km</option>
-                            <option value="15">15 km</option>
-                            <option value="20">20 km</option>
-                            <option value="30">30 km</option>
+                    <div class="setting-group">
+                        <label for="radius"><i class="fas fa-circle"></i> Raggio</label>
+                        <select id="radius" class="setting-select">
+                            <option value="1">📍 1 km</option>
+                            <option value="2">📍 2 km</option>
+                            <option value="5" selected>📍 5 km</option>
+                            <option value="10">📍 10 km</option>
+                            <option value="15">📍 15 km</option>
+                            <option value="20">📍 20 km</option>
+                            <option value="30">📍 30 km</option>
                         </select>
                     </div>
                     
-                    <div class="setting-item">
-                        <label>Calcolo</label>
-                        <select id="calcMode">
-                            <option value="liters">Litri</option>
-                            <option value="budget">Budget</option>
+                    <div class="setting-group">
+                        <label for="calcMode"><i class="fas fa-calculator"></i> Calcolo</label>
+                        <select id="calcMode" class="setting-select">
+                            <option value="liters">📏 Litri</option>
+                            <option value="budget">💰 Budget</option>
                         </select>
                     </div>
                     
-                    <div class="setting-item">
-                        <label>Valore</label>
-                        <input type="number" id="calcValue" value="55" min="10" max="500">
+                    <div class="setting-group">
+                        <label for="calcValue">Valore</label>
+                        <input type="number" id="calcValue" class="setting-input" value="55" min="10" max="500">
+                        <div class="input-help">Litri o budget in euro</div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="maxStations"><i class="fas fa-layer-group"></i> Numero Distributori</label>
+                        <div class="slider-container">
+                            <input type="range" id="maxStations" class="setting-slider" min="5" max="100" value="100" step="5">
+                            <div class="slider-value">
+                                <span id="maxStationsValue">20</span>
+                                <span class="slider-unit">stazioni</span>
+                            </div>
+                        </div>
+                        <div class="slider-labels">
+                            <span>5</span>
+                            <span>Tutti</span>
+                        </div>
+                        <div class="input-help">Limita i distributori mostrati per migliorare la visualizzazione</div>
                     </div>
                 </div>
                 
                 <div class="panel-actions">
-                    <button id="updateDataBtn" class="panel-btn">
-                        <i class="fas fa-refresh"></i>
-                        Aggiorna Dati
-                    </button>
-                    <button class="panel-btn close-panel" data-target="settings-panel">
-                        <i class="fas fa-times"></i>
-                        Chiudi
+                    <button class="action-btn primary close-panel-btn" data-target="settings-panel">
+                        <i class="fas fa-check"></i>
+                        <span>Conferma</span>
                     </button>
                 </div>
             </div>
