@@ -83,6 +83,7 @@ function bindEventListeners() {
     
     // Cost value input change - update results if they exist
     document.getElementById('calcValue').addEventListener('input', function() {
+        markSearchOutdated();
         if (currentResults.length > 0) {
             showResults(currentResults);
         }
@@ -90,15 +91,16 @@ function bindEventListeners() {
     
     // Auto-update results when settings change
     document.getElementById('fuelType').addEventListener('change', function() {
-        if (currentResults.length > 0) {
-            handleSearch();
-        }
+        markSearchOutdated();
     });
     
     document.getElementById('radius').addEventListener('change', function() {
-        if (currentResults.length > 0 && userLocation) {
-            handleSearch();
-        }
+        markSearchOutdated();
+    });
+    
+    // Address input change
+    document.getElementById('address').addEventListener('input', function() {
+        markSearchOutdated();
     });
     
     // Max stations slider
@@ -113,7 +115,8 @@ function bindEventListeners() {
         const percentage = ((value - 5) / 95) * 100;
         this.style.background = `linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) ${percentage}%, var(--border-color) ${percentage}%, var(--border-color) 100%)`;
         
-        // Update results if they exist
+        // Mark search as outdated and update results if they exist
+        markSearchOutdated();
         if (currentResults.length > 0) {
             showResults(currentResults);
         }
@@ -127,6 +130,31 @@ function updateStatusMessage(message) {
     // Status message element removed from UI
     // Function kept for compatibility but does nothing
     console.log('Status:', message);
+}
+
+// Search indicator management
+let searchNeedsUpdate = false;
+
+function markSearchOutdated() {
+    if (currentResults.length > 0) {
+        showSearchIndicator();
+    }
+}
+
+function showSearchIndicator() {
+    const indicator = document.getElementById('searchIndicator');
+    if (indicator) {
+        indicator.classList.add('show');
+        searchNeedsUpdate = true;
+    }
+}
+
+function hideSearchIndicator() {
+    const indicator = document.getElementById('searchIndicator');
+    if (indicator) {
+        indicator.classList.remove('show');
+        searchNeedsUpdate = false;
+    }
 }
 
 function showLoading(show = true) {
@@ -218,7 +246,7 @@ function calculateCosts(stations) {
                     liters: calcValue,
                     totalCost: totalCost,
                     extraCost: extraCost,
-                    isBest: Math.abs(price - bestPrice) < 0.0001,
+                    isBest: Math.abs(price - bestPrice) < 0.001,
                     display: isBest ? `€${totalCost.toFixed(2)}` : `+€${extraCost.toFixed(2)}`,
                     label: isBest ? `Miglior prezzo (${calcValue}L)` : `Extra costo (${calcValue}L)`,
                     icon: isBest ? '🏆' : '💸'
@@ -257,9 +285,15 @@ async function handleSearch() {
     // Close all panels when starting search
     closeAllPanels();
     
+    // Hide search indicator and show searching animation
+    hideSearchIndicator();
+    const searchBtn = document.getElementById('searchBtn');
+    searchBtn.classList.add('searching');
+    
     if (!address) {
         updateStatusMessage('📱 Nessun indirizzo inserito, provo a usare la posizione attuale...');
         await getCurrentLocation();
+        searchBtn.classList.remove('searching');
         return;
     }
     
@@ -296,6 +330,9 @@ async function handleSearch() {
         showResults([]);
     } finally {
         showLoading(false);
+        // Remove searching animation
+        const searchBtn = document.getElementById('searchBtn');
+        searchBtn.classList.remove('searching');
     }
 }
 

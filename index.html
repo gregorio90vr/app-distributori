@@ -64,14 +64,20 @@
                 <span>Posizione</span>
             </button>
             
-            <button id="searchBtn" class="primary-action-btn">
-                <i class="fas fa-search"></i>
-                <span>CERCA</span>
+            <button id="settingsExpandBtn" class="expand-btn" data-target="settings-panel">
+                <i class="fas fa-sliders-h"></i>
+                <span>Filtri</span>
             </button>
             
-            <button id="settingsExpandBtn" class="expand-btn" data-target="settings-panel">
-                <i class="fas fa-cog"></i>
-                <span>Impostazioni</span>
+            <button id="searchBtn" class="primary-action-btn search-btn">
+                <div class="search-btn-content">
+                    <i class="fas fa-search"></i>
+                    <span class="search-text">CERCA</span>
+                </div>
+                <div class="search-indicator" id="searchIndicator">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Aggiorna ricerca</span>
+                </div>
             </button>
             
             <button id="updateDataBtn" class="expand-btn">
@@ -152,7 +158,7 @@
                     <div class="setting-group">
                         <label for="maxStations"><i class="fas fa-layer-group"></i> Numero Distributori</label>
                         <div class="slider-container">
-                            <input type="range" id="maxStations" class="setting-slider" min="5" max="100" value="100" step="5">
+                            <input type="range" id="maxStations" class="setting-slider" min="5" max="100" value="20" step="5">
                             <div class="slider-value">
                                 <span id="maxStationsValue">20</span>
                                 <span class="slider-unit">stazioni</span>
