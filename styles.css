@@ -33,6 +33,32 @@ body {
     overflow: hidden;
 }
 
+/* Miglioramenti touch globali per tutti i pulsanti e elementi interattivi */
+button, 
+.btn, 
+[role="button"],
+.tab-btn,
+.expand-btn,
+.primary-action-btn,
+.action-btn,
+.close-panel-btn,
+.calc-radio-label {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    /* Assicura dimensione minima touch target 44x44px */
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* iOS Safari fix per overflow nascosto */
+@supports (-webkit-touch-callout: none) {
+    .expandable-panel {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
 /* Header Section */
 .header-section {
     position: fixed;
@@ -378,6 +404,14 @@ body {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    
+    /* Miglioramenti touch per mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    /* Assicura touch target minimo 44px */
+    min-width: 44px;
 }
 
 .expand-btn::before {
@@ -457,6 +491,13 @@ body {
     min-height: 56px;
     box-shadow: 0 4px 16px rgba(76, 175, 80, 0.25);
     overflow: hidden;
+    
+    /* Miglioramenti touch per mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 44px;
 }
 
 .search-btn-content {
@@ -952,6 +993,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    
+    /* Miglioramenti touch per mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .action-btn.primary {
@@ -1285,10 +1334,47 @@ body {
 @media (max-width: 768px) {
     .main-action-bar {
         grid-template-columns: 0.9fr 1.1fr 0.9fr 0.9fr;
+        padding: 12px 8px;
+        gap: 6px;
     }
     
+    .expand-btn {
+        min-height: 58px;
+        font-size: 0.75rem;
+        padding: 8px 6px;
+        border-radius: 12px;
+    }
+    
+    .expand-btn i {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+    
+    .expand-btn span {
+        font-size: 0.72rem;
+        font-weight: 600;
+    }
+    
+    .primary-action-btn {
+        min-height: 58px;
+        font-size: 0.8rem;
+        padding: 8px 6px;
+        border-radius: 14px;
+    }
+    
+    .primary-action-btn i {
+        font-size: 1.4rem;
+    }
+    
+    .search-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+    
+    /* Pannelli più alti per evitare pulsanti tagliati */
     .expandable-panel.active {
-        max-height: calc(60vh - var(--bottom-height) - 16px);
+        max-height: calc(75vh - var(--bottom-height) - 16px);
+        min-height: 200px;
     }
     
     .expandable-panel {
@@ -1299,6 +1385,7 @@ body {
     
     .panel-content {
         padding: 20px;
+        padding-bottom: 80px; /* Spazio extra per pulsanti */
     }
     
     .panel-header {
@@ -1310,48 +1397,71 @@ body {
         gap: 12px;
     }
     
+    /* Pulsanti Applica sempre visibili */
     .panel-actions {
+        position: sticky;
+        bottom: 0;
+        background: white;
         margin-left: -20px;
         margin-right: -20px;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-bottom: -20px;
-        padding-bottom: 24px;
+        padding: 16px 20px 20px 20px;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+        z-index: 10;
     }
 }
 
 @media (max-width: 400px) {
     .main-action-bar {
         grid-template-columns: 1fr 1fr 1.6fr 1fr;
-        padding: 6px 4px;
-        gap: 4px;
+        padding: 8px 6px;
+        gap: 6px;
     }
     
     .expand-btn {
-        font-size: 0.65rem;
-        padding: 4px 2px;
-        min-height: 44px;
+        font-size: 0.7rem;
+        padding: 6px 4px;
+        min-height: 50px;
         border-radius: 10px;
     }
     
     .expand-btn span {
         line-height: 1.1;
-        font-size: 0.6rem;
+        font-size: 0.65rem;
+        font-weight: 600;
     }
     
     .expand-btn i {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        margin-bottom: 2px;
     }
     
     .primary-action-btn {
-        font-size: 0.65rem;
-        padding: 4px;
-        min-height: 44px;
+        font-size: 0.7rem;
+        padding: 6px 4px;
+        min-height: 50px;
         border-radius: 12px;
     }
     
+    .primary-action-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .search-text {
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+    
+    /* Pannelli ancora più alti per schermi piccoli */
     .expandable-panel.active {
-        max-height: calc(50vh - var(--bottom-height) - 16px);
+        max-height: calc(80vh - var(--bottom-height) - 16px);
+        min-height: 250px;
+    }
+    
+    .expandable-panel {
+        left: 2px;
+        right: 2px;
+        bottom: calc(var(--bottom-height) + 8px);
     }
     
     .settings-row {
@@ -1361,92 +1471,207 @@ body {
     
     .panel-content {
         padding: 16px;
+        padding-bottom: 90px; /* Ancora più spazio per pulsanti */
     }
     
-    /* Simplified calculator responsive */
+    /* Pulsanti Applica sticky e più visibili */
+    .panel-actions {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        margin-left: -16px;
+        margin-right: -16px;
+        padding: 18px 16px 22px 16px;
+        border-top: 2px solid var(--border-color);
+        box-shadow: 0 -6px 16px rgba(0,0,0,0.15);
+        z-index: 10;
+    }
+    
+    .apply-btn {
+        padding: 14px 20px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        min-height: 48px;
+        border-radius: 12px;
+    }
+    
+    /* Calculator responsive migliorato */
     .calc-mode-row {
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
     }
     
     .calc-radio-label {
         flex-direction: row;
         justify-content: center;
-        padding: 12px;
+        padding: 14px;
         gap: 12px;
+        min-height: 52px;
+        border-radius: 12px;
     }
     
     .calc-radio-label i {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .calc-radio-label span {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        font-weight: 600;
     }
     
-    .search-text {
+    .search-indicator {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+        border-radius: 6px;
+    }
+    
+    .panel-header h3 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .input-group label,
+    .setting-group label {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    
+    .close-panel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
+    }
+    
+    /* Miglioramento input e select */
+    .input-group input,
+    .input-group select,
+    .setting-group select {
+        padding: 12px;
+        font-size: 0.9rem;
+        min-height: 46px;
+        border-radius: 8px;
+    }
+    
+    /* Status bar più visibile */
+    .status-bar {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .timestamp {
+        font-size: 0.75rem;
+    }
+    
+    .data-source {
         font-size: 0.65rem;
+    }
+}
+
+/* Media query per schermi molto piccoli (iPhone SE, etc.) */
+@media (max-width: 350px) {
+    .main-action-bar {
+        grid-template-columns: 1fr 1fr 1.4fr 1fr;
+        padding: 6px 4px;
+        gap: 4px;
+    }
+    
+    .expand-btn {
+        font-size: 0.65rem;
+        padding: 4px 2px;
+        min-height: 48px;
+        border-radius: 8px;
+    }
+    
+    .expand-btn span {
+        font-size: 0.6rem;
+        line-height: 1;
+    }
+    
+    .expand-btn i {
+        font-size: 1.1rem;
+        margin-bottom: 1px;
+    }
+    
+    .primary-action-btn {
+        font-size: 0.65rem;
+        padding: 4px 2px;
+        min-height: 48px;
+        border-radius: 10px;
     }
     
     .primary-action-btn i {
         font-size: 1.2rem;
     }
     
-    .search-indicator {
-        font-size: 0.55rem;
-        padding: 1px 3px;
+    .search-text {
+        font-size: 0.65rem;
+        font-weight: 700;
     }
     
+    /* Pannelli ottimizzati per schermi piccolissimi */
     .expandable-panel.active {
-        max-height: calc(50vh - var(--bottom-height) - 16px);
+        max-height: calc(85vh - var(--bottom-height) - 12px);
+        min-height: 300px;
     }
     
-    .panel-header h3 {
-        font-size: 0.95rem;
-    }
-    
-    .input-group label,
-    .setting-group label {
-        font-size: 0.85rem;
+    .expandable-panel {
+        left: 1px;
+        right: 1px;
+        bottom: calc(var(--bottom-height) + 6px);
+        border-radius: 12px;
     }
     
     .panel-content {
         padding: 12px;
+        padding-bottom: 95px;
     }
     
     .panel-actions {
+        padding: 16px 12px 20px 12px;
         margin-left: -12px;
         margin-right: -12px;
-        padding-left: 12px;
-        padding-right: 12px;
-        margin-bottom: -12px;
-        padding-bottom: 12px;
+    }
+    
+    .apply-btn {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        border-radius: 10px;
+    }
+    
+    .calc-radio-label {
+        padding: 10px;
+        min-height: 46px;
+        border-radius: 10px;
+    }
+    
+    .calc-radio-label i {
+        font-size: 1.1rem;
+    }
+    
+    .calc-radio-label span {
+        font-size: 0.8rem;
     }
     
     .close-panel-btn {
         width: 28px;
         height: 28px;
+        font-size: 1rem;
     }
     
-    /* Calculator panel responsive */
-    .mode-option {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-        padding: 12px;
+    .panel-header {
+        padding: 12px 16px 6px 16px;
     }
     
-    .mode-content {
-        gap: 2px;
-    }
-    
-    .preview-card {
+    .panel-header h3 {
         font-size: 0.9rem;
     }
     
-    .calc-info-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+    .input-group input,
+    .input-group select,
+    .setting-group select {
+        padding: 10px;
+        font-size: 0.85rem;
+        min-height: 42px;
     }
 }
