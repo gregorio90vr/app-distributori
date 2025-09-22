@@ -15,11 +15,15 @@ Questa è la versione statica dell'app FuelFinder Mobile, convertita per essere 
 
 ```
 app-statica/
-├── index.html          # Pagina principale
-├── styles.css          # Stili CSS mobile-first
-├── app.js             # Logica JavaScript principale
-├── data.js            # Dati simulati e utilities
-└── README.md          # Questo file
+├── index.html             # Pagina principale
+├── styles.css             # Stili CSS mobile-first
+├── app.js                # Logica JavaScript principale
+├── data.js               # Dati MIMIT aggiornati automaticamente
+├── update_mimit_data.py  # Script per aggiornamento dati
+├── requirements.txt      # Dipendenze Python
+├── .github/workflows/    # GitHub Actions automazione
+│   └── update-data.yml   # Workflow aggiornamento automatico
+└── README.md             # Questo file
 ```
 
 ## 🛠️ Tecnologie Utilizzate
@@ -77,7 +81,36 @@ Modifica le variabili CSS in `styles.css`:
 }
 ```
 
-## 🚀 Ottimizzazioni per Produzione
+## � Aggiornamento Automatico dei Dati
+
+### GitHub Actions Automation
+L'app include un sistema di aggiornamento automatico dei dati MIMIT tramite GitHub Actions:
+
+- **🕘 Orario**: Ogni giorno alle 9:00 (ora di Roma)
+- **📥 Fonte**: Dati ufficiali MIMIT in tempo reale
+- **🔧 Script**: `update_mimit_data.py` scarica e processa i dati
+- **🚀 Deploy**: Auto-commit e deploy su GitHub Pages
+
+### Come Funziona
+1. **GitHub Actions** esegue automaticamente `update_mimit_data.py`
+2. **Script Python** scarica i dati MIMIT più recenti
+3. **Genera** nuovo file `data.js` con dati aggiornati
+4. **Commit automatico** delle modifiche
+5. **GitHub Pages** deploy automatico dell'app aggiornata
+
+### Configurazione del Timing
+Per modificare l'orario di aggiornamento, edita il file `.github/workflows/update-data.yml`:
+
+```yaml
+# Per aggiungere un secondo aggiornamento alle 15:00:
+- cron: '0 7,13 * * *'  # 9:00 e 15:00 ora di Roma
+```
+
+### Test Manuale
+Puoi testare l'aggiornamento manualmente:
+- Vai su GitHub → Actions → "Update MIMIT Data" → "Run workflow"
+
+## �🚀 Ottimizzazioni per Produzione
 
 1. **Minificazione**: Usa tools come Terser per JavaScript e cssnano per CSS
 2. **Service Worker**: Aggiungi per funzionalità offline avanzate
@@ -85,11 +118,23 @@ Modifica le variabili CSS in `styles.css`:
 4. **CDN**: Usa CDN per librerie esterne
 5. **Caching**: Imposta headers di cache appropriati
 
-## 📊 Limitazioni Attuali
+## 📊 Caratteristiche del Sistema
 
-- **Dati Statici**: Utilizza dati simulati (facilmente sostituibile con API reali)
-- **Geocoding**: Simulato (in produzione usare servizi come MapBox o Google)
-- **Aggiornamenti**: Non automatici (richiedono rebuild del sito)
+- **Dati Reali**: Utilizza dati ufficiali MIMIT aggiornati automaticamente
+- **Geocoding**: Simulato (in produzione usare servizi come MapBox o Google)  
+- **Aggiornamenti**: Automatici tramite GitHub Actions (9:00 ogni giorno)
+
+## 📋 Licenze e Attribuzione
+
+### Dati MIMIT
+- **Fonte**: [MIMIT - Ministero delle Imprese e del Made in Italy](https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti)
+- **Licenza**: [Italian Open Data License v2.0 (IODL 2.0)](https://www.dati.gov.it/content/italian-open-data-license-v20)
+- **Diritti**: Uso commerciale e non commerciale permesso, distribuzione e modifica consentite
+- **Attribuzione**: Come richiesto dalla licenza IODL 2.0, l'app include l'attribuzione della fonte
+
+### Software
+- **Licenza**: Codice sorgente dell'applicazione (esclusi i dati MIMIT)
+- **Librerie**: Leaflet.js (BSD-2-Clause), FontAwesome (SIL OFL 1.1)
 
 ## 🔮 Possibili Miglioramenti
 

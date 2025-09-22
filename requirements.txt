@@ -1,0 +1,13 @@
+# Requirements for MIMIT Data Updater
+# GitHub Actions automation dependencies
+# Security-audited and pinned to latest stable versions
+
+# HTTP requests library - pinned to latest secure version
+requests>=2.31.0,<3.0.0
+
+# Data processing library - pinned to latest stable version 
+pandas>=2.1.4,<3.0.0
+
+# Additional security for production environments
+certifi>=2023.11.17  # Up-to-date CA certificates for HTTPS verification
+urllib3>=2.1.0,<3.0.0  # Security fixes for underlying HTTP handling

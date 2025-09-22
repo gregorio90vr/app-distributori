@@ -31,8 +31,8 @@ function bindEventListeners() {
     // Location button
     document.getElementById('locationBtn').addEventListener('click', getCurrentLocation);
     
-    // Update data button
-    document.getElementById('updateDataBtn').addEventListener('click', handleDataUpdate);
+    // Calculator panel - replace old update data button
+    document.getElementById('calculatorExpandBtn').addEventListener('click', () => togglePanel('calculator-panel'));
     
     // Tab navigation - updated IDs to match new HTML
     document.getElementById('tabList').addEventListener('click', () => switchTab('list'));
@@ -78,8 +78,10 @@ function bindEventListeners() {
         }
     });
     
-    // Calc mode change
-    document.getElementById('calcMode').addEventListener('change', handleCalcModeChange);
+    // Calc mode change - updated for radio buttons
+    document.querySelectorAll('input[name="calcMode"]').forEach(radio => {
+        radio.addEventListener('change', handleCalcModeChange);
+    });
     
     // Cost value input change - update results if they exist
     document.getElementById('calcValue').addEventListener('input', function() {
@@ -137,22 +139,26 @@ let searchNeedsUpdate = false;
 
 function markSearchOutdated() {
     if (currentResults.length > 0) {
-        showSearchIndicator();
+        showSearchNeedsUpdate();
     }
 }
 
-function showSearchIndicator() {
-    const indicator = document.getElementById('searchIndicator');
-    if (indicator) {
-        indicator.classList.add('show');
+function showSearchNeedsUpdate() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchText = searchBtn.querySelector('.search-text');
+    if (searchBtn && searchText) {
+        searchBtn.classList.add('search-outdated');
+        searchText.textContent = 'AGGIORNA';
         searchNeedsUpdate = true;
     }
 }
 
-function hideSearchIndicator() {
-    const indicator = document.getElementById('searchIndicator');
-    if (indicator) {
-        indicator.classList.remove('show');
+function hideSearchNeedsUpdate() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchText = searchBtn.querySelector('.search-text');
+    if (searchBtn && searchText) {
+        searchBtn.classList.remove('search-outdated');
+        searchText.textContent = 'CERCA';
         searchNeedsUpdate = false;
     }
 }
@@ -191,31 +197,41 @@ function switchTab(tab) {
 }
 
 function handleCalcModeChange() {
-    const selectedMode = document.getElementById('calcMode').value;
+    const selectedMode = document.querySelector('input[name="calcMode"]:checked').value;
     const input = document.getElementById('calcValue');
+    const label = document.getElementById('calcValueLabel');
+    const unit = document.getElementById('calcValueUnit');
+    const help = document.getElementById('calcValueHelp');
     
     if (selectedMode === 'liters') {
         input.value = 55;
-        input.min = 10;
+        input.min = 1;
         input.max = 200;
-        input.step = 5;
+        input.step = 0.1;
         input.placeholder = 'Litri';
+        label.innerHTML = '<i class="fas fa-gas-pump"></i> Numero di Litri';
+        unit.textContent = 'L';
+        help.textContent = 'Inserisci i litri che vuoi acquistare';
     } else {
         input.value = 50;
-        input.min = 10;
+        input.min = 5;
         input.max = 500;
-        input.step = 10;
-        input.placeholder = 'Budget €';
+        input.step = 1;
+        input.placeholder = 'Budget in Euro';
+        label.innerHTML = '<i class="fas fa-euro-sign"></i> Budget Disponibile';
+        unit.textContent = '€';
+        help.textContent = 'Inserisci il budget che hai a disposizione';
     }
     
     // Refresh results if they exist
+    markSearchOutdated();
     if (currentResults.length > 0) {
         showResults(currentResults);
     }
 }
 
 function calculateCosts(stations) {
-    const calcMode = document.getElementById('calcMode').value;
+    const calcMode = document.querySelector('input[name="calcMode"]:checked').value;
     const calcValue = parseFloat(document.getElementById('calcValue').value) || 0;
     
     if (calcValue <= 0 || stations.length === 0) {
@@ -285,15 +301,17 @@ async function handleSearch() {
     // Close all panels when starting search
     closeAllPanels();
     
-    // Hide search indicator and show searching animation
-    hideSearchIndicator();
+    // Hide search update indicator and show searching animation
+    hideSearchNeedsUpdate();
     const searchBtn = document.getElementById('searchBtn');
     searchBtn.classList.add('searching');
     
     if (!address) {
         updateStatusMessage('📱 Nessun indirizzo inserito, provo a usare la posizione attuale...');
         await getCurrentLocation();
-        searchBtn.classList.remove('searching');
+        const searchText = searchBtn.querySelector('.search-text');
+        searchBtn.classList.remove('searching', 'search-outdated');
+        searchText.textContent = 'CERCA';
         return;
     }
     
@@ -330,9 +348,12 @@ async function handleSearch() {
         showResults([]);
     } finally {
         showLoading(false);
-        // Remove searching animation
+        // Remove searching animation and ensure clean state
         const searchBtn = document.getElementById('searchBtn');
-        searchBtn.classList.remove('searching');
+        const searchText = searchBtn.querySelector('.search-text');
+        searchBtn.classList.remove('searching', 'search-outdated');
+        searchText.textContent = 'CERCA';
+        searchNeedsUpdate = false;
     }
 }
 
@@ -397,31 +418,6 @@ async function getCurrentLocation() {
         } else {
             updateStatusMessage('❌ Errore sconosciuto nella geolocalizzazione');
         }
-    } finally {
-        showLoading(false);
-    }
-}
-
-async function handleDataUpdate() {
-    updateStatusMessage('🔄 Aggiornamento dati in corso...');
-    showLoading(true);
-    
-    try {
-        // Simulate data update delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        updateStatusMessage('✅ Dati aggiornati con successo');
-        
-        // Update timestamp (async)
-        updateDataTimestamp().catch(console.error);
-        
-        // If we have current results, refresh them
-        if (currentResults.length > 0) {
-            setTimeout(() => {
-                showResults(currentResults);
-            }, 1000);
-        }
-    } catch (error) {
-        updateStatusMessage('❌ Errore durante l\'aggiornamento dati');
     } finally {
         showLoading(false);
     }
@@ -849,3 +845,5 @@ function updateBottomSpacing() {
         mainActionBar.style.borderTop = 'none';
     }
 }
+
+

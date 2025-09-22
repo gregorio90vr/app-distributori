@@ -283,12 +283,26 @@ class MIMITDataUpdater:
         now = datetime.now()
         timestamp = now.strftime("%d/%m/%Y %H:%M")
         
-        # Generate JavaScript
-        js_code = f'''// Real fuel station data from MIMIT
-// Last updated: {timestamp}
-// Total stations: {len(stations)}
+        # Generate JavaScript with IODL 2.0 attribution
+        js_code = f'''/*
+ * Dati carburanti da MIMIT (Ministero delle Imprese e del Made in Italy)
+ * Fonte: https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti
+ * Licenza: Italian Open Data License v2.0 (IODL 2.0)
+ * Licenza URL: https://www.dati.gov.it/content/italian-open-data-license-v20
+ * 
+ * Questo dataset è utilizzato sotto licenza IODL 2.0 che permette:
+ * - Uso commerciale e non commerciale
+ * - Distribuzione e modifica dei dati
+ * - Creazione di opere derivate
+ * 
+ * Aggiornato automaticamente via GitHub Actions
+ * Ultimo aggiornamento: {timestamp}
+ * Totale stazioni: {len(stations)}
+ */
 
 const DATA_TIMESTAMP = "{timestamp}";
+const DATA_SOURCE = "MIMIT - Ministero delle Imprese e del Made in Italy";
+const DATA_LICENSE = "Italian Open Data License v2.0 (IODL 2.0)";
 
 const realFuelStations = {json.dumps(stations, indent=2, ensure_ascii=False)};
 
@@ -414,8 +428,16 @@ def main():
         success = loop.run_until_complete(updater.update_data())
     
     if success:
-        print("🎉 Data update completed successfully!")
-        print("🌐 You can now commit and push the updated data.js to GitHub Pages")
+        # Validate that data.js was created and is not empty
+        data_js_path = Path("data.js")
+        if data_js_path.exists() and data_js_path.stat().st_size > 100:
+            print("🎉 Data update completed successfully!")
+            print("🌐 You can now commit and push the updated data.js to GitHub Pages")
+            print(f"📊 Generated data.js size: {data_js_path.stat().st_size} bytes")
+            sys.exit(0)  # Explicit success exit code
+        else:
+            print("💥 Data update failed: data.js not created or empty!")
+            sys.exit(1)
     else:
         print("💥 Data update failed!")
         sys.exit(1)
