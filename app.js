@@ -80,7 +80,10 @@ function bindEventListeners() {
     
     // Calc mode change - updated for radio buttons
     document.querySelectorAll('input[name="calcMode"]').forEach(radio => {
-        radio.addEventListener('change', handleCalcModeChange);
+        radio.addEventListener('change', function() {
+            markSearchOutdated(); // Rende il pulsante arancione
+            handleCalcModeChange();
+        });
     });
     
     // Cost value input change - update results if they exist

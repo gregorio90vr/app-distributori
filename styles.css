@@ -585,10 +585,10 @@ button,
     to { transform: rotate(360deg); }
 }
 
-/* Expandable Panels */
+/* Expandable Panels - RIPRISTINATO layout originale per desktop */
 .expandable-panel {
     position: fixed;
-    bottom: calc(var(--bottom-height) + 16px);
+    bottom: calc(var(--bottom-height) + 40px); /* ALZATO per evitare pulsanti tagliati */
     left: 8px;
     right: 8px;
     background: white;
@@ -604,7 +604,8 @@ button,
 }
 
 .expandable-panel.active {
-    max-height: calc(100vh - var(--header-height) - var(--bottom-height) - 40px);
+    /* Aggiornato per la nuova posizione più alta */
+    max-height: calc(100vh - var(--header-height) - var(--bottom-height) - 64px);
     opacity: 1;
     transform: translateY(0);
     overflow-y: auto;
@@ -1371,21 +1372,21 @@ button,
         font-weight: 700;
     }
     
-    /* Pannelli più alti per evitare pulsanti tagliati */
+    /* Pannelli MOBILE: alzati e con pulsanti sticky */
+    .expandable-panel {
+        bottom: calc(var(--bottom-height) + 24px); /* ALZATO solo su mobile */
+        left: 4px;
+        right: 4px;
+    }
+    
     .expandable-panel.active {
         max-height: calc(75vh - var(--bottom-height) - 16px);
         min-height: 200px;
     }
     
-    .expandable-panel {
-        left: 4px;
-        right: 4px;
-        bottom: calc(var(--bottom-height) + 12px);
-    }
-    
     .panel-content {
         padding: 20px;
-        padding-bottom: 80px; /* Spazio extra per pulsanti */
+        padding-bottom: 80px; /* Spazio extra solo su mobile */
     }
     
     .panel-header {
@@ -1397,7 +1398,7 @@ button,
         gap: 12px;
     }
     
-    /* Pulsanti Applica sempre visibili */
+    /* Pulsanti Applica sticky solo su mobile */
     .panel-actions {
         position: sticky;
         bottom: 0;
@@ -1674,4 +1675,31 @@ button,
         font-size: 0.85rem;
         min-height: 42px;
     }
+}
+
+/* Info compatta per il pannello calcolo */
+.calc-info {
+    background: rgba(33, 150, 243, 0.08);
+    border-left: 3px solid #2196f3;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+}
+
+.calc-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calc-info i {
+    color: #2196f3;
+    font-size: 1rem;
+}
+
+.calc-info strong {
+    color: #2196f3;
 }
