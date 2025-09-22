@@ -103,8 +103,19 @@ function bindEventListeners() {
         markSearchOutdated();
     });
     
-    // Address input change
-    document.getElementById('address').addEventListener('input', function() {
+    // Address input change - eventi multipli per garantire il funzionamento
+    const addressInput = document.getElementById('address');
+    addressInput.addEventListener('input', function() {
+        markSearchOutdated();
+    });
+    addressInput.addEventListener('keyup', function() {
+        markSearchOutdated();
+    });
+    addressInput.addEventListener('paste', function() {
+        // Piccolo delay per permettere al valore di aggiornarsi
+        setTimeout(() => markSearchOutdated(), 10);
+    });
+    addressInput.addEventListener('change', function() {
         markSearchOutdated();
     });
     
@@ -386,29 +397,14 @@ async function getCurrentLocation() {
         // Get address from coordinates
         updateStatusMessage('🔍 Ricerca indirizzo...');
         const address = await reverseGeocode(userLocation.lat, userLocation.lng);
-        document.getElementById('address').value = address;
+        const addressInput = document.getElementById('address');
+        addressInput.value = address;
         
-        // Automatically search if fuel type and radius are selected
-        const fuelType = document.getElementById('fuelType').value;
-        const radius = parseFloat(document.getElementById('radius').value);
+        // Trigger input event per attivare markSearchOutdated
+        addressInput.dispatchEvent(new Event('input'));
         
-        if (fuelType && radius) {
-            updateStatusMessage('🔍 Ricerca distributori nelle vicinanze...');
-            const results = await searchFuelStations(userLocation, radius, fuelType);
-            
-            if (results.length === 0) {
-                updateStatusMessage(`❌ Nessun distributore con ${fuelType} trovato entro ${radius}km`);
-                showResults([]);
-            } else {
-                const maxStations = parseInt(document.getElementById('maxStations').value);
-                let statusMsg = `✅ Trovati ${results.length} distributori nelle vicinanze`;
-                if (maxStations < 100 && results.length > maxStations) {
-                    statusMsg += ` (mostrati i ${maxStations} più economici)`;
-                }
-                updateStatusMessage(statusMsg);
-                showResults(results);
-            }
-        }
+        updateStatusMessage('📍 Posizione aggiornata! Premi CERCA per trovare i distributori');
+        showLoading(false);
         
     } catch (error) {
         console.error('Geolocation error:', error);

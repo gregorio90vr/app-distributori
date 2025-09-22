@@ -1386,7 +1386,7 @@ button,
     
     .panel-content {
         padding: 20px;
-        padding-bottom: 80px; /* Spazio extra solo su mobile */
+        padding-bottom: 100px; /* Spazio extra aumentato per mobile */
     }
     
     .panel-header {
@@ -1398,17 +1398,27 @@ button,
         gap: 12px;
     }
     
-    /* Pulsanti Applica sticky solo su mobile */
+    /* Pulsanti Applica sticky solo su mobile - MIGLIORATI */
     .panel-actions {
         position: sticky;
         bottom: 0;
         background: white;
         margin-left: -20px;
         margin-right: -20px;
-        padding: 16px 20px 20px 20px;
+        padding: 20px 20px 24px 20px; /* Padding aumentato */
         border-top: 1px solid var(--border-color);
         box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
         z-index: 10;
+        min-height: 70px; /* Altezza minima garantita */
+    }
+    
+    /* Pulsanti più grandi e visibili su mobile */
+    .panel-actions .action-btn {
+        min-height: 50px; /* Altezza pulsante aumentata */
+        padding: 14px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 12px;
     }
 }
 
