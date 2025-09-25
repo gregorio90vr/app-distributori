@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeNewApp() {
-    console.log('🚀 Initializing FuelFinder Modern Interface');
+
     
     // Debug: Check if key elements exist
     const keyElements = [
@@ -30,21 +30,21 @@ function initializeNewApp() {
         'locationPanel-new', 'filtersPanel-new', 'calcPanel-new', 'infoPanel-new'
     ];
     
-    console.log('🔍 Checking control elements...');
+
     keyElements.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
-            console.log('✅ Found element:', id);
+
         } else {
             console.error('❌ Missing element:', id);
         }
     });
     
-    console.log('🔍 Checking panel elements...');
+
     keyPanels.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
-            console.log('✅ Found panel:', id);
+
         } else {
             console.error('❌ Missing panel:', id);
         }
@@ -65,17 +65,17 @@ function initializeNewApp() {
     // Initialize calculator preview
     updateCalcPreviewNew();
     
-    console.log('✅ FuelFinder Modern Interface Ready');
+
 }
 
 function bindNewEventListeners() {
-    console.log('🔗 Binding event listeners...');
+
     
     // Search button
     const searchBtn = document.getElementById('searchBtn-new');
     if (searchBtn) {
         searchBtn.addEventListener('click', handleNewSearch);
-        console.log('✅ Search button bound');
+
     } else {
         console.error('❌ Search button not found');
     }
@@ -84,7 +84,7 @@ function bindNewEventListeners() {
     const gpsBtn = document.getElementById('gpsBtn-new');
     if (gpsBtn) {
         gpsBtn.addEventListener('click', getCurrentLocationNew);
-        console.log('✅ GPS button bound');
+
     }
     
     // View tabs
@@ -333,7 +333,7 @@ function togglePanelNew(panelName, show = null) {
 }
 
 function handleNewSearch() {
-    console.log('🔍 Starting new search...');
+
     
     // Reset search state immediately
     hideSearchOutdatedNew();
@@ -355,12 +355,7 @@ function handleNewSearch() {
     const maxStations = parseInt(document.getElementById('maxStations-new').value);
     
     // Debug info
-    console.log('🔍 Search parameters:', {
-        address: address,
-        lastGpsAddress: lastGpsAddress,
-        userLocation: userLocation,
-        isManuallyModified: address !== lastGpsAddress
-    });
+
     
     // Close any open panels
     if (activePanel) {
@@ -416,13 +411,7 @@ async function performActualSearch(address, fuelType, radius, maxStations) {
         }
         
         // Debug finale delle coordinate
-        console.log('🧪 Final coordinates check:', {
-            coordinates: coordinates,
-            userLocation: userLocation,
-            address: address,
-            lastGpsAddress: lastGpsAddress,
-            isManualAddress: isManualAddress
-        });
+
 
         if (!coordinates || !coordinates.lat || !coordinates.lng) {
             console.error('❌ Invalid coordinates for search');
@@ -437,7 +426,7 @@ async function performActualSearch(address, fuelType, radius, maxStations) {
             console.log('🗺️ Map updated to new position:', coordinates);
         }
         
-        console.log('🔍 Searching fuel stations near:', coordinates);
+
         
         // Cerca le stazioni di servizio usando i dati reali
         const results = await searchFuelStationsNew(coordinates, radius, fuelType);
@@ -455,7 +444,7 @@ async function performActualSearch(address, fuelType, radius, maxStations) {
             hideEmptyStateNew('map');
             hideEmptyStateNew('list');
             
-            console.log('✅ Search completed with', limitedResults.length, 'results');
+
         }
         
     } catch (error) {
@@ -826,22 +815,10 @@ function createStationCardNew(station) {
     const isLowestPrice = currentResults.length > 0 && 
                          Math.abs(station.price - Math.min(...currentResults.map(s => s.price))) < 0.001;
     
-    // Determina se è più costoso della media (per "extra costo")
-    const averagePrice = currentResults.length > 0 ? 
-        currentResults.reduce((sum, s) => sum + s.price, 0) / currentResults.length : 0;
-    const isExpensive = station.price > averagePrice * 1.05; // 5% sopra la media
-    
     card.className = isLowestPrice ? 'station-card-new best-price-new' : 'station-card-new';
     
     // Icona per la stazione (benzina)
     const stationIcon = isLowestPrice ? 'fas fa-crown' : 'fas fa-gas-pump';
-    
-    // Extra costo solo se è significativamente più costoso
-    const extraCostHtml = isExpensive && !isLowestPrice ? 
-        `<div class="extra-cost-new">
-            <i class="fas fa-exclamation-triangle"></i>
-            Extra costo
-        </div>` : '';
     
     // Struttura basata sul tuo schizzo: ICONA | INFO CENTRALE | DESTRA (prezzo, distanza, indicazioni)
     card.innerHTML = `
@@ -854,7 +831,6 @@ function createStationCardNew(station) {
         <div class="station-info-new">
             <div class="station-name-new">${station.name}</div>
             <div class="station-brand-new">${station.brand || 'Indipendente'}</div>
-            ${extraCostHtml}
             <div class="station-address-new">
                 <i class="fas fa-map-marker-alt"></i> ${station.address}
             </div>
@@ -1309,4 +1285,3 @@ function getTooltipIcon(costType) {
     }
 }
 
-console.log('📱 FuelFinder Modern JavaScript Loaded');

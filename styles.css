@@ -208,6 +208,18 @@ body {
     height: 100%;
 }
 
+/* Evita sovrapposizione del menu sulle informazioni Leaflet sui mobile */
+@media (max-width: 768px) {
+    #map-new {
+        padding-bottom: calc(var(--controls-height) + var(--space-lg)); /* Spazio per menu + margini */
+    }
+    
+    /* Assicura che i controlli Leaflet non vengano coperti */
+    #map-new .leaflet-control-container .leaflet-bottom {
+        margin-bottom: calc(var(--controls-height) + var(--space-md)) !important;
+    }
+}
+
 /* Station List Styles */
 .stations-list-new {
     padding: var(--space-lg);
