@@ -2180,6 +2180,11 @@ body {
         font-size: 12px;
     }
     
+    /* Menu sopra il footer su mobile */
+    .controls-card-new {
+        bottom: calc(var(--footer-height) + var(--space-md));
+    }
+
     /* Footer compatto su mobile */
     .footer-new {
         height: calc(var(--footer-height) - 10px);
@@ -2196,10 +2201,12 @@ body {
         min-width: 45px;
     }
     
-    /* Header ultra compatto con margine corretto */
+    /* Header allineato con la mappa su mobile - stessa larghezza */
     .header-card-new {
         padding: var(--space-sm);
-        margin: var(--space-sm) var(--space-xs) var(--space-md) var(--space-xs);
+        left: var(--space-sm);
+        right: var(--space-sm);
+        top: var(--space-sm);
     }
     
     .content-card-new {
