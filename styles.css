@@ -870,54 +870,114 @@ body {
 }
 
 /* =========================================
-   STATION CARDS
+   STATION CARDS - MODERN DESIGN FROM SKETCH
    ========================================= */
 
 .station-card-new {
-    background: white;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: var(--card-background);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-card);
     border: 1px solid var(--border-light);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+    position: relative;
+    min-height: 140px;
+    width: 100%;
+    overflow: visible;
 }
 
 .station-card-new:hover {
-    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.1);
-    border-color: #007AFF;
-    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(0, 122, 255, 0.12);
+    border-color: var(--primary-blue);
+    transform: translateY(-4px);
 }
 
 .station-card-new.best-price-new {
-    border-color: #007AFF;
-    background: linear-gradient(135deg, rgba(0, 122, 255, 0.02), rgba(0, 122, 255, 0.05));
+    border: 2px solid #FFD700;
+    background: linear-gradient(135deg, #fffdf0 0%, #fff9e6 100%);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.25);
 }
 
-.station-header-new {
+.station-card-new.best-price-new:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.4),
+        0 12px 35px rgba(255, 193, 7, 0.3);
+}
+
+/* ICONA SINISTRA - COME NEL TUO SCHIZZO */
+.station-icon-new {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+    border-radius: var(--radius-md);
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-button);
 }
 
+.station-card-new.best-price-new .station-icon-new {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: var(--text-primary);
+}
+
+/* SEZIONE INFO CENTRALE */
 .station-info-new {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .station-name-new {
     font-weight: 700;
     color: var(--text-primary);
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 18px;
+    line-height: 1.3;
+    margin: 0;
 }
 
 .station-brand-new {
-    font-size: 12px;
-    color: #007AFF;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
     font-weight: 600;
-    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+}
+
+/* EXTRA COSTO - SOLO PER QUELLI PIÙ COSTOSI */
+.extra-cost-new {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+    color: #d32f2f;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    border: 1px solid rgba(211, 47, 47, 0.2);
+}
+
+.extra-cost-new i {
+    font-size: 9px;
 }
 
 .station-address-new {
@@ -926,27 +986,322 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
+    margin-top: 4px;
 }
 
-.station-price-info-new {
-    text-align: right;
+.station-address-new i {
+    color: var(--primary-blue);
+    font-size: 11px;
+}
+
+/* SEZIONE DESTRA - LAYOUT 2x2 VERO */
+.station-right-new {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--space-sm);
+    min-width: 190px;
+    height: 90px;
+    flex-shrink: 0;
+    align-items: stretch;
+}
+
+.station-right-new .distance-badge-new {
+    grid-column: 1;
+    grid-row: 1;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.station-right-new .price-badge-new {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.station-right-new .directions-btn-new {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.station-right-new .extra-cost-info-new,
+.station-right-new .cost-info-badge-new,
+.station-right-new .best-price-info-badge-new,
+.station-right-new .neutral-cost-badge-new {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .price-badge-new {
-    background: #007AFF;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
     color: white;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14px;
+    padding: var(--space-xs);
+    border-radius: var(--radius-md);
+    font-weight: 900;
+    font-size: 15px;
+    box-shadow: var(--shadow-button);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.station-card-new.best-price-new .price-badge-new {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: var(--text-primary);
 }
 
 .distance-badge-new {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--primary-blue);
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    width: 100%;
+    height: 100%;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.distance-badge-new i {
+    font-size: 11px;
+}
+
+.distance-badge-new i {
+    font-size: 10px;
+}
+
+.directions-btn-new {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+    color: white;
+    border: none;
+    padding: var(--space-xs);
+    border-radius: var(--radius-md);
     font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: var(--shadow-button);
+    width: 100%;
+    height: 100%;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.directions-btn-new i {
+    font-size: 10px;
+}
+
+.directions-btn-new:hover {
+    background: linear-gradient(135deg, var(--primary-blue-dark), #0040A3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+}
+
+.directions-btn-new i {
+    font-size: 11px;
+}
+
+/* BADGE EXTRA COSTO */
+.extra-cost-info-new {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.extra-cost-info-new:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* BADGE INFORMAZIONI COSTI */
+.cost-info-badge-new {
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cost-info-badge-new:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.cost-info-badge-new.cost-best {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.cost-info-badge-new.cost-extra {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #333;
+}
+
+/* BADGE MIGLIOR PREZZO */
+.best-price-info-badge-new {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.best-price-info-badge-new:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* BADGE PREZZO NEUTRO */
+.neutral-cost-badge-new {
+    background: rgba(108, 117, 125, 0.1);
     color: var(--text-secondary);
+    border: 1px solid rgba(108, 117, 125, 0.2);
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.neutral-cost-badge-new:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* TOOLTIP PER BADGE COSTI */
+.cost-tooltip-new {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: auto;
+}
+
+.tooltip-content-new {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    max-width: 250px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    animation: tooltipFadeIn 0.3s ease;
+}
+
+.tooltip-icon-new {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.tooltip-text-new {
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.tooltip-close-new {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.tooltip-close-new:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BADGE MIGLIOR PREZZO */
+.best-price-badge-new {
+    position: absolute;
+    top: -8px;
+    right: var(--space-lg);
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
     display: flex;
     align-items: center;
     gap: 4px;
@@ -1563,13 +1918,274 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .view-switcher-new {
+/* =========================================
+   RESPONSIVE DESIGN PER LE CARD
+   ========================================= */
+
+@media (max-width: 768px) {
+    .station-card-new {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+        padding: var(--space-md);
+    }
+    
+    .station-right-new {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-width: auto;
+    }
+    
+    .station-icon-new {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .price-badge-new {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    
+    .best-price-badge-new {
+        position: static;
+        align-self: flex-start;
+        margin-bottom: var(--space-sm);
+    }
+}
+
+/* ===============================
+   RESPONSIVE DESIGN - MOBILE
+   =============================== */
+
+@media (max-width: 768px) {
+    /* Controlli inferiori più visibili su mobile */
+    .controls-card-new {
+        bottom: var(--space-md);
+        left: var(--space-sm);
+        right: var(--space-sm);
+        padding: var(--space-md);
+        height: auto;
+        min-height: 70px;
+    }
+    
+    .utility-controls-new {
+        gap: var(--space-xs);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .utility-controls-new::-webkit-scrollbar {
         display: none;
+    }
+    
+    /* Pulsanti controllo più grandi e visibili */
+    .control-item-new {
+        min-width: 65px;
+        padding: var(--space-sm);
+        font-size: 11px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        border-width: 2px;
+    }
+    
+    .control-item-new i {
+        font-size: 18px;
+        margin-bottom: 3px;
+    }
+    
+    /* Pulsante cerca più prominente */
+    .search-btn-new {
+        min-width: 85px;
+        padding: var(--space-md) var(--space-lg);
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+    
+    /* Selettore vista più grande e chiaro */
+    .view-switcher-new {
+        gap: var(--space-xs);
+        flex-shrink: 0;
+        min-width: 130px;
+    }
+    
+    .tab-btn-new {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 12px;
+        min-width: 55px;
+    }
+    
+    .tab-btn-new i {
+        font-size: 14px;
+    }
+    
+    /* Header più compatto */
+    .header-new {
+        padding: var(--space-sm) var(--space-md);
+    }
+    
+    .app-title-new h1 {
+        font-size: 20px;
+    }
+    
+    .app-title-new p {
+        font-size: 12px;
+    }
+    
+    /* Griglia card adattiva */
+    .station-right-new {
+        min-width: 160px;
+        height: 80px;
+        gap: var(--space-xs);
+    }
+    
+    .distance-badge-new,
+    .price-badge-new {
+        font-size: 12px;
+    }
+    
+    .directions-btn-new {
+        font-size: 10px;
+    }
+    
+    .cost-info-badge-new,
+    .best-price-info-badge-new,
+    .neutral-cost-badge-new,
+    .extra-cost-info-new {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Layout ultra compatto per schermi molto piccoli */
+    .controls-card-new {
+        bottom: var(--space-xs);
+        left: var(--space-xs);
+        right: var(--space-xs);
+        padding: var(--space-sm);
+        min-height: 65px;
+    }
+    
+    .control-item-new {
+        min-width: 55px;
+        font-size: 10px;
+        padding: var(--space-xs);
+    }
+    
+    .control-item-new i {
+        font-size: 16px;
+    }
+    
+    .search-btn-new {
+        min-width: 75px;
+        padding: var(--space-sm);
+        font-size: 12px;
+    }
+    
+    /* Footer compatto su mobile */
+    .footer-new {
+        height: calc(var(--footer-height) - 10px);
+    }
+    
+    .footer-content-new {
+        padding: 0 var(--space-md);
+        font-size: 10px;
+    }
+    
+    .tab-btn-new {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 11px;
+        min-width: 45px;
+    }
+    
+    /* Card ancora più compatte */
+    .station-card-new {
+        padding: var(--space-sm);
+    }
+    
+    .station-name-new {
+        font-size: 14px;
+    }
+    
+    .station-icon-new {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .station-right-new {
+        min-width: 140px;
+        height: 70px;
+    }
+    
+    .price-badge-new {
+        font-size: 11px;
+    }
+    
+    .distance-badge-new {
+        font-size: 10px;
+    }
+    
+    .directions-btn-new {
+        font-size: 9px;
+    }
+    
+    /* Nascondi elementi non essenziali su schermi molto piccoli */
+    .station-address-new {
+        font-size: 11px;
     }
     
     .brand-container-new {
         flex: 1;
         justify-content: center;
+    }
+}
+
+/* Miglioramenti per touch su mobile */
+@media (hover: none) and (pointer: coarse) {
+    .control-item-new:hover {
+        transform: none;
+    }
+    
+    .search-btn-new:hover {
+        transform: none;
+    }
+    
+    .tab-btn-new:hover {
+        transform: none;
+    }
+    
+    /* Aumenta area di tocco per accessibilità */
+    .control-item-new,
+    .tab-btn-new,
+    .search-btn-new {
+        min-height: 44px;
+    }
+    
+    /* Migliora visibilità su mobile */
+    .controls-card-new {
+        border: 2px solid rgba(0, 122, 255, 0.1);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    /* Evita che i controlli vengano nascosti dalla keyboard */
+    .controls-card-new.keyboard-open {
+        bottom: calc(var(--space-md) + env(keyboard-inset-height, 0px));
+    }
+}
+
+/* Supporto per safe area su dispositivi con notch */
+@supports (padding: max(0px)) {
+    .controls-card-new {
+        padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
+    }
+    
+    .footer-new {
+        padding-bottom: env(safe-area-inset-bottom);
     }
 }

@@ -797,54 +797,90 @@ function createStationCardNew(station) {
     const isLowestPrice = currentResults.length > 0 && 
                          Math.abs(station.price - Math.min(...currentResults.map(s => s.price))) < 0.001;
     
+    // Determina se è più costoso della media (per "extra costo")
+    const averagePrice = currentResults.length > 0 ? 
+        currentResults.reduce((sum, s) => sum + s.price, 0) / currentResults.length : 0;
+    const isExpensive = station.price > averagePrice * 1.05; // 5% sopra la media
+    
     card.className = isLowestPrice ? 'station-card-new best-price-new' : 'station-card-new';
     
-    // Crea HTML per le informazioni sui costi
-    let calcResultHtml = '';
-    if (station.costInfo) {
-        const costClass = station.costInfo.isBest ? 'cost-best-new' : 'cost-extra-new';
-        calcResultHtml = `
-            <div class="calc-result-new ${costClass}">
-                <span class="calc-icon-new">${station.costInfo.isBest ? '🏆' : '💸'}</span>
-                <span class="calc-text-new">${station.costInfo.label}</span>
-                <span class="calc-value-new">${station.costInfo.display}</span>
-            </div>
-        `;
-    }
+    // Icona per la stazione (benzina)
+    const stationIcon = isLowestPrice ? 'fas fa-crown' : 'fas fa-gas-pump';
     
-    // Badge per il prezzo migliore
-    const bestPriceBadge = isLowestPrice ? 
-        `<div class="best-price-badge-new">
-            <i class="fas fa-trophy"></i> Prezzo più basso!
+    // Extra costo solo se è significativamente più costoso
+    const extraCostHtml = isExpensive && !isLowestPrice ? 
+        `<div class="extra-cost-new">
+            <i class="fas fa-exclamation-triangle"></i>
+            Extra costo
         </div>` : '';
     
+    // Struttura basata sul tuo schizzo: ICONA | INFO CENTRALE | DESTRA (prezzo, distanza, indicazioni)
     card.innerHTML = `
-        <div class="station-header-new">
-            <div class="station-info-new">
-                <div class="station-name-new">${station.name}</div>
-                <div class="station-brand-new">${station.brand || 'Indipendente'}</div>
-                <div class="station-address-new">
-                    <i class="fas fa-map-marker-alt"></i> ${station.address}
-                </div>
-            </div>
-            <div class="station-price-info-new">
-                <div class="price-badge-new">€${station.price}/L</div>
-                <div class="distance-badge-new enhanced-distance-new">
-                    <i class="fas fa-route fa-lg"></i> 
-                    <span class="distance-value-new">${station.distance.toFixed(1)} km</span>
-                </div>
+        <!-- Icona sinistra -->
+        <div class="station-icon-new">
+            <i class="${stationIcon}"></i>
+        </div>
+        
+        <!-- Sezione centrale - Info distributore -->
+        <div class="station-info-new">
+            <div class="station-name-new">${station.name}</div>
+            <div class="station-brand-new">${station.brand || 'Indipendente'}</div>
+            ${extraCostHtml}
+            <div class="station-address-new">
+                <i class="fas fa-map-marker-alt"></i> ${station.address}
             </div>
         </div>
-        <div class="station-actions-new">
+        
+        <!-- Sezione destra - Layout 2x2 regolare -->
+        <div class="station-right-new">
+            <!-- Prima riga -->
+            <div class="distance-badge-new">
+                <i class="fas fa-route"></i> ${station.distance.toFixed(1)} km
+            </div>
+            <div class="price-badge-new">€${station.price}/L</div>
+            
+            <!-- Seconda riga -->
             <button class="directions-btn-new" 
                     title="Apri Google Maps per le indicazioni stradali"
                     onclick="openDirections('${station.lat}', '${station.lng}', '${station.address.replace(/'/g, "\\'")}'); event.stopPropagation();">
-                <i class="fas fa-route"></i>
+                <i class="fas fa-directions"></i>
                 <span>Indicazioni</span>
             </button>
+            ${(() => {
+                // Se ci sono informazioni sui costi calcolati, mostra quelle
+                if (station.costInfo) {
+                    return `<div class="cost-info-badge-new ${station.costInfo.isBest ? 'cost-best' : 'cost-extra'}" 
+                                onclick="showCostTooltip(this, '${station.costInfo.isBest ? 'Costo totale migliore per il tuo viaggio' : 'Costo aggiuntivo rispetto al migliore'}'); event.stopPropagation();"
+                                data-cost-type="${station.costInfo.isBest ? 'best' : 'extra'}">
+                        ${station.costInfo.display}
+                    </div>`;
+                }
+                // Altrimenti se è costoso, mostra extra costo
+                else if (isExpensive && !isLowestPrice) {
+                    return `<div class="extra-cost-info-new"
+                                onclick="showCostTooltip(this, 'Stazione con prezzo superiore alla media'); event.stopPropagation();"
+                                data-cost-type="expensive">
+                        Extra costo
+                    </div>`;
+                }
+                // Altrimenti se è il miglior prezzo, mostra info positiva
+                else if (isLowestPrice) {
+                    return `<div class="best-price-info-badge-new"
+                                onclick="showCostTooltip(this, 'Stazione con il prezzo più basso trovato'); event.stopPropagation();"
+                                data-cost-type="lowest">
+                        Miglior prezzo
+                    </div>`;
+                }
+                // Fallback: box neutro
+                else {
+                    return `<div class="neutral-cost-badge-new"
+                                onclick="showCostTooltip(this, 'Prezzo nella media delle stazioni trovate'); event.stopPropagation();"
+                                data-cost-type="normal">
+                        Prezzo OK
+                    </div>`;
+                }
+            })()}
         </div>
-        ${calcResultHtml}
-        ${bestPriceBadge}
     `;
     
     card.addEventListener('click', () => {
@@ -1176,5 +1212,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 });
+
+// Funzione per mostrare tooltip sui badge dei costi
+function showCostTooltip(element, message) {
+    // Rimuovi tooltip esistenti
+    const existingTooltips = document.querySelectorAll('.cost-tooltip-new');
+    existingTooltips.forEach(tooltip => tooltip.remove());
+    
+    // Crea nuovo tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'cost-tooltip-new';
+    tooltip.innerHTML = `
+        <div class="tooltip-content-new">
+            <div class="tooltip-icon-new">${getTooltipIcon(element.dataset.costType)}</div>
+            <div class="tooltip-text-new">${message}</div>
+            <button class="tooltip-close-new" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    // Posiziona il tooltip
+    document.body.appendChild(tooltip);
+    
+    const rect = element.getBoundingClientRect();
+    tooltip.style.position = 'fixed';
+    tooltip.style.left = Math.max(10, rect.left - 100) + 'px';
+    tooltip.style.top = (rect.top - 60) + 'px';
+    tooltip.style.zIndex = '10000';
+    
+    // Rimuovi automaticamente dopo 5 secondi
+    setTimeout(() => {
+        if (tooltip.parentElement) {
+            tooltip.remove();
+        }
+    }, 5000);
+}
+
+function getTooltipIcon(costType) {
+    switch(costType) {
+        case 'best': return '<i class="fas fa-trophy" style="color: #28a745;"></i>';
+        case 'extra': return '<i class="fas fa-coins" style="color: #ffc107;"></i>';
+        case 'expensive': return '<i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>';
+        case 'lowest': return '<i class="fas fa-star" style="color: #28a745;"></i>';
+        case 'normal': return '<i class="fas fa-check-circle" style="color: #6c757d;"></i>';
+        default: return '<i class="fas fa-info-circle"></i>';
+    }
+}
 
 console.log('📱 FuelFinder Modern JavaScript Loaded');
