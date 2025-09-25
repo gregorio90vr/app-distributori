@@ -2213,10 +2213,10 @@ body {
         min-width: 55px;
     }
     
-    /* Card ultra compatte ma funzionali */
+    /* Card compatte ma con più respiro per il contenuto */
     .station-card-new {
         padding: var(--space-sm);
-        min-height: 95px;
+        min-height: 125px; /* Era 95px - aumentato per più spazio */
     }
     
     .station-name-new {
@@ -2324,12 +2324,12 @@ body {
     
     .station-card-new {
         padding: 8px;
-        min-height: 85px;
+        min-height: 115px; /* Era 85px - aumentato per evitare contenuto compresso */
     }
     
     .station-right-new {
         min-width: 100px;
-        height: 55px;
+        height: 70px; /* Era 55px - più spazio per il contenuto 2x2 */
     }
     
     .control-item-new {
