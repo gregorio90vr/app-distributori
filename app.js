@@ -337,9 +337,19 @@ function handleNewSearch() {
     
     // Reset search state immediately
     hideSearchOutdatedNew();
-    showLoadingNew(true);
     
+    // Ottieni l'indirizzo prima di usarlo
     const address = document.getElementById('address-new').value.trim();
+    
+    // Determina il tipo di ricerca per il messaggio di loading
+    const isUsingGPS = !address || address === lastGpsAddress;
+    if (isUsingGPS && userLocation) {
+        showLoadingNew(true, 'Ricerca distributori...', 'Sto cercando i distributori vicino alla tua posizione GPS');
+    } else if (address) {
+        showLoadingNew(true, 'Ricerca distributori...', `Sto cercando i distributori vicino a ${address}`);
+    } else {
+        showLoadingNew(true, 'Ricerca distributori...', 'Sto cercando i distributori migliori per te');
+    }
     const fuelType = document.getElementById('fuelType-new').value;
     const radius = parseInt(document.getElementById('radius-new').value);
     const maxStations = parseInt(document.getElementById('maxStations-new').value);
@@ -388,7 +398,16 @@ async function performActualSearch(address, fuelType, radius, maxStations) {
         else if (address && address.trim()) {
             // L'indirizzo è uguale a quello del GPS, usa le coordinate GPS salvate
             console.log('📍 Using GPS coordinates for GPS address:', address);
-            coordinates = userLocation;
+            console.log('📍 Current userLocation:', userLocation);
+            
+            if (userLocation && userLocation.lat && userLocation.lng) {
+                coordinates = userLocation;
+            } else {
+                // Se non abbiamo coordinate GPS valide, geocodifica l'indirizzo
+                console.log('⚠️ No valid GPS coordinates, geocoding address:', address);
+                coordinates = await geocodeAddressNew(address);
+                userLocation = coordinates;
+            }
         }
         else if (userLocation) {
             // Nessun indirizzo ma abbiamo coordinate GPS
@@ -396,9 +415,19 @@ async function performActualSearch(address, fuelType, radius, maxStations) {
             coordinates = userLocation;
         }
         
-        if (!coordinates) {
-            showEmptyStateNew('map', 'Inserisci un indirizzo o usa il GPS per iniziare la ricerca');
-            showEmptyStateNew('list', 'Inserisci un indirizzo o usa il GPS per iniziare la ricerca');
+        // Debug finale delle coordinate
+        console.log('🧪 Final coordinates check:', {
+            coordinates: coordinates,
+            userLocation: userLocation,
+            address: address,
+            lastGpsAddress: lastGpsAddress,
+            isManualAddress: isManualAddress
+        });
+
+        if (!coordinates || !coordinates.lat || !coordinates.lng) {
+            console.error('❌ Invalid coordinates for search');
+            showEmptyStateNew('map', 'Impossibile determinare la posizione. Verifica l\'indirizzo o prova con il GPS.');
+            showEmptyStateNew('list', 'Impossibile determinare la posizione. Verifica l\'indirizzo o prova con il GPS.');
             return;
         }
         
@@ -908,7 +937,7 @@ async function getCurrentLocationNew() {
         return;
     }
     
-    showLoadingNew(true);
+    showLoadingNew(true, 'Rilevo la tua posizione...', 'Sto utilizzando il GPS per trovare la tua posizione attuale');
     
     try {
         const position = await new Promise((resolve, reject) => {
@@ -930,6 +959,7 @@ async function getCurrentLocationNew() {
         
         // Ottieni l'indirizzo dalle coordinate
         console.log('🔍 Getting address from coordinates...');
+        showLoadingNew(true, 'Cerco l\'indirizzo...', 'Sto convertendo le coordinate GPS in un indirizzo leggibile');
         const address = await reverseGeocodeNew(userLocation.lat, userLocation.lng);
         
         // Aggiorna il campo indirizzo
@@ -977,9 +1007,30 @@ function hideEmptyStateNew(view) {
     }
 }
 
-function showLoadingNew(show = true) {
+function showLoadingNew(show = true, title = null, message = null) {
     const overlay = document.getElementById('loadingOverlay-new');
-    overlay.style.display = show ? 'flex' : 'none';
+    const titleElement = document.getElementById('loadingTitle-new');
+    const messageElement = document.getElementById('loadingMessage-new');
+    
+    if (show) {
+        // Imposta messaggi personalizzati se forniti
+        if (title && titleElement) {
+            titleElement.textContent = title;
+        }
+        if (message && messageElement) {
+            messageElement.textContent = message;
+        }
+        overlay.style.display = 'flex';
+    } else {
+        overlay.style.display = 'none';
+        // Reset ai messaggi di default
+        if (titleElement) {
+            titleElement.textContent = 'Ricerca in corso...';
+        }
+        if (messageElement) {
+            messageElement.textContent = 'Sto cercando i distributori migliori per te';
+        }
+    }
 }
 
 function markSearchOutdatedNew() {

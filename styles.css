@@ -1985,6 +1985,19 @@ body {
         min-height: 70px;
     }
     
+    /* Pannelli mobile più alti */
+    .slide-panel-new {
+        max-height: 80vh;
+        min-height: 60vh;
+    }
+    
+    .panel-content-new {
+        padding: var(--space-lg);
+        max-height: calc(80vh - 120px);
+        overflow-y: auto;
+        min-height: 400px;
+    }
+    
     .utility-controls-new {
         gap: var(--space-xs);
         overflow-x: auto;
@@ -2086,9 +2099,9 @@ body {
         font-size: 12px;
     }
     
-    /* Area contenuto adattiva */
+    /* Area contenuto adattiva - no sovrapposizione header */
     .content-card-new {
-        top: calc(var(--header-height) + var(--space-md));
+        top: calc(var(--header-height) + var(--space-lg) + var(--space-md));
         left: var(--space-sm);
         right: var(--space-sm);
         bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-md));
@@ -2128,6 +2141,17 @@ body {
         min-height: 65px;
     }
     
+    /* Pannelli ancora più alti su schermi piccoli */
+    .slide-panel-new {
+        max-height: 85vh;
+        min-height: 65vh;
+    }
+    
+    .panel-content-new {
+        min-height: 450px;
+        padding: var(--space-md);
+    }
+    
     .control-item-new {
         min-width: 55px;
         font-size: 10px;
@@ -2160,10 +2184,14 @@ body {
         min-width: 45px;
     }
     
-    /* Header ultra compatto */
+    /* Header ultra compatto con margine corretto */
     .header-card-new {
         padding: var(--space-sm);
-        margin: var(--space-xs);
+        margin: var(--space-sm) var(--space-xs) var(--space-md) var(--space-xs);
+    }
+    
+    .content-card-new {
+        top: calc(var(--header-height) + var(--space-lg) + var(--space-sm));
     }
     
     .brand-text-new h1 {
