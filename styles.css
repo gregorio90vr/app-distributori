@@ -211,12 +211,12 @@ body {
 /* Evita sovrapposizione del menu e footer sui mobile */
 @media (max-width: 768px) {
     #map-new {
-        padding-bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-xl) + 15px); /* Spazio per menu + footer aumentato */
+        padding-bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-xl) + 55px); /* Spazio generoso per menu + footer con autore */
     }
     
     /* Assicura che i controlli Leaflet non vengano coperti */
     #map-new .leaflet-control-container .leaflet-bottom {
-        margin-bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-lg)) !important;
+        margin-bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-xl) + 20px) !important;
     }
 }
 
@@ -2111,12 +2111,12 @@ body {
         font-size: 12px;
     }
     
-    /* Area contenuto adattiva - compensato per footer più alto */
+    /* Area contenuto adattiva - compensato per footer molto più alto */
     .content-card-new {
         top: calc(var(--header-height) + var(--space-lg) + var(--space-md));
         left: var(--space-sm);
         right: var(--space-sm);
-        bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-lg) + 15px);
+        bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-xl) + 35px);
     }
     
     /* Lista stazioni con padding mobile */
@@ -2180,22 +2180,23 @@ body {
         font-size: 12px;
     }
     
-    /* Menu sopra il footer su mobile con più spazio */
+    /* Menu sopra il footer su mobile con spazio generoso */
     .controls-card-new {
-        bottom: calc(var(--footer-height) + var(--space-lg));
+        bottom: calc(var(--footer-height) + var(--space-xl) + 20px);
     }
 
-    /* Footer più alto per mostrare tutto il contenuto */
+    /* Footer molto più alto per mostrare completamente l'autore */
     .footer-new {
-        height: calc(var(--footer-height) + 15px); /* Era -10px, ora +15px */
+        height: calc(var(--footer-height) + 35px); /* Era +15px, ora +35px per l'autore */
     }
     
     .footer-content-new {
-        padding: var(--space-sm) var(--space-md);
-        font-size: 11px; /* Era 10px, ora più leggibile */
+        padding: var(--space-md) var(--space-sm);
+        font-size: 11px;
         flex-direction: column; /* Stack verticale per più spazio */
-        gap: 4px;
+        gap: 6px; /* Era 4px, ora più spazio tra le righe */
         text-align: center;
+        justify-content: center;
     }
     
     .tab-btn-new {
@@ -2376,6 +2377,22 @@ body {
     
     .control-item-new span {
         font-size: 8px;
+    }
+    
+    /* Footer massimamente visibile su schermi molto piccoli */
+    .footer-new {
+        height: calc(var(--footer-height) + 45px); /* Ancora più alto per mostrare tutto l'autore */
+    }
+    
+    .footer-content-new {
+        gap: 8px; /* Più spazio tra le righe su schermi molto piccoli */
+        padding: var(--space-md);
+        font-size: 10px;
+    }
+    
+    /* Menu ancora più in alto per schermi molto piccoli */
+    .controls-card-new {
+        bottom: calc(var(--footer-height) + var(--space-xl) + 35px);
     }
 }
 
