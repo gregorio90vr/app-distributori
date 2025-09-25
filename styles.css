@@ -2216,7 +2216,7 @@ body {
     /* Card compatte ma con più respiro per il contenuto */
     .station-card-new {
         padding: var(--space-sm);
-        min-height: 161px; /* Era 146px - aumentato ulteriormente (+10%) */
+        min-height: 177px; /* Era 161px - aumentato ulteriormente (+10%) */
     }
     
     .station-name-new {
@@ -2324,12 +2324,12 @@ body {
     
     .station-card-new {
         padding: 8px;
-        min-height: 146px; /* Era 133px - aumentato ulteriormente (+10%) */
+        min-height: 161px; /* Era 146px - aumentato ulteriormente (+10%) */
     }
     
     .station-right-new {
         min-width: 100px;
-        height: 88px; /* Era 80px - aumentato ulteriormente (+10%) per il layout 2x2 */
+        height: 97px; /* Era 88px - aumentato ulteriormente (+10%) per il layout 2x2 */
     }
     
     .control-item-new {
