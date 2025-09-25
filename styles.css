@@ -208,15 +208,15 @@ body {
     height: 100%;
 }
 
-/* Evita sovrapposizione del menu sulle informazioni Leaflet sui mobile */
+/* Evita sovrapposizione del menu e footer sui mobile */
 @media (max-width: 768px) {
     #map-new {
-        padding-bottom: calc(var(--controls-height) + var(--space-lg)); /* Spazio per menu + margini */
+        padding-bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-xl) + 15px); /* Spazio per menu + footer aumentato */
     }
     
     /* Assicura che i controlli Leaflet non vengano coperti */
     #map-new .leaflet-control-container .leaflet-bottom {
-        margin-bottom: calc(var(--controls-height) + var(--space-md)) !important;
+        margin-bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-lg)) !important;
     }
 }
 
@@ -2111,12 +2111,12 @@ body {
         font-size: 12px;
     }
     
-    /* Area contenuto adattiva - no sovrapposizione header */
+    /* Area contenuto adattiva - compensato per footer più alto */
     .content-card-new {
         top: calc(var(--header-height) + var(--space-lg) + var(--space-md));
         left: var(--space-sm);
         right: var(--space-sm);
-        bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-md));
+        bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-lg) + 15px);
     }
     
     /* Lista stazioni con padding mobile */
@@ -2180,19 +2180,22 @@ body {
         font-size: 12px;
     }
     
-    /* Menu sopra il footer su mobile */
+    /* Menu sopra il footer su mobile con più spazio */
     .controls-card-new {
-        bottom: calc(var(--footer-height) + var(--space-md));
+        bottom: calc(var(--footer-height) + var(--space-lg));
     }
 
-    /* Footer compatto su mobile */
+    /* Footer più alto per mostrare tutto il contenuto */
     .footer-new {
-        height: calc(var(--footer-height) - 10px);
+        height: calc(var(--footer-height) + 15px); /* Era -10px, ora +15px */
     }
     
     .footer-content-new {
-        padding: 0 var(--space-md);
-        font-size: 10px;
+        padding: var(--space-sm) var(--space-md);
+        font-size: 11px; /* Era 10px, ora più leggibile */
+        flex-direction: column; /* Stack verticale per più spazio */
+        gap: 4px;
+        text-align: center;
     }
     
     .tab-btn-new {
@@ -2201,24 +2204,39 @@ body {
         min-width: 45px;
     }
     
-    /* Header allineato con la mappa su mobile - stessa larghezza */
+    /* Header allineato e ottimizzato per mobile */
     .header-card-new {
-        padding: var(--space-sm);
+        padding: var(--space-md) var(--space-sm);
         left: var(--space-sm);
         right: var(--space-sm);
         top: var(--space-sm);
+        height: calc(var(--header-height) + 8px); /* Più alto per mobile */
+    }
+    
+    .brand-container-new {
+        gap: var(--space-sm);
+    }
+    
+    .app-logo-new {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .app-logo-new i {
+        font-size: 18px;
     }
     
     .content-card-new {
-        top: calc(var(--header-height) + var(--space-lg) + var(--space-sm));
+        top: calc(var(--header-height) + var(--space-lg) + var(--space-sm) + 8px);
     }
     
     .brand-text-new h1 {
-        font-size: 16px;
+        font-size: 18px;
+        letter-spacing: -0.3px;
     }
     
     .brand-text-new span {
-        font-size: 10px;
+        font-size: 11px;
     }
     
     .view-switcher-new {

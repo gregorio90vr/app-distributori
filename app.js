@@ -1,5 +1,5 @@
 /* =========================================
-   FUELFINDER - MODERN JAVASCRIPT
+   FUELEXPLORER - MODERN JAVASCRIPT
    Complete rewrite for new interface
    ========================================= */
 
