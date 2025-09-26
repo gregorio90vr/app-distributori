@@ -345,6 +345,18 @@ body {
     overflow: hidden;
 }
 
+/* Nascondi le info footer mobile su desktop */
+.mobile-footer-info-new {
+    display: none;
+}
+
+.controls-main-row-new {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .controls-card-new::before {
     content: '';
     position: absolute;
@@ -2096,6 +2108,11 @@ body {
    =============================== */
 
 @media (max-width: 768px) {
+    /* Nascondi footer originale su mobile - le info sono integrate nel menu */
+    .footer-new {
+        display: none;
+    }
+    
     /* Controlli inferiori più visibili su mobile */
     .controls-card-new {
         bottom: 0;
@@ -2103,7 +2120,7 @@ body {
         right: 0;
         padding: 20px var(--space-lg) calc(env(safe-area-inset-bottom, 0px) + 16px);
         height: auto;
-        min-height: calc(80px + env(safe-area-inset-bottom, 0px));
+        min-height: calc(100px + env(safe-area-inset-bottom, 0px));
         border-radius: 24px 24px 0 0;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
@@ -2124,6 +2141,38 @@ body {
         border-radius: 2px;
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    /* Informazioni footer integrate nel menu mobile */
+    .mobile-footer-info-new {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: var(--space-sm);
+        padding-top: var(--space-sm);
+    }
+    
+    .mobile-data-info-new {
+        font-size: 9px;
+        color: var(--text-tertiary);
+        margin-bottom: 2px;
+    }
+    
+    .mobile-credits-new {
+        font-size: 8px;
+        color: var(--text-tertiary);
+    }
+    
+    .mobile-credits-new a {
+        color: var(--primary-blue);
+        text-decoration: none;
+    }
+    
+    .controls-main-row-new {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
     
     /* Pannelli mobile più alti */
@@ -2277,7 +2326,7 @@ body {
         top: calc(var(--header-height) + var(--space-lg) + var(--space-md));
         left: var(--space-sm);
         right: var(--space-sm);
-        bottom: calc(80px + env(safe-area-inset-bottom, 0px) + 8px);
+        bottom: calc(100px + env(safe-area-inset-bottom, 0px) + 8px);
     }
     
     /* Lista stazioni con padding mobile */
