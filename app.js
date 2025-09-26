@@ -1096,23 +1096,12 @@ function initializeSlider() {
 async function updateNewDataTimestamp() {
     try {
         const timestampElement = document.getElementById('dataTimestamp-new');
-        const mobileTimestampElement = document.getElementById('mobileDataTimestamp-new');
         const stationsCountElement = document.getElementById('stationsCount-new');
         
-        const timestampText = typeof DATA_TIMESTAMP !== 'undefined' 
-            ? 'Dati aggiornati: ' + DATA_TIMESTAMP 
-            : 'Dati aggiornati: ' + new Date().toLocaleString('it-IT');
-            
-        const mobileTimestampText = typeof DATA_TIMESTAMP !== 'undefined'
-            ? DATA_TIMESTAMP
-            : new Date().toLocaleDateString('it-IT');
-        
-        if (timestampElement) {
-            timestampElement.textContent = timestampText;
-        }
-        
-        if (mobileTimestampElement) {
-            mobileTimestampElement.textContent = mobileTimestampText;
+        if (timestampElement && typeof DATA_TIMESTAMP !== 'undefined') {
+            timestampElement.textContent = 'Dati aggiornati: ' + DATA_TIMESTAMP;
+        } else if (timestampElement) {
+            timestampElement.textContent = 'Dati aggiornati: ' + new Date().toLocaleString('it-IT');
         }
         
         // Aggiorna il conteggio delle stazioni nel pannello info

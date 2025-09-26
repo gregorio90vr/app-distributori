@@ -75,47 +75,32 @@
 
     <!-- Bottom Controls Card -->
     <div class="controls-card-new">
-        <!-- Informazioni footer integrate nel menu mobile -->
-        <div class="mobile-footer-info-new">
-            <div class="mobile-data-info-new">
-                <span id="mobileDataTimestamp-new">Caricamento dati...</span>
-            </div>
-            <div class="mobile-credits-new">
-                <span>
-                    <a href="https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti" target="_blank">MIMIT</a> • 
-                    <a href="https://www.dati.gov.it/content/italian-open-data-license-v20" target="_blank">IODL 2.0</a>
-                </span>
-            </div>
-        </div>
-        
-        <div class="controls-main-row-new">
-            <div class="utility-controls-new">
-                <button id="locationBtn-new" class="control-item-new" data-panel="location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Posizione</span>
-                </button>
-                
-                <button id="filtersBtn-new" class="control-item-new" data-panel="filters">
-                    <i class="fas fa-filter"></i>
-                    <span>Filtri</span>
-                </button>
-                
-                <button id="calcBtn-new" class="control-item-new" data-panel="calc">
-                    <i class="fas fa-euro-sign"></i>
-                    <span>Costi</span>
-                </button>
-                
-                <button id="infoBtn-new" class="control-item-new" data-panel="info">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Info</span>
-                </button>
-            </div>
+        <div class="utility-controls-new">
+            <button id="locationBtn-new" class="control-item-new" data-panel="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Posizione</span>
+            </button>
             
-            <button id="searchBtn-new" class="search-btn-new">
-                <i class="fas fa-search"></i>
-                <span class="search-text-new">Cerca</span>
+            <button id="filtersBtn-new" class="control-item-new" data-panel="filters">
+                <i class="fas fa-filter"></i>
+                <span>Filtri</span>
+            </button>
+            
+            <button id="calcBtn-new" class="control-item-new" data-panel="calc">
+                <i class="fas fa-euro-sign"></i>
+                <span>Costi</span>
+            </button>
+            
+            <button id="infoBtn-new" class="control-item-new" data-panel="info">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
             </button>
         </div>
+        
+        <button id="searchBtn-new" class="search-btn-new">
+            <i class="fas fa-search"></i>
+            <span class="search-text-new">Cerca</span>
+        </button>
     </div>
 
     <!-- Slide-up Panels -->
@@ -385,24 +370,25 @@
                 </div>
             </div>
 
-            <div class="info-section-new">
-                <h4><i class="fas fa-exclamation-triangle"></i> Avvertenze Legali</h4>
-                <div class="disclaimer-new">
-                    <div class="disclaimer-box-new">
-                        <p><strong>⚠️ Utilizzo Solo Informativo</strong></p>
-                        <p>Questa applicazione è fornita esclusivamente a scopo informativo. I dati sui prezzi dei carburanti e le informazioni sui distributori potrebbero non essere sempre aggiornati, completi o accurati.</p>
+            <div class="info-section-new disclaimer-section-new">
+                <h4><i class="fas fa-exclamation-triangle"></i> Disclaimer Legale</h4>
+                <div class="disclaimer-content-new">
+                    <p><strong>IMPORTANTE:</strong> I dati forniti da questa applicazione sono puramente informativi e non costituiscono garanzia di accuratezza.</p>
+                    
+                    <div class="disclaimer-points-new">
+                        <p><i class="fas fa-info-circle"></i> <strong>Aggiornamento:</strong> I prezzi potrebbero non essere aggiornati in tempo reale e potrebbero differire da quelli effettivamente praticati presso i distributori.</p>
                         
-                        <p><strong>🚫 Limitazione di Responsabilità</strong></p>
-                        <p>L'autore non si assume alcuna responsabilità per:</p>
-                        <ul>
-                            <li>Imprecisioni nei dati sui prezzi o nelle informazioni sui distributori</li>
-                            <li>Eventuali danni derivanti dall'utilizzo dell'applicazione</li>
-                            <li>Interruzioni del servizio o malfunzionamenti</li>
-                            <li>Decisioni prese basandosi sui dati forniti</li>
-                        </ul>
+                        <p><i class="fas fa-clock"></i> <strong>Tempistica:</strong> I dati possono subire ritardi nell'aggiornamento rispetto ai prezzi reali praticati.</p>
                         
-                        <p><strong>✅ Raccomandazioni</strong></p>
-                        <p>Si consiglia sempre di verificare prezzi e disponibilità direttamente presso il distributore prima di recarsi sul posto.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Posizione:</strong> Le coordinate GPS dei distributori potrebbero non essere completamente accurate.</p>
+                        
+                        <p><i class="fas fa-store"></i> <strong>Disponibilità:</strong> Non garantiamo che tutti i distributori siano aperti, riforniti o operativi al momento della consultazione.</p>
+                        
+                        <p><i class="fas fa-shield-alt"></i> <strong>Responsabilità:</strong> L'autore non si assume alcuna responsabilità per l'uso delle informazioni fornite o per eventuali danni derivanti dal loro utilizzo.</p>
+                    </div>
+                    
+                    <div class="disclaimer-footer-new">
+                        <p><strong>Raccomandazione:</strong> Verificare sempre prezzi e disponibilità direttamente presso il distributore prima dell'acquisto.</p>
                     </div>
                 </div>
             </div>

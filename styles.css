@@ -329,56 +329,14 @@ body {
     left: var(--space-md);
     right: var(--space-md);
     height: var(--controls-height);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    background: var(--card-background);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--space-lg);
-    gap: 16px;
     z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-}
-
-/* Nascondi le info footer mobile su desktop */
-.mobile-footer-info-new {
-    display: none;
-}
-
-.controls-main-row-new {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.controls-card-new::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.6) 20%, 
-        rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.6) 80%, 
-        transparent 100%
-    );
-}
-
-.controls-card-new:hover {
-    transform: translateY(-2px);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.15),
-        0 6px 20px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .control-buttons-new,
@@ -394,25 +352,49 @@ body {
     gap: 8px;
 }
 
-/* Rimosso @media (max-width: 480px) che interferiva con le nuove regole mobile */
+.controls-card-new {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+@media (max-width: 480px) {
+    .utility-controls-new {
+        gap: 6px;
+    }
+    
+    .control-item-new {
+        min-width: 52px;
+        padding: 10px 6px;
+    }
+    
+    .control-item-new span {
+        font-size: 10px;
+    }
+    
+    .control-item-new i {
+        font-size: 16px;
+    }
+}
 
 .control-item-new {
     background: transparent;
-    border: none;
+    border: 2px solid rgba(0, 122, 255, 0.1);
     color: var(--text-secondary);
     font-size: var(--font-size-xs);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-xs);
-    padding: 12px var(--space-sm);
-    border-radius: 16px;
-    min-width: 68px;
+    padding: 14px var(--space-sm);
+    border-radius: 12px;
+    min-width: 64px;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .control-item-new::before {
@@ -422,25 +404,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(0, 122, 255, 0.15) 0%, 
-        rgba(0, 86, 204, 0.1) 100%
-    );
+    background: linear-gradient(135deg, #007AFF, #0056CC);
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 16px;
-}
-
-.control-item-new::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease;
 }
 
 .control-item-new i {
@@ -459,88 +425,46 @@ body {
 
 .control-item-new:hover::before,
 .control-item-new.active::before {
-    opacity: 1;
-}
-
-.control-item-new:hover::after,
-.control-item-new.active::after {
-    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.1;
 }
 
 .control-item-new:hover,
 .control-item-new.active {
     color: #007AFF;
-    border-color: rgba(0, 122, 255, 0.3);
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(240, 248, 255, 0.9) 100%
-    );
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        0 12px 32px rgba(0, 122, 255, 0.25),
-        0 6px 16px rgba(0, 122, 255, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: #007AFF;
+    background: rgba(0, 122, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 122, 255, 0.2);
 }
 
 .control-item-new:hover i,
 .control-item-new.active i {
-    transform: scale(1.15);
+    transform: scale(1.1);
     color: #007AFF;
-    text-shadow: 0 0 8px rgba(0, 122, 255, 0.3);
-}
-
-.control-item-new:active {
-    transform: translateY(-1px) scale(0.98);
-    transition: all 0.1s ease;
 }
 
 .search-btn-new {
-    background: linear-gradient(135deg, #007AFF 0%, #0056CC 100%);
+    background: var(--primary-blue);
     color: white;
     border: none;
-    border-radius: 16px;
+    border-radius: var(--radius-2xl);
     padding: var(--space-md) var(--space-xl);
     font-size: var(--font-size-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 
-        0 4px 16px rgba(0, 122, 255, 0.25),
-        0 2px 8px rgba(0, 122, 255, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.search-btn-new::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .search-btn-new:hover {
-    background: linear-gradient(135deg, #0056CC 0%, #003D99 100%);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-        0 8px 24px rgba(0, 122, 255, 0.35),
-        0 4px 12px rgba(0, 122, 255, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.search-btn-new:hover::before {
-    opacity: 1;
+    background: var(--primary-blue-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
 }
 
 .search-btn-new:active {
-    transform: translateY(-1px) scale(0.98);
-    transition: all 0.1s ease;
+    transform: translateY(0);
 }
 
 .search-btn-new.outdated {
@@ -1831,49 +1755,73 @@ body {
     font-weight: 600;
 }
 
-/* Disclaimer Legale */
-.disclaimer-new {
-    margin-top: var(--space-md);
-}
-
-.disclaimer-box-new {
-    background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, rgba(255, 193, 7, 0.03) 100%);
-    border: 1px solid rgba(255, 152, 0, 0.2);
-    border-left: 4px solid #ff9800;
-    border-radius: 12px;
+/* Disclaimer Section */
+.disclaimer-section-new {
+    background: linear-gradient(135deg, #FFF3E0, #FFECB3);
+    border: 2px solid #FF9800;
+    border-radius: var(--radius-lg);
     padding: var(--space-lg);
-    font-size: 13px;
-    line-height: 1.5;
+    margin-top: var(--space-lg);
 }
 
-.disclaimer-box-new p {
+.disclaimer-section-new h4 {
+    color: #E65100;
     margin-bottom: var(--space-md);
-    color: var(--text-primary);
+    font-weight: 700;
 }
 
-.disclaimer-box-new p:last-child {
-    margin-bottom: 0;
+.disclaimer-section-new h4 i {
+    color: #FF5722;
+    margin-right: var(--space-xs);
 }
 
-.disclaimer-box-new strong {
-    color: #e65100;
+.disclaimer-content-new p {
+    margin-bottom: var(--space-sm);
+    line-height: 1.6;
+    color: #424242;
+}
+
+.disclaimer-content-new p:first-child {
+    font-size: var(--font-size-md);
+    color: #D84315;
     font-weight: 600;
-    display: block;
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-md);
 }
 
-.disclaimer-box-new ul {
-    margin: var(--space-sm) 0;
-    padding-left: var(--space-lg);
-    color: var(--text-secondary);
+.disclaimer-points-new {
+    margin: var(--space-md) 0;
 }
 
-.disclaimer-box-new li {
-    margin-bottom: var(--space-xs);
+.disclaimer-points-new p {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm);
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-md);
+    border-left: 4px solid #FF9800;
 }
 
-.disclaimer-box-new li:last-child {
-    margin-bottom: 0;
+.disclaimer-points-new p i {
+    color: #FF7043;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.disclaimer-footer-new {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid #4CAF50;
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.disclaimer-footer-new p {
+    margin: 0;
+    color: #2E7D32;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* =========================================
@@ -2015,8 +1963,6 @@ body {
     color: var(--text-primary);
 }
 
-
-
 /* =========================================
    RESPONSIVE DESIGN
    ========================================= */
@@ -2048,7 +1994,9 @@ body {
         padding: var(--space-sm);
     }
     
-    /* Rimosso padding override che interferiva con le nuove regole mobile */
+    .controls-card-new {
+        padding: var(--space-md);
+    }
 }
 
 /* =========================================
@@ -2108,71 +2056,14 @@ body {
    =============================== */
 
 @media (max-width: 768px) {
-    /* Nascondi footer originale su mobile - le info sono integrate nel menu */
-    .footer-new {
-        display: none;
-    }
-    
     /* Controlli inferiori più visibili su mobile */
     .controls-card-new {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 20px var(--space-lg) calc(env(safe-area-inset-bottom, 0px) + 16px);
+        bottom: var(--space-md);
+        left: var(--space-sm);
+        right: var(--space-sm);
+        padding: var(--space-md);
         height: auto;
-        min-height: calc(100px + env(safe-area-inset-bottom, 0px));
-        border-radius: 24px 24px 0 0;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: none;
-        border-top: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 
-            0 -8px 32px rgba(0, 0, 0, 0.1),
-            0 -4px 16px rgba(0, 0, 0, 0.05);
-        margin: 0;
-    }
-    
-    .controls-card-new::before {
-        width: 36px;
-        height: 4px;
-        top: 12px;
-        background: rgba(0, 0, 0, 0.15);
-        border-radius: 2px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    /* Informazioni footer integrate nel menu mobile */
-    .mobile-footer-info-new {
-        display: block;
-        width: 100%;
-        text-align: center;
-        margin-bottom: var(--space-sm);
-        padding-top: var(--space-sm);
-    }
-    
-    .mobile-data-info-new {
-        font-size: 9px;
-        color: var(--text-tertiary);
-        margin-bottom: 2px;
-    }
-    
-    .mobile-credits-new {
-        font-size: 8px;
-        color: var(--text-tertiary);
-    }
-    
-    .mobile-credits-new a {
-        color: var(--primary-blue);
-        text-decoration: none;
-    }
-    
-    .controls-main-row-new {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
+        min-height: 70px;
     }
     
     /* Pannelli mobile più alti */
@@ -2189,13 +2080,11 @@ body {
     }
     
     .utility-controls-new {
-        gap: 10px;
+        gap: var(--space-xs);
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 0 4px;
-        justify-content: flex-start;
     }
     
     .utility-controls-new::-webkit-scrollbar {
@@ -2204,56 +2093,26 @@ body {
     
     /* Pulsanti controllo più grandi e visibili */
     .control-item-new {
-        min-width: 64px;
-        padding: 14px var(--space-sm);
-        font-size: 10px;
+        min-width: 65px;
+        padding: var(--space-sm);
+        font-size: 11px;
         white-space: nowrap;
         flex-shrink: 0;
-        border-radius: 16px;
-        background: rgba(248, 250, 252, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border-width: 2px;
     }
     
     .control-item-new i {
         font-size: 18px;
         margin-bottom: 3px;
-        font-weight: 600;
-    }
-    
-    .control-item-new:hover,
-    .control-item-new.active {
-        transform: none;
-        background: rgba(0, 122, 255, 0.1);
-        border-color: rgba(0, 122, 255, 0.3);
-        color: #007AFF;
-        box-shadow: 0 2px 12px rgba(0, 122, 255, 0.15);
-    }
-    
-    /* Rimuovi pseudo-elementi su mobile per evitare artefatti visivi */
-    .control-item-new::before,
-    .control-item-new::after {
-        display: none;
     }
     
     /* Pulsante cerca più prominente */
     .search-btn-new {
-        min-width: 80px;
-        padding: 14px var(--space-md);
+        min-width: 85px;
+        padding: var(--space-md) var(--space-lg);
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         flex-shrink: 0;
-        border-radius: 16px;
-        background: linear-gradient(135deg, #007AFF 0%, #0056CC 100%);
-        box-shadow: 0 3px 12px rgba(0, 122, 255, 0.25);
-        border: none;
-    }
-    
-    .search-btn-new:hover {
-        transform: none;
-        box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
     }
     
     /* Selettore vista più grande e chiaro */
@@ -2321,12 +2180,12 @@ body {
         font-size: 12px;
     }
     
-    /* Area contenuto adattiva - compensato per nuovo menu mobile */
+    /* Area contenuto adattiva - compensato per footer molto più alto */
     .content-card-new {
         top: calc(var(--header-height) + var(--space-lg) + var(--space-md));
         left: var(--space-sm);
         right: var(--space-sm);
-        bottom: calc(100px + env(safe-area-inset-bottom, 0px) + 8px);
+        bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-xl) + 35px);
     }
     
     /* Lista stazioni con padding mobile */
@@ -2354,7 +2213,14 @@ body {
 }
 
 @media (max-width: 480px) {
-    /* Layout ultra compatto per schermi molto piccoli - rimuovemo controls-card-new override */
+    /* Layout ultra compatto per schermi molto piccoli */
+    .controls-card-new {
+        bottom: var(--space-xs);
+        left: var(--space-xs);
+        right: var(--space-xs);
+        padding: var(--space-sm);
+        min-height: 65px;
+    }
     
     /* Pannelli ancora più alti su schermi piccoli */
     .slide-panel-new {
@@ -2389,7 +2255,10 @@ body {
         font-size: 14px;
     }
     
-    /* Rimosso bottom override che interferiva con le nuove regole mobile */
+    /* Menu sopra il footer su mobile con spazio generoso */
+    .controls-card-new {
+        bottom: calc(var(--footer-height) + var(--space-xl) + 20px);
+    }
 
     /* Footer molto più alto per mostrare completamente l'autore */
     .footer-new {
@@ -2545,7 +2414,12 @@ body {
         min-height: 44px;
     }
     
-    /* Rimosso stile che interferiva con le nuove regole mobile */
+    /* Migliora visibilità su mobile */
+    .controls-card-new {
+        border: 2px solid rgba(0, 122, 255, 0.1);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+    }
     
     /* Evita che i controlli vengano nascosti dalla keyboard */
     .controls-card-new.keyboard-open {
@@ -2623,7 +2497,10 @@ body {
         font-size: 10px;
     }
     
-    /* Rimosso bottom override che interferiva con le nuove regole mobile */
+    /* Menu ancora più in alto per schermi molto piccoli */
+    .controls-card-new {
+        bottom: calc(var(--footer-height) + var(--space-xl) + 35px);
+    }
     
     /* Pulsante cerca solo icona su schermi molto piccoli */
     .search-btn-new {
@@ -2642,9 +2519,8 @@ body {
 
 /* Supporto per safe area su dispositivi con notch */
 @supports (padding: max(0px)) {
-    /* Aggiornato per essere compatibile con le nuove regole mobile */
     .controls-card-new {
-        padding-bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 16px));
+        padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
     }
     
     .footer-new {
