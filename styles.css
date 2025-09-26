@@ -2175,9 +2175,15 @@ body {
     }
     
     .search-btn-new {
-        min-width: 75px;
+        min-width: 65px;
         padding: var(--space-sm);
         font-size: 12px;
+    }
+    
+    /* Su mobile, testo outdated più compatto */
+    .search-btn-new.outdated .search-text-new::after {
+        content: ' ↻'; /* Solo icona di aggiornamento */
+        font-size: 14px;
     }
     
     /* Menu sopra il footer su mobile con spazio generoso */
@@ -2205,26 +2211,48 @@ body {
         min-width: 45px;
     }
     
-    /* Header allineato e ottimizzato per mobile */
+    /* Header ottimizzato per mobile seguendo il design sketch */
     .header-card-new {
         padding: var(--space-md) var(--space-sm);
         left: var(--space-sm);
         right: var(--space-sm);
         top: var(--space-sm);
-        height: calc(var(--header-height) + 8px); /* Più alto per mobile */
+        height: calc(var(--header-height) + 12px);
+        display: grid;
+        grid-template-columns: auto 1fr auto; /* Icona | Titolo Centrato | Switcher */
+        align-items: center;
+        gap: var(--space-md);
     }
     
+    /* Contenitore icona a sinistra */
     .brand-container-new {
-        gap: var(--space-sm);
+        display: contents; /* Permette ai figli di essere parte della grid */
     }
     
     .app-logo-new {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
+        grid-column: 1; /* Prima colonna */
+        justify-self: start;
     }
     
     .app-logo-new i {
-        font-size: 18px;
+        font-size: 20px;
+    }
+    
+    /* Titolo centrato */
+    .brand-text-new {
+        grid-column: 2; /* Seconda colonna */
+        justify-self: center;
+        text-align: center;
+    }
+    
+    /* Switcher a destra più compatto */
+    .view-switcher-new {
+        grid-column: 3; /* Terza colonna */
+        justify-self: end;
+        min-width: 110px;
+        padding: 2px;
     }
     
     .content-card-new {
@@ -2240,13 +2268,8 @@ body {
         font-size: 11px;
     }
     
-    .view-switcher-new {
-        min-width: 120px;
-        padding: 3px;
-    }
-    
     .view-tab-new {
-        padding: 6px;
+        padding: 8px 12px;
         font-size: 10px;
         min-width: 55px;
     }
@@ -2338,8 +2361,22 @@ body {
 /* Schermi molto stretti (<380px) */
 @media (max-width: 380px) {
     .header-card-new {
-        padding: var(--space-xs);
-        margin: 4px;
+        padding: var(--space-sm);
+        gap: var(--space-sm);
+        height: calc(var(--header-height) + 8px);
+    }
+    
+    .app-logo-new {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .app-logo-new i {
+        font-size: 16px;
+    }
+    
+    .brand-text-new h1 {
+        font-size: 16px;
     }
     
     .brand-text-new span {
@@ -2347,13 +2384,14 @@ body {
     }
     
     .view-switcher-new {
-        min-width: 100px;
+        min-width: 90px;
+        padding: 2px;
     }
     
     .view-tab-new {
-        padding: 4px;
+        padding: 6px 8px;
         font-size: 9px;
-        min-width: 45px;
+        min-width: 40px;
     }
     
     .view-tab-new span {
@@ -2393,6 +2431,20 @@ body {
     /* Menu ancora più in alto per schermi molto piccoli */
     .controls-card-new {
         bottom: calc(var(--footer-height) + var(--space-xl) + 35px);
+    }
+    
+    /* Pulsante cerca solo icona su schermi molto piccoli */
+    .search-btn-new {
+        min-width: 44px;
+        padding: var(--space-sm);
+    }
+    
+    .search-text-new {
+        display: none; /* Solo icona */
+    }
+    
+    .search-btn-new.outdated .search-text-new::after {
+        display: none; /* Nascondi testo aggiorna */
     }
 }
 
