@@ -1713,7 +1713,7 @@ function initializePremiumPanelInteractions() {
             console.log('📝 Indirizzo in modifica - pannello rimane aperto');
             // Il pannello rimane aperto mentre l'utente digita
         });
-        
+         
         addressInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 console.log('✅ Indirizzo confermato - pannello rimane aperto per feedback');
