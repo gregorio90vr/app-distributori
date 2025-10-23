@@ -324,7 +324,7 @@ body {
 }
 
 /* =========================================
-   MAIN CONTENT CARD
+   MAIN CONTENT CARD - MOBILE-FIRST LAYOUT
    ========================================= */
 
 .content-card-new {
@@ -332,13 +332,15 @@ body {
     top: calc(var(--header-height) + var(--space-lg) + var(--space-md));
     left: var(--space-md);
     right: var(--space-md);
-    bottom: calc(var(--controls-height) + var(--footer-height) + var(--space-lg) + var(--space-md));
+    /* OTTIMIZZAZIONE: Elimina spazio vuoto, estende fino al menu */
+    bottom: 72px; /* Altezza esatta della nav bar premium */
     background: var(--surface-elevated);
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0; /* Solo angoli superiori arrotondati */
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     z-index: 100;
     border: 1px solid var(--border-light);
+    border-bottom: none; /* Rimuove bordo inferiore per integrazione visiva */
     backdrop-filter: blur(10px);
     transition: var(--transition-normal);
 }
@@ -376,26 +378,116 @@ body {
     height: 100%;
 }
 
-/* Evita sovrapposizione con la nuova bottom nav moderna */
+/* OTTIMIZZAZIONE MOBILE-FIRST: Integrazione perfetta contenuto-menu */
 @media (max-width: 768px) {
-    #map-new {
-        padding-bottom: calc(72px + var(--space-xl) + env(safe-area-inset-bottom, 0px));
+    /* Contenuto card ottimizzato per mobile */
+    .content-card-new {
+        top: calc(var(--header-height) + 8px); /* Riduce padding superiore */
+        left: 4px;
+        right: 4px;
+        bottom: 72px; /* Tocca direttamente la navbar */
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        border-left: none;
+        border-right: none;
     }
     
-    /* Assicura che i controlli Leaflet non vengano coperti */
+    /* Mappa si estende fino al bordo del menu */
+    #map-new {
+        padding-bottom: 0; /* Elimina padding, tocca direttamente */
+        border-radius: 0; /* Bordi quadrati per integrazione */
+    }
+    
+    /* Controlli Leaflet posizionati sopra la navbar */
     #map-new .leaflet-control-container .leaflet-bottom {
-        margin-bottom: calc(72px + var(--space-xl) + env(safe-area-inset-bottom, 0px)) !important;
+        margin-bottom: 80px !important; /* Spazio minimo per visibilità */
+    }
+    
+    /* Lista stazioni ottimizzata */
+    .station-list-new {
+        padding-bottom: 0; /* Elimina padding inferiore */
+        margin-bottom: 0;
     }
 }
 
-/* Supporto per notch e safe areas */
-@supports (padding: env(safe-area-inset-bottom)) {
-    .bottom-nav-modern {
-        padding-bottom: env(safe-area-inset-bottom);
+/* OTTIMIZZAZIONI AGGIUNTIVE MOBILE-FIRST: Eliminazione completa spazi vuoti */
+@media (max-width: 768px) {
+    
+    /* Body e container: rimuove margini residui */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden;
     }
     
-    .main-content-new {
-        padding-bottom: calc(72px + var(--space-xl) + env(safe-area-inset-bottom, 0px));
+    .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Content card: integrazione visiva perfetta */
+    .content-card-new {
+        margin: 0;
+        border-bottom: 1px solid transparent;
+        /* Gradiente di transizione verso la navbar */
+        background: linear-gradient(
+            to bottom,
+            var(--surface-elevated) 0%,
+            var(--surface-elevated) 97%,
+            rgba(248, 250, 252, 0.8) 100%
+        );
+    }
+    
+    /* Mappa: riempimento totale */
+    .map-container-new {
+        border-radius: 0 !important;
+        border: none !important;
+    }
+    
+    #map-new {
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Lista stazioni: densità ottimizzata */
+    .stations-list-new {
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
+        padding-bottom: 0;
+    }
+    
+    .station-card-new {
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: var(--space-sm) var(--space-md);
+    }
+    
+    /* Navbar: integrazione finale */
+    .nav-bar-premium {
+        margin: 0;
+        border-top-width: 0.5px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.99) 0%,
+            rgba(248, 250, 252, 1) 50%,
+            rgba(255, 255, 255, 0.99) 100%
+        );
+    }
+}
+
+/* Supporto per notch e safe areas - Ottimizzato */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .nav-bar-premium {
+        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(72px + env(safe-area-inset-bottom, 0px));
+        /* Background esteso per coprire safe area */
+        background-size: 100% calc(100% + env(safe-area-inset-bottom, 0px));
+    }
+    
+    @media (max-width: 768px) {
+        .content-card-new {
+            bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+        }
     }
 }
 
@@ -403,10 +495,21 @@ body {
    RESPONSIVE PREMIUM OPTIMIZATIONS
    ========================================= */
 
-/* Ultra-compact screens */
+/* Ultra-compact screens - Ottimizzazione layout compatto */
 @media (max-width: 360px) {
+    .content-card-new {
+        top: calc(var(--header-height) + 4px); /* Ancora meno padding */
+        left: 2px;
+        right: 2px;
+        border-radius: var(--radius-md) var(--radius-md) 0 0; /* Angoli più piccoli */
+    }
+    
     .nav-container-premium {
-        padding: 10px 6px calc(10px + env(safe-area-inset-bottom, 0px));
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)); /* Padding minimo */
+    }
+    
+    .nav-bar-premium {
+        height: 68px; /* Altezza ridotta per schermi piccoli */
     }
     
     .nav-tab-premium {
@@ -433,18 +536,46 @@ body {
     }
 }
 
-/* Landscape orientation optimizations */
+/* Landscape orientation optimizations - Layout ultra-compatto */
 @media (max-width: 768px) and (orientation: landscape) {
+    .content-card-new {
+        top: calc(var(--header-height) + 2px); /* Margine minimo */
+        left: 1px;
+        right: 1px;
+        bottom: 60px; /* Navbar più bassa */
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
     .nav-bar-premium {
         backdrop-filter: blur(20px) saturate(160%);
+        height: 60px; /* Navbar più compatta */
     }
     
     .nav-container-premium {
-        padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px));
+        padding: 4px 16px calc(4px + env(safe-area-inset-bottom, 0px));
     }
     
     .nav-tab-premium {
-        padding: 6px 10px;
+        padding: 3px 10px; /* Padding ancora più ridotto */
+    }
+    
+    .icon-wrapper-premium {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .icon-wrapper-premium i {
+        font-size: 15px;
+    }
+    
+    .tab-text-premium {
+        font-size: 10px;
+    }
+    
+    /* Stazioni più compatte in landscape */
+    .station-card-new {
+        padding: 6px 12px;
+        margin-bottom: 4px;
     }
     
     .tab-text-premium {
@@ -553,14 +684,24 @@ body {
     }
 }
 
-/* Station List Styles */
+/* Station List Styles - Ottimizzazione Mobile-First */
 .stations-list-new {
-    padding: var(--space-lg);
+    padding: var(--space-md) var(--space-lg) 0; /* Padding inferiore rimosso */
     height: 100%;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm); /* Gap ridotto per più densità */
+    /* Scroll fluido su mobile */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* OTTIMIZZAZIONE: Ultima card senza margine inferiore per integrazione */
+.stations-list-new .station-card-new:last-child {
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 /* Animazioni per le station cards */
@@ -575,17 +716,20 @@ body {
 .station-card-new:nth-child(5) { animation-delay: 0.5s; }
 
 .station-card-new {
-    background: var(--background);
+    background: var(--card-background);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+    padding: var(--space-md) var(--space-lg); /* Padding verticale ridotto */
     transition: all 0.2s ease;
     cursor: pointer;
+    /* Ottimizzazione mobile: bordi più sottili */
+    border-width: 0.5px;
 }
 
 .station-card-new:hover {
-    box-shadow: var(--shadow-button);
-    transform: translateY(-1px);
+    box-shadow: var(--shadow-md); /* Shadow più sottile */
+    transform: translateY(-0.5px); /* Movimento più sottile */
+    border-color: var(--border-focus);
 }
 
 .station-header-new {
@@ -679,42 +823,66 @@ body {
 .nav-bar-premium {
     background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(248, 250, 252, 0.98) 50%,
-        rgba(255, 255, 255, 0.95) 100%
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(248, 250, 252, 0.99) 50%,
+        rgba(255, 255, 255, 0.98) 100%
     );
     backdrop-filter: blur(24px) saturate(180%);
-    border-top: 1px solid rgba(148, 163, 184, 0.15);
+    /* OTTIMIZZAZIONE: Integrazione visiva perfetta con contenuto */
+    border-top: 1px solid rgba(148, 163, 184, 0.08); /* Bordo più sottile */
     box-shadow: 
-        0 -1px 3px rgba(0, 0, 0, 0.1),
-        0 -4px 16px rgba(0, 0, 0, 0.05);
+        0 -1px 3px rgba(0, 0, 0, 0.08),
+        0 -4px 16px rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3); /* Highlight superiore */
     pointer-events: all;
     position: relative;
     overflow: hidden;
+    /* Altezza fissa per calcoli precisi */
+    height: 72px;
 }
 
+/* OTTIMIZZAZIONE: Linea di connessione visiva più sottile */
 .nav-bar-premium::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
+    height: 0.5px; /* Linea ultra-sottile */
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(79, 172, 254, 0.3) 50%,
+        rgba(79, 172, 254, 0.15) 50%, /* Opacità ridotta */
         transparent 100%
     );
+}
+
+/* Connessione visiva aggiuntiva */
+.nav-bar-premium::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.1) 0%,
+        rgba(79, 172, 254, 0.15) 100%
+    );
+    border-radius: 2px 2px 0 0;
 }
 
 .nav-container-premium {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 12px 8px calc(12px + env(safe-area-inset-bottom, 0px));
+    /* OTTIMIZZAZIONE: Padding ridotto per massimizzare spazio contenuto */
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
     max-width: 500px;
     margin: 0 auto;
+    height: 100%; /* Occupa tutta l'altezza della navbar */
 }
 
 .nav-tab-premium {
