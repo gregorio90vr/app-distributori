@@ -44,11 +44,20 @@ function initializeNewApp() {
     keyElements.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
-
+            console.log('✅ Element found:', id);
         } else {
             console.error('❌ Missing element:', id);
         }
     });
+
+    // Debug: Check new footer
+    const footer = document.querySelector('.footer-info-fixed');
+    if (footer) {
+        console.log('✅ New Footer found:', footer);
+        // Footer già visibile con stili !important
+    } else {
+        console.error('❌ New Footer not found!');
+    }
     
 
     keyPanels.forEach(id => {
@@ -1730,106 +1739,25 @@ function initializePremiumPanelInteractions() {
 // =========================================
 
 function initializeMobileInfoCarousel() {
-    console.log('🎯 Inizializzazione carousel informazioni mobile...');
+    console.log('🎯 Inizializzazione footer informazioni...');
     
-    const slides = document.querySelectorAll('.info-slide');
-    const dots = document.querySelectorAll('.carousel-dot');
-    let currentSlide = 0;
-    let carouselInterval = null;
-    
-    if (slides.length === 0 || dots.length === 0) {
-        console.warn('⚠️ Elementi carousel non trovati');
-        return;
-    }
-    
-    // Auto-rotation function
-    function nextSlide() {
-        // Remove active class from current slide and dot
-        slides[currentSlide].classList.remove('active');
-        dots[currentSlide].classList.remove('active');
-        
-        // Move to next slide (loop back to 0 if at end)
-        currentSlide = (currentSlide + 1) % slides.length;
-        
-        // Add active class to new slide and dot
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-    }
-    
-    // Manual slide selection
-    function goToSlide(index) {
-        // Stop auto-rotation temporarily
-        if (carouselInterval) {
-            clearInterval(carouselInterval);
-        }
-        
-        // Remove active from all
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // Set new active slide
-        currentSlide = index;
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-        
-        // Restart auto-rotation after 5 seconds
-        setTimeout(startAutoRotation, 5000);
-    }
-    
-    // Start auto-rotation
-    function startAutoRotation() {
-        if (carouselInterval) {
-            clearInterval(carouselInterval);
-        }
-        carouselInterval = setInterval(nextSlide, 4000); // Change every 4 seconds
-    }
-    
-    // Add click listeners to dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            goToSlide(index);
-            
-            // Haptic feedback if available
-            if (navigator.vibrate) {
-                navigator.vibrate(10);
-            }
-        });
-    });
-    
-    // Pause on touch/hover for mobile accessibility
-    const carouselContainer = document.querySelector('.info-carousel');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('touchstart', function() {
-            if (carouselInterval) {
-                clearInterval(carouselInterval);
-            }
-        });
-        
-        carouselContainer.addEventListener('touchend', function() {
-            setTimeout(startAutoRotation, 3000);
-        });
-    }
-    
-    // Start the carousel
-    startAutoRotation();
-    
-    // Sync data timestamp
+    // Sync data timestamp between original and footer elements
     syncDataTimestamp();
     
-    console.log('✅ Carousel informazioni mobile inizializzato');
+    console.log('✅ Footer informazioni inizializzato');
 }
 
-// Sync timestamp between original and mobile elements
+// Sync timestamp between original and footer elements
 function syncDataTimestamp() {
     const originalTimestamp = document.getElementById('dataTimestamp-new');
-    const mobileTimestamp = document.getElementById('dataTimestamp-mobile');
+    const footerTimestamp = document.getElementById('dataTimestamp-footer-simple');
     
-    if (originalTimestamp && mobileTimestamp) {
+    if (originalTimestamp && footerTimestamp) {
         // Create observer to sync content
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'childList' || mutation.type === 'characterData') {
-                    mobileTimestamp.textContent = originalTimestamp.textContent;
+                    footerTimestamp.textContent = originalTimestamp.textContent;
                 }
             });
         });
@@ -1841,7 +1769,9 @@ function syncDataTimestamp() {
         });
         
         // Initial sync
-        mobileTimestamp.textContent = originalTimestamp.textContent;
+        footerTimestamp.textContent = originalTimestamp.textContent;
+        
+        console.log('✅ Sincronizzazione timestamp attivata');
     }
 }
 
