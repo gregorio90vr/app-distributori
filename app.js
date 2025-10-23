@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeNewApp() {
-
+    // Initialize mobile info carousel
+    initializeMobileInfoCarousel();
     
     // Debug: Check if key elements exist
     const keyElements = [
@@ -1713,7 +1714,7 @@ function initializePremiumPanelInteractions() {
             console.log('📝 Indirizzo in modifica - pannello rimane aperto');
             // Il pannello rimane aperto mentre l'utente digita
         });
-         
+        
         addressInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 console.log('✅ Indirizzo confermato - pannello rimane aperto per feedback');
@@ -1724,4 +1725,123 @@ function initializePremiumPanelInteractions() {
     console.log('✅ Interazioni pannelli premium inizializzate con persistenza');
 }
 
- 
+// =========================================
+// MOBILE INFO CAROUSEL - Always Visible Info
+// =========================================
+
+function initializeMobileInfoCarousel() {
+    console.log('🎯 Inizializzazione carousel informazioni mobile...');
+    
+    const slides = document.querySelectorAll('.info-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    let carouselInterval = null;
+    
+    if (slides.length === 0 || dots.length === 0) {
+        console.warn('⚠️ Elementi carousel non trovati');
+        return;
+    }
+    
+    // Auto-rotation function
+    function nextSlide() {
+        // Remove active class from current slide and dot
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        // Move to next slide (loop back to 0 if at end)
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Add active class to new slide and dot
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+    
+    // Manual slide selection
+    function goToSlide(index) {
+        // Stop auto-rotation temporarily
+        if (carouselInterval) {
+            clearInterval(carouselInterval);
+        }
+        
+        // Remove active from all
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Set new active slide
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        
+        // Restart auto-rotation after 5 seconds
+        setTimeout(startAutoRotation, 5000);
+    }
+    
+    // Start auto-rotation
+    function startAutoRotation() {
+        if (carouselInterval) {
+            clearInterval(carouselInterval);
+        }
+        carouselInterval = setInterval(nextSlide, 4000); // Change every 4 seconds
+    }
+    
+    // Add click listeners to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            goToSlide(index);
+            
+            // Haptic feedback if available
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        });
+    });
+    
+    // Pause on touch/hover for mobile accessibility
+    const carouselContainer = document.querySelector('.info-carousel');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('touchstart', function() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+            }
+        });
+        
+        carouselContainer.addEventListener('touchend', function() {
+            setTimeout(startAutoRotation, 3000);
+        });
+    }
+    
+    // Start the carousel
+    startAutoRotation();
+    
+    // Sync data timestamp
+    syncDataTimestamp();
+    
+    console.log('✅ Carousel informazioni mobile inizializzato');
+}
+
+// Sync timestamp between original and mobile elements
+function syncDataTimestamp() {
+    const originalTimestamp = document.getElementById('dataTimestamp-new');
+    const mobileTimestamp = document.getElementById('dataTimestamp-mobile');
+    
+    if (originalTimestamp && mobileTimestamp) {
+        // Create observer to sync content
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                    mobileTimestamp.textContent = originalTimestamp.textContent;
+                }
+            });
+        });
+        
+        observer.observe(originalTimestamp, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+        
+        // Initial sync
+        mobileTimestamp.textContent = originalTimestamp.textContent;
+    }
+}
+

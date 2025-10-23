@@ -645,8 +645,42 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer-new">
+    <!-- Mobile-First Info Bar - Always Visible Below Navigation -->
+    <div class="info-bar-mobile">
+        <div class="info-bar-content">
+            <!-- Data Status -->
+            <div class="data-status-compact">
+                <i class="fas fa-database"></i>
+                <span id="dataTimestamp-mobile">Caricamento dati...</span>
+            </div>
+            
+            <!-- Quick Info Carousel -->
+            <div class="info-carousel">
+                <div class="info-slide active" data-slide="0">
+                    <i class="fas fa-building"></i>
+                    <span>Dati: <a href="https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti" target="_blank" rel="noopener">MIMIT</a></span>
+                </div>
+                <div class="info-slide" data-slide="1">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Licenza: <a href="https://www.dati.gov.it/content/italian-open-data-license-v20" target="_blank" rel="noopener">IODL 2.0</a></span>
+                </div>
+                <div class="info-slide" data-slide="2">
+                    <i class="fas fa-code"></i>
+                    <span><strong>Gregorio Pellegrini</strong></span>
+                </div>
+            </div>
+            
+            <!-- Carousel Controls -->
+            <div class="carousel-controls">
+                <button class="carousel-dot active" data-slide="0" aria-label="Fonte dati"></button>
+                <button class="carousel-dot" data-slide="1" aria-label="Licenza"></button>
+                <button class="carousel-dot" data-slide="2" aria-label="Sviluppatore"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Original Footer (kept for compatibility) -->
+    <footer class="footer-new" style="display: none;">
         <div class="footer-content-new">
             <div class="data-info-new">
                 <span id="dataTimestamp-new">Caricamento dati...</span>

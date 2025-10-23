@@ -603,6 +603,152 @@ body {
 }
 
 /* =========================================
+   MOBILE INFO BAR - Always Visible Below Navigation
+   ========================================= */
+
+.info-bar-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Position below navigation bar */
+    transform: translateY(calc(var(--nav-height-mobile) + var(--safe-area-bottom)));
+    z-index: 999; /* Below navigation but above content */
+    
+    /* Styling */
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.95) 0%,
+        rgba(79, 172, 254, 0.95) 50%,
+        rgba(118, 75, 162, 0.95) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Safe area support */
+    padding-bottom: var(--safe-area-bottom);
+    min-height: 44px;
+    height: calc(44px + var(--safe-area-bottom));
+    
+    /* Mobile optimization */
+    -webkit-transform: translateZ(0) translateY(calc(var(--nav-height-mobile) + var(--safe-area-bottom)));
+    transform: translateZ(0) translateY(calc(var(--nav-height-mobile) + var(--safe-area-bottom)));
+    will-change: transform;
+}
+
+.info-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px calc(12px + var(--safe-area-left)) 8px calc(12px + var(--safe-area-right));
+    max-width: 500px;
+    margin: 0 auto;
+    height: 44px;
+    min-height: 44px;
+}
+
+/* Data Status */
+.data-status-compact {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.data-status-compact i {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* Info Carousel */
+.info-carousel {
+    flex: 1;
+    margin: 0 12px;
+    position: relative;
+    height: 28px;
+    overflow: hidden;
+}
+
+.info-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 28px;
+    
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    
+    /* Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+.info-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.info-slide i {
+    font-size: 10px;
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+
+.info-slide a {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.info-slide a:hover,
+.info-slide a:focus {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.2);
+}
+
+.carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================================
    ADVANCED VIEWPORT AND SAFE AREA SUPPORT
    ========================================= */
 
@@ -625,9 +771,22 @@ body {
     }
     
     @media (max-width: 768px) {
-        /* All calculations already use CSS variables */
-        .content-card-new {
-            /* Content card positions are already using safe area variables */
+        /* Mobile info bar optimizations */
+        .info-bar-mobile {
+            transform: translateY(calc(var(--nav-height-mobile) + var(--safe-area-bottom)));
+            -webkit-transform: translateZ(0) translateY(calc(var(--nav-height-mobile) + var(--safe-area-bottom)));
+        }
+        
+        .info-bar-content {
+            padding: 6px calc(8px + var(--safe-area-left)) 6px calc(8px + var(--safe-area-right));
+        }
+        
+        .data-status-compact {
+            font-size: 10px;
+        }
+        
+        .info-slide {
+            font-size: 10px;
         }
     }
 }
@@ -660,8 +819,104 @@ body {
 }
 
 /* =========================================
+   MOBILE INFO BAR - ORIENTATION MANAGEMENT
+   ========================================= */
+
+/* Prevent info bar from hiding during orientation changes */
+@media screen and (max-width: 768px) {
+    .info-bar-mobile {
+        /* Ensure visibility during orientation transitions */
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 1;
+    }
+    
+    /* Handle virtual keyboard on iOS */
+    @supports (-webkit-touch-callout: none) {
+        .info-bar-mobile {
+            /* Keep info bar visible when keyboard is open */
+            position: fixed;
+            z-index: 999;
+        }
+    }
+}
+
+/* High DPI displays optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .info-slide a,
+    .data-status-compact {
+        /* Crisp text on retina displays */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .info-slide {
+        transition: opacity 0.2s ease;
+        transform: none;
+    }
+    
+    .info-slide.active {
+        transform: none;
+    }
+    
+    .carousel-dot {
+        transition: background-color 0.2s ease;
+    }
+}
+
+/* Dark mode support for info bar */
+@media (prefers-color-scheme: dark) {
+    .info-bar-mobile {
+        background: linear-gradient(
+            135deg,
+            rgba(30, 41, 59, 0.95) 0%,
+            rgba(51, 65, 85, 0.95) 50%,
+            rgba(30, 41, 59, 0.95) 100%
+        );
+        border-top-color: rgba(148, 163, 184, 0.3);
+    }
+}
+
+/* =========================================
    RESPONSIVE PREMIUM OPTIMIZATIONS
    ========================================= */
+
+/* Ultra-compact screens - Info bar adjustments */
+@media (max-width: 360px) {
+    .info-bar-mobile {
+        min-height: 40px;
+        height: calc(40px + var(--safe-area-bottom));
+        transform: translateY(calc(64px + var(--safe-area-bottom)));
+        -webkit-transform: translateZ(0) translateY(calc(64px + var(--safe-area-bottom)));
+    }
+    
+    .info-bar-content {
+        height: 40px;
+        min-height: 40px;
+        padding: 4px calc(6px + var(--safe-area-left)) 4px calc(6px + var(--safe-area-right));
+    }
+    
+    .data-status-compact {
+        font-size: 9px;
+    }
+    
+    .info-slide {
+        font-size: 9px;
+        height: 24px;
+    }
+    
+    .info-carousel {
+        height: 24px;
+        margin: 0 8px;
+    }
+    
+    .carousel-dot {
+        width: 5px;
+        height: 5px;
+    }
+}
 
 /* Ultra-compact screens - Responsive optimization */
 @media (max-width: 360px) {
@@ -762,6 +1017,34 @@ body {
         height: 56px;
         min-height: 56px;
         padding: 3px calc(16px + var(--safe-area-left)) calc(3px + var(--safe-area-bottom)) calc(16px + var(--safe-area-right));
+    }
+    
+    /* Landscape info bar */
+    .info-bar-mobile {
+        min-height: 36px;
+        height: calc(36px + var(--safe-area-bottom));
+        transform: translateY(calc(56px + var(--safe-area-bottom)));
+        -webkit-transform: translateZ(0) translateY(calc(56px + var(--safe-area-bottom)));
+    }
+    
+    .info-bar-content {
+        height: 36px;
+        min-height: 36px;
+        padding: 3px calc(16px + var(--safe-area-left)) 3px calc(16px + var(--safe-area-right));
+    }
+    
+    .data-status-compact,
+    .info-slide {
+        font-size: 10px;
+    }
+    
+    .info-carousel {
+        height: 20px;
+        margin: 0 10px;
+    }
+    
+    .info-slide {
+        height: 20px;
     }
     
     .nav-container-premium {
