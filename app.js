@@ -12,6 +12,15 @@ let dataTimestamp = null;
 let activePanel = null;
 let lastGpsAddress = null; // Traccia l'ultimo indirizzo impostato dal GPS
 
+// Sistema Menu Persistenti - UX Mobile-First Ottimizzata
+let persistentPanels = {
+    'location': false,
+    'filters': false, 
+    'calc': false,
+    'info': false
+};
+let explicitClose = false; // Flag per distinguere chiusure esplicite da automatiche
+
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeNewApp();
@@ -64,6 +73,9 @@ function initializeNewApp() {
     
     // Initialize calculator preview
     updateCalcPreviewNew();
+    
+    // Initialize new premium panel interactions
+    initializePremiumPanelInteractions();
     
 
 }
@@ -144,17 +156,20 @@ function bindNewEventListeners() {
         console.error('❌ Info button not found');
     }
     
-    // Panel close buttons - Using event delegation for better reliability
+    // Panel close buttons - Sistema persistente ottimizzato
     document.addEventListener('click', (e) => {
         // Check if clicked element is a close button or inside one
-        const closeBtn = e.target.closest('.panel-close-new');
+        const closeBtn = e.target.closest('.panel-close-new, .panel-close-premium');
         if (closeBtn) {
             e.preventDefault();
             e.stopPropagation();
             const panel = closeBtn.dataset.panel;
-            console.log('❌ Close button clicked for panel:', panel);
+            console.log('❌ Chiusura esplicita pannello:', panel);
             if (panel) {
+                explicitClose = true; // Marca come chiusura esplicita
+                persistentPanels[panel] = false; // Disabilita persistenza
                 togglePanelNew(panel, false);
+                explicitClose = false; // Reset flag
             }
         }
     });
@@ -211,10 +226,24 @@ function bindNewEventListeners() {
         });
     }
     
-    // Close panels when clicking outside
+    // Sistema intelligente chiusura pannelli - Solo per azioni che indicano fine interazione
     document.addEventListener('click', (e) => {
-        if (activePanel && !e.target.closest('.slide-panel-new') && !e.target.closest('.control-item-new')) {
-            togglePanelNew(activePanel, false);
+        if (activePanel && 
+            !e.target.closest('.slide-panel-new, .slide-panel-premium') && 
+            !e.target.closest('.nav-tab-premium')) {
+            
+            // Chiudi solo se è un'azione che indica fine dell'interazione
+            const isEndOfInteractionAction = 
+                e.target.closest('#searchBtn-new') || // Avvio ricerca
+                e.target.closest('.station-card') || // Selezione stazione
+                e.target.closest('#map') || // Click sulla mappa
+                e.target.closest('main'); // Click nell'area principale
+            
+            if (isEndOfInteractionAction) {
+                console.log('🔄 Chiusura automatica per fine interazione');
+                persistentPanels[activePanel] = false;
+                togglePanelNew(activePanel, false);
+            }
         }
     });
 }
@@ -299,25 +328,62 @@ function togglePanelNew(panelName, show = null) {
     const isCurrentlyActive = panel.classList.contains('active');
     console.log('📋 Panel current state:', isCurrentlyActive ? 'active' : 'inactive');
     
-    // Close all panels first
-    document.querySelectorAll('.slide-panel-new').forEach(p => {
-        p.classList.remove('active');
-    });
-    
-    // Update control buttons
-    document.querySelectorAll('.control-item-new').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    if (show === false || isCurrentlyActive) {
-        activePanel = null;
-        console.log('🔄 Panel closed');
+    // Prevenzione double-trigger durante animazioni
+    if (panel.style.pointerEvents === 'none') {
+        console.log('⏳ Animation in progress, ignoring request');
         return;
     }
     
-    // Open the requested panel
-    panel.classList.add('active');
-    console.log('✅ Panel opened:', panelName);
+    // Disabilita temporaneamente i click durante l'animazione
+    panel.style.pointerEvents = 'none';
+    
+    // Close all panels first con animazione fluida
+    document.querySelectorAll('.slide-panel-new').forEach(p => {
+        if (p !== panel) {
+            p.classList.remove('active');
+        }
+    });
+    
+    // Update control buttons
+    document.querySelectorAll('.nav-tab-premium').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    if (show === false || (isCurrentlyActive && !persistentPanels[panelName])) {
+        activePanel = null;
+        panel.classList.remove('active');
+        panel.classList.remove('persistent'); // Rimuovi classe di persistenza
+        persistentPanels[panelName] = false;
+        console.log('🔄 Panel chiuso:', panelName);
+        
+        // Re-abilita i click dopo l'animazione
+        setTimeout(() => {
+            panel.style.pointerEvents = '';
+        }, 300);
+        return;
+    }
+    
+    // Se il pannello è già aperto e persistente, mantienilo aperto
+    if (isCurrentlyActive && persistentPanels[panelName] && !explicitClose) {
+        console.log('📌 Panel persistente mantiene apertura:', panelName);
+        setTimeout(() => {
+            panel.style.pointerEvents = '';
+        }, 300);
+        return;
+    }
+    
+    // Open the requested panel con micro-delay per animazione fluida
+    requestAnimationFrame(() => {
+        panel.classList.add('active');
+        panel.classList.add('persistent'); // Aggiungi classe per feedback visivo
+        persistentPanels[panelName] = true; // Abilita persistenza per nuovo pannello
+        console.log('✅ Panel aperto con persistenza:', panelName);
+        
+        // Re-abilita i click dopo l'animazione
+        setTimeout(() => {
+            panel.style.pointerEvents = '';
+        }, 300);
+    });
     
     // Highlight the control button
     const controlBtnId = panelName + 'Btn-new';
@@ -1323,6 +1389,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initialize stations selector
         initializeStationsSelector();
+        
+        // Initialize touch feedback
+        addTouchFeedback();
     }, 100);
 });
 
@@ -1417,13 +1486,21 @@ function initializeCustomSelect() {
         options.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
         
-        // Close dropdown
+        // Close dropdown ma mantieni pannello aperto
         display.classList.remove('active');
         options.classList.remove('show');
         
         // Trigger change event
         const event = new Event('change', { bubbles: true });
         hiddenSelect.dispatchEvent(event);
+        
+        // Mantieni pannello aperto per selezioni multiple
+        console.log('✅ Selezione carburante completata - pannello rimane aperto');
+        
+        // Aggiungi feedback visivo per selezione
+        setTimeout(() => {
+            option.classList.add('selected');
+        }, 150);
     });
     
     // Close dropdown when clicking outside
@@ -1438,5 +1515,212 @@ function initializeCustomSelect() {
     if (initialOption) {
         initialOption.classList.add('selected');
     }
+}
+
+// Premium Touch Feedback System
+function addTouchFeedback() {
+    // Premium search button feedback
+    const searchBtn = document.getElementById('searchBtn-new');
+    if (searchBtn) {
+        searchBtn.addEventListener('touchstart', function() {
+            this.classList.add('pulse');
+            if (navigator.vibrate) navigator.vibrate(12);
+        }, { passive: true });
+        
+        searchBtn.addEventListener('animationend', function() {
+            this.classList.remove('pulse');
+        });
+    }
+    
+    // Premium tab navigation feedback
+    document.querySelectorAll('.nav-tab-premium').forEach(tab => {
+        tab.addEventListener('touchstart', function() {
+            this.classList.add('ripple', 'activating');
+            if (navigator.vibrate) navigator.vibrate([8]);
+        }, { passive: true });
+        
+        tab.addEventListener('animationend', function() {
+            this.classList.remove('ripple', 'activating');
+        });
+    });
+}
+
+// Premium Search State Management
+function setSearchLoadingState(isLoading) {
+    const searchBtn = document.getElementById('searchBtn-new');
+    const searchText = document.querySelector('.search-text-new');
+    
+    if (searchBtn && searchText) {
+        if (isLoading) {
+            searchBtn.classList.add('loading');
+            searchText.textContent = 'Ricerca...';
+        } else {
+            searchBtn.classList.remove('loading');
+            searchText.textContent = 'Cerca';
+        }
+    }
+}
+
+// Premium Success Feedback for Search Tab
+function showSuccessFeedback() {
+    const searchBtn = document.getElementById('searchBtn-new');
+    const searchText = document.querySelector('.search-text-new');
+    
+    if (searchBtn && searchText) {
+        searchBtn.classList.add('success');
+        searchText.textContent = 'Trovato!';
+        
+        if (navigator.vibrate) navigator.vibrate([60, 30, 60]);
+        
+        setTimeout(() => {
+            searchBtn.classList.remove('success');
+            searchText.textContent = 'Cerca';
+        }, 2500);
+    }
+}
+
+// Initialize Premium Panel Interactions - Sistema Persistente
+function initializePremiumPanelInteractions() {
+    console.log('🎯 Inizializzazione interazioni pannelli premium...');
+    
+    // Fuel Cards Interaction (Filters Panel)
+    document.querySelectorAll('.fuel-card-premium').forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Remove previous selection
+            document.querySelectorAll('.fuel-card-premium').forEach(c => {
+                c.classList.remove('active', 'selected');
+            });
+            
+            // Add selection to clicked card
+            this.classList.add('active', 'selected');
+            
+            // Update hidden select
+            const fuelType = this.dataset.fuel;
+            const hiddenSelect = document.getElementById('fuelType-new');
+            if (hiddenSelect) {
+                hiddenSelect.value = fuelType;
+                // Trigger change event
+                const event = new Event('change', { bubbles: true });
+                hiddenSelect.dispatchEvent(event);
+            }
+            
+            // Haptic feedback
+            if (navigator.vibrate) navigator.vibrate(15);
+            
+            console.log('✅ Carburante selezionato:', fuelType, '- pannello rimane aperto');
+        });
+    });
+    
+    // Radius Options Interaction
+    document.querySelectorAll('.radius-btn-premium').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Remove previous selection
+            document.querySelectorAll('.radius-btn-premium').forEach(b => {
+                b.classList.remove('active', 'selected');
+            });
+            
+            // Add selection to clicked button
+            this.classList.add('active', 'selected');
+            
+            // Update display and hidden select
+            const radius = this.dataset.radius;
+            const radiusDisplay = document.getElementById('radiusValueDisplay');
+            const hiddenSelect = document.getElementById('radius-new');
+            
+            if (radiusDisplay) radiusDisplay.textContent = radius;
+            if (hiddenSelect) {
+                hiddenSelect.value = radius;
+                // Trigger change event
+                const event = new Event('change', { bubbles: true });
+                hiddenSelect.dispatchEvent(event);
+            }
+            
+            // Haptic feedback
+            if (navigator.vibrate) navigator.vibrate(12);
+            
+            console.log('✅ Raggio selezionato:', radius + 'km', '- pannello rimane aperto');
+        });
+    });
+    
+    // Results Options Interaction
+    document.querySelectorAll('.results-option-premium').forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Remove previous selection
+            document.querySelectorAll('.results-option-premium').forEach(o => {
+                o.classList.remove('active-default', 'selected');
+            });
+            
+            // Add selection to clicked option
+            this.classList.add('active-default', 'selected');
+            
+            // Update display and hidden input
+            const value = this.dataset.value;
+            const displayElement = document.getElementById('resultsValueDisplay');
+            const hiddenInput = document.getElementById('maxStations-new');
+            
+            if (displayElement) displayElement.textContent = value === '100' ? 'Tutti' : value;
+            if (hiddenInput) hiddenInput.value = value;
+            
+            // Haptic feedback
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            console.log('✅ Num risultati selezionato:', value, '- pannello rimane aperto');
+        });
+    });
+    
+    // Calculator Mode Toggle
+    document.querySelectorAll('input[name="calcMode-new"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const mode = this.value;
+            const calcLabel = document.getElementById('calcLabel-new');
+            const calcUnit = document.getElementById('calcUnit-new');
+            const calcHelp = document.getElementById('calcHelp-new');
+            
+            if (mode === 'liters') {
+                if (calcLabel) calcLabel.innerHTML = '<i class="fas fa-edit"></i> Quanti litri vuoi acquistare?';
+                if (calcUnit) calcUnit.textContent = 'L';
+                if (calcHelp) calcHelp.innerHTML = '<i class="fas fa-info-circle"></i> Ti mostrerò il costo per ogni distributore';
+            } else {
+                if (calcLabel) calcLabel.innerHTML = '<i class="fas fa-edit"></i> Quanto vuoi spendere?';
+                if (calcUnit) calcUnit.textContent = '€';
+                if (calcHelp) calcHelp.innerHTML = '<i class="fas fa-info-circle"></i> Ti mostrerò quanti litri puoi acquistare';
+            }
+            
+            updateCalcPreviewNew();
+            console.log('✅ Modalità calcolo cambiata:', mode, '- pannello rimane aperto');
+        });
+    });
+    
+    // Location Actions (GPS and Address)
+    const gpsBtn = document.getElementById('gpsBtn-new');
+    if (gpsBtn) {
+        gpsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('📍 GPS richiesto - pannello rimane aperto per feedback');
+            // La funzione GPS esistente gestirà la localizzazione
+        });
+    }
+    
+    const addressInput = document.getElementById('address-new');
+    if (addressInput) {
+        addressInput.addEventListener('input', function() {
+            console.log('📝 Indirizzo in modifica - pannello rimane aperto');
+            // Il pannello rimane aperto mentre l'utente digita
+        });
+        
+        addressInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                console.log('✅ Indirizzo confermato - pannello rimane aperto per feedback');
+            }
+        });
+    }
+    
+    console.log('✅ Interazioni pannelli premium inizializzate con persistenza');
 }
 

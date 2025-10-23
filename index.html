@@ -73,118 +73,219 @@
         </div>
     </main>
 
-    <!-- Bottom Controls Card -->
-    <div class="controls-card-new">
-        <div class="utility-controls-new">
-            <button id="locationBtn-new" class="control-item-new" data-panel="location">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Posizione</span>
-            </button>
-            
-            <button id="filtersBtn-new" class="control-item-new" data-panel="filters">
-                <i class="fas fa-filter"></i>
-                <span>Filtri</span>
-            </button>
-            
-            <button id="calcBtn-new" class="control-item-new" data-panel="calc">
-                <i class="fas fa-euro-sign"></i>
-                <span>Costi</span>
-            </button>
-            
-            <button id="infoBtn-new" class="control-item-new" data-panel="info">
-                <i class="fas fa-info-circle"></i>
-                <span>Info</span>
-            </button>
+    <!-- Premium Mobile Navigation System -->
+    <nav class="mobile-nav-premium" role="navigation" aria-label="Navigazione principale">
+        <!-- Elegant Bottom Bar -->
+        <div class="nav-bar-premium">
+            <div class="nav-container-premium">
+                <!-- Quick Action Tabs -->
+                <button id="locationBtn-new" class="nav-tab-premium" data-panel="location" aria-label="Gestione posizione">
+                    <div class="tab-content-premium">
+                        <div class="icon-wrapper-premium">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <div class="icon-glow-premium"></div>
+                        </div>
+                        <span class="tab-text-premium">Posizione</span>
+                    </div>
+                    <div class="active-indicator-premium"></div>
+                </button>
+                
+                <button id="filtersBtn-new" class="nav-tab-premium" data-panel="filters" aria-label="Opzioni filtri">
+                    <div class="tab-content-premium">
+                        <div class="icon-wrapper-premium">
+                            <i class="fas fa-sliders-h" aria-hidden="true"></i>
+                            <div class="icon-glow-premium"></div>
+                        </div>
+                        <span class="tab-text-premium">Filtri</span>
+                    </div>
+                    <div class="active-indicator-premium"></div>
+                </button>
+                
+                <!-- Central Search Tab -->
+                <button id="searchBtn-new" class="nav-tab-premium nav-tab-search-premium" aria-label="Avvia ricerca distributori">
+                    <div class="tab-content-premium">
+                        <div class="icon-wrapper-premium">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <div class="icon-glow-premium search-glow-premium"></div>
+                            <div class="search-pulse-premium"></div>
+                        </div>
+                        <span class="tab-text-premium search-text-new">Cerca</span>
+                    </div>
+                    <div class="active-indicator-premium"></div>
+                </button>
+                
+                <button id="calcBtn-new" class="nav-tab-premium" data-panel="calc" aria-label="Calcolo costi">
+                    <div class="tab-content-premium">
+                        <div class="icon-wrapper-premium">
+                            <i class="fas fa-calculator" aria-hidden="true"></i>
+                            <div class="icon-glow-premium"></div>
+                        </div>
+                        <span class="tab-text-premium">Costi</span>
+                    </div>
+                    <div class="active-indicator-premium"></div>
+                </button>
+                
+                <button id="infoBtn-new" class="nav-tab-premium" data-panel="info" aria-label="Informazioni app">
+                    <div class="tab-content-premium">
+                        <div class="icon-wrapper-premium">
+                            <i class="fas fa-info-circle" aria-hidden="true"></i>
+                            <div class="icon-glow-premium"></div>
+                        </div>
+                        <span class="tab-text-premium">Info</span>
+                    </div>
+                    <div class="active-indicator-premium"></div>
+                </button>
+            </div>
         </div>
-        
-        <button id="searchBtn-new" class="search-btn-new">
-            <i class="fas fa-search"></i>
-            <span class="search-text-new">Cerca</span>
-        </button>
-    </div>
+    </nav>
 
     <!-- Slide-up Panels -->
     
-    <!-- Location Panel -->
-    <div id="locationPanel-new" class="slide-panel-new">
-        <div class="panel-handle-new"></div>
-        <div class="panel-header-new">
-            <h3>Imposta Posizione</h3>
-            <button class="panel-close-new" data-panel="location">
+    <!-- Location Panel - Modern Mobile-First Design -->
+    <div id="locationPanel-new" class="slide-panel-premium">
+        <div class="panel-handle-premium"></div>
+        
+        <!-- Premium Panel Header -->
+        <div class="panel-header-premium">
+            <div class="panel-icon-premium">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="panel-title-premium">
+                <h3>Imposta Posizione</h3>
+                <p>Trova distributori vicino a te</p>
+            </div>
+            <button class="panel-close-premium" data-panel="location" aria-label="Chiudi pannello">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         
-        <div class="panel-content-new">
-            <div class="input-section-new">
-                <label>Cerca un indirizzo</label>
-                <div class="search-input-new">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="address-new" placeholder="Via Roma, Milano...">
-                </div>
+        <!-- Premium Panel Content -->
+        <div class="panel-content-premium">
+            <!-- GPS Card - Primary Action -->
+            <div class="location-card-premium gps-card-premium">
+                <button id="gpsBtn-new" class="location-action-premium">
+                    <div class="action-icon-premium">
+                        <i class="fas fa-location-crosshairs"></i>
+                        <div class="icon-pulse-premium"></div>
+                    </div>
+                    <div class="action-content-premium">
+                        <h4>Posizione Automatica</h4>
+                        <p>Rileva la mia posizione GPS</p>
+                    </div>
+                    <div class="action-arrow-premium">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </button>
             </div>
             
-            <div class="divider-new">
+            <!-- Divider with OR -->
+            <div class="divider-premium">
                 <span>oppure</span>
             </div>
             
-            <button id="gpsBtn-new" class="gps-btn-new">
-                <i class="fas fa-location-crosshairs"></i>
-                <span>Usa la mia posizione GPS</span>
-            </button>
+            <!-- Search Card - Alternative Action -->
+            <div class="location-card-premium search-card-premium">
+                <div class="search-header-premium">
+                    <i class="fas fa-search"></i>
+                    <span>Cerca Indirizzo</span>
+                </div>
+                <div class="search-input-premium">
+                    <input type="text" id="address-new" placeholder="Via Roma, Milano..." aria-label="Inserisci indirizzo">
+                    <button class="search-confirm-premium" aria-label="Conferma indirizzo">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Filters Panel -->
-    <div id="filtersPanel-new" class="slide-panel-new">
-        <div class="panel-handle-new"></div>
-        <div class="panel-header-new">
-            <h3>Filtri di Ricerca</h3>
-            <button class="panel-close-new" data-panel="filters">
+    <!-- Filters Panel - Modern Mobile-First Design -->
+    <div id="filtersPanel-new" class="slide-panel-premium">
+        <div class="panel-handle-premium"></div>
+        
+        <!-- Premium Panel Header -->
+        <div class="panel-header-premium">
+            <div class="panel-icon-premium">
+                <i class="fas fa-sliders-h"></i>
+            </div>
+            <div class="panel-title-premium">
+                <h3>Filtri di Ricerca</h3>
+                <p>Personalizza la tua ricerca</p>
+            </div>
+            <button class="panel-close-premium" data-panel="filters" aria-label="Chiudi pannello">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         
-        <div class="panel-content-new">
-            <div class="filter-grid-new">
-                <div class="filter-group-new">
-                    <label>Tipo di Carburante</label>
-                    <div class="custom-select-wrapper">
-                        <select id="fuelType-new" class="select-new hidden-select">
-                            <option value="Benzina">Benzina</option>
-                            <option value="Gasolio">Gasolio</option>
-                            <option value="GPL">GPL</option>
-                            <option value="Metano">Metano</option>
-                        </select>
-                        <div class="custom-select-display" id="fuelTypeDisplay-new">
-                            <i class="fas fa-gas-pump fuel-icon-benzina"></i>
-                            <span>Benzina</span>
-                            <i class="fas fa-chevron-down custom-select-arrow"></i>
+        <!-- Premium Panel Content -->
+        <div class="panel-content-premium">
+            <!-- Fuel Type Selection - Premium Cards -->
+            <div class="filter-section-premium">
+                <h4 class="filter-title-premium">
+                    <i class="fas fa-gas-pump"></i>
+                    Tipo di Carburante
+                </h4>
+                <div class="fuel-grid-premium">
+                    <div class="fuel-card-premium active" data-fuel="Benzina">
+                        <div class="fuel-icon-premium benzina">
+                            <i class="fas fa-gas-pump"></i>
                         </div>
-                        <div class="custom-select-options" id="fuelTypeOptions-new">
-                            <div class="custom-option" data-value="Benzina">
-                                <i class="fas fa-gas-pump fuel-icon-benzina"></i>
-                                <span>Benzina</span>
-                            </div>
-                            <div class="custom-option" data-value="Gasolio">
-                                <i class="fas fa-truck fuel-icon-gasolio"></i>
-                                <span>Gasolio</span>
-                            </div>
-                            <div class="custom-option" data-value="GPL">
-                                <i class="fas fa-fire fuel-icon-gpl"></i>
-                                <span>GPL</span>
-                            </div>
-                            <div class="custom-option" data-value="Metano">
-                                <i class="fas fa-wind fuel-icon-metano"></i>
-                                <span>Metano</span>
-                            </div>
+                        <span class="fuel-name-premium">Benzina</span>
+                        <span class="fuel-price-premium">€1.65/L</span>
+                    </div>
+                    <div class="fuel-card-premium" data-fuel="Gasolio">
+                        <div class="fuel-icon-premium gasolio">
+                            <i class="fas fa-truck"></i>
                         </div>
+                        <span class="fuel-name-premium">Gasolio</span>
+                        <span class="fuel-price-premium">€1.55/L</span>
+                    </div>
+                    <div class="fuel-card-premium" data-fuel="GPL">
+                        <div class="fuel-icon-premium gpl">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <span class="fuel-name-premium">GPL</span>
+                        <span class="fuel-price-premium">€0.75/L</span>
+                    </div>
+                    <div class="fuel-card-premium" data-fuel="Metano">
+                        <div class="fuel-icon-premium metano">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <span class="fuel-name-premium">Metano</span>
+                        <span class="fuel-price-premium">€1.25/L</span>
                     </div>
                 </div>
-                
-                <div class="filter-group-new">
-                    <label>Raggio di Ricerca</label>
-                    <select id="radius-new" class="select-new">
+                <!-- Hidden select for compatibility -->
+                <select id="fuelType-new" class="hidden-select">
+                    <option value="Benzina" selected>Benzina</option>
+                    <option value="Gasolio">Gasolio</option>
+                    <option value="GPL">GPL</option>
+                    <option value="Metano">Metano</option>
+                </select>
+            </div>
+            
+            <!-- Search Radius - Modern Selector -->
+            <div class="filter-section-premium">
+                <h4 class="filter-title-premium">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Raggio di Ricerca
+                </h4>
+                <div class="radius-selector-premium">
+                    <div class="radius-display-premium">
+                        <span class="radius-value-premium" id="radiusValueDisplay">5</span>
+                        <span class="radius-unit-premium">km</span>
+                    </div>
+                    <div class="radius-options-premium">
+                        <button class="radius-btn-premium" data-radius="1">1km</button>
+                        <button class="radius-btn-premium" data-radius="2">2km</button>
+                        <button class="radius-btn-premium active" data-radius="5">5km</button>
+                        <button class="radius-btn-premium" data-radius="10">10km</button>
+                        <button class="radius-btn-premium" data-radius="15">15km</button>
+                        <button class="radius-btn-premium" data-radius="20">20km</button>
+                        <button class="radius-btn-premium" data-radius="30">30km</button>
+                    </div>
+                    <!-- Hidden select for compatibility -->
+                    <select id="radius-new" class="hidden-select">
                         <option value="1">1 km</option>
                         <option value="2">2 km</option>
                         <option value="5" selected>5 km</option>
@@ -196,39 +297,29 @@
                 </div>
             </div>
             
-            <div class="filter-group-new">
-                <label>Numero massimo risultati</label>
-                <div class="stations-selector-new">
-                    <div class="stations-options-container-new" id="stationsOptionsContainer-new">
-                        <div class="station-option-new" data-value="5">
-                            <span class="option-number-new">5</span>
-                        </div>
-                        <div class="station-option-new" data-value="10">
-                            <span class="option-number-new">10</span>
-                        </div>
-                        <div class="station-option-new" data-value="15">
-                            <span class="option-number-new">15</span>
-                        </div>
-                        <div class="station-option-new active-default" data-value="20">
-                            <span class="option-number-new">20</span>
-                        </div>
-                        <div class="station-option-new" data-value="25">
-                            <span class="option-number-new">25</span>
-                        </div>
-                        <div class="station-option-new" data-value="30">
-                            <span class="option-number-new">30</span>
-                        </div>
-                        <div class="station-option-new" data-value="40">
-                            <span class="option-number-new">40</span>
-                        </div>
-                        <div class="station-option-new" data-value="50">
-                            <span class="option-number-new">50</span>
-                        </div>
-                        <div class="station-option-new" data-value="75">
-                            <span class="option-number-new">75</span>
-                        </div>
-                        <div class="station-option-new" data-value="100">
-                            <span class="option-number-new">Tutti</span>
+            <!-- Max Results - Premium Counter -->
+            <div class="filter-section-premium">
+                <h4 class="filter-title-premium">
+                    <i class="fas fa-list-ol"></i>
+                    Numero Massimo Risultati
+                </h4>
+                <div class="results-selector-premium">
+                    <div class="results-display-premium">
+                        <span class="results-value-premium" id="resultsValueDisplay">20</span>
+                        <span class="results-unit-premium">distributori</span>
+                    </div>
+                    <div class="results-controls-premium">
+                        <div class="results-options-premium" id="stationsOptionsContainer-new">
+                            <button class="results-option-premium" data-value="5">5</button>
+                            <button class="results-option-premium" data-value="10">10</button>
+                            <button class="results-option-premium" data-value="15">15</button>
+                            <button class="results-option-premium active-default" data-value="20">20</button>
+                            <button class="results-option-premium" data-value="25">25</button>
+                            <button class="results-option-premium" data-value="30">30</button>
+                            <button class="results-option-premium" data-value="40">40</button>
+                            <button class="results-option-premium" data-value="50">50</button>
+                            <button class="results-option-premium" data-value="75">75</button>
+                            <button class="results-option-premium" data-value="100">Tutti</button>
                         </div>
                     </div>
                     <!-- Hidden input for compatibility -->
@@ -238,212 +329,305 @@
         </div>
     </div>
 
-    <!-- Calculator Panel -->
-    <div id="calcPanel-new" class="slide-panel-new">
-        <div class="panel-handle-new"></div>
-        <div class="panel-header-new">
-            <h3>💰 Stima Costi & Budget</h3>
-            <button class="panel-close-new" data-panel="calc">
+    <!-- Calculator Panel - Modern Mobile-First Design -->
+    <div id="calcPanel-new" class="slide-panel-premium">
+        <div class="panel-handle-premium"></div>
+        
+        <!-- Premium Panel Header -->
+        <div class="panel-header-premium">
+            <div class="panel-icon-premium">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <div class="panel-title-premium">
+                <h3>Calcolatore Costi</h3>
+                <p>Stima spese e budget carburante</p>
+            </div>
+            <button class="panel-close-premium" data-panel="calc" aria-label="Chiudi pannello">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         
-        <div class="panel-content-new">
-            <div class="calc-explanation-new">
-                <p><i class="fas fa-lightbulb"></i> <strong>Scopri quanto spenderai</strong> o <strong>quanti litri puoi permetterti</strong> in ogni distributore</p>
-            </div>
-            
-            <div class="calc-modes-new">
-                <div class="calc-mode-option-new">
+        <!-- Premium Panel Content -->
+        <div class="panel-content-premium">
+            <!-- Calculation Mode Toggle -->
+            <div class="calc-section-premium">
+                <h4 class="calc-title-premium">
+                    <i class="fas fa-cogs"></i>
+                    Modalità di Calcolo
+                </h4>
+                <div class="calc-toggle-premium">
                     <input type="radio" id="calcLiters-new" name="calcMode-new" value="liters" checked>
-                    <label for="calcLiters-new" class="calc-mode-label-new">
-                        <div class="mode-icon-new">⛽</div>
-                        <div class="mode-content-new">
-                            <strong>"Quanto spenderò?"</strong>
-                            <span>Sai quanti litri vuoi? Scopri il costo totale per ogni distributore</span>
-                        </div>
-                    </label>
-                </div>
-                
-                <div class="calc-mode-option-new">
                     <input type="radio" id="calcBudget-new" name="calcMode-new" value="budget">
-                    <label for="calcBudget-new" class="calc-mode-label-new">
-                        <div class="mode-icon-new">💰</div>
-                        <div class="mode-content-new">
-                            <strong>"Quanti litri posso fare?"</strong>
-                            <span>Hai un budget fisso? Scopri quanti litri puoi acquistare</span>
-                        </div>
-                    </label>
+                    
+                    <div class="toggle-container-premium">
+                        <label for="calcLiters-new" class="toggle-option-premium">
+                            <div class="toggle-icon-premium">
+                                <i class="fas fa-gas-pump"></i>
+                            </div>
+                            <div class="toggle-content-premium">
+                                <span class="toggle-title-premium">Litri → Costo</span>
+                                <span class="toggle-desc-premium">Quanto spenderò?</span>
+                            </div>
+                        </label>
+                        
+                        <label for="calcBudget-new" class="toggle-option-premium">
+                            <div class="toggle-icon-premium">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                            <div class="toggle-content-premium">
+                                <span class="toggle-title-premium">Budget → Litri</span>
+                                <span class="toggle-desc-premium">Quanti litri posso fare?</span>
+                            </div>
+                        </label>
+                        
+                        <div class="toggle-slider-premium"></div>
+                    </div>
                 </div>
             </div>
             
-            <div class="calc-input-section-new">
-                <label id="calcLabel-new">Quanti litri vuoi acquistare?</label>
-                <div class="calc-input-container-new">
-                    <input type="number" id="calcValue-new" value="55" min="1" max="500" step="0.1" placeholder="Es: 55">
-                    <span id="calcUnit-new" class="calc-unit-new">L</span>
+            <!-- Input Section -->
+            <div class="calc-section-premium">
+                <h4 class="calc-title-premium" id="calcLabel-new">
+                    <i class="fas fa-edit"></i>
+                    Quanti litri vuoi acquistare?
+                </h4>
+                <div class="calc-input-premium">
+                    <div class="input-wrapper-premium">
+                        <input type="number" id="calcValue-new" value="55" min="1" max="500" step="0.1" placeholder="Inserisci valore">
+                        <span class="input-unit-premium" id="calcUnit-new">L</span>
+                    </div>
+                    <div class="input-controls-premium">
+                        <button class="input-btn-premium decrease" id="decreaseValue">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="input-btn-premium increase" id="increaseValue">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="calc-help-new">
-                    <span id="calcHelp-new">💡 Ti mostrerò il costo per ogni distributore e quanto risparmierai scegliendo il migliore</span>
+                <div class="calc-help-premium" id="calcHelp-new">
+                    <i class="fas fa-info-circle"></i>
+                    Ti mostrerò il costo per ogni distributore e quanto risparmierai
                 </div>
             </div>
-
-            <div class="calc-preview-new" id="calcPreview-new">
-                <h4><i class="fas fa-chart-line"></i> Stima Rapida</h4>
-                <div class="preview-content-new">
-                    <div class="preview-item-new">
-                        <span id="avgPriceLabel-new">Prezzo medio benzina:</span>
-                        <strong id="avgPrice-new">€1.650/L</strong>
+            
+            <!-- Preview Section -->
+            <div class="calc-section-premium">
+                <h4 class="calc-title-premium">
+                    <i class="fas fa-chart-line"></i>
+                    Anteprima Calcolo
+                </h4>
+                <div class="calc-preview-premium" id="calcPreview-new">
+                    <div class="preview-card-premium">
+                        <div class="preview-header-premium">
+                            <span class="preview-label-premium" id="avgPriceLabel-new">Prezzo medio benzina</span>
+                            <span class="preview-value-premium primary" id="avgPrice-new">€1.650/L</span>
+                        </div>
+                        <div class="preview-main-premium">
+                            <span class="preview-label-premium" id="previewLabel-new">Costo stimato</span>
+                            <span class="preview-value-premium highlight" id="previewValue-new">€90.75</span>
+                        </div>
+                        <div class="preview-footer-premium">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Dopo la ricerca vedrai i prezzi reali!</span>
+                        </div>
                     </div>
-                    <div class="preview-item-new">
-                        <span id="previewLabel-new">Costo stimato:</span>
-                        <strong id="previewValue-new">€90.75</strong>
-                    </div>
-                </div>
-                <div class="preview-tip-new">
-                    <small>💡 Dopo la ricerca vedrai i costi reali e potrai confrontare i risparmi!</small>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Info Panel -->
-    <div id="infoPanel-new" class="slide-panel-new">
-        <div class="panel-handle-new"></div>
-        <div class="panel-header-new">
-            <h3>Informazioni</h3>
-            <button class="panel-close-new" data-panel="info">
+    <!-- Info Panel - Modern Mobile-First Design -->
+    <div id="infoPanel-new" class="slide-panel-premium">
+        <div class="panel-handle-premium"></div>
+        
+        <!-- Premium Panel Header -->
+        <div class="panel-header-premium">
+            <div class="panel-icon-premium">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="panel-title-premium">
+                <h3>Informazioni App</h3>
+                <p>Guida e dettagli sull'applicazione</p>
+            </div>
+            <button class="panel-close-premium" data-panel="info" aria-label="Chiudi pannello">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         
-        <div class="panel-content-new">
-            <div class="info-section-new">
-                <h4><i class="fas fa-rocket"></i> Come usare FuelExplorer</h4>
-                <div class="steps-new">
-                    <div class="step-new">
-                        <div class="step-number-new">1</div>
-                        <div class="step-content-new">
-                            <strong>Imposta posizione</strong>
-                            <p>Usa GPS o inserisci un indirizzo per trovare distributori vicini</p>
+        <!-- Premium Panel Content -->
+        <div class="panel-content-premium">
+            <!-- How to Use Guide -->
+            <div class="info-section-premium">
+                <h4 class="info-title-premium">
+                    <i class="fas fa-rocket"></i>
+                    Come Usare l'App
+                </h4>
+                <div class="steps-premium">
+                    <div class="step-premium">
+                        <div class="step-number-premium">1</div>
+                        <div class="step-content-premium">
+                            <h5>Imposta Posizione</h5>
+                            <p>Attiva GPS o inserisci un indirizzo manualmente</p>
                         </div>
                     </div>
-                    <div class="step-new">
-                        <div class="step-number-new">2</div>
-                        <div class="step-content-new">
-                            <strong>Configura ricerca</strong>
-                            <p>Scegli tipo carburante, raggio di ricerca e calcoli personalizzati</p>
+                    <div class="step-premium">
+                        <div class="step-number-premium">2</div>
+                        <div class="step-content-premium">
+                            <h5>Configura Filtri</h5>
+                            <p>Scegli carburante, raggio ricerca e opzioni</p>
                         </div>
                     </div>
-                    <div class="step-new">
-                        <div class="step-number-new">3</div>
-                        <div class="step-content-new">
-                            <strong>Cerca e confronta</strong>
-                            <p>Visualizza prezzi ordinati per convenienza con calcoli automatici</p>
+                    <div class="step-premium">
+                        <div class="step-number-premium">3</div>
+                        <div class="step-content-premium">
+                            <h5>Avvia Ricerca</h5>
+                            <p>Confronta prezzi e trova il distributore migliore</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="info-section-new">
-                <h4><i class="fas fa-star"></i> Funzionalità</h4>
-                <div class="features-grid-new">
-                    <div class="feature-new">
-                        <div class="feature-icon-new">🗺️</div>
-                        <div class="feature-text-new">
-                            <strong>Mappa Interattiva</strong>
-                            <span>Visualizza distributori su mappa con marcatori colorati</span>
+            <!-- Key Features -->
+            <div class="info-section-premium">
+                <h4 class="info-title-premium">
+                    <i class="fas fa-star"></i>
+                    Funzionalità Principali
+                </h4>
+                <div class="features-grid-premium">
+                    <div class="feature-premium">
+                        <div class="feature-icon-premium map">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="feature-content-premium">
+                            <h6>Mappa Interattiva</h6>
+                            <p>Visualizzazione geografica distributori</p>
                         </div>
                     </div>
-                    <div class="feature-new">
-                        <div class="feature-icon-new">🏆</div>
-                        <div class="feature-text-new">
-                            <strong>Prezzo Migliore</strong>
-                            <span>Il distributore più conveniente è evidenziato in verde</span>
+                    <div class="feature-premium">
+                        <div class="feature-icon-premium price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="feature-content-premium">
+                            <h6>Confronto Prezzi</h6>
+                            <p>Ordinamento per convenienza</p>
                         </div>
                     </div>
-                    <div class="feature-new">
-                        <div class="feature-icon-new">🧮</div>
-                        <div class="feature-text-new">
-                            <strong>Calcoli Automatici</strong>
-                            <span>Costo per litri desiderati o litri per budget disponibile</span>
+                    <div class="feature-premium">
+                        <div class="feature-icon-premium calc">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="feature-content-premium">
+                            <h6>Calcoli Automatici</h6>
+                            <p>Stima costi e budget carburante</p>
                         </div>
                     </div>
-                    <div class="feature-new">
-                        <div class="feature-icon-new">📍</div>
-                        <div class="feature-text-new">
-                            <strong>GPS Integrato</strong>
-                            <span>Localizzazione automatica con reverse geocoding</span>
+                    <div class="feature-premium">
+                        <div class="feature-icon-premium gps">
+                            <i class="fas fa-location-arrow"></i>
                         </div>
-                    </div>
-                    <div class="feature-new">
-                        <div class="feature-icon-new">⚡</div>
-                        <div class="feature-text-new">
-                            <strong>Dati Aggiornati</strong>
-                            <span>Prezzi ufficiali MIMIT aggiornati quotidianamente</span>
-                        </div>
-                    </div>
-                    <div class="feature-new">
-                        <div class="feature-icon-new">📱</div>
-                        <div class="feature-text-new">
-                            <strong>Mobile First</strong>
-                            <span>Design responsive ottimizzato per smartphone</span>
+                        <div class="feature-content-premium">
+                            <h6>GPS Integrato</h6>
+                            <p>Localizzazione automatica precisa</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="info-section-new">
-                <h4><i class="fas fa-palette"></i> Legenda Colori</h4>
-                <div class="legend-new">
-                    <div class="legend-item-new">
-                        <div class="legend-color-new" style="background: #00C853;"></div>
+            
+            <!-- Color Legend -->
+            <div class="info-section-premium">
+                <h4 class="info-title-premium">
+                    <i class="fas fa-palette"></i>
+                    Legenda Colori
+                </h4>
+                <div class="legend-premium">
+                    <div class="legend-item-premium">
+                        <div class="legend-color-premium best"></div>
                         <span><strong>Verde:</strong> Prezzo più conveniente</span>
                     </div>
-                    <div class="legend-item-new">
-                        <div class="legend-color-new" style="background: #007AFF;"></div>
+                    <div class="legend-item-premium">
+                        <div class="legend-color-premium normal"></div>
                         <span><strong>Blu:</strong> Altri distributori</span>
                     </div>
-                    <div class="legend-item-new">
-                        <div class="legend-color-new" style="background: #34C759;"></div>
-                        <span><strong>Verde chiaro:</strong> Miglior affare nel calcolo</span>
+                    <div class="legend-item-premium">
+                        <div class="legend-color-premium good"></div>
+                        <span><strong>Verde chiaro:</strong> Buon rapporto qualità-prezzo</span>
                     </div>
-                    <div class="legend-item-new">
-                        <div class="legend-color-new" style="background: #FF9500;"></div>
-                        <span><strong>Arancione:</strong> Costo extra rispetto al migliore</span>
+                    <div class="legend-item-premium">
+                        <div class="legend-color-premium expensive"></div>
+                        <span><strong>Arancione:</strong> Più costoso della media</span>
                     </div>
                 </div>
             </div>
-
-            <div class="info-section-new">
-                <h4><i class="fas fa-database"></i> Fonte Dati</h4>
-                <div class="data-source-new">
-                    <p><strong>MIMIT</strong> - Ministero delle Imprese e del Made in Italy</p>
-                    <p>Dataset ufficiale con <strong id="stationsCount-new">21.558</strong> distributori in Italia</p>
-                    <p>Aggiornamento: <strong id="updateFreq-new">Quotidiano</strong></p>
-                    <p>Licenza: <strong>Italian Open Data License v2.0</strong></p>
+            
+            <!-- Data Source -->
+            <div class="info-section-premium">
+                <h4 class="info-title-premium">
+                    <i class="fas fa-database"></i>
+                    Fonte Dati
+                </h4>
+                <div class="data-source-premium">
+                    <div class="source-card-premium">
+                        <div class="source-header-premium">
+                            <i class="fas fa-building"></i>
+                            <h6>MIMIT</h6>
+                        </div>
+                        <p>Ministero delle Imprese e del Made in Italy</p>
+                        <div class="source-stats-premium">
+                            <div class="stat-premium">
+                                <span class="stat-value-premium" id="stationsCount-new">21.558</span>
+                                <span class="stat-label-premium">Distributori</span>
+                            </div>
+                            <div class="stat-premium">
+                                <span class="stat-value-premium">Quotidiano</span>
+                                <span class="stat-label-premium">Aggiornamento</span>
+                            </div>
+                        </div>
+                        <div class="source-license-premium">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>Licenza: Italian Open Data License v2.0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="info-section-new disclaimer-section-new">
-                <h4><i class="fas fa-exclamation-triangle"></i> Disclaimer Legale</h4>
-                <div class="disclaimer-content-new">
-                    <p><strong>IMPORTANTE:</strong> I dati forniti da questa applicazione sono puramente informativi e non costituiscono garanzia di accuratezza.</p>
-                    
-                    <div class="disclaimer-points-new">
-                        <p><i class="fas fa-info-circle"></i> <strong>Aggiornamento:</strong> I prezzi potrebbero non essere aggiornati in tempo reale e potrebbero differire da quelli effettivamente praticati presso i distributori.</p>
-                        
-                        <p><i class="fas fa-clock"></i> <strong>Tempistica:</strong> I dati possono subire ritardi nell'aggiornamento rispetto ai prezzi reali praticati.</p>
-                        
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Posizione:</strong> Le coordinate GPS dei distributori potrebbero non essere completamente accurate.</p>
-                        
-                        <p><i class="fas fa-store"></i> <strong>Disponibilità:</strong> Non garantiamo che tutti i distributori siano aperti, riforniti o operativi al momento della consultazione.</p>
-                        
-                        <p><i class="fas fa-shield-alt"></i> <strong>Responsabilità:</strong> L'autore non si assume alcuna responsabilità per l'uso delle informazioni fornite o per eventuali danni derivanti dal loro utilizzo.</p>
+            
+            <!-- Legal Disclaimer -->
+            <div class="info-section-premium disclaimer-premium">
+                <h4 class="info-title-premium warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Disclaimer Legale
+                </h4>
+                <div class="disclaimer-card-premium">
+                    <div class="disclaimer-header-premium">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Importante: Dati puramente informativi</strong>
                     </div>
-                    
-                    <div class="disclaimer-footer-new">
-                        <p><strong>Raccomandazione:</strong> Verificare sempre prezzi e disponibilità direttamente presso il distributore prima dell'acquisto.</p>
+                    <div class="disclaimer-points-premium">
+                        <div class="disclaimer-point-premium">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Aggiornamento:</strong>
+                                <p>I prezzi potrebbero non riflettere quelli reali praticati.</p>
+                            </div>
+                        </div>
+                        <div class="disclaimer-point-premium">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Posizione:</strong>
+                                <p>Le coordinate GPS potrebbero non essere precise al 100%.</p>
+                            </div>
+                        </div>
+                        <div class="disclaimer-point-premium">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Responsabilità:</strong>
+                                <p>L'autore non si assume responsabilità per l'uso dei dati.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disclaimer-footer-premium">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Consiglio:</strong> Verifica sempre prezzi e disponibilità direttamente presso il distributore.
                     </div>
                 </div>
             </div>
