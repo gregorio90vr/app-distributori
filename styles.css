@@ -99,30 +99,38 @@
     --footer-height: 26px;          /* Enhanced footer (+5% = 23.1px ≈ 26px) */
     --controls-height: 60px;        /* Reduced controls */
     
-    /* Dynamic Viewport Units for Mobile Optimization */
-    --viewport-height: 100vh;
+    /* Advanced Mobile Viewport System */
+    --viewport-height: 100vh; /* Start with standard vh */
+    --viewport-height: 100dvh; /* Override with dynamic vh if supported */
     --viewport-width: 100vw;
+    
+    /* Safe Area Insets for Notch/Navigation Bar Support */
     --safe-area-top: env(safe-area-inset-top, 0px);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --safe-area-left: env(safe-area-inset-left, 0px);
     --safe-area-right: env(safe-area-inset-right, 0px);
+    
+    /* Fallback calculation for older browsers */
+    --viewport-height-fallback: calc(100vh - var(--safe-area-top) - var(--safe-area-bottom));
     
     /* Spacing between components */
     --gap-header-content: 2px;
     --gap-content-nav: 4px;
     --gap-nav-footer: 2px;
     
-    /* Available heights with proper spacing */
-    --available-height: calc(var(--viewport-height) - var(--safe-area-top) - var(--safe-area-bottom));
-    --content-height-mobile: calc(
-        var(--available-height) 
-        - var(--header-height) 
-        - var(--nav-height-mobile) 
-        - var(--footer-height)
-        - var(--gap-header-content) 
-        - var(--gap-content-nav) 
-        - var(--gap-nav-footer)
+    /* Mathematical Layout System - Guaranteed Fit */
+    --available-height: var(--viewport-height);
+    --total-fixed-height: calc(
+        var(--header-height) + 
+        var(--nav-height-mobile) + 
+        var(--footer-height) + 
+        var(--gap-header-content) + 
+        var(--gap-content-nav) + 
+        var(--gap-nav-footer) + 
+        var(--safe-area-top) + 
+        var(--safe-area-bottom)
     );
+    --content-height-mobile: calc(var(--available-height) - var(--total-fixed-height));
     
     /* Animation Timings */
     --transition-fast: 0.15s ease;
@@ -149,32 +157,42 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segue UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     background: var(--background);
     
-    /* Mobile optimization */
+    /* Advanced Mobile Viewport System */
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     
-    /* Perfect vertical layout */
+    /* Mathematical Layout - Safe Area Aware */
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
-    max-height: 100vh;
+    height: var(--viewport-height);
+    min-height: var(--viewport-height);
+    max-height: var(--viewport-height);
     
-    /* Flex layout for vertical stacking */
+    /* Fallback for older browsers */
+    height: var(--viewport-height-fallback);
+    min-height: var(--viewport-height-fallback);
+    
+    /* Safe area integration */
+    padding-top: var(--safe-area-top);
+    padding-bottom: var(--safe-area-bottom);
+    padding-left: var(--safe-area-left);
+    padding-right: var(--safe-area-right);
+    box-sizing: border-box;
+    
+    /* Perfect flex layout */
     display: flex;
     flex-direction: column;
     
-    /* No scroll - everything fits */
+    /* Guaranteed no overflow */
     overflow: hidden;
     position: relative;
+    
+    /* Typography */
     color: var(--text-primary);
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-normal);
     font-size: var(--font-size-md);
-    height: 100vh;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-feature-settings: "kern" 1, "liga" 1;
@@ -377,26 +395,33 @@ body {
    MAIN CONTENT CARD - RESPONSIVE VIEWPORT SYSTEM
    ========================================= */
 
+/* Main Content Area - Mathematical Precision */
 .content-card-new {
-    /* Flex item that takes remaining space */
-    flex: 1;
+    /* Perfect flex fill - takes exact remaining space */
+    flex: 1 1 auto;
     margin: var(--gap-header-content) var(--space-sm) var(--gap-content-nav) var(--space-sm);
     
-    /* Perfect height calculation */
+    /* Precise height calculation - guaranteed fit */
     height: var(--content-height-mobile);
     max-height: var(--content-height-mobile);
     min-height: var(--content-height-mobile);
     
+    /* Styling */
     background: var(--surface-elevated);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    overflow: hidden;
-    z-index: 100;
     border: 1px solid var(--border-light);
     backdrop-filter: blur(10px);
     transition: var(--transition-normal);
     
-    /* Mobile optimization */
+    /* Critical: Prevent any overflow */
+    overflow: hidden;
+    box-sizing: border-box;
+    
+    /* Layer management */
+    z-index: 100;
+    
+    /* Performance */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     will-change: transform;
@@ -467,25 +492,25 @@ body {
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Mobile-optimized variables */
+    /* Enhanced Mobile Variables - Complete Visibility */
     :root {
-        --header-height: 65px;       /* Even more compact */
-        --nav-height-mobile: 55px;   /* More compact nav */
-        --footer-height: 24px;       /* Enhanced footer (+5% = 21px ≈ 24px) */
-        --gap-header-content: 1px;   /* Minimal gaps */
+        --header-height: 65px;
+        --nav-height-mobile: 55px;
+        --footer-height: 24px;
+        --gap-header-content: 1px;
         --gap-content-nav: 2px;
         --gap-nav-footer: 1px;
         
-        /* Recalculated content height */
-        --content-height-mobile: calc(
-            var(--available-height) 
-            - var(--header-height) 
-            - var(--nav-height-mobile) 
-            - var(--footer-height)
-            - var(--gap-header-content) 
-            - var(--gap-content-nav) 
-            - var(--gap-nav-footer)
+        /* Recalculated with new mathematical system */
+        --total-fixed-height: calc(
+            var(--header-height) + 
+            var(--nav-height-mobile) + 
+            var(--footer-height) + 
+            var(--gap-header-content) + 
+            var(--gap-content-nav) + 
+            var(--gap-nav-footer)
         );
+        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
     }
     
     /* Mobile-optimized content card - with space for footer info */
@@ -640,33 +665,40 @@ body {
 
 /* FOOTER INTEGRATO NEL LAYOUT FLEXBOX */
 /* Clean & Modern Footer Design */
+/* Footer - Mathematical Precision for Complete Visibility */
 .footer-info-fixed {
-    /* Flex item in body layout */
+    /* Guaranteed flex positioning */
+    flex: 0 0 auto;
     flex-shrink: 0;
     height: var(--footer-height);
-    margin: 0 var(--space-sm) var(--safe-area-bottom) var(--space-sm);
     
-    /* Minimal, clean styling */
-    background: rgba(15, 23, 42, 0.85);
-    color: rgba(255, 255, 255, 0.85);
+    /* No margin bottom - safe area handled by body padding */
+    margin: 0 var(--space-sm) 0 var(--space-sm);
+    
+    /* Enhanced visibility styling */
+    background: rgba(15, 23, 42, 0.92);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 10px;
     padding: 6px 12px;
     text-align: center;
     line-height: 1.3;
     border-radius: 8px;
-    border: none;
-    backdrop-filter: blur(12px);
+    border: 1px solid rgba(79, 172, 254, 0.15);
+    backdrop-filter: blur(16px);
     
-    /* Flex layout interno */
+    /* Perfect centering */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     
+    /* Always on top */
     z-index: 1001;
     
-    /* Subtle shadow for depth */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    /* Enhanced shadow */
+    box-shadow: 
+        0 -2px 12px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(79, 172, 254, 0.1);
 }
 
 .footer-info-fixed a {
@@ -742,26 +774,84 @@ body {
     display: none;
 }
 
-/* Ultra-compact for very small screens */
+/* Ultra-compact for very small screens - Complete Visibility Priority */
 @media (max-width: 360px) {
     :root {
-        --header-height: 60px;       /* Ultra compact */
-        --nav-height-mobile: 50px;   /* Ultra compact nav */
-        --footer-height: 22px;       /* Enhanced ultra compact footer (+5% = 18.9px ≈ 22px) */
+        --header-height: 60px;
+        --nav-height-mobile: 50px;
+        --footer-height: 22px;
+        
+        /* Recalculate for small screens */
+        --total-fixed-height: calc(
+            var(--header-height) + 
+            var(--nav-height-mobile) + 
+            var(--footer-height) + 
+            var(--gap-header-content) + 
+            var(--gap-content-nav) + 
+            var(--gap-nav-footer)
+        );
+        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
     }
     
     .footer-info-fixed {
         font-size: 8px;
-        padding: 3px 6px;
+        padding: 4px 8px;
+        gap: 4px;
     }
 }
 
-/* Compact for small height devices */
+/* Compact for small height devices - Mathematical Optimization */
 @media (max-height: 640px) {
     :root {
         --header-height: 55px;
         --nav-height-mobile: 48px;
-        --footer-height: 20px;       /* Enhanced compact footer (+5% = 16.8px ≈ 20px) */
+        --footer-height: 20px;
+        
+        /* Vertical space optimization */
+        --total-fixed-height: calc(
+            var(--header-height) + 
+            var(--nav-height-mobile) + 
+            var(--footer-height) + 
+            var(--gap-header-content) + 
+            var(--gap-content-nav) + 
+            var(--gap-nav-footer)
+        );
+        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
+    }
+    
+    .footer-info-fixed {
+        font-size: 8px;
+        padding: 3px 8px;
+    }
+}
+
+/* Landscape Mobile Devices - Optimized Layout */
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+    :root {
+        --header-height: 50px;       /* Extra compact for landscape */
+        --nav-height-mobile: 45px;   /* Extra compact navigation */
+        --footer-height: 18px;       /* Minimal footer */
+        
+        /* Recalculate for landscape */
+        --total-fixed-height: calc(
+            var(--header-height) + 
+            var(--nav-height-mobile) + 
+            var(--footer-height) + 
+            var(--gap-header-content) + 
+            var(--gap-content-nav) + 
+            var(--gap-nav-footer)
+        );
+        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
+    }
+    
+    .footer-info-fixed {
+        font-size: 7px;
+        padding: 2px 6px;
+        gap: 3px;
+    }
+    
+    .nav-tab-premium {
+        padding: 4px 8px;
     }
 }
 
@@ -1350,19 +1440,27 @@ body {
    PREMIUM MOBILE NAVIGATION SYSTEM
    ========================================= */
 
+/* Mobile Navigation - Mathematically Precise Positioning */
 .mobile-nav-premium {
-    /* Flex item in body layout */
+    /* Guaranteed flex positioning */
+    flex: 0 0 auto;
     flex-shrink: 0;
     height: var(--nav-height-mobile);
+    
+    /* Precise margins - gap handled separately */
     margin: 0 var(--space-sm) var(--gap-nav-footer) var(--space-sm);
     
+    /* Always visible */
     z-index: 1000;
     pointer-events: none;
     
-    /* Mobile optimization */
+    /* Performance optimization */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     will-change: transform;
+    
+    /* Ensure no clipping */
+    overflow: visible;
 }
 
 .nav-bar-premium {
@@ -1431,20 +1529,28 @@ body {
     pointer-events: none;
 }
 
+/* Navigation Container - Guaranteed Complete Visibility */
 .nav-container-premium {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    /* Dynamic padding with safe area consideration */
-    padding: 8px calc(8px + var(--safe-area-left)) calc(8px + var(--safe-area-bottom)) calc(8px + var(--safe-area-right));
+    
+    /* Precise padding - no safe area bottom (handled by body) */
+    padding: 8px calc(8px + var(--safe-area-left)) 8px calc(8px + var(--safe-area-right));
     max-width: 500px;
     margin: 0 auto;
-    /* Ensure container uses available navbar height */
+    
+    /* Mathematical height precision */
     height: var(--nav-height-mobile);
     min-height: var(--nav-height-mobile);
-    /* Full width utilization */
+    max-height: var(--nav-height-mobile);
+    
+    /* Full width with proper box model */
     width: 100%;
     box-sizing: border-box;
+    
+    /* Ensure no overflow */
+    overflow: visible;
 }
 
 .nav-tab-premium {

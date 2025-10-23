@@ -1420,5 +1420,5 @@ function syncDataTimestamp() {
         // Initial sync
         footerTimestamp.textContent = originalTimestamp.textContent;
     }
-}
+} 
 // Optimized for production - debug logs removed
