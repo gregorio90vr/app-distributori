@@ -149,12 +149,37 @@
             <div class="filter-grid-new">
                 <div class="filter-group-new">
                     <label>Tipo di Carburante</label>
-                    <select id="fuelType-new" class="select-new">
-                        <option value="Benzina">🛞 Benzina</option>
-                        <option value="Gasolio">🚛 Gasolio</option>
-                        <option value="GPL">🔥 GPL</option>
-                        <option value="Metano">💨 Metano</option>
-                    </select>
+                    <div class="custom-select-wrapper">
+                        <select id="fuelType-new" class="select-new hidden-select">
+                            <option value="Benzina">Benzina</option>
+                            <option value="Gasolio">Gasolio</option>
+                            <option value="GPL">GPL</option>
+                            <option value="Metano">Metano</option>
+                        </select>
+                        <div class="custom-select-display" id="fuelTypeDisplay-new">
+                            <i class="fas fa-gas-pump fuel-icon-benzina"></i>
+                            <span>Benzina</span>
+                            <i class="fas fa-chevron-down custom-select-arrow"></i>
+                        </div>
+                        <div class="custom-select-options" id="fuelTypeOptions-new">
+                            <div class="custom-option" data-value="Benzina">
+                                <i class="fas fa-gas-pump fuel-icon-benzina"></i>
+                                <span>Benzina</span>
+                            </div>
+                            <div class="custom-option" data-value="Gasolio">
+                                <i class="fas fa-truck fuel-icon-gasolio"></i>
+                                <span>Gasolio</span>
+                            </div>
+                            <div class="custom-option" data-value="GPL">
+                                <i class="fas fa-fire fuel-icon-gpl"></i>
+                                <span>GPL</span>
+                            </div>
+                            <div class="custom-option" data-value="Metano">
+                                <i class="fas fa-wind fuel-icon-metano"></i>
+                                <span>Metano</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="filter-group-new">
@@ -173,11 +198,41 @@
             
             <div class="filter-group-new">
                 <label>Numero massimo risultati</label>
-                <div class="slider-container-new">
-                    <input type="range" id="maxStations-new" min="5" max="100" value="20" step="5">
-                    <div class="slider-value-new">
-                        <span id="maxStationsValue-new">20</span>
+                <div class="stations-selector-new">
+                    <div class="stations-options-container-new" id="stationsOptionsContainer-new">
+                        <div class="station-option-new" data-value="5">
+                            <span class="option-number-new">5</span>
+                        </div>
+                        <div class="station-option-new" data-value="10">
+                            <span class="option-number-new">10</span>
+                        </div>
+                        <div class="station-option-new" data-value="15">
+                            <span class="option-number-new">15</span>
+                        </div>
+                        <div class="station-option-new active-default" data-value="20">
+                            <span class="option-number-new">20</span>
+                        </div>
+                        <div class="station-option-new" data-value="25">
+                            <span class="option-number-new">25</span>
+                        </div>
+                        <div class="station-option-new" data-value="30">
+                            <span class="option-number-new">30</span>
+                        </div>
+                        <div class="station-option-new" data-value="40">
+                            <span class="option-number-new">40</span>
+                        </div>
+                        <div class="station-option-new" data-value="50">
+                            <span class="option-number-new">50</span>
+                        </div>
+                        <div class="station-option-new" data-value="75">
+                            <span class="option-number-new">75</span>
+                        </div>
+                        <div class="station-option-new" data-value="100">
+                            <span class="option-number-new">Tutti</span>
+                        </div>
                     </div>
+                    <!-- Hidden input for compatibility -->
+                    <input type="hidden" id="maxStations-new" value="20">
                 </div>
             </div>
         </div>
@@ -237,7 +292,7 @@
                 <h4><i class="fas fa-chart-line"></i> Stima Rapida</h4>
                 <div class="preview-content-new">
                     <div class="preview-item-new">
-                        <span>Prezzo medio benzina:</span>
+                        <span id="avgPriceLabel-new">Prezzo medio benzina:</span>
                         <strong id="avgPrice-new">€1.650/L</strong>
                     </div>
                     <div class="preview-item-new">

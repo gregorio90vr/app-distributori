@@ -59,8 +59,8 @@ function initializeNewApp() {
     // Load timestamp
     updateNewDataTimestamp().catch(console.error);
     
-    // Initialize slider
-    initializeSlider();
+    // Initialize stations selector
+    initializeStationsSelector();
     
     // Initialize calculator preview
     updateCalcPreviewNew();
@@ -179,7 +179,7 @@ function bindNewEventListeners() {
     const fuelTypeSelect = document.getElementById('fuelType-new');
     const radiusSelect = document.getElementById('radius-new');
     const addressInput = document.getElementById('address-new');
-    const maxStationsSlider = document.getElementById('maxStations-new');
+    const maxStationsInput = document.getElementById('maxStations-new');
     
     if (calcValueInput) {
         calcValueInput.addEventListener('input', markSearchOutdatedNew);
@@ -187,7 +187,7 @@ function bindNewEventListeners() {
     }
     if (fuelTypeSelect) fuelTypeSelect.addEventListener('change', markSearchOutdatedNew);
     if (radiusSelect) radiusSelect.addEventListener('change', markSearchOutdatedNew);
-    if (maxStationsSlider) maxStationsSlider.addEventListener('input', markSearchOutdatedNew);
+    // Event listener gestito dalla funzione initializeStationsSelector()
     
     if (addressInput) {
         // Multiple events for address input to catch all changes
@@ -1075,22 +1075,75 @@ function handleCalcModeChangeNew() {
     }
 }
 
-function initializeSlider() {
-    const slider = document.getElementById('maxStations-new');
-    const valueDisplay = document.getElementById('maxStationsValue-new');
+function initializeStationsSelector() {
+    const container = document.getElementById('stationsOptionsContainer-new');
+    const hiddenInput = document.getElementById('maxStations-new');
     
-    slider.addEventListener('input', function() {
-        const value = this.value;
-        valueDisplay.textContent = value === '100' ? 'Tutti' : value;
+    if (!container || !hiddenInput) return;
+    
+    // Set initial active state
+    const defaultOption = container.querySelector('.active-default');
+    if (defaultOption) {
+        defaultOption.classList.remove('active-default');
+        defaultOption.classList.add('active');
+    }
+    
+    // Handle option selection
+    container.addEventListener('click', function(e) {
+        const option = e.target.closest('.station-option-new');
+        if (!option) return;
+        
+        // Remove active class from all options
+        container.querySelectorAll('.station-option-new').forEach(opt => {
+            opt.classList.remove('active', 'active-default');
+        });
+        
+        // Add active class to selected option
+        option.classList.add('active');
+        
+        // Update hidden input value
+        const value = option.dataset.value;
+        hiddenInput.value = value;
+        
+        // Scroll selected option into view
+        option.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
         
         // Update results if they exist
         if (currentResults.length > 0) {
             markSearchOutdatedNew();
         }
+        
+        // Add haptic feedback on mobile (if supported)
+        if (navigator.vibrate) {
+            navigator.vibrate(10);
+        }
     });
     
-    // Initialize display
-    valueDisplay.textContent = slider.value;
+    // Add touch enhancement for better mobile experience
+    let startX = null;
+    let scrollLeft = null;
+    
+    container.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+    }, { passive: true });
+    
+    container.addEventListener('touchmove', function(e) {
+        if (!startX) return;
+        
+        const x = e.touches[0].pageX - container.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        container.scrollLeft = scrollLeft - walk;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', function() {
+        startX = null;
+        scrollLeft = null;
+    }, { passive: true });
 }
 
 async function updateNewDataTimestamp() {
@@ -1204,22 +1257,43 @@ function updateCalcPreviewNew() {
     const preview = document.getElementById('calcPreview-new');
     const previewLabel = document.getElementById('previewLabel-new');
     const previewValue = document.getElementById('previewValue-new');
+    const avgPriceElement = document.getElementById('avgPrice-new');
     
     if (calcValue <= 0) {
         preview.style.display = 'none';
         return;
     }
     
-    // Prezzo medio stimato (approssimativo)
-    const avgPrice = 1.65; // Prezzo medio benzina in Italia
+    // Ottieni il tipo di carburante selezionato
+    const selectedFuelType = document.getElementById('fuelType-new').value;
+    
+    // Prezzi medi stimati per tipo di carburante
+    const avgPrices = {
+        'Benzina': 1.650,
+        'Gasolio': 1.550,
+        'GPL': 0.750,
+        'Metano': 1.250
+    };
+    
+    const avgPrice = avgPrices[selectedFuelType] || avgPrices['Benzina'];
+    
+    // Aggiorna il prezzo medio mostrato e la sua etichetta
+    if (avgPriceElement) {
+        avgPriceElement.textContent = `€${avgPrice.toFixed(3)}/L`;
+    }
+    
+    const avgPriceLabelElement = document.getElementById('avgPriceLabel-new');
+    if (avgPriceLabelElement) {
+        avgPriceLabelElement.textContent = `Prezzo medio ${selectedFuelType.toLowerCase()}:`;
+    }
     
     if (mode === 'liters') {
         const estimatedCost = (calcValue * avgPrice).toFixed(2);
-        previewLabel.textContent = 'Costo stimato:';
+        previewLabel.textContent = `Costo stimato (${selectedFuelType}):`;
         previewValue.textContent = `€${estimatedCost}`;
     } else {
         const estimatedLiters = (calcValue / avgPrice).toFixed(1);
-        previewLabel.textContent = 'Litri stimati:';
+        previewLabel.textContent = `Litri stimati (${selectedFuelType}):`;
         previewValue.textContent = `${estimatedLiters}L`;
     }
     
@@ -1237,6 +1311,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (calcInput) {
             calcInput.addEventListener('input', updateCalcPreviewNew);
         }
+        
+        // Add listener for fuel type change
+        const fuelTypeSelect = document.getElementById('fuelType-new');
+        if (fuelTypeSelect) {
+            fuelTypeSelect.addEventListener('change', updateCalcPreviewNew);
+        }
+        
+        // Initialize custom select
+        initializeCustomSelect();
+        
+        // Initialize stations selector
+        initializeStationsSelector();
     }, 100);
 });
 
@@ -1282,6 +1368,75 @@ function getTooltipIcon(costType) {
         case 'lowest': return '<i class="fas fa-star" style="color: #28a745;"></i>';
         case 'normal': return '<i class="fas fa-check-circle" style="color: #6c757d;"></i>';
         default: return '<i class="fas fa-info-circle"></i>';
+    }
+}
+
+// Custom Select per Carburanti
+function initializeCustomSelect() {
+    const display = document.getElementById('fuelTypeDisplay-new');
+    const options = document.getElementById('fuelTypeOptions-new');
+    const hiddenSelect = document.getElementById('fuelType-new');
+    
+    if (!display || !options || !hiddenSelect) return;
+    
+    // Toggle dropdown
+    display.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isActive = display.classList.contains('active');
+        
+        // Close all other dropdowns if any
+        document.querySelectorAll('.custom-select-display.active').forEach(el => {
+            el.classList.remove('active');
+        });
+        document.querySelectorAll('.custom-select-options.show').forEach(el => {
+            el.classList.remove('show');
+        });
+        
+        if (!isActive) {
+            display.classList.add('active');
+            options.classList.add('show');
+        }
+    });
+    
+    // Handle option selection
+    options.addEventListener('click', function(e) {
+        const option = e.target.closest('.custom-option');
+        if (!option) return;
+        
+        const value = option.dataset.value;
+        const icon = option.querySelector('i').outerHTML;
+        const text = option.querySelector('span').textContent;
+        
+        // Update display
+        display.innerHTML = `${icon}<span>${text}</span><i class="fas fa-chevron-down custom-select-arrow"></i>`;
+        
+        // Update hidden select
+        hiddenSelect.value = value;
+        
+        // Update selected state
+        options.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        
+        // Close dropdown
+        display.classList.remove('active');
+        options.classList.remove('show');
+        
+        // Trigger change event
+        const event = new Event('change', { bubbles: true });
+        hiddenSelect.dispatchEvent(event);
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        display.classList.remove('active');
+        options.classList.remove('show');
+    });
+    
+    // Set initial selected state
+    const initialValue = hiddenSelect.value;
+    const initialOption = options.querySelector(`[data-value="${initialValue}"]`);
+    if (initialOption) {
+        initialOption.classList.add('selected');
     }
 }
 
