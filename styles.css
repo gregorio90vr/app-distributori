@@ -93,11 +93,11 @@
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.6;
     
-    /* OPTIMIZED VERTICAL LAYOUT SYSTEM - No Overlaps */
-    --header-height: 70px;          /* Reduced for mobile efficiency */
-    --nav-height-mobile: 60px;      /* Reduced from 72px */
-    --footer-height: 26px;          /* Enhanced footer (+5% = 23.1px ≈ 26px) */
-    --controls-height: 60px;        /* Reduced controls */
+    /* MOBILE-OPTIMIZED LAYOUT - Compact Heights for Visibility */
+    --header-height: 65px;          /* Further reduced */
+    --nav-height-mobile: 58px;      /* Compact navigation */
+    --footer-height: 28px;          /* Slightly taller for better visibility */
+    --controls-height: 58px;        /* Reduced controls */
     
     /* Advanced Mobile Viewport System */
     --viewport-height: 100vh; /* Start with standard vh */
@@ -492,14 +492,14 @@ body {
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Enhanced Mobile Variables - Complete Visibility */
+    /* Mobile-First Variables - Prioritize Visibility */
     :root {
-        --header-height: 65px;
-        --nav-height-mobile: 55px;
-        --footer-height: 24px;
+        --header-height: 60px;        /* Further reduced */
+        --nav-height-mobile: 52px;    /* More compact */
+        --footer-height: 30px;        /* Taller for visibility */
         --gap-header-content: 1px;
-        --gap-content-nav: 2px;
-        --gap-nav-footer: 1px;
+        --gap-content-nav: 1px;       /* Minimal gap */
+        --gap-nav-footer: 0px;        /* Remove gap */
         
         /* Recalculated with new mathematical system */
         --total-fixed-height: calc(
@@ -665,25 +665,25 @@ body {
 
 /* FOOTER INTEGRATO NEL LAYOUT FLEXBOX */
 /* Clean & Modern Footer Design */
-/* Footer - Mathematical Precision for Complete Visibility */
+/* Footer - Positioned Higher for Complete Visibility */
 .footer-info-fixed {
     /* Guaranteed flex positioning */
     flex: 0 0 auto;
     flex-shrink: 0;
     height: var(--footer-height);
     
-    /* No margin bottom - safe area handled by body padding */
-    margin: 0 var(--space-sm) 0 var(--space-sm);
+    /* Raised position - minimal margins */
+    margin: 0 4px 8px 4px; /* Reduced margins, added bottom margin */
     
     /* Enhanced visibility styling */
-    background: rgba(15, 23, 42, 0.92);
-    color: rgba(255, 255, 255, 0.9);
+    background: rgba(15, 23, 42, 0.95); /* Increased opacity */
+    color: rgba(255, 255, 255, 0.95);
     font-size: 10px;
-    padding: 6px 12px;
+    padding: 8px 12px; /* Increased padding for better visibility */
     text-align: center;
-    line-height: 1.3;
-    border-radius: 8px;
-    border: 1px solid rgba(79, 172, 254, 0.15);
+    line-height: 1.2;
+    border-radius: 6px; /* Slightly reduced */
+    border: 1px solid rgba(79, 172, 254, 0.25); /* More visible border */
     backdrop-filter: blur(16px);
     
     /* Perfect centering */
@@ -774,29 +774,30 @@ body {
     display: none;
 }
 
-/* Ultra-compact for very small screens - Complete Visibility Priority */
+/* Small Screens - Maximum Compactness with Footer Visibility */
 @media (max-width: 360px) {
     :root {
-        --header-height: 60px;
-        --nav-height-mobile: 50px;
-        --footer-height: 22px;
+        --header-height: 55px;        /* Extra compact */
+        --nav-height-mobile: 48px;    /* Extra compact */  
+        --footer-height: 32px;        /* Taller for better visibility */
+        --gap-header-content: 0px;    /* Remove gaps */
+        --gap-content-nav: 0px;       
+        --gap-nav-footer: 0px;        
         
         /* Recalculate for small screens */
         --total-fixed-height: calc(
             var(--header-height) + 
             var(--nav-height-mobile) + 
-            var(--footer-height) + 
-            var(--gap-header-content) + 
-            var(--gap-content-nav) + 
-            var(--gap-nav-footer)
+            var(--footer-height)
         );
         --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
     }
     
     .footer-info-fixed {
-        font-size: 8px;
-        padding: 4px 8px;
+        font-size: 9px;              /* Larger for readability */
+        padding: 6px 8px;
         gap: 4px;
+        margin: 0 2px 10px 2px;       /* More bottom margin */
     }
 }
 
@@ -851,7 +852,34 @@ body {
     }
     
     .nav-tab-premium {
-        padding: 4px 8px;
+        padding: 4px 6px; /* Extra compact */
+    }
+    
+    .panel-content-premium {
+        padding: 12px; /* Extra compact for landscape */
+        max-height: calc(75vh - 80px);
+    }
+    
+    .info-section-premium {
+        margin-bottom: 12px; /* Reduced further */
+    }
+    
+    .info-title-premium {
+        font-size: 14px; /* Smaller for landscape */
+        margin: 0 0 8px;
+    }
+}
+
+/* Special fix for very tall mobile screens - Ensure Footer Visibility */
+@media (max-width: 768px) and (min-height: 800px) {
+    .footer-info-fixed {
+        margin-bottom: 16px; /* More space from bottom */
+        position: relative;
+        bottom: 0;
+    }
+    
+    .mobile-nav-premium {
+        margin-bottom: 8px; /* Ensure separation */
     }
 }
 
@@ -1440,15 +1468,15 @@ body {
    PREMIUM MOBILE NAVIGATION SYSTEM
    ========================================= */
 
-/* Mobile Navigation - Mathematically Precise Positioning */
+/* Mobile Navigation - Compact and Always Visible */
 .mobile-nav-premium {
     /* Guaranteed flex positioning */
     flex: 0 0 auto;
     flex-shrink: 0;
     height: var(--nav-height-mobile);
     
-    /* Precise margins - gap handled separately */
-    margin: 0 var(--space-sm) var(--gap-nav-footer) var(--space-sm);
+    /* Minimal margins for maximum space */
+    margin: 0 4px var(--gap-nav-footer) 4px; /* Reduced side margins */
     
     /* Always visible */
     z-index: 1000;
@@ -1535,8 +1563,8 @@ body {
     align-items: center;
     justify-content: space-around;
     
-    /* Precise padding - no safe area bottom (handled by body) */
-    padding: 8px calc(8px + var(--safe-area-left)) 8px calc(8px + var(--safe-area-right));
+    /* Compact padding for more space */
+    padding: 6px calc(6px + var(--safe-area-left)) 6px calc(6px + var(--safe-area-right));
     max-width: 500px;
     margin: 0 auto;
     
@@ -4528,9 +4556,10 @@ body {
 }
 
 /* Premium Panel Content */
+/* Compact Panel Content for Mobile */
 .panel-content-premium {
-    padding: 24px;
-    max-height: calc(85vh - 120px);
+    padding: 16px; /* Reduced from 24px */
+    max-height: calc(80vh - 100px); /* Reduced height calculation */
     overflow-y: auto;
     scroll-behavior: smooth;
 }
@@ -5250,8 +5279,9 @@ body {
    ========================================= */
 
 /* Info Section */
+/* Compact Info Section for Mobile Visibility */
 .info-section-premium {
-    margin-bottom: 32px;
+    margin-bottom: 20px; /* Reduced from 32px */
 }
 
 .info-section-premium:last-child {
@@ -5261,11 +5291,11 @@ body {
 .info-title-premium {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 18px;
+    gap: 8px; /* Reduced from 12px */
+    font-size: 16px; /* Reduced from 18px */
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 16px;
+    margin: 0 0 12px; /* Reduced from 16px */
 }
 
 .info-title-premium i {
