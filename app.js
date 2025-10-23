@@ -1724,3 +1724,4 @@ function initializePremiumPanelInteractions() {
     console.log('✅ Interazioni pannelli premium inizializzate con persistenza');
 }
 
+ 
