@@ -502,19 +502,13 @@ body {
         --content-height-mobile: 77vh; /* Remaining space */
     }
     
-    /* Mobile-optimized content card - with space for footer info */
+    /* Mobile-optimized content card - FLEXBOX LAYOUT */
     .content-card-new {
-        /* Use dynamic calculations including footer space */
-        top: calc(80px + var(--safe-area-top) + var(--space-md));
-        left: calc(var(--space-sm) + var(--safe-area-left));
-        right: calc(var(--space-sm) + var(--safe-area-right));
-        bottom: calc(var(--nav-height-mobile) + var(--safe-area-bottom) + 80px + var(--space-md)); /* Added 80px for footer info */
+        /* NO position properties - use flexbox flow */
+        /* Ensure proper flex behavior */
+        flex: 1 1 auto;
         
-        /* Ensure proper dimensions */
-        width: calc(100vw - 2 * var(--space-sm) - var(--safe-area-left) - var(--safe-area-right));
-        height: calc(100vh - 80px - var(--nav-height-mobile) - 80px - 2 * var(--space-md) - var(--safe-area-top) - var(--safe-area-bottom));
-        max-height: calc(100vh - 80px - var(--nav-height-mobile) - 80px - 2 * var(--space-md) - var(--safe-area-top) - var(--safe-area-bottom));
-        
+        /* Keep mobile-optimized styling */
         border-radius: var(--radius-xl);
         border: 1px solid var(--border-light);
         box-shadow: var(--shadow-md), 0 8px 32px rgba(0, 0, 0, 0.06);
