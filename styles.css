@@ -93,11 +93,11 @@
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.6;
     
-    /* MOBILE-OPTIMIZED LAYOUT - Compact Heights for Visibility */
-    --header-height: 65px;          /* Further reduced */
-    --nav-height-mobile: 58px;      /* Compact navigation */
-    --footer-height: 28px;          /* Slightly taller for better visibility */
-    --controls-height: 58px;        /* Reduced controls */
+    /* PROPORTIONAL MOBILE LAYOUT - Viewport-Based Heights */
+    --header-height: 8vh;           /* 8% of viewport height */
+    --nav-height-mobile: 9vh;       /* 9% of viewport height */
+    --footer-height: 6vh;           /* 6% of viewport height */
+    --controls-height: 9vh;         /* Match navigation */
     
     /* Advanced Mobile Viewport System */
     --viewport-height: 100vh; /* Start with standard vh */
@@ -113,24 +113,19 @@
     /* Fallback calculation for older browsers */
     --viewport-height-fallback: calc(100vh - var(--safe-area-top) - var(--safe-area-bottom));
     
-    /* Spacing between components */
-    --gap-header-content: 2px;
-    --gap-content-nav: 4px;
-    --gap-nav-footer: 2px;
+    /* Minimal spacing for maximum content area */
+    --gap-header-content: 0.5vh;
+    --gap-content-nav: 0.5vh;
+    --gap-nav-footer: 0.5vh;
     
-    /* Mathematical Layout System - Guaranteed Fit */
-    --available-height: var(--viewport-height);
-    --total-fixed-height: calc(
-        var(--header-height) + 
-        var(--nav-height-mobile) + 
-        var(--footer-height) + 
-        var(--gap-header-content) + 
-        var(--gap-content-nav) + 
-        var(--gap-nav-footer) + 
-        var(--safe-area-top) + 
-        var(--safe-area-bottom)
-    );
-    --content-height-mobile: calc(var(--available-height) - var(--total-fixed-height));
+    /* Proportional Layout System - Viewport-Based */
+    --total-fixed-percent: calc(
+        8vh +  /* header */
+        9vh +  /* navigation */
+        6vh +  /* footer */
+        1.5vh  /* gaps total */
+    ); /* = 24.5vh total fixed */
+    --content-height-mobile: calc(100vh - var(--total-fixed-percent)); /* ~75.5vh for content */
     
     /* Animation Timings */
     --transition-fast: 0.15s ease;
@@ -492,25 +487,18 @@ body {
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Mobile-First Variables - Prioritize Visibility */
+    /* Mobile-First Proportional System */
     :root {
-        --header-height: 60px;        /* Further reduced */
-        --nav-height-mobile: 52px;    /* More compact */
-        --footer-height: 30px;        /* Taller for visibility */
-        --gap-header-content: 1px;
-        --gap-content-nav: 1px;       /* Minimal gap */
-        --gap-nav-footer: 0px;        /* Remove gap */
+        --header-height: 7vh;         /* Slightly reduced for mobile */
+        --nav-height-mobile: 8vh;     /* Compact but usable */
+        --footer-height: 7vh;         /* Visible and proportional */
+        --gap-header-content: 0.3vh;
+        --gap-content-nav: 0.3vh;
+        --gap-nav-footer: 0.4vh;
         
-        /* Recalculated with new mathematical system */
-        --total-fixed-height: calc(
-            var(--header-height) + 
-            var(--nav-height-mobile) + 
-            var(--footer-height) + 
-            var(--gap-header-content) + 
-            var(--gap-content-nav) + 
-            var(--gap-nav-footer)
-        );
-        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
+        /* Mobile proportional calculation */
+        --total-fixed-percent: calc(7vh + 8vh + 7vh + 1vh); /* 23vh total */
+        --content-height-mobile: 77vh; /* Remaining space */
     }
     
     /* Mobile-optimized content card - with space for footer info */
@@ -774,55 +762,64 @@ body {
     display: none;
 }
 
-/* Small Screens - Maximum Compactness with Footer Visibility */
+/* Small Screens - Extra Compact Proportional Layout */
 @media (max-width: 360px) {
     :root {
-        --header-height: 55px;        /* Extra compact */
-        --nav-height-mobile: 48px;    /* Extra compact */  
-        --footer-height: 32px;        /* Taller for better visibility */
-        --gap-header-content: 0px;    /* Remove gaps */
-        --gap-content-nav: 0px;       
-        --gap-nav-footer: 0px;        
+        --header-height: 6vh;         /* Extra compact */
+        --nav-height-mobile: 7vh;     /* Minimal but usable */  
+        --footer-height: 6vh;         /* Proportional */
+        --gap-header-content: 0.2vh;  
+        --gap-content-nav: 0.2vh;       
+        --gap-nav-footer: 0.2vh;      
         
-        /* Recalculate for small screens */
-        --total-fixed-height: calc(
-            var(--header-height) + 
-            var(--nav-height-mobile) + 
-            var(--footer-height)
-        );
-        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
+        /* Ultra-compact proportional calculation */
+        --total-fixed-percent: calc(6vh + 7vh + 6vh + 0.6vh); /* 19.6vh total */
+        --content-height-mobile: 80.4vh; /* Maximum content space */
     }
     
-    .footer-info-fixed {
-        font-size: 9px;              /* Larger for readability */
-        padding: 6px 8px;
-        gap: 4px;
-        margin: 0 2px 10px 2px;       /* More bottom margin */
+    .nav-container-premium {
+        max-width: 450px; /* Further reduced for small screens */
+        width: 92%; /* More reduction for very small screens */
     }
-}
-
-/* Compact for small height devices - Mathematical Optimization */
-@media (max-height: 640px) {
-    :root {
-        --header-height: 55px;
-        --nav-height-mobile: 48px;
-        --footer-height: 20px;
-        
-        /* Vertical space optimization */
-        --total-fixed-height: calc(
-            var(--header-height) + 
-            var(--nav-height-mobile) + 
-            var(--footer-height) + 
-            var(--gap-header-content) + 
-            var(--gap-content-nav) + 
-            var(--gap-nav-footer)
-        );
-        --content-height-mobile: calc(var(--viewport-height) - var(--total-fixed-height));
+    
+    .nav-tab-premium {
+        padding: 4px 6px; /* Extra compact */
+        min-width: 60px;
     }
     
     .footer-info-fixed {
         font-size: 8px;
-        padding: 3px 8px;
+        padding: 4px 6px;
+        gap: 2px;
+        margin: 0 2px 0.5vh 2px;
+    }
+}
+
+/* Short Height Devices - Optimized Vertical Layout */
+@media (max-height: 640px) {
+    :root {
+        --header-height: 5.5vh;       /* Minimal header */
+        --nav-height-mobile: 7vh;     /* Keep navigation usable */
+        --footer-height: 5.5vh;       /* Compact but visible */
+        
+        /* Minimal gaps for short screens */
+        --gap-header-content: 0.2vh;
+        --gap-content-nav: 0.2vh;
+        --gap-nav-footer: 0.1vh;
+        
+        /* Short screen proportional calculation */
+        --total-fixed-percent: calc(5.5vh + 7vh + 5.5vh + 0.5vh); /* 18.5vh total */
+        --content-height-mobile: 81.5vh; /* Maximum content area */
+    }
+    
+    .footer-info-fixed {
+        font-size: 7px;
+        padding: 2px 6px;
+        line-height: 1.1;
+    }
+    
+    .nav-tab-premium {
+        padding: 3px 5px; /* Ultra-compact for short screens */
     }
 }
 
@@ -1563,24 +1560,25 @@ body {
     align-items: center;
     justify-content: space-around;
     
-    /* Compact padding for more space */
-    padding: 6px calc(6px + var(--safe-area-left)) 6px calc(6px + var(--safe-area-right));
-    max-width: 500px;
+    /* Reduced width by 5% to prevent element clipping */
+    padding: 4px calc(4px + var(--safe-area-left)) 4px calc(4px + var(--safe-area-right));
+    max-width: 475px; /* Reduced from 500px (5% reduction) */
     margin: 0 auto;
     
-    /* Mathematical height precision */
+    /* Proportional height system */
     height: var(--nav-height-mobile);
     min-height: var(--nav-height-mobile);
     max-height: var(--nav-height-mobile);
     
-    /* Full width with proper box model */
-    width: 100%;
+    /* Optimized width - 95% to prevent clipping */
+    width: 95%;
     box-sizing: border-box;
     
     /* Ensure no overflow */
     overflow: visible;
 }
 
+/* Compact Navigation Tabs - Optimized for 5% Width Reduction */
 .nav-tab-premium {
     display: flex;
     flex-direction: column;
@@ -1589,9 +1587,11 @@ body {
     border: none;
     cursor: pointer;
     position: relative;
-    padding: 8px 12px;
-    border-radius: 16px;
-    min-width: 72px;
+    padding: 6px 8px; /* Reduced from 8px 12px */
+    border-radius: 12px; /* Reduced from 16px */
+    min-width: 65px; /* Reduced from 72px */
+    flex: 1; /* Equal distribution of available space */
+    max-width: 85px; /* Prevent overgrowth */
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
