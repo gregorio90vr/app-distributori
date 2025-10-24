@@ -157,27 +157,21 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     
-    /* MOBILE-FIRST: NO padding per layout compatto */
+    /* LAYOUT SEMPLICE: flexbox per tutti i dispositivi */
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: var(--viewport-height);
-    min-height: var(--viewport-height);
-    max-height: var(--viewport-height);
-    
-    /* Fallback for older browsers */
-    height: var(--viewport-height-fallback);
-    min-height: var(--viewport-height-fallback);
+    min-height: 100vh;
     
     /* NO safe area padding - handled by individual elements if needed */
     box-sizing: border-box;
     
-    /* Perfect flex layout */
-    display: flex;
-    flex-direction: column;
+    /* SIMPLE FLEX LAYOUT */
+    display: flex !important;
+    flex-direction: column !important;
     
-    /* Guaranteed no overflow */
-    overflow: hidden;
+    /* Allow normal overflow for visibility */
+    overflow: visible;
     position: relative;
     
     /* Typography */
@@ -198,6 +192,7 @@ body {
     /* Flex item in body layout */
     flex-shrink: 0;
     height: var(--header-height);
+    order: 1 !important; /* PRIMO ELEMENTO - sempre in cima */
     
     /* MOBILE-FIRST: Minimal margins - no top margin for compact layout */
     margin: 0 4px 0 4px;
@@ -417,6 +412,10 @@ body {
     
     /* Layer management - BELOW navigation and footer */
     z-index: 100;
+    
+    /* LAYOUT FIX: Garantisce posizione corretta nel flexbox */
+    order: 2 !important; /* Header=1, Content=2, Nav=3, Footer=4 */
+    align-self: stretch; /* Occupa tutta la larghezza disponibile */
 }
 
 .content-card-new:hover {
@@ -484,147 +483,403 @@ body {
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Mobile-First Proportional System */
+    /* Mobile-First: Altezze fisse per layout prevedibile */
     :root {
-        --header-height: 7vh;         /* Slightly reduced for mobile */
-        --nav-height-mobile: 8vh;     /* Compact but usable */
-        --footer-height: 7vh;         /* Visible and proportional */
-        --gap-header-content: 0.3vh;
-        --gap-content-nav: 0.3vh;
-        --gap-nav-footer: 0.4vh;
+        --header-height: 60px;          /* Altezza fissa header */
+        --nav-height-mobile: 65px;      /* Altezza fissa navigation */
+        --footer-height: 42px;          /* Altezza fissa footer */
+        --gap-header-content: 2px;      /* Gap minimo header-content */
+        --gap-content-nav: 2px;         /* Gap minimo content-navigation */
+        --gap-nav-footer: 2px;          /* Gap minimo navigation-footer */
         
-        /* Mobile proportional calculation */
-        --total-fixed-percent: calc(7vh + 8vh + 7vh + 1vh); /* 23vh total */
-        --content-height-mobile: 77vh; /* Remaining space */
+        /* Calcolo preciso altezza contenuto */
+        --total-fixed-height: calc(
+            var(--header-height) +         /* 60px */
+            var(--nav-height-mobile) +     /* 65px */
+            var(--footer-height) +         /* 42px */
+            var(--gap-header-content) +    /* 2px */
+            var(--gap-content-nav) +       /* 2px */
+            var(--gap-nav-footer) +        /* 2px */
+            8px                            /* Margini laterali */
+        ); /* = 181px totali */
+        --content-height-mobile: calc(100vh - var(--total-fixed-height));
+        --content-height-mobile: calc(100dvh - var(--total-fixed-height)); /* Dynamic viewport */
     }
     
-    /* Mobile-optimized content card - FLEXBOX LAYOUT */
-    .content-card-new {
-        /* NO position properties - use flexbox flow */
-        /* Ensure proper flex behavior */
-        flex: 1 1 auto;
-        
-        /* Keep mobile-optimized styling */
-        border-radius: var(--radius-xl);
-        border: 1px solid var(--border-light);
-        box-shadow: var(--shadow-md), 0 8px 32px rgba(0, 0, 0, 0.06);
-    }
-    
-    /* Mappa si estende fino al bordo del menu */
-    #map-new {
-        padding-bottom: 0; /* Elimina padding, tocca direttamente */
-        border-radius: 0; /* Bordi quadrati per integrazione */
-    }
-    
-    /* Leaflet controls positioned correctly for mobile with footer space */
-    #map-new .leaflet-control-container .leaflet-bottom {
-        margin-bottom: calc(var(--nav-height-mobile) + var(--space-md) + var(--safe-area-bottom) + 20px) !important; /* Added extra space for footer */
-    }
-    
-    /* Ensure leaflet controls are visible */
-    #map-new .leaflet-control-container .leaflet-top {
-        margin-top: calc(var(--safe-area-top) + 8px) !important;
-    }
-    
-    #map-new .leaflet-control-container .leaflet-right {
-        margin-right: calc(var(--safe-area-right) + 8px) !important;
-    }
-    
-    #map-new .leaflet-control-container .leaflet-left {
-        margin-left: calc(var(--safe-area-left) + 8px) !important;
-    }
-    
-    /* Lista stazioni con layout elegante */
-    .station-list-new {
-        padding-bottom: var(--space-sm);
-        margin-bottom: 0;
-    }
-}
-
-/* OTTIMIZZAZIONI AGGIUNTIVE MOBILE-FIRST: Eliminazione completa spazi vuoti */
-@media (max-width: 768px) {
-    
-    /* MOBILE BODY: Flexbox puro, NO position fixed */
+    /* Body: layout flexbox semplice per mobile */
     body {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
         margin: 0 !important;
         padding: 0 !important;
-        overflow: hidden; /* Prevent any scroll */
-        height: 100vh;
-        min-height: 100vh;
-        max-height: 100vh;
-        width: 100vw;
-        /* NO position fixed - usa normal flow */
+        /* IMPORTANTE: NO overflow hidden che nasconde elementi */
+        overflow: visible !important;
     }
     
-    /* Content card mobile: mantiene margini corretti per gap */
+    /* Header: altezza fissa ma flessibile */
+    .header-card-new {
+        flex: 0 0 auto !important;
+        min-height: 60px !important;
+        margin: 4px !important;
+        order: 1 !important;
+        display: flex !important;
+    }
+    
+    /* Content Card: spazio flessibile */
     .content-card-new {
-        /* Mantiene i margini definiti nelle regole base */
-        /* Background uniforme per eleganza */
-        background: var(--surface-elevated);
+        flex: 1 1 auto !important;
+        min-height: 300px !important;
+        margin: 4px !important;
+        order: 2 !important;
+        display: block !important;
     }
     
-    /* Mobile-optimized map */
+    /* Navigation: altezza fissa */
+    .mobile-nav-premium {
+        flex: 0 0 auto !important;
+        min-height: 65px !important;
+        margin: 4px !important;
+        order: 3 !important;
+        display: block !important;
+    }
+    
+    /* Footer: altezza fissa */
+    .footer-info-fixed {
+        flex: 0 0 auto !important;
+        min-height: 42px !important;
+        margin: 4px !important;
+        order: 4 !important;
+        display: flex !important;
+    }
+    
+    /* Map container: occupa tutto lo spazio disponibile */
     .map-container-new {
-        border-radius: var(--radius-xl) !important;
-        border: none;
-        margin: 2px;
-        /* Ensure full utilization of available space */
-        width: calc(100% - 4px) !important;
-        height: calc(100% - 4px) !important;
-        max-width: calc(100% - 4px) !important;
-        max-height: calc(100% - 4px) !important;
-        position: relative;
-        overflow: hidden;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        border-radius: var(--radius-lg) !important;
+        overflow: hidden !important;
     }
     
+    /* Map: fit perfetto nel container */
     #map-new {
-        border-radius: var(--radius-lg) !important;
-        padding: 0;
-        margin: 0;
-        /* Perfect fit within mobile container */
         width: 100% !important;
         height: 100% !important;
         max-width: 100% !important;
         max-height: 100% !important;
         min-width: 100% !important;
         min-height: 100% !important;
-        position: absolute;
-        top: 0;
-        left: 0;
+        border-radius: var(--radius-lg) !important;
     }
     
-    /* Lista stazioni: design elegante con spazi appropriati */
+    /* Leaflet controls: posizionamento corretto per mobile */
+    #map-new .leaflet-control-container .leaflet-bottom {
+        margin-bottom: 10px !important;
+    }
+    
+    #map-new .leaflet-control-container .leaflet-top {
+        margin-top: 10px !important;
+    }
+    
+    #map-new .leaflet-control-container .leaflet-right {
+        margin-right: 10px !important;
+    }
+    
+    #map-new .leaflet-control-container .leaflet-left {
+        margin-left: 10px !important;
+    }
+    
+    /* Lista stazioni: layout ottimizzato per mobile */
     .stations-list-new {
         padding: var(--space-md);
-        /* Padding inferiore per distanziamento dal menu */
         padding-bottom: var(--space-sm);
-    }
-    
-    .station-card-new {
-        margin: 0 2px var(--space-sm) 2px;
-        padding: var(--space-md);
-        /* Angoli arrotondati per coerenza design */
-        border-radius: var(--radius-md);
-    }
-    
-    /* Navbar: design elegante e separato */
-    .nav-bar-premium {
-        margin: 0;
-        /* Bordo più definito per separazione visiva elegante */
-        border-top: 1px solid rgba(148, 163, 184, 0.12);
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.98) 0%,
-            rgba(248, 250, 252, 1) 50%,
-            rgba(255, 255, 255, 0.98) 100%
-        );
-        /* Shadow verso l'alto per definire la separazione */
-        box-shadow: 
-            0 -2px 16px rgba(0, 0, 0, 0.04),
-            0 -1px 4px rgba(0, 0, 0, 0.08),
-            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 }
+
+/* =========================================
+   MOBILE LAYOUT RESET - Previene problemi CSS
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* Reset di tutte le regole position che potrebbero interferire */
+    .header-card-new,
+    .content-card-new,
+    .mobile-nav-premium,
+    .footer-info-fixed {
+        position: static !important; /* No fixed/absolute positioning */
+        transform: none !important;  /* No transforms che spostano elementi */
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+    }
+    
+    /* Garantire che non ci siano elementi floating */
+    * {
+        float: none !important;
+    }
+    
+    /* Prevenire margin collapse */
+    .header-card-new {
+        margin-bottom: var(--gap-header-content) !important;
+    }
+    
+    .content-card-new {
+        margin-top: 0 !important;
+        margin-bottom: var(--gap-content-nav) !important;
+    }
+    
+    .mobile-nav-premium {
+        margin-top: 0 !important;
+        margin-bottom: var(--gap-nav-footer) !important;
+    }
+    
+    .footer-info-fixed {
+        margin-top: 0 !important;
+    }
+}
+
+/* =========================================
+   DISPOSITIVI SPECIFICI - MOBILE OTTIMIZZAZIONI
+   ========================================= */
+
+/* iPhone e dispositivi con notch */
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+        /* Supporto safe area per dispositivi con notch */
+        padding-top: env(safe-area-inset-top) !important;
+        padding-bottom: env(safe-area-inset-bottom) !important;
+        height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
+        height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
+    }
+}
+
+/* Dispositivi Android con barra di navigazione */
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    :root {
+        /* Altezze ottimizzate per portrait */
+        --content-height-mobile: calc(100vh - 185px);
+        --content-height-mobile: calc(100dvh - 185px);
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+    :root {
+        /* Altezze ridotte per landscape mobile */
+        --header-height: 50px;
+        --nav-height-mobile: 55px;
+        --footer-height: 35px;
+        --content-height-mobile: calc(100vh - 150px);
+        --content-height-mobile: calc(100dvh - 150px);
+    }
+    
+    .header-card-new {
+        height: var(--header-height) !important;
+        min-height: var(--header-height) !important;
+    }
+    
+    .mobile-nav-premium {
+        height: var(--nav-height-mobile) !important;
+        min-height: var(--nav-height-mobile) !important;
+    }
+    
+    .footer-info-fixed {
+        height: var(--footer-height) !important;
+        min-height: var(--footer-height) !important;
+        font-size: 9px !important;
+        padding: 4px 8px !important;
+    }
+}
+
+/* Tablet in modalità portrait */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    :root {
+        --content-height-mobile: calc(100vh - 210px);
+        --content-height-mobile: calc(100dvh - 210px);
+    }
+}
+
+/* =========================================
+   FINAL MOBILE FIXES - Prevenzione interferenze
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* Assicurarsi che i panel slide-up non influenzino il layout principale */
+    .slide-panel-premium,
+    .slide-panel-new {
+        position: fixed !important;
+        z-index: 9999 !important; /* Molto alto per essere sopra tutto */
+        pointer-events: none; /* Non interferisce con il layout quando chiuso */
+    }
+    
+    .slide-panel-premium.active,
+    .slide-panel-new.active {
+        pointer-events: all; /* Riattiva interazioni quando aperto */
+    }
+    
+    /* Assicurarsi che tutti gli elementi siano visibili */
+    .header-card-new,
+    .content-card-new,
+    .mobile-nav-premium,
+    .footer-info-fixed {
+        display: block !important; /* Forza visibilità */
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+    }
+    
+    /* Garantire che la mappa occupi tutto lo spazio del content-card */
+    .view-container-new.active {
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+}
+
+/* =========================================
+   LAYOUT VERIFICATION - Ordine elementi corretti
+   ========================================= */
+
+/* Verifichiamo che l'ordine sia corretto per tutti i dispositivi */
+.header-card-new {
+    /* Ordine 1: HEADER sempre primo */
+    order: 1 !important;
+}
+
+.content-card-new {
+    /* Ordine 2: CONTENT-CARD (mappa) subito dopo header */
+    order: 2 !important;
+}
+
+.mobile-nav-premium {
+    /* Ordine 3: NAVIGATION dopo content */
+    order: 3 !important;
+}
+
+.footer-info-fixed {
+    /* Ordine 4: FOOTER sempre ultimo */
+    order: 4 !important;
+}
+
+/* DEBUG: Aggiungiamo bordi temporanei per verificare l'ordine visivamente */
+/*
+body > * {
+    border: 2px solid red !important;
+    position: relative !important;
+}
+body > *:before {
+    content: "Order: " attr(class) !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    background: red !important;
+    color: white !important;
+    padding: 2px !important;
+    font-size: 10px !important;
+    z-index: 9999 !important;
+}
+*/
+
+/* =========================================
+   DESKTOP E LAPTOP OPTIMIZATIONS
+   ========================================= */
+
+@media (min-width: 1025px) {
+    /* Per desktop e laptop, manteniamo la gerarchia corretta */
+    body {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+    
+    /* Ordini espliciti anche per desktop */
+    .header-card-new {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+    }
+    
+    .content-card-new {
+        order: 2 !important;
+        flex: 1 1 auto !important; /* Prende tutto lo spazio rimanente */
+    }
+    
+    .mobile-nav-premium {
+        order: 3 !important;
+        flex: 0 0 auto !important;
+    }
+    
+    .footer-info-fixed {
+        order: 4 !important;
+        flex: 0 0 auto !important;
+    }
+    
+    /* Desktop: margini più generosi */
+    .header-card-new,
+    .content-card-new,
+    .mobile-nav-premium,
+    .footer-info-fixed {
+        margin-left: 8px !important;
+        margin-right: 8px !important;
+    }
+}
+
+/* =========================================
+   LAYOUT SEMPLICE E FUNZIONALE - TUTTI GLI ELEMENTI VISIBILI
+   ========================================= */
+
+/* Forza la visibilità di tutti gli elementi principali */
+.header-card-new {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 1 !important;
+    z-index: 1000 !important;
+    position: relative !important;
+}
+
+.content-card-new {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 2 !important;
+    z-index: 100 !important;
+    position: relative !important;
+}
+
+.mobile-nav-premium {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 3 !important;
+    z-index: 1000 !important;
+    position: relative !important;
+}
+
+.footer-info-fixed {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 4 !important;
+    z-index: 1001 !important;
+    position: relative !important;
+}
+
+/* Body con layout semplice */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+
+/* Regole aggiuntive per mobile rimosse - integrate nel blocco principale sopra */
 
 /* =========================================
    FOOTER INFO BAR - Always Visible Above Navigation
@@ -639,6 +894,7 @@ body {
     flex-shrink: 0;
     height: var(--footer-height);
     min-height: var(--footer-height); /* Force minimum height */
+    order: 4 !important; /* QUARTO ELEMENTO - alla fine */
     
     /* Raised position - minimal margins */
     margin: 0 4px 8px 4px;
@@ -879,18 +1135,52 @@ body {
     }
 }
 
-/* Special fix for very tall mobile screens - Ensure Footer Visibility */
-@media (max-width: 768px) and (min-height: 800px) {
-    .footer-info-fixed {
-        margin-bottom: 16px; /* More space from bottom */
-        position: relative;
-        bottom: 0;
+/* =========================================
+   TABLET OPTIMIZATIONS (768px - 1024px)
+   ========================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    :root {
+        /* Altezze leggermente maggiori per tablet */
+        --header-height: 70px;
+        --nav-height-mobile: 75px;
+        --footer-height: 50px;
+        --gap-header-content: 4px;
+        --gap-content-nav: 4px;
+        --gap-nav-footer: 4px;
+        
+        /* Ricalcolo per tablet */
+        --total-fixed-height: calc(
+            var(--header-height) + 
+            var(--nav-height-mobile) + 
+            var(--footer-height) + 
+            var(--gap-header-content) + 
+            var(--gap-content-nav) + 
+            var(--gap-nav-footer) + 
+            12px
+        );
+        --content-height-mobile: calc(100vh - var(--total-fixed-height));
+    }
+    
+    /* Margini maggiori per tablet */
+    .header-card-new {
+        margin: 0 8px var(--gap-header-content) 8px !important;
+    }
+    
+    .content-card-new {
+        margin: 0 8px var(--gap-content-nav) 8px !important;
     }
     
     .mobile-nav-premium {
-        margin-bottom: 8px; /* Ensure separation */
+        margin: 0 8px var(--gap-nav-footer) 8px !important;
+    }
+    
+    .footer-info-fixed {
+        margin: 0 8px 8px 8px !important;
     }
 }
+
+/* Regole speciali per schermi alti rimosse - usano quelle generali mobile */
 
 
 
@@ -1484,6 +1774,7 @@ body {
     flex-shrink: 0;
     height: var(--nav-height-mobile);
     min-height: var(--nav-height-mobile); /* Force minimum height */
+    order: 3 !important; /* TERZO ELEMENTO - dopo content */
     
     /* Minimal margins for maximum space */
     margin: 0 4px var(--gap-nav-footer) 4px;

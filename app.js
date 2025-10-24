@@ -1317,7 +1317,7 @@ function initializePremiumPanelInteractions() {
             document.querySelectorAll('.radius-btn-premium').forEach(b => {
                 b.classList.remove('active', 'selected');
             });
-            // Add selection to clicked button   
+            // Add selection to clicked button    
             this.classList.add('active', 'selected');
             // Update display and hidden select
             const radius = this.dataset.radius;
