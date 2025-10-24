@@ -110,21 +110,21 @@
     --safe-area-left: env(safe-area-inset-left, 0px);
     --safe-area-right: env(safe-area-inset-right, 0px);
     
-    /* Minimal spacing for maximum content area */
-    --gap-header-content: 4px;
-    --gap-content-nav: 4px;
-    --gap-nav-footer: 4px;
+    /* MINIMAL SPACING FOR COMPACT MOBILE LAYOUT */
+    --gap-header-content: 2px;      /* Minimal gap - mappa subito sotto header */
+    --gap-content-nav: 2px;         /* Minimal gap before navigation */
+    --gap-nav-footer: 2px;          /* Minimal gap before footer */
     
     /* CRITICAL: Content height using SUBTRACTION for guaranteed visibility */
     --total-fixed-height: calc(
         var(--header-height) +      /* 60px */
         var(--nav-height-mobile) +  /* 65px */
         var(--footer-height) +      /* 42px */
-        var(--gap-header-content) + /* 4px */
-        var(--gap-content-nav) +    /* 4px */
-        var(--gap-nav-footer) +     /* 4px */
-        16px                        /* Extra safety margin */
-    ); /* = 195px total */
+        var(--gap-header-content) + /* 2px */
+        var(--gap-content-nav) +    /* 2px */
+        var(--gap-nav-footer) +     /* 2px */
+        8px                         /* Reduced safety margin */
+    ); /* = 181px total */
     --content-height-mobile: calc(100vh - var(--total-fixed-height));
     --content-height-mobile: calc(100dvh - var(--total-fixed-height)); /* Override if dvh supported */
     
@@ -202,7 +202,9 @@ body {
     /* Flex item in body layout */
     flex-shrink: 0;
     height: var(--header-height);
-    margin: var(--gap-header-content) var(--space-sm) 0 var(--space-sm);
+    
+    /* MOBILE-FIRST: Minimal margins - no top margin for compact layout */
+    margin: 0 4px 0 4px;
     
     background: var(--primary-gradient);
     border-radius: var(--radius-lg);
@@ -395,7 +397,9 @@ body {
 .content-card-new {
     /* Perfect flex fill - takes exact remaining space */
     flex: 1 1 auto;
-    margin: var(--gap-header-content) var(--space-sm) var(--gap-content-nav) var(--space-sm);
+    
+    /* MOBILE-FIRST: Minimal margins for compact layout */
+    margin: var(--gap-header-content) 4px var(--gap-content-nav) 4px;
     
     /* CRITICAL: Precise height calculation - guaranteed fit */
     height: var(--content-height-mobile);
@@ -770,22 +774,30 @@ body {
         --header-height: 50px;        /* Compact header */
         --nav-height-mobile: 58px;    /* Minimal but usable */  
         --footer-height: 38px;        /* Compact but visible */
-        --gap-header-content: 3px;  
-        --gap-content-nav: 3px;       
-        --gap-nav-footer: 3px;      
+        --gap-header-content: 1px;    /* Ultra-minimal */
+        --gap-content-nav: 1px;       
+        --gap-nav-footer: 1px;      
         
         /* Recalculate for small screens */
         --total-fixed-height: calc(
             var(--header-height) +      /* 50px */
             var(--nav-height-mobile) +  /* 58px */
             var(--footer-height) +      /* 38px */
-            var(--gap-header-content) + /* 3px */
-            var(--gap-content-nav) +    /* 3px */
-            var(--gap-nav-footer) +     /* 3px */
-            12px                        /* Safety margin */
-        ); /* = 167px total */
+            var(--gap-header-content) + /* 1px */
+            var(--gap-content-nav) +    /* 1px */
+            var(--gap-nav-footer) +     /* 1px */
+            6px                         /* Minimal safety margin */
+        ); /* = 155px total */
         --content-height-mobile: calc(100vh - var(--total-fixed-height));
         --content-height-mobile: calc(100dvh - var(--total-fixed-height));
+    }
+    
+    .header-card-new {
+        margin: 0 2px 0 2px; /* Ultra-compact */
+    }
+    
+    .content-card-new {
+        margin: var(--gap-header-content) 2px var(--gap-content-nav) 2px;
     }
     
     .nav-container-premium {
@@ -798,13 +810,6 @@ body {
         min-width: 60px;
         font-size: 11px;
     }
-    
-    .footer-info-fixed {
-        font-size: 8px;
-        padding: 4px 6px;
-        gap: 2px;
-        margin: 0 2px 6px 2px;
-    }
 }
 
 /* Short Height Devices - Optimized Vertical Layout with Fixed Heights */
@@ -815,22 +820,30 @@ body {
         --footer-height: 36px;        /* Compact but visible */
         
         /* Minimal gaps for short screens */
-        --gap-header-content: 2px;
-        --gap-content-nav: 2px;
-        --gap-nav-footer: 2px;
+        --gap-header-content: 1px;
+        --gap-content-nav: 1px;
+        --gap-nav-footer: 1px;
         
         /* Short screen calculation */
         --total-fixed-height: calc(
             var(--header-height) +      /* 48px */
             var(--nav-height-mobile) +  /* 55px */
             var(--footer-height) +      /* 36px */
-            var(--gap-header-content) + /* 2px */
-            var(--gap-content-nav) +    /* 2px */
-            var(--gap-nav-footer) +     /* 2px */
-            10px                        /* Safety margin */
-        ); /* = 155px total */
+            var(--gap-header-content) + /* 1px */
+            var(--gap-content-nav) +    /* 1px */
+            var(--gap-nav-footer) +     /* 1px */
+            5px                         /* Minimal safety margin */
+        ); /* = 147px total */
         --content-height-mobile: calc(100vh - var(--total-fixed-height));
         --content-height-mobile: calc(100dvh - var(--total-fixed-height));
+    }
+    
+    .header-card-new {
+        margin: 0 3px 0 3px;
+    }
+    
+    .content-card-new {
+        margin: var(--gap-header-content) 3px var(--gap-content-nav) 3px;
     }
     
     .footer-info-fixed {
