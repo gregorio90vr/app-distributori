@@ -10,11 +10,11 @@
  * - Creazione di opere derivate
  * 
  * Aggiornato automaticamente via GitHub Actions
- * Ultimo aggiornamento: 18/11/2025 07:12
- * Totale stazioni: 21654
+ * Ultimo aggiornamento: 19/11/2025 07:12
+ * Totale stazioni: 21651
  */
 
-const DATA_TIMESTAMP = "18/11/2025 07:12";
+const DATA_TIMESTAMP = "19/11/2025 07:12";
 const DATA_SOURCE = "MIMIT - Ministero delle Imprese e del Made in Italy";
 const DATA_LICENSE = "Italian Open Data License v2.0 (IODL 2.0)";
 
@@ -174,8 +174,8 @@ const realFuelStations = [
     "latitude": 37.3150919,
     "longitude": 13.582933,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.669
+      "Benzina": 1.759,
+      "Gasolio": 1.699
     }
   },
   {
@@ -512,7 +512,7 @@ const realFuelStations = [
     "longitude": 13.98860218182017,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -781,7 +781,7 @@ const realFuelStations = [
     "longitude": 13.5413630848829,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -1230,8 +1230,8 @@ const realFuelStations = [
     "latitude": 37.50643407494444,
     "longitude": 13.112709682209015,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.669
+      "Benzina": 1.739,
+      "Gasolio": 1.659
     }
   },
   {
@@ -2320,8 +2320,8 @@ const realFuelStations = [
     "latitude": 45.13119518050285,
     "longitude": 8.471979796886444,
     "prices": {
-      "Benzina": 1.746,
-      "Gasolio": 1.706
+      "Benzina": 1.726,
+      "Gasolio": 1.696
     }
   },
   {
@@ -2517,8 +2517,8 @@ const realFuelStations = [
     "latitude": 44.97793900000002,
     "longitude": 8.893388296820035,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.679
+      "Benzina": 1.759,
+      "Gasolio": 1.689
     }
   },
   {
@@ -2806,8 +2806,8 @@ const realFuelStations = [
     "latitude": 44.760605000123,
     "longitude": 8.838378000123,
     "prices": {
-      "Benzina": 1.869,
-      "Gasolio": 1.819,
+      "Benzina": 1.879,
+      "Gasolio": 1.829,
       "Metano": 1.349,
       "GPL": 0.899
     }
@@ -2820,7 +2820,7 @@ const realFuelStations = [
     "latitude": 44.760201000123,
     "longitude": 8.837005000123,
     "prices": {
-      "Benzina": 1.809,
+      "Benzina": 1.829,
       "Gasolio": 1.809,
       "GPL": 0.899
     }
@@ -2882,7 +2882,7 @@ const realFuelStations = [
     "latitude": 44.8006432348141,
     "longitude": 8.748666387557932,
     "prices": {
-      "Benzina": 1.789,
+      "Benzina": 1.799,
       "Gasolio": 1.484,
       "GPL": 0.899
     }
@@ -2996,7 +2996,7 @@ const realFuelStations = [
     "longitude": 8.51216867566108,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -3032,7 +3032,7 @@ const realFuelStations = [
     "longitude": 8.64910870552253,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -3355,7 +3355,7 @@ const realFuelStations = [
     "longitude": 8.849258404673478,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.679
+      "Gasolio": 1.669
     }
   },
   {
@@ -3488,7 +3488,7 @@ const realFuelStations = [
     "latitude": 44.89554439428435,
     "longitude": 8.853962570428848,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.759,
       "Gasolio": 1.699
     }
   },
@@ -3770,8 +3770,8 @@ const realFuelStations = [
     "latitude": 44.90766464538887,
     "longitude": 8.907925854504501,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.679
+      "Benzina": 1.759,
+      "Gasolio": 1.689
     }
   },
   {
@@ -4041,7 +4041,7 @@ const realFuelStations = [
     "longitude": 13.505731761709773,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -4053,7 +4053,7 @@ const realFuelStations = [
     "longitude": 13.510427290787376,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -4140,7 +4140,7 @@ const realFuelStations = [
     "longitude": 13.43777060508728,
     "prices": {
       "Benzina": 1.714,
-      "Gasolio": 1.694
+      "Gasolio": 1.704
     }
   },
   {
@@ -4200,7 +4200,7 @@ const realFuelStations = [
     "longitude": 13.508797319176155,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.629
+      "Gasolio": 1.639
     }
   },
   {
@@ -4225,7 +4225,7 @@ const realFuelStations = [
     "longitude": 13.509252920812246,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -4621,7 +4621,7 @@ const realFuelStations = [
     "longitude": 12.9881823,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -4877,7 +4877,7 @@ const realFuelStations = [
     "longitude": 12.89920330714848,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -4988,7 +4988,7 @@ const realFuelStations = [
     "longitude": 12.975011,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -5001,7 +5001,7 @@ const realFuelStations = [
     "longitude": 12.898941692367293,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -5025,7 +5025,7 @@ const realFuelStations = [
     "longitude": 13.363122045993805,
     "prices": {
       "Benzina": 1.714,
-      "Gasolio": 1.694,
+      "Gasolio": 1.704,
       "GPL": 0.709
     }
   },
@@ -5101,7 +5101,7 @@ const realFuelStations = [
     "longitude": 13.357656299718967,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -5313,8 +5313,8 @@ const realFuelStations = [
     "latitude": 43.506271597553486,
     "longitude": 13.215211112897487,
     "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.629,
+      "Benzina": 1.649,
+      "Gasolio": 1.649,
       "Metano": 1.299,
       "GPL": 0.699
     }
@@ -5340,7 +5340,7 @@ const realFuelStations = [
     "longitude": 13.273306359330796,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -5502,8 +5502,8 @@ const realFuelStations = [
     "latitude": 43.50595775597102,
     "longitude": 13.190446217790964,
     "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.629,
+      "Benzina": 1.649,
+      "Gasolio": 1.649,
       "GPL": 0.699
     }
   },
@@ -5515,8 +5515,8 @@ const realFuelStations = [
     "latitude": 43.535386658584905,
     "longitude": 13.26470658079245,
     "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.629,
+      "Benzina": 1.649,
+      "Gasolio": 1.649,
       "GPL": 0.699
     }
   },
@@ -5529,7 +5529,7 @@ const realFuelStations = [
     "longitude": 13.242827859829573,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -5591,7 +5591,7 @@ const realFuelStations = [
     "longitude": 13.623128325355355,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -5727,7 +5727,7 @@ const realFuelStations = [
     "longitude": 13.315872475937049,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -5774,7 +5774,7 @@ const realFuelStations = [
     "latitude": 43.482724278026765,
     "longitude": 13.595466594161406,
     "prices": {
-      "Benzina": 1.779,
+      "Benzina": 1.789,
       "Gasolio": 1.739,
       "GPL": 0.799
     }
@@ -5852,7 +5852,7 @@ const realFuelStations = [
     "longitude": 13.500427007675171,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -5937,7 +5937,7 @@ const realFuelStations = [
     "longitude": 13.497541879651521,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -6012,7 +6012,7 @@ const realFuelStations = [
     "longitude": 13.548636010660548,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.639
+      "Gasolio": 1.649
     }
   },
   {
@@ -6024,7 +6024,7 @@ const realFuelStations = [
     "longitude": 13.15884,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -6073,7 +6073,7 @@ const realFuelStations = [
     "longitude": 13.066261551846177,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -6199,7 +6199,7 @@ const realFuelStations = [
     "longitude": 13.212260222682982,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -6750,7 +6750,7 @@ const realFuelStations = [
     "longitude": 7.406049020125465,
     "prices": {
       "Benzina": 1.894,
-      "Gasolio": 1.864,
+      "Gasolio": 1.894,
       "GPL": 0.9
     }
   },
@@ -7256,7 +7256,7 @@ const realFuelStations = [
     "longitude": 7.25884022309037,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -7389,7 +7389,7 @@ const realFuelStations = [
     "longitude": 13.307376793435658,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.679
+      "Gasolio": 1.699
     }
   },
   {
@@ -7595,7 +7595,7 @@ const realFuelStations = [
     "longitude": 13.59048,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.639
+      "Gasolio": 1.649
     }
   },
   {
@@ -7844,7 +7844,7 @@ const realFuelStations = [
     "latitude": 43.02039512998009,
     "longitude": 13.861173391342163,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.709,
       "Gasolio": 1.669
     }
   },
@@ -7966,7 +7966,7 @@ const realFuelStations = [
     "longitude": 13.866856034503867,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -8004,7 +8004,7 @@ const realFuelStations = [
     "longitude": 13.850248673361762,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -8199,7 +8199,7 @@ const realFuelStations = [
     "longitude": 13.7936033,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -8247,8 +8247,8 @@ const realFuelStations = [
     "latitude": 42.922726838638724,
     "longitude": 13.894432783126831,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659,
+      "Benzina": 1.679,
+      "Gasolio": 1.669,
       "GPL": 0.689
     }
   },
@@ -8333,7 +8333,7 @@ const realFuelStations = [
     "longitude": 13.885149207844192,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -8517,7 +8517,7 @@ const realFuelStations = [
     "longitude": 13.770140205451519,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.649
+      "Gasolio": 1.659
     }
   },
   {
@@ -8682,7 +8682,7 @@ const realFuelStations = [
     "longitude": 13.4421626,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -8779,7 +8779,7 @@ const realFuelStations = [
     "longitude": 13.4107229,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -8990,7 +8990,7 @@ const realFuelStations = [
     "longitude": 14.104449,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -9128,7 +9128,7 @@ const realFuelStations = [
     "longitude": 13.693647,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -9176,7 +9176,7 @@ const realFuelStations = [
     "latitude": 42.337871432854065,
     "longitude": 13.475415408611298,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.759,
       "Gasolio": 1.699,
       "GPL": 0.746
     }
@@ -9485,7 +9485,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.789,
       "Gasolio": 1.769,
-      "GPL": 0.799
+      "GPL": 0.789
     }
   },
   {
@@ -9509,7 +9509,7 @@ const realFuelStations = [
     "longitude": 13.225808896548482,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -9557,8 +9557,8 @@ const realFuelStations = [
     "latitude": 42.06335266051887,
     "longitude": 13.042206466197968,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.709,
+      "Benzina": 1.739,
+      "Gasolio": 1.729,
       "GPL": 0.759
     }
   },
@@ -9932,7 +9932,7 @@ const realFuelStations = [
     "longitude": 14.076629526693655,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -10167,7 +10167,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.729,
       "Gasolio": 1.709,
-      "GPL": 0.679
+      "GPL": 0.689
     }
   },
   {
@@ -10300,8 +10300,8 @@ const realFuelStations = [
     "latitude": 41.96003293745031,
     "longitude": 13.51137084140213,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.677,
+      "Benzina": 1.737,
+      "Gasolio": 1.717,
       "GPL": 0.759
     }
   },
@@ -10362,7 +10362,7 @@ const realFuelStations = [
     "longitude": 12.079463079571724,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -10767,7 +10767,7 @@ const realFuelStations = [
     "longitude": 11.80237,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -10779,7 +10779,7 @@ const realFuelStations = [
     "longitude": 11.8712063412376,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -10791,7 +10791,7 @@ const realFuelStations = [
     "longitude": 11.867009,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.679
     }
   },
@@ -10804,7 +10804,7 @@ const realFuelStations = [
     "longitude": 11.89107,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -10938,7 +10938,7 @@ const realFuelStations = [
     "longitude": 11.8580303,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -11000,7 +11000,7 @@ const realFuelStations = [
     "longitude": 11.804056880538951,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "GPL": 0.697
     }
   },
@@ -11037,7 +11037,7 @@ const realFuelStations = [
     "longitude": 11.810535159027346,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.729
+      "Gasolio": 1.739
     }
   },
   {
@@ -11145,8 +11145,8 @@ const realFuelStations = [
     "latitude": 43.745306399821004,
     "longitude": 11.710615511135115,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.729
+      "Benzina": 1.749,
+      "Gasolio": 1.739
     }
   },
   {
@@ -11218,7 +11218,7 @@ const realFuelStations = [
     "longitude": 11.907621134918145,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -11330,7 +11330,7 @@ const realFuelStations = [
     "longitude": 11.79932,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.447,
       "GPL": 0.689
     }
@@ -11717,7 +11717,7 @@ const realFuelStations = [
     "longitude": 11.726019729957017,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -11803,7 +11803,7 @@ const realFuelStations = [
     "longitude": 11.563785,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.669
     }
   },
@@ -11827,8 +11827,8 @@ const realFuelStations = [
     "latitude": 43.5250963890605,
     "longitude": 11.569647618385261,
     "prices": {
-      "Benzina": 1.734,
-      "Gasolio": 1.694
+      "Benzina": 1.719,
+      "Gasolio": 1.679
     }
   },
   {
@@ -11912,7 +11912,7 @@ const realFuelStations = [
     "longitude": 12.051442451775069,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -12225,7 +12225,7 @@ const realFuelStations = [
     "longitude": 11.58597323278212,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -12578,8 +12578,8 @@ const realFuelStations = [
     "latitude": 44.95273374153334,
     "longitude": 8.223065844808616,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.669,
+      "Benzina": 1.699,
+      "Gasolio": 1.679,
       "GPL": 0.629
     }
   },
@@ -12776,8 +12776,8 @@ const realFuelStations = [
     "latitude": 44.906858577535196,
     "longitude": 8.261507497485635,
     "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.625
+      "Benzina": 1.655,
+      "Gasolio": 1.645
     }
   },
   {
@@ -13083,9 +13083,8 @@ const realFuelStations = [
     "latitude": 45.039576,
     "longitude": 8.031861,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.649,
-      "GPL": 0.649
+      "Benzina": 1.799,
+      "Gasolio": 1.749
     }
   },
   {
@@ -13399,8 +13398,8 @@ const realFuelStations = [
     "latitude": 44.761442520825746,
     "longitude": 8.352353474865737,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Benzina": 1.745,
+      "Gasolio": 1.725
     }
   },
   {
@@ -13448,7 +13447,7 @@ const realFuelStations = [
     "longitude": 8.37024940207686,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.719
     }
   },
@@ -13584,7 +13583,7 @@ const realFuelStations = [
     "longitude": 7.931611239910126,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -15381,8 +15380,8 @@ const realFuelStations = [
     "latitude": 40.82230787546919,
     "longitude": 14.804164320230484,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.649
+      "Benzina": 1.729,
+      "Gasolio": 1.659
     }
   },
   {
@@ -15419,7 +15418,7 @@ const realFuelStations = [
     "longitude": 14.64758,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.639
+      "Gasolio": 1.659
     }
   },
   {
@@ -15818,7 +15817,7 @@ const realFuelStations = [
     "longitude": 14.87045340736075,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.689
+      "Gasolio": 1.669
     }
   },
   {
@@ -16058,7 +16057,7 @@ const realFuelStations = [
     "longitude": 15.31485556812288,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.799,
+      "Gasolio": 1.798,
       "GPL": 0.809
     }
   },
@@ -16366,7 +16365,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.729,
       "Gasolio": 1.689,
-      "Metano": 1.455,
+      "Metano": 1.388,
       "GPL": 0.659
     }
   },
@@ -16416,19 +16415,7 @@ const realFuelStations = [
     "longitude": 17.240994773016382,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
-    }
-  },
-  {
-    "id": 53240,
-    "name": "SIMEONE CARBURANTI S.R.L.",
-    "brand": "Simeone Carburanti",
-    "address": "Via Indipendenza 45  70011, ALBEROBELLO",
-    "latitude": 41.6323427,
-    "longitude": 12.5407923,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.679
+      "Gasolio": 1.699
     }
   },
   {
@@ -17474,7 +17461,7 @@ const realFuelStations = [
     "longitude": 16.846220431352208,
     "prices": {
       "Benzina": 1.99,
-      "Gasolio": 1.93
+      "Gasolio": 1.95
     }
   },
   {
@@ -17866,7 +17853,7 @@ const realFuelStations = [
     "longitude": 16.68875277042389,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.679
     }
   },
@@ -18315,8 +18302,8 @@ const realFuelStations = [
     "latitude": 41.02198155135311,
     "longitude": 16.919964072422022,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.724
+      "Benzina": 1.779,
+      "Gasolio": 1.719
     }
   },
   {
@@ -18340,7 +18327,7 @@ const realFuelStations = [
     "longitude": 17.133551259182127,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.569,
       "GPL": 0.669
     }
@@ -18354,7 +18341,7 @@ const realFuelStations = [
     "longitude": 17.090719414020555,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.669
     }
   },
@@ -18723,8 +18710,8 @@ const realFuelStations = [
     "latitude": 40.75874101278343,
     "longitude": 16.95606306195259,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.669,
+      "Benzina": 1.779,
+      "Gasolio": 1.689,
       "GPL": 0.629
     }
   },
@@ -19348,8 +19335,8 @@ const realFuelStations = [
     "latitude": 41.047925257958234,
     "longitude": 17.069223812161276,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Benzina": 1.789,
+      "Gasolio": 1.699
     }
   },
   {
@@ -19495,7 +19482,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.769,
       "Gasolio": 1.699,
-      "GPL": 0.669
+      "GPL": 0.679
     }
   },
   {
@@ -19519,7 +19506,7 @@ const realFuelStations = [
     "longitude": 17.27861277759075,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -19556,7 +19543,7 @@ const realFuelStations = [
     "longitude": 17.322014272212982,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.709,
+      "Gasolio": 1.719,
       "GPL": 0.689
     }
   },
@@ -19631,7 +19618,7 @@ const realFuelStations = [
     "longitude": 17.289878726005554,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -19669,7 +19656,7 @@ const realFuelStations = [
     "longitude": 17.30521023273468,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -19756,18 +19743,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.719,
       "Gasolio": 1.679
-    }
-  },
-  {
-    "id": 53242,
-    "name": "SIMEONE CARBURANTI S.R.L.",
-    "brand": "Simeone Carburanti",
-    "address": "Via Mottola 28  70015, NOCI",
-    "latitude": 41.6323427,
-    "longitude": 12.5407923,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659
     }
   },
   {
@@ -20658,7 +20633,7 @@ const realFuelStations = [
     "longitude": 17.016207575798035,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.659
+      "Gasolio": 1.679
     }
   },
   {
@@ -20964,7 +20939,7 @@ const realFuelStations = [
     "longitude": 9.71975281834602,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -21025,7 +21000,7 @@ const realFuelStations = [
     "longitude": 9.806046187877655,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.619
     }
   },
@@ -21086,8 +21061,8 @@ const realFuelStations = [
     "latitude": 45.655,
     "longitude": 9.78579,
     "prices": {
-      "Benzina": 1.746,
-      "Gasolio": 1.706
+      "Benzina": 1.766,
+      "Gasolio": 1.726
     }
   },
   {
@@ -21547,7 +21522,7 @@ const realFuelStations = [
     "longitude": 9.680532855819694,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -22106,7 +22081,7 @@ const realFuelStations = [
     "latitude": 45.804508689636734,
     "longitude": 9.865437613492132,
     "prices": {
-      "Benzina": 1.699,
+      "Benzina": 1.739,
       "Gasolio": 1.699
     }
   },
@@ -22299,7 +22274,7 @@ const realFuelStations = [
     "longitude": 9.9364149570465,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -22322,8 +22297,8 @@ const realFuelStations = [
     "latitude": 45.88296121090746,
     "longitude": 9.960627257823944,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.669,
+      "Benzina": 1.689,
+      "Gasolio": 1.679,
       "Metano": 1.399,
       "GPL": 0.699
     }
@@ -22448,7 +22423,7 @@ const realFuelStations = [
     "longitude": 10.088643,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -22460,7 +22435,7 @@ const realFuelStations = [
     "longitude": 10.08857164418032,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -22766,7 +22741,7 @@ const realFuelStations = [
     "longitude": 9.812741195106502,
     "prices": {
       "Benzina": 1.685,
-      "Gasolio": 1.66,
+      "Gasolio": 1.665,
       "Metano": 1.295,
       "GPL": 0.615
     }
@@ -22780,7 +22755,7 @@ const realFuelStations = [
     "longitude": 9.919376894831657,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -23794,7 +23769,7 @@ const realFuelStations = [
     "longitude": 9.657264,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -24598,8 +24573,8 @@ const realFuelStations = [
     "latitude": 45.73357968768735,
     "longitude": 9.907804736240223,
     "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.629,
+      "Benzina": 1.659,
+      "Gasolio": 1.639,
       "Metano": 1.249,
       "GPL": 0.659
     }
@@ -25012,8 +24987,8 @@ const realFuelStations = [
     "latitude": 45.553006076305905,
     "longitude": 8.054051399230957,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -25109,7 +25084,7 @@ const realFuelStations = [
     "latitude": 45.401193607328736,
     "longitude": 8.09191346168518,
     "prices": {
-      "Benzina": 1.737,
+      "Benzina": 1.757,
       "Gasolio": 1.697
     }
   },
@@ -25681,7 +25656,7 @@ const realFuelStations = [
     "longitude": 12.0339501971672,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.757
+      "Gasolio": 1.767
     }
   },
   {
@@ -25729,8 +25704,7 @@ const realFuelStations = [
     "latitude": 45.983434,
     "longitude": 11.756808,
     "prices": {
-      "Benzina": 1.657,
-      "Gasolio": 1.657
+      "Benzina": 1.657
     }
   },
   {
@@ -26035,7 +26009,7 @@ const realFuelStations = [
     "longitude": 12.00549213587692,
     "prices": {
       "Benzina": 1.725,
-      "Gasolio": 1.707
+      "Gasolio": 1.717
     }
   },
   {
@@ -26047,7 +26021,7 @@ const realFuelStations = [
     "longitude": 12.13854,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.707
+      "Gasolio": 1.717
     }
   },
   {
@@ -27548,7 +27522,7 @@ const realFuelStations = [
     "latitude": 41.12785524428932,
     "longitude": 14.64588714847946,
     "prices": {
-      "Benzina": 1.678,
+      "Benzina": 1.691,
       "Gasolio": 0.92
     }
   },
@@ -27731,8 +27705,8 @@ const realFuelStations = [
     "latitude": 41.32792050751345,
     "longitude": 14.516002535820007,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.688
+      "Benzina": 1.769,
+      "Gasolio": 1.699
     }
   },
   {
@@ -28331,7 +28305,7 @@ const realFuelStations = [
     "longitude": 14.444935,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.669
+      "Gasolio": 1.699
     }
   },
   {
@@ -28367,7 +28341,7 @@ const realFuelStations = [
     "longitude": 14.854180812835693,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.669
+      "Gasolio": 1.699
     }
   },
   {
@@ -28909,7 +28883,7 @@ const realFuelStations = [
     "longitude": 11.375848816106862,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.704,
+      "Gasolio": 1.714,
       "Metano": 1.09
     }
   },
@@ -29564,7 +29538,7 @@ const realFuelStations = [
     "longitude": 11.392531581223011,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -29624,7 +29598,7 @@ const realFuelStations = [
     "longitude": 11.35848927116399,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.709
+      "Gasolio": 1.699
     }
   },
   {
@@ -29660,7 +29634,7 @@ const realFuelStations = [
     "longitude": 11.35657906284333,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.699
     }
   },
   {
@@ -31745,7 +31719,7 @@ const realFuelStations = [
     "longitude": 11.671614423394203,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.759
+      "Gasolio": 1.769
     }
   },
   {
@@ -32213,7 +32187,7 @@ const realFuelStations = [
     "longitude": 11.22812686696243,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.199,
       "GPL": 0.659
     }
@@ -32512,7 +32486,7 @@ const realFuelStations = [
     "longitude": 11.24838140422411,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -32871,7 +32845,7 @@ const realFuelStations = [
     "longitude": 17.945422,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -33125,7 +33099,7 @@ const realFuelStations = [
     "latitude": 40.627031062279286,
     "longitude": 17.94731229543686,
     "prices": {
-      "Benzina": 1.759,
+      "Benzina": 1.769,
       "Gasolio": 1.699,
       "GPL": 0.699
     }
@@ -33201,7 +33175,7 @@ const realFuelStations = [
     "longitude": 17.907161535830568,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -33982,7 +33956,7 @@ const realFuelStations = [
     "latitude": 40.546624913859475,
     "longitude": 17.71492962021483,
     "prices": {
-      "Benzina": 1.766,
+      "Benzina": 1.776,
       "Gasolio": 1.706,
       "GPL": 0.699
     }
@@ -34557,7 +34531,7 @@ const realFuelStations = [
     "longitude": 18.012489377267116,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "GPL": 0.629
     }
   },
@@ -34815,7 +34789,7 @@ const realFuelStations = [
     "longitude": 17.479443703621445,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.659
+      "Gasolio": 1.679
     }
   },
   {
@@ -35152,8 +35126,8 @@ const realFuelStations = [
     "latitude": 45.93058174445098,
     "longitude": 10.271250614155633,
     "prices": {
-      "Benzina": 1.799,
-      "Gasolio": 1.789
+      "Benzina": 1.769,
+      "Gasolio": 1.759
     }
   },
   {
@@ -35556,7 +35530,7 @@ const realFuelStations = [
     "longitude": 10.252656223278791,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -35888,8 +35862,8 @@ const realFuelStations = [
     "latitude": 45.53099660729657,
     "longitude": 10.199764966964722,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -36040,7 +36014,7 @@ const realFuelStations = [
     "longitude": 10.2380808315908,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -36518,8 +36492,8 @@ const realFuelStations = [
     "latitude": 45.49708643319849,
     "longitude": 10.160425115466296,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.719
+      "Benzina": 1.759,
+      "Gasolio": 1.709
     }
   },
   {
@@ -36861,7 +36835,7 @@ const realFuelStations = [
     "longitude": 9.922984,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.619
     }
   },
@@ -36973,6 +36947,19 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.629
+    }
+  },
+  {
+    "id": 11208,
+    "name": "F.LLI PEZZONI S.N.C. DI PEZZONI RIENZO E EMILIANO",
+    "brand": "Esso",
+    "address": "Via Brescia   25033, COLOGNE",
+    "latitude": 45.582375199824725,
+    "longitude": 9.924312890216243,
+    "prices": {
+      "Benzina": 1.679,
+      "Gasolio": 1.659,
+      "Metano": 1.189
     }
   },
   {
@@ -37130,7 +37117,7 @@ const realFuelStations = [
     "longitude": 10.095415486425736,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.199,
       "GPL": 0.669
     }
@@ -37573,7 +37560,7 @@ const realFuelStations = [
     "longitude": 10.35798579454422,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.679
     }
   },
@@ -37696,7 +37683,7 @@ const realFuelStations = [
     "longitude": 10.437278,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -37757,7 +37744,7 @@ const realFuelStations = [
     "longitude": 10.2609632355719,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -37978,7 +37965,7 @@ const realFuelStations = [
     "longitude": 10.207785160713229,
     "prices": {
       "Benzina": 1.715,
-      "Gasolio": 1.729
+      "Gasolio": 1.709
     }
   },
   {
@@ -38064,7 +38051,7 @@ const realFuelStations = [
     "longitude": 10.790424,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -38322,7 +38309,7 @@ const realFuelStations = [
     "longitude": 10.23897776062629,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.639,
+      "Gasolio": 1.649,
       "Metano": 0.01,
       "GPL": 0.01
     }
@@ -38419,7 +38406,7 @@ const realFuelStations = [
     "longitude": 10.549834857842901,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.739
+      "Gasolio": 1.749
     }
   },
   {
@@ -38592,7 +38579,7 @@ const realFuelStations = [
     "longitude": 10.17711,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.659
     }
   },
@@ -38952,7 +38939,7 @@ const realFuelStations = [
     "longitude": 10.371534303427097,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.719
     }
   },
   {
@@ -39883,7 +39870,7 @@ const realFuelStations = [
     "longitude": 10.330750644207,
     "prices": {
       "Benzina": 1.649,
-      "Gasolio": 1.659
+      "Gasolio": 1.649
     }
   },
   {
@@ -40049,7 +40036,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.849,
       "Gasolio": 1.829,
-      "Metano": 1.449,
+      "Metano": 1.369,
       "GPL": 0.899
     }
   },
@@ -40124,7 +40111,7 @@ const realFuelStations = [
     "latitude": 45.55522940748735,
     "longitude": 10.012082945007364,
     "prices": {
-      "Benzina": 1.756,
+      "Benzina": 1.766,
       "Gasolio": 1.746,
       "Metano": 1.207
     }
@@ -40163,7 +40150,7 @@ const realFuelStations = [
     "longitude": 10.016630866339542,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.619
     }
   },
@@ -40626,8 +40613,8 @@ const realFuelStations = [
     "latitude": 45.6623,
     "longitude": 10.64344,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.679
+      "Benzina": 1.699,
+      "Gasolio": 1.709
     }
   },
   {
@@ -40747,8 +40734,8 @@ const realFuelStations = [
     "latitude": 45.60973405411735,
     "longitude": 10.40378250181675,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.709,
+      "Gasolio": 1.689
     }
   },
   {
@@ -40848,7 +40835,7 @@ const realFuelStations = [
     "longitude": 10.387896657818517,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -41328,8 +41315,8 @@ const realFuelStations = [
     "latitude": 41.3027527,
     "longitude": 16.2835675,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.629,
+      "Benzina": 1.689,
+      "Gasolio": 1.649,
       "GPL": 0.569
     }
   },
@@ -42391,7 +42378,7 @@ const realFuelStations = [
     "longitude": 11.316667646169662,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.737
+      "Gasolio": 1.747
     }
   },
   {
@@ -42724,7 +42711,7 @@ const realFuelStations = [
     "longitude": 11.26563,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.729,
+      "Gasolio": 1.739,
       "GPL": 0.789
     }
   },
@@ -43667,8 +43654,8 @@ const realFuelStations = [
     "latitude": 46.239741934930144,
     "longitude": 11.20676043121339,
     "prices": {
-      "Benzina": 1.779,
-      "Gasolio": 1.737
+      "Benzina": 1.789,
+      "Gasolio": 1.747
     }
   },
   {
@@ -43912,7 +43899,7 @@ const realFuelStations = [
     "latitude": 46.563861844399305,
     "longitude": 11.21428370475769,
     "prices": {
-      "Benzina": 1.759,
+      "Benzina": 1.739,
       "Gasolio": 1.709
     }
   },
@@ -43973,7 +43960,7 @@ const realFuelStations = [
     "longitude": 11.376895308494568,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -44094,8 +44081,8 @@ const realFuelStations = [
     "latitude": 46.729677760983805,
     "longitude": 11.642483584390106,
     "prices": {
-      "Benzina": 1.777,
-      "Gasolio": 1.747
+      "Benzina": 1.774,
+      "Gasolio": 1.744
     }
   },
   {
@@ -44555,7 +44542,7 @@ const realFuelStations = [
     "longitude": 9.120564758777618,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -44808,7 +44795,7 @@ const realFuelStations = [
     "longitude": 9.122870469298958,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -44820,7 +44807,7 @@ const realFuelStations = [
     "longitude": 9.137261,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -44832,7 +44819,7 @@ const realFuelStations = [
     "longitude": 9.101278,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -44929,7 +44916,7 @@ const realFuelStations = [
     "longitude": 9.07204329352014,
     "prices": {
       "Benzina": 1.737,
-      "Gasolio": 1.709,
+      "Gasolio": 1.719,
       "GPL": 0.759
     }
   },
@@ -45014,7 +45001,7 @@ const realFuelStations = [
     "longitude": 9.136482566574673,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -45182,7 +45169,7 @@ const realFuelStations = [
     "longitude": 9.18013075369994,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -45194,7 +45181,7 @@ const realFuelStations = [
     "longitude": 9.152912117397273,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -45266,7 +45253,7 @@ const realFuelStations = [
     "longitude": 9.240429334934156,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.799
     }
   },
@@ -45339,7 +45326,7 @@ const realFuelStations = [
     "longitude": 9.317337,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -45471,7 +45458,7 @@ const realFuelStations = [
     "latitude": 39.26220989999999,
     "longitude": 9.1774276,
     "prices": {
-      "Benzina": 1.617,
+      "Benzina": 1.627,
       "Gasolio": 1.643
     }
   },
@@ -45617,7 +45604,7 @@ const realFuelStations = [
     "longitude": 9.1822,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -45929,7 +45916,7 @@ const realFuelStations = [
     "longitude": 14.657600373029709,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -45941,7 +45928,7 @@ const realFuelStations = [
     "longitude": 14.681486763002725,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -45953,7 +45940,7 @@ const realFuelStations = [
     "longitude": 14.638111527726684,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -45977,7 +45964,7 @@ const realFuelStations = [
     "longitude": 14.69140599012826,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -46061,7 +46048,7 @@ const realFuelStations = [
     "longitude": 14.617770896622819,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.749
     }
   },
@@ -46183,7 +46170,7 @@ const realFuelStations = [
     "longitude": 14.5166722,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.699
     }
   },
@@ -46318,7 +46305,7 @@ const realFuelStations = [
     "longitude": 14.93206645105056,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -46366,7 +46353,7 @@ const realFuelStations = [
     "longitude": 14.79929085434152,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -46600,7 +46587,7 @@ const realFuelStations = [
     "longitude": 15.00953,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -47311,7 +47298,7 @@ const realFuelStations = [
     "longitude": 14.2116818,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.629
+      "Gasolio": 1.619
     }
   },
   {
@@ -47554,9 +47541,9 @@ const realFuelStations = [
     "latitude": 41.0342824,
     "longitude": 14.0576644,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679,
-      "GPL": 0.639
+      "Benzina": 1.719,
+      "Gasolio": 1.699,
+      "GPL": 0.619
     }
   },
   {
@@ -47963,7 +47950,7 @@ const realFuelStations = [
     "longitude": 14.132854342460632,
     "prices": {
       "Benzina": 1.675,
-      "Gasolio": 1.655
+      "Gasolio": 1.675
     }
   },
   {
@@ -48025,7 +48012,7 @@ const realFuelStations = [
     "longitude": 14.136884414608971,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -48171,7 +48158,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.709,
       "Gasolio": 1.699,
-      "Metano": 1.349
+      "Metano": 1.299
     }
   },
   {
@@ -48195,7 +48182,7 @@ const realFuelStations = [
     "longitude": 14.341291,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.719
+      "Gasolio": 1.699
     }
   },
   {
@@ -49027,19 +49014,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 57529,
-    "name": "SWEET FRUIT S.A.S. DI PATRIZIA DI NARDO & C.",
-    "brand": "Pompe Bianche",
-    "address": "Via Campana SNC 81030, LUSCIANO",
-    "latitude": 40.961741896467615,
-    "longitude": 14.183463446235658,
-    "prices": {
-      "Benzina": 1.656,
-      "Gasolio": 1.566,
-      "GPL": 0.595
-    }
-  },
-  {
     "id": 28197,
     "name": "DELTA PETROLI S.R.L.",
     "brand": "Pompe Bianche",
@@ -49148,7 +49122,7 @@ const realFuelStations = [
     "longitude": 14.393263310194016,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.359,
       "GPL": 0.629
     }
@@ -49913,8 +49887,8 @@ const realFuelStations = [
     "latitude": 41.18433864424439,
     "longitude": 14.166934490203857,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.649
+      "Benzina": 1.689,
+      "Gasolio": 1.659
     }
   },
   {
@@ -50033,7 +50007,7 @@ const realFuelStations = [
     "latitude": 41.357457867639894,
     "longitude": 14.220393598079681,
     "prices": {
-      "Benzina": 1.679,
+      "Benzina": 1.669,
       "Gasolio": 1.629
     }
   },
@@ -50614,19 +50588,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 29981,
-    "name": "PENTA PETROLI SRL",
-    "brand": "Pompe Bianche",
-    "address": "VIA GIOVANNI PAOLO 1Â° SNC 81055, SANTA MARIA CAPUA VETERE",
-    "latitude": 41.08839587883899,
-    "longitude": 14.265140891075134,
-    "prices": {
-      "Benzina": 1.648,
-      "Gasolio": 1.579,
-      "GPL": 0.598
-    }
-  },
-  {
     "id": 14923,
     "name": "TRAGEN S.R.L.",
     "brand": "Gaffoil",
@@ -51041,9 +51002,9 @@ const realFuelStations = [
     "latitude": 41.23445786695943,
     "longitude": 14.09402690617823,
     "prices": {
-      "Benzina": 1.809,
-      "Gasolio": 1.749,
-      "GPL": 0.869
+      "Benzina": 1.859,
+      "Gasolio": 1.839,
+      "GPL": 0.819
     }
   },
   {
@@ -51421,7 +51382,7 @@ const realFuelStations = [
     "longitude": 14.084135052975064,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.659
+      "Gasolio": 1.679
     }
   },
   {
@@ -51458,8 +51419,8 @@ const realFuelStations = [
     "latitude": 41.00860854211574,
     "longitude": 14.080116383498876,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Benzina": 1.749,
+      "Gasolio": 1.729
     }
   },
   {
@@ -51506,8 +51467,8 @@ const realFuelStations = [
     "latitude": 41.122573781815106,
     "longitude": 14.199574291706085,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.659,
+      "Benzina": 1.739,
+      "Gasolio": 1.679,
       "GPL": 0.629
     }
   },
@@ -51568,7 +51529,7 @@ const realFuelStations = [
     "longitude": 14.2534562,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -51801,7 +51762,7 @@ const realFuelStations = [
     "longitude": 14.12823,
     "prices": {
       "Benzina": 1.687,
-      "Gasolio": 1.677
+      "Gasolio": 1.667
     }
   },
   {
@@ -51875,7 +51836,7 @@ const realFuelStations = [
     "longitude": 14.45283199,
     "prices": {
       "Benzina": 1.809,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -52197,7 +52158,7 @@ const realFuelStations = [
     "longitude": 14.169800425474936,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -52209,7 +52170,7 @@ const realFuelStations = [
     "longitude": 14.140600949243147,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -52221,7 +52182,7 @@ const realFuelStations = [
     "longitude": 14.1627523,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -52417,7 +52378,7 @@ const realFuelStations = [
     "longitude": 14.28291454911232,
     "prices": {
       "Benzina": 1.697,
-      "Gasolio": 1.677
+      "Gasolio": 1.687
     }
   },
   {
@@ -52538,7 +52499,7 @@ const realFuelStations = [
     "longitude": 14.590668118665615,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -52598,8 +52559,8 @@ const realFuelStations = [
     "latitude": 42.1910579,
     "longitude": 14.2585172,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Benzina": 1.749,
+      "Gasolio": 1.709
     }
   },
   {
@@ -52662,7 +52623,7 @@ const realFuelStations = [
     "longitude": 14.386967037549871,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.739
+      "Gasolio": 1.749
     }
   },
   {
@@ -52981,7 +52942,7 @@ const realFuelStations = [
     "longitude": 14.4027338,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -53247,7 +53208,7 @@ const realFuelStations = [
     "longitude": 14.193117,
     "prices": {
       "Benzina": 1.707,
-      "Gasolio": 1.697
+      "Gasolio": 1.707
     }
   },
   {
@@ -53419,7 +53380,7 @@ const realFuelStations = [
     "longitude": 14.441496,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -53541,8 +53502,8 @@ const realFuelStations = [
     "longitude": 14.562347186326482,
     "prices": {
       "Benzina": 1.778,
-      "Gasolio": 1.699,
-      "GPL": 0.799
+      "Gasolio": 1.779,
+      "GPL": 0.779
     }
   },
   {
@@ -53678,7 +53639,7 @@ const realFuelStations = [
     "longitude": 14.705871,
     "prices": {
       "Benzina": 1.728,
-      "Gasolio": 1.698
+      "Gasolio": 1.708
     }
   },
   {
@@ -53715,7 +53676,7 @@ const realFuelStations = [
     "longitude": 14.700513035058975,
     "prices": {
       "Benzina": 1.738,
-      "Gasolio": 1.718,
+      "Gasolio": 1.698,
       "GPL": 0.658
     }
   },
@@ -54389,7 +54350,7 @@ const realFuelStations = [
     "longitude": 14.256559411639387,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.589
+      "Gasolio": 1.594
     }
   },
   {
@@ -54500,7 +54461,7 @@ const realFuelStations = [
     "longitude": 14.201946705579758,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -54512,7 +54473,7 @@ const realFuelStations = [
     "longitude": 14.2047407,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -54632,7 +54593,7 @@ const realFuelStations = [
     "latitude": 37.14636192277266,
     "longitude": 14.391184598207474,
     "prices": {
-      "Benzina": 1.729,
+      "Benzina": 1.739,
       "Gasolio": 1.689
     }
   },
@@ -56481,8 +56442,8 @@ const realFuelStations = [
     "latitude": 44.31608175866428,
     "longitude": 7.305584663368222,
     "prices": {
-      "Benzina": 1.647,
-      "Gasolio": 1.637
+      "Benzina": 1.657,
+      "Gasolio": 1.657
     }
   },
   {
@@ -57125,7 +57086,7 @@ const realFuelStations = [
     "longitude": 7.806840937959287,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -57138,18 +57099,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.749,
       "Gasolio": 1.719
-    }
-  },
-  {
-    "id": 57904,
-    "name": "PEPENERO COFFEE SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
-    "brand": "Api-Ip",
-    "address": "TORINO 44/D 12084, MONDOVÃ",
-    "latitude": 44.4035845,
-    "longitude": 7.8135461,
-    "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.645
     }
   },
   {
@@ -57646,8 +57595,8 @@ const realFuelStations = [
     "latitude": 44.484824266825115,
     "longitude": 7.0663953181729084,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.719
+      "Benzina": 1.769,
+      "Gasolio": 1.759
     }
   },
   {
@@ -58680,7 +58629,7 @@ const realFuelStations = [
     "longitude": 8.984046429395676,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -60309,7 +60258,7 @@ const realFuelStations = [
     "longitude": 10.436362,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.669
     }
   },
@@ -60384,7 +60333,7 @@ const realFuelStations = [
     "longitude": 9.969208,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.649
     }
   },
@@ -60397,7 +60346,7 @@ const realFuelStations = [
     "longitude": 9.99252744019031,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "GPL": 0.639
     }
   },
@@ -60754,7 +60703,7 @@ const realFuelStations = [
     "longitude": 10.010285069940563,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.659
+      "Gasolio": 1.649
     }
   },
   {
@@ -61391,7 +61340,7 @@ const realFuelStations = [
     "longitude": 10.0481637360951,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -61560,7 +61509,7 @@ const realFuelStations = [
     "longitude": 9.533605873675333,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.619
     }
   },
@@ -63781,7 +63730,7 @@ const realFuelStations = [
     "longitude": 16.2402055,
     "prices": {
       "Benzina": 1.728,
-      "Gasolio": 1.698,
+      "Gasolio": 1.708,
       "Metano": 1.448
     }
   },
@@ -64049,7 +63998,7 @@ const realFuelStations = [
     "longitude": 16.84851586818695,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -64109,8 +64058,8 @@ const realFuelStations = [
     "latitude": 39.33617159549471,
     "longitude": 16.24773263931274,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.709
+      "Benzina": 1.779,
+      "Gasolio": 1.719
     }
   },
   {
@@ -64755,7 +64704,7 @@ const realFuelStations = [
     "latitude": 39.82241028104219,
     "longitude": 15.781936835803094,
     "prices": {
-      "Benzina": 1.759,
+      "Benzina": 1.779,
       "Gasolio": 1.689,
       "GPL": 0.899
     }
@@ -65026,7 +64975,7 @@ const realFuelStations = [
     "longitude": 16.5381883084774,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -65678,8 +65627,8 @@ const realFuelStations = [
     "latitude": 37.661252487921885,
     "longitude": 14.836676716804504,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Benzina": 1.759,
+      "Gasolio": 1.699
     }
   },
   {
@@ -65726,8 +65675,8 @@ const realFuelStations = [
     "latitude": 37.63207150332036,
     "longitude": 14.95792127116394,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.639
+      "Benzina": 1.699,
+      "Gasolio": 1.649
     }
   },
   {
@@ -65764,7 +65713,7 @@ const realFuelStations = [
     "latitude": 37.54821340992433,
     "longitude": 14.948257952928543,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.729,
       "Gasolio": 1.699
     }
   },
@@ -67369,7 +67318,7 @@ const realFuelStations = [
     "latitude": 37.486664331852054,
     "longitude": 15.079631364417992,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.739,
       "Gasolio": 1.659
     }
   },
@@ -68192,7 +68141,7 @@ const realFuelStations = [
     "longitude": 14.4470129,
     "prices": {
       "Benzina": 1.849,
-      "Gasolio": 1.759
+      "Gasolio": 1.739
     }
   },
   {
@@ -68254,7 +68203,7 @@ const realFuelStations = [
     "longitude": 15.003494024276733,
     "prices": {
       "Benzina": 1.649,
-      "Gasolio": 1.629
+      "Gasolio": 1.639
     }
   },
   {
@@ -68454,8 +68403,8 @@ const realFuelStations = [
     "latitude": 37.52519001018309,
     "longitude": 14.99072541935569,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.629
+      "Benzina": 1.669,
+      "Gasolio": 1.649
     }
   },
   {
@@ -68466,8 +68415,8 @@ const realFuelStations = [
     "latitude": 37.47752300819607,
     "longitude": 14.988892173425285,
     "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.629,
+      "Benzina": 1.659,
+      "Gasolio": 1.639,
       "GPL": 0.749
     }
   },
@@ -68602,7 +68551,7 @@ const realFuelStations = [
     "longitude": 14.896058973989852,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.639
+      "Gasolio": 1.659
     }
   },
   {
@@ -68614,7 +68563,7 @@ const realFuelStations = [
     "longitude": 14.87449756871797,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.639
+      "Gasolio": 1.659
     }
   },
   {
@@ -69112,7 +69061,7 @@ const realFuelStations = [
     "longitude": 15.086534619331355,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -69661,7 +69610,7 @@ const realFuelStations = [
     "longitude": 15.083828866481781,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.629
+      "Gasolio": 1.639
     }
   },
   {
@@ -70721,8 +70670,8 @@ const realFuelStations = [
     "latitude": 38.966163516476826,
     "longitude": 16.310624331235886,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.659
+      "Benzina": 1.746,
+      "Gasolio": 1.695
     }
   },
   {
@@ -70818,8 +70767,8 @@ const realFuelStations = [
     "latitude": 38.93162224081038,
     "longitude": 16.286072107137198,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.667
+      "Benzina": 1.727,
+      "Gasolio": 1.687
     }
   },
   {
@@ -70842,8 +70791,8 @@ const realFuelStations = [
     "latitude": 38.95453199860109,
     "longitude": 16.33116475008149,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.667
+      "Benzina": 1.727,
+      "Gasolio": 1.687
     }
   },
   {
@@ -70854,8 +70803,8 @@ const realFuelStations = [
     "latitude": 38.96766336660897,
     "longitude": 16.322067975997925,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.667
+      "Benzina": 1.727,
+      "Gasolio": 1.687
     }
   },
   {
@@ -71015,7 +70964,7 @@ const realFuelStations = [
     "longitude": 16.253204941749573,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.709
+      "Gasolio": 1.699
     }
   },
   {
@@ -71256,8 +71205,8 @@ const realFuelStations = [
     "latitude": 38.941617938015575,
     "longitude": 16.37899249792099,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.667
+      "Benzina": 1.727,
+      "Gasolio": 1.687
     }
   },
   {
@@ -71486,8 +71435,8 @@ const realFuelStations = [
     "latitude": 38.86602293132195,
     "longitude": 16.685563018750294,
     "prices": {
-      "Benzina": 1.715,
-      "Gasolio": 1.695
+      "Benzina": 1.725,
+      "Gasolio": 1.705
     }
   },
   {
@@ -71644,8 +71593,8 @@ const realFuelStations = [
     "latitude": 38.892731755580236,
     "longitude": 16.55152827501297,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.709
+      "Benzina": 1.739,
+      "Gasolio": 1.719
     }
   },
   {
@@ -71829,7 +71778,7 @@ const realFuelStations = [
     "longitude": 14.740874914923552,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.639
+      "Gasolio": 1.649
     }
   },
   {
@@ -72620,8 +72569,7 @@ const realFuelStations = [
     "latitude": 44.18051563455803,
     "longitude": 12.296078254336635,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.709
+      "Benzina": 1.709
     }
   },
   {
@@ -73397,7 +73345,7 @@ const realFuelStations = [
     "latitude": 44.23404214440792,
     "longitude": 12.081286311149597,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.699,
       "Gasolio": 1.699,
       "Metano": 1.359
     }
@@ -73460,8 +73408,8 @@ const realFuelStations = [
     "latitude": 44.20767,
     "longitude": 12.075,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.669
+      "Benzina": 1.759,
+      "Gasolio": 1.699
     }
   },
   {
@@ -73557,7 +73505,7 @@ const realFuelStations = [
     "latitude": 44.215624645341286,
     "longitude": 12.082048058509827,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.699,
       "Gasolio": 1.699,
       "Metano": 1.379,
       "GPL": 0.629
@@ -73666,7 +73614,7 @@ const realFuelStations = [
     "latitude": 44.22969248626791,
     "longitude": 12.039509564638138,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.699,
       "Gasolio": 1.699
     }
   },
@@ -73928,8 +73876,8 @@ const realFuelStations = [
     "latitude": 44.07916223860338,
     "longitude": 12.328467965126038,
     "prices": {
-      "Benzina": 1.685,
-      "Gasolio": 1.692
+      "Benzina": 1.698,
+      "Gasolio": 1.699
     }
   },
   {
@@ -74779,8 +74727,8 @@ const realFuelStations = [
     "latitude": 44.898994601779805,
     "longitude": 12.10307353925208,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.679,
+      "Benzina": 1.699,
+      "Gasolio": 1.689,
       "GPL": 0.659
     }
   },
@@ -75246,7 +75194,7 @@ const realFuelStations = [
     "longitude": 11.8021093331511,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.619
     }
   },
@@ -75517,7 +75465,7 @@ const realFuelStations = [
     "longitude": 11.6301946760575,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.679
     }
   },
@@ -75710,8 +75658,8 @@ const realFuelStations = [
     "latitude": 44.88011856623546,
     "longitude": 11.570832944774565,
     "prices": {
-      "Benzina": 1.919,
-      "Gasolio": 1.829,
+      "Benzina": 1.909,
+      "Gasolio": 1.819,
       "Metano": 1.449,
       "GPL": 0.899
     }
@@ -75724,10 +75672,10 @@ const realFuelStations = [
     "latitude": 44.87888935837351,
     "longitude": 11.569385379552841,
     "prices": {
-      "Benzina": 1.839,
-      "Gasolio": 1.879,
-      "Metano": 1.499,
-      "GPL": 0.849
+      "Benzina": 1.859,
+      "Gasolio": 1.819,
+      "Metano": 1.449,
+      "GPL": 0.779
     }
   },
   {
@@ -76250,8 +76198,8 @@ const realFuelStations = [
     "latitude": 44.702023194218846,
     "longitude": 11.798067167401314,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.669
+      "Benzina": 1.649,
+      "Gasolio": 1.659
     }
   },
   {
@@ -76315,18 +76263,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.689,
       "Gasolio": 1.679
-    }
-  },
-  {
-    "id": 5653,
-    "name": "LORO F.LLI-S.P.A.",
-    "brand": "Loro",
-    "address": "PROVINCIALE 30 44033, RIVA DEL PO",
-    "latitude": 44.93601591901654,
-    "longitude": 11.76409363746643,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659
     }
   },
   {
@@ -78041,7 +77977,7 @@ const realFuelStations = [
     "longitude": 15.716967716639033,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.399,
       "GPL": 0.739
     }
@@ -78285,7 +78221,7 @@ const realFuelStations = [
     "longitude": 15.723082729530347,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.669,
+      "Gasolio": 1.679,
       "GPL": 0.649
     }
   },
@@ -78346,7 +78282,7 @@ const realFuelStations = [
     "longitude": 15.004657030040107,
     "prices": {
       "Benzina": 1.748,
-      "Gasolio": 1.688
+      "Gasolio": 1.708
     }
   },
   {
@@ -79106,7 +79042,7 @@ const realFuelStations = [
     "longitude": 11.238524188879346,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -79290,7 +79226,7 @@ const realFuelStations = [
     "longitude": 11.1789,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -79339,7 +79275,7 @@ const realFuelStations = [
     "longitude": 11.149255813598081,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -79387,7 +79323,7 @@ const realFuelStations = [
     "longitude": 11.160046798147619,
     "prices": {
       "Benzina": 1.839,
-      "Gasolio": 1.815
+      "Gasolio": 1.829
     }
   },
   {
@@ -79461,7 +79397,7 @@ const realFuelStations = [
     "longitude": 11.15587194794307,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -79872,8 +79808,8 @@ const realFuelStations = [
     "latitude": 43.71538523026813,
     "longitude": 10.921229351335725,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.729
+      "Benzina": 1.769,
+      "Gasolio": 1.739
     }
   },
   {
@@ -79897,7 +79833,7 @@ const realFuelStations = [
     "longitude": 10.9580004,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -79921,7 +79857,7 @@ const realFuelStations = [
     "longitude": 11.4778189,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -79992,7 +79928,7 @@ const realFuelStations = [
     "longitude": 11.45083435775226,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -80210,7 +80146,7 @@ const realFuelStations = [
     "longitude": 11.235237463788973,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -80465,7 +80401,7 @@ const realFuelStations = [
     "longitude": 11.214583989675656,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -80501,7 +80437,7 @@ const realFuelStations = [
     "longitude": 11.217565420797879,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -80513,7 +80449,7 @@ const realFuelStations = [
     "longitude": 11.298335546723518,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -80525,7 +80461,7 @@ const realFuelStations = [
     "longitude": 11.2970142,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -81031,7 +80967,7 @@ const realFuelStations = [
     "longitude": 11.2936456,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -81092,7 +81028,7 @@ const realFuelStations = [
     "longitude": 11.156173499336205,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -81190,7 +81126,7 @@ const realFuelStations = [
     "longitude": 11.2109398,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -81202,7 +81138,7 @@ const realFuelStations = [
     "longitude": 11.23783,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -81226,7 +81162,7 @@ const realFuelStations = [
     "longitude": 11.200690197829811,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -81285,7 +81221,7 @@ const realFuelStations = [
     "latitude": 43.95923366810547,
     "longitude": 11.365043967962265,
     "prices": {
-      "Benzina": 1.679,
+      "Benzina": 1.689,
       "Gasolio": 1.669
     }
   },
@@ -81561,7 +81497,7 @@ const realFuelStations = [
     "longitude": 11.314818,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -81688,7 +81624,7 @@ const realFuelStations = [
     "longitude": 11.119470377023218,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -81761,7 +81697,7 @@ const realFuelStations = [
     "longitude": 11.018605,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.729
+      "Gasolio": 1.739
     }
   },
   {
@@ -81785,7 +81721,7 @@ const realFuelStations = [
     "latitude": 43.72980170793105,
     "longitude": 11.017400845885277,
     "prices": {
-      "Benzina": 1.739,
+      "Benzina": 1.749,
       "Gasolio": 1.699
     }
   },
@@ -81932,8 +81868,8 @@ const realFuelStations = [
     "latitude": 43.64946028543757,
     "longitude": 11.464040279388428,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.719,
+      "Benzina": 1.769,
+      "Gasolio": 1.749,
       "GPL": 0.959
     }
   },
@@ -82360,7 +82296,7 @@ const realFuelStations = [
     "longitude": 11.1728166,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -82461,7 +82397,7 @@ const realFuelStations = [
     "longitude": 11.187481714421668,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -82521,7 +82457,7 @@ const realFuelStations = [
     "longitude": 11.101405620574951,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.399,
       "GPL": 0.649
     }
@@ -82747,7 +82683,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.689,
       "Gasolio": 1.649,
-      "Metano": 1.399,
+      "Metano": 1.299,
       "GPL": 0.698
     }
   },
@@ -82760,8 +82696,8 @@ const realFuelStations = [
     "longitude": 13.7285375,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.599,
-      "Metano": 1.399,
+      "Gasolio": 1.639,
+      "Metano": 1.359,
       "GPL": 0.698
     }
   },
@@ -82810,7 +82746,7 @@ const realFuelStations = [
     "longitude": 13.727488,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -82872,7 +82808,7 @@ const realFuelStations = [
     "longitude": 13.743078119604434,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.599,
+      "Gasolio": 1.639,
       "Metano": 1.379,
       "GPL": 0.699
     }
@@ -83023,8 +82959,8 @@ const realFuelStations = [
     "latitude": 43.206661017174596,
     "longitude": 13.646985384566316,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Benzina": 1.709,
+      "Gasolio": 1.679,
       "Metano": 1.329,
       "GPL": 0.699
     }
@@ -83051,7 +82987,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.639,
-      "Metano": 1.399
+      "Metano": 1.299
     }
   },
   {
@@ -83100,8 +83036,8 @@ const realFuelStations = [
     "latitude": 42.9461533164227,
     "longitude": 13.343578646167998,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.679
+      "Benzina": 1.739,
+      "Gasolio": 1.699
     }
   },
   {
@@ -83162,7 +83098,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.689,
       "Gasolio": 1.649,
-      "Metano": 1.399,
+      "Metano": 1.359,
       "GPL": 0.729
     }
   },
@@ -83175,7 +83111,7 @@ const realFuelStations = [
     "longitude": 13.579061329364777,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -83186,7 +83122,7 @@ const realFuelStations = [
     "latitude": 43.103916151500435,
     "longitude": 13.515884827647369,
     "prices": {
-      "Metano": 1.399
+      "Metano": 1.359
     }
   },
   {
@@ -83199,7 +83135,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.689,
       "Gasolio": 1.649,
-      "Metano": 1.399,
+      "Metano": 1.359,
       "GPL": 0.729
     }
   },
@@ -83344,8 +83280,8 @@ const realFuelStations = [
     "latitude": 43.0680933,
     "longitude": 13.6576531,
     "prices": {
-      "Benzina": 1.675,
-      "Gasolio": 1.615
+      "Benzina": 1.685,
+      "Gasolio": 1.655
     }
   },
   {
@@ -83369,7 +83305,7 @@ const realFuelStations = [
     "longitude": 13.791307392357751,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.649
+      "Gasolio": 1.659
     }
   },
   {
@@ -83417,7 +83353,7 @@ const realFuelStations = [
     "longitude": 13.795767724514008,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.629,
+      "Gasolio": 1.649,
       "GPL": 0.699
     }
   },
@@ -83455,7 +83391,7 @@ const realFuelStations = [
     "longitude": 13.745867611226899,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -83617,7 +83553,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.639,
-      "Metano": 1.399,
+      "Metano": 1.299,
       "GPL": 0.679
     }
   },
@@ -83766,7 +83702,7 @@ const realFuelStations = [
     "longitude": 13.20958100259304,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.599,
       "GPL": 0.649
     }
@@ -83853,7 +83789,7 @@ const realFuelStations = [
     "longitude": 13.322408199310297,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.709,
+      "Gasolio": 1.719,
       "GPL": 0.699
     }
   },
@@ -84622,8 +84558,8 @@ const realFuelStations = [
     "latitude": 41.67912111532926,
     "longitude": 13.526087701320648,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.649
+      "Benzina": 1.729,
+      "Gasolio": 1.699
     }
   },
   {
@@ -85092,7 +85028,7 @@ const realFuelStations = [
     "longitude": 13.230875730514526,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -85506,7 +85442,7 @@ const realFuelStations = [
     "longitude": 13.343667984008789,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Gasolio": 1.679,
       "GPL": 0.699
     }
   },
@@ -85775,8 +85711,8 @@ const realFuelStations = [
     "latitude": 41.6480504,
     "longitude": 13.2169291,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -86025,7 +85961,7 @@ const realFuelStations = [
     "longitude": 13.413556292653084,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -86097,7 +86033,7 @@ const realFuelStations = [
     "longitude": 13.680952361482014,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.639,
+      "Gasolio": 1.649,
       "GPL": 0.679
     }
   },
@@ -86134,7 +86070,7 @@ const realFuelStations = [
     "longitude": 13.626415729522705,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.639
+      "Gasolio": 1.649
     }
   },
   {
@@ -86231,7 +86167,7 @@ const realFuelStations = [
     "longitude": 13.646574541926384,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.649
+      "Gasolio": 1.669
     }
   },
   {
@@ -86380,7 +86316,7 @@ const realFuelStations = [
     "longitude": 13.933495241455836,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.599,
       "GPL": 0.699
     }
@@ -86970,8 +86906,8 @@ const realFuelStations = [
     "latitude": 44.402697,
     "longitude": 8.6853529,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.739
+      "Benzina": 1.739,
+      "Gasolio": 1.729
     }
   },
   {
@@ -87101,8 +87037,8 @@ const realFuelStations = [
     "latitude": 44.5345669,
     "longitude": 8.6985035,
     "prices": {
-      "Benzina": 1.819,
-      "Gasolio": 1.759
+      "Benzina": 1.829,
+      "Gasolio": 1.799
     }
   },
   {
@@ -87113,8 +87049,8 @@ const realFuelStations = [
     "latitude": 44.5345669,
     "longitude": 8.6985035,
     "prices": {
-      "Benzina": 1.779,
-      "Gasolio": 1.729,
+      "Benzina": 1.789,
+      "Gasolio": 1.739,
       "GPL": 0.869
     }
   },
@@ -87151,7 +87087,7 @@ const realFuelStations = [
     "longitude": 9.350263774394989,
     "prices": {
       "Benzina": 1.715,
-      "Gasolio": 1.635,
+      "Gasolio": 1.645,
       "GPL": 0.745
     }
   },
@@ -87331,7 +87267,7 @@ const realFuelStations = [
     "latitude": 44.38372437673726,
     "longitude": 8.637065714120808,
     "prices": {
-      "Benzina": 1.799,
+      "Benzina": 1.819,
       "Gasolio": 1.759
     }
   },
@@ -87885,8 +87821,8 @@ const realFuelStations = [
     "latitude": 44.39395913468768,
     "longitude": 9.000486267984002,
     "prices": {
-      "Benzina": 1.726,
-      "Gasolio": 1.686
+      "Benzina": 1.716,
+      "Gasolio": 1.676
     }
   },
   {
@@ -88712,8 +88648,8 @@ const realFuelStations = [
     "latitude": 44.39251464534096,
     "longitude": 9.04591217637062,
     "prices": {
-      "Benzina": 1.814,
-      "Gasolio": 1.789
+      "Benzina": 1.834,
+      "Gasolio": 1.804
     }
   },
   {
@@ -89529,7 +89465,7 @@ const realFuelStations = [
     "longitude": 9.414227083325386,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.779
+      "Gasolio": 1.799
     }
   },
   {
@@ -89853,7 +89789,7 @@ const realFuelStations = [
     "longitude": 13.387054,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -89876,8 +89812,8 @@ const realFuelStations = [
     "latitude": 45.68210552817908,
     "longitude": 13.40537969848151,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Benzina": 1.739,
+      "Gasolio": 1.729
     }
   },
   {
@@ -90519,7 +90455,7 @@ const realFuelStations = [
     "longitude": 10.776901245117188,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -90569,7 +90505,7 @@ const realFuelStations = [
     "longitude": 10.756118,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -90853,7 +90789,7 @@ const realFuelStations = [
     "longitude": 11.134345447560635,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -90865,7 +90801,7 @@ const realFuelStations = [
     "longitude": 11.1082305,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -90877,7 +90813,7 @@ const realFuelStations = [
     "longitude": 11.075946,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.749,
+      "Gasolio": 1.759,
       "GPL": 0.668
     }
   },
@@ -91177,7 +91113,7 @@ const realFuelStations = [
     "longitude": 11.111423726983617,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -91189,7 +91125,7 @@ const realFuelStations = [
     "longitude": 11.10641303865782,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -91324,7 +91260,7 @@ const realFuelStations = [
     "longitude": 10.884283,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -91751,7 +91687,7 @@ const realFuelStations = [
     "longitude": 10.806527,
     "prices": {
       "Benzina": 1.708,
-      "Gasolio": 1.698
+      "Gasolio": 1.708
     }
   },
   {
@@ -92731,7 +92667,7 @@ const realFuelStations = [
     "longitude": 14.400723640884392,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -92755,7 +92691,7 @@ const realFuelStations = [
     "longitude": 14.300606179308529,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -93181,7 +93117,7 @@ const realFuelStations = [
     "longitude": 14.050366,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -93497,8 +93433,8 @@ const realFuelStations = [
     "latitude": 39.08243423538982,
     "longitude": 17.11817625325942,
     "prices": {
-      "Benzina": 1.738,
-      "Gasolio": 1.708
+      "Benzina": 1.758,
+      "Gasolio": 1.728
     }
   },
   {
@@ -93510,7 +93446,7 @@ const realFuelStations = [
     "longitude": 17.091883420944214,
     "prices": {
       "Benzina": 1.747,
-      "Gasolio": 1.697,
+      "Gasolio": 1.707,
       "Metano": 1.997,
       "GPL": 0.737
     }
@@ -93523,8 +93459,8 @@ const realFuelStations = [
     "latitude": 39.124234234712986,
     "longitude": 17.092623710632324,
     "prices": {
-      "Benzina": 1.747,
-      "Gasolio": 1.717
+      "Benzina": 1.757,
+      "Gasolio": 1.727
     }
   },
   {
@@ -93535,8 +93471,8 @@ const realFuelStations = [
     "latitude": 39.06439700747129,
     "longitude": 17.108346223831173,
     "prices": {
-      "Benzina": 1.747,
-      "Gasolio": 1.707
+      "Benzina": 1.757,
+      "Gasolio": 1.727
     }
   },
   {
@@ -94058,7 +93994,7 @@ const realFuelStations = [
     "latitude": 45.68507083609216,
     "longitude": 9.398703128099442,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.769,
       "Gasolio": 1.719,
       "GPL": 0.718
     }
@@ -94586,8 +94522,8 @@ const realFuelStations = [
     "latitude": 45.69026250884287,
     "longitude": 9.412855803966522,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -94802,8 +94738,8 @@ const realFuelStations = [
     "latitude": 45.67559503006115,
     "longitude": 9.445802944499974,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -95010,7 +94946,7 @@ const realFuelStations = [
     "longitude": 18.062141686677933,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.639
+      "Gasolio": 1.659
     }
   },
   {
@@ -95439,7 +95375,7 @@ const realFuelStations = [
     "longitude": 18.18232105026243,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.599
     }
   },
@@ -95771,7 +95707,7 @@ const realFuelStations = [
     "latitude": 40.27831540854594,
     "longitude": 18.060622513302512,
     "prices": {
-      "Benzina": 1.709,
+      "Benzina": 1.719,
       "Gasolio": 1.659
     }
   },
@@ -96186,7 +96122,7 @@ const realFuelStations = [
     "longitude": 18.072040862045753,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -96300,7 +96236,7 @@ const realFuelStations = [
     "longitude": 17.99732342362404,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.659
+      "Gasolio": 1.649
     }
   },
   {
@@ -96986,7 +96922,7 @@ const realFuelStations = [
     "longitude": 18.153080642223358,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -97245,7 +97181,7 @@ const realFuelStations = [
     "longitude": 18.294025976721173,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -97953,8 +97889,8 @@ const realFuelStations = [
     "latitude": 40.39327721897248,
     "longitude": 18.0551927536726,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.659,
+      "Benzina": 1.769,
+      "Gasolio": 1.679,
       "GPL": 0.629
     }
   },
@@ -98824,7 +98760,7 @@ const realFuelStations = [
     "longitude": 18.111385703086853,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.649
+      "Gasolio": 1.659
     }
   },
   {
@@ -98860,7 +98796,7 @@ const realFuelStations = [
     "longitude": 18.191528900335676,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Gasolio": 1.689
     }
   },
   {
@@ -99777,7 +99713,7 @@ const realFuelStations = [
     "longitude": 10.589698353075846,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.714
+      "Gasolio": 1.724
     }
   },
   {
@@ -99813,8 +99749,8 @@ const realFuelStations = [
     "latitude": 43.02333341039866,
     "longitude": 10.608962774276733,
     "prices": {
-      "Benzina": 1.698,
-      "Gasolio": 1.689,
+      "Benzina": 1.688,
+      "Gasolio": 1.678,
       "GPL": 0.628
     }
   },
@@ -100170,7 +100106,7 @@ const realFuelStations = [
     "longitude": 10.5215975,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -100296,7 +100232,7 @@ const realFuelStations = [
     "longitude": 10.457131,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -100308,7 +100244,7 @@ const realFuelStations = [
     "longitude": 10.349479,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -100514,7 +100450,7 @@ const realFuelStations = [
     "longitude": 10.327694,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.669
     }
   },
@@ -100527,7 +100463,7 @@ const realFuelStations = [
     "longitude": 10.32158,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -100820,7 +100756,7 @@ const realFuelStations = [
     "longitude": 10.3264902,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -100881,7 +100817,7 @@ const realFuelStations = [
     "longitude": 10.3169224,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -100906,7 +100842,7 @@ const realFuelStations = [
     "longitude": 10.32476450674585,
     "prices": {
       "Benzina": 1.639,
-      "Gasolio": 1.644
+      "Gasolio": 1.649
     }
   },
   {
@@ -101014,7 +100950,7 @@ const realFuelStations = [
     "longitude": 10.530663,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.729
     }
   },
@@ -101160,7 +101096,7 @@ const realFuelStations = [
     "longitude": 10.317442579487874,
     "prices": {
       "Benzina": 1.789,
-      "Gasolio": 1.739
+      "Gasolio": 1.769
     }
   },
   {
@@ -101344,7 +101280,7 @@ const realFuelStations = [
     "longitude": 10.430068762726982,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -103137,7 +103073,7 @@ const realFuelStations = [
     "longitude": 13.41678500175476,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.719,
       "GPL": 0.659
     }
   },
@@ -103668,8 +103604,8 @@ const realFuelStations = [
     "latitude": 41.50937058510577,
     "longitude": 12.856117486953735,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Benzina": 1.689,
+      "Gasolio": 1.669
     }
   },
   {
@@ -103964,8 +103900,8 @@ const realFuelStations = [
     "latitude": 41.41378,
     "longitude": 12.97485,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -104530,8 +104466,8 @@ const realFuelStations = [
     "latitude": 41.39133682777247,
     "longitude": 13.152088522911072,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Benzina": 1.709,
+      "Gasolio": 1.689
     }
   },
   {
@@ -104725,8 +104661,8 @@ const realFuelStations = [
     "latitude": 41.506,
     "longitude": 13.24774,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.649,
+      "Benzina": 1.699,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -105214,7 +105150,7 @@ const realFuelStations = [
     "latitude": 41.41547941970788,
     "longitude": 13.242434710264206,
     "prices": {
-      "Benzina": 1.717,
+      "Benzina": 1.728,
       "Gasolio": 1.669
     }
   },
@@ -105429,7 +105365,7 @@ const realFuelStations = [
     "longitude": 13.307889327406883,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.678
+      "Gasolio": 1.688
     }
   },
   {
@@ -105536,8 +105472,8 @@ const realFuelStations = [
     "latitude": 43.81999464282641,
     "longitude": 10.665905628463745,
     "prices": {
-      "Benzina": 1.647,
-      "Gasolio": 1.637
+      "Benzina": 1.657,
+      "Gasolio": 1.647
     }
   },
   {
@@ -105636,7 +105572,7 @@ const realFuelStations = [
     "longitude": 10.67749212579497,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -105977,7 +105913,7 @@ const realFuelStations = [
     "longitude": 10.636432815808087,
     "prices": {
       "Benzina": 1.695,
-      "Gasolio": 1.625
+      "Gasolio": 1.635
     }
   },
   {
@@ -106291,7 +106227,7 @@ const realFuelStations = [
     "latitude": 43.95730385725239,
     "longitude": 10.194953083992004,
     "prices": {
-      "Benzina": 1.669,
+      "Benzina": 1.679,
       "Gasolio": 1.679
     }
   },
@@ -106475,7 +106411,7 @@ const realFuelStations = [
     "longitude": 10.495958335810883,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -106561,7 +106497,7 @@ const realFuelStations = [
     "longitude": 10.533826322448547,
     "prices": {
       "Benzina": 1.678,
-      "Gasolio": 1.678
+      "Gasolio": 1.688
     }
   },
   {
@@ -106573,7 +106509,7 @@ const realFuelStations = [
     "longitude": 10.494867385114897,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -106585,7 +106521,7 @@ const realFuelStations = [
     "longitude": 10.512694,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -106597,7 +106533,7 @@ const realFuelStations = [
     "longitude": 10.5208521,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -106876,7 +106812,7 @@ const realFuelStations = [
     "longitude": 10.460935,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -106973,8 +106909,8 @@ const realFuelStations = [
     "latitude": 43.876957169428145,
     "longitude": 10.288398563861847,
     "prices": {
-      "Benzina": 1.667,
-      "Gasolio": 1.667
+      "Benzina": 1.697,
+      "Gasolio": 1.697
     }
   },
   {
@@ -107206,8 +107142,8 @@ const realFuelStations = [
     "latitude": 43.94351609854073,
     "longitude": 10.226255804300308,
     "prices": {
-      "Benzina": 1.667,
-      "Gasolio": 1.657
+      "Benzina": 1.729,
+      "Gasolio": 1.699
     }
   },
   {
@@ -107514,7 +107450,7 @@ const realFuelStations = [
     "longitude": 10.196954,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -107588,7 +107524,7 @@ const realFuelStations = [
     "longitude": 10.232922,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -107599,8 +107535,8 @@ const realFuelStations = [
     "latitude": 43.85879962273083,
     "longitude": 10.271825194358826,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Benzina": 1.739,
+      "Gasolio": 1.719
     }
   },
   {
@@ -107817,8 +107753,8 @@ const realFuelStations = [
     "latitude": 45.56791207197751,
     "longitude": 9.354167308554679,
     "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.639,
+      "Benzina": 1.698,
+      "Gasolio": 1.688,
       "GPL": 0.659
     }
   },
@@ -107830,8 +107766,8 @@ const realFuelStations = [
     "latitude": 45.585854000123,
     "longitude": 9.357761000123,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.689,
+      "Benzina": 1.739,
+      "Gasolio": 1.699,
       "GPL": 0.729
     }
   },
@@ -108478,8 +108414,8 @@ const realFuelStations = [
     "latitude": 45.59551,
     "longitude": 9.34009,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.719
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -110133,7 +110069,7 @@ const realFuelStations = [
     "latitude": 45.68855167842552,
     "longitude": 9.218151569366455,
     "prices": {
-      "Benzina": 1.689,
+      "Benzina": 1.699,
       "Gasolio": 1.699
     }
   },
@@ -110342,7 +110278,7 @@ const realFuelStations = [
     "longitude": 13.129117488861079,
     "prices": {
       "Benzina": 1.75,
-      "Gasolio": 1.73
+      "Gasolio": 1.75
     }
   },
   {
@@ -110366,7 +110302,7 @@ const realFuelStations = [
     "longitude": 13.242900829003005,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -110415,8 +110351,8 @@ const realFuelStations = [
     "latitude": 43.11183154172788,
     "longitude": 13.130550384521484,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.669,
+      "Benzina": 1.749,
+      "Gasolio": 1.699,
       "GPL": 0.749
     }
   },
@@ -110453,7 +110389,7 @@ const realFuelStations = [
     "longitude": 13.059557676315308,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -110599,7 +110535,7 @@ const realFuelStations = [
     "longitude": 13.722010084655722,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -110865,7 +110801,7 @@ const realFuelStations = [
     "longitude": 13.510040976686462,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -110938,7 +110874,7 @@ const realFuelStations = [
     "longitude": 13.166078000123,
     "prices": {
       "Benzina": 1.819,
-      "Gasolio": 1.749
+      "Gasolio": 1.759
     }
   },
   {
@@ -111049,7 +110985,7 @@ const realFuelStations = [
     "longitude": 13.44662146231397,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -111073,7 +111009,7 @@ const realFuelStations = [
     "longitude": 13.484891,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -111487,7 +111423,7 @@ const realFuelStations = [
     "longitude": 13.5880668978978,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -111707,8 +111643,8 @@ const realFuelStations = [
     "latitude": 43.28847353305592,
     "longitude": 13.357443062938032,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.639
+      "Benzina": 1.719,
+      "Gasolio": 1.659
     }
   },
   {
@@ -111732,7 +111668,7 @@ const realFuelStations = [
     "longitude": 13.663835059437293,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -111756,7 +111692,7 @@ const realFuelStations = [
     "longitude": 13.655220284959796,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -111768,7 +111704,7 @@ const realFuelStations = [
     "longitude": 13.65944,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -111817,7 +111753,7 @@ const realFuelStations = [
     "longitude": 13.690997,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -112028,7 +111964,7 @@ const realFuelStations = [
     "longitude": 13.378155394315304,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.629
+      "Gasolio": 1.639
     }
   },
   {
@@ -112075,8 +112011,8 @@ const realFuelStations = [
     "latitude": 43.23110894008348,
     "longitude": 13.16063605248928,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.619,
+      "Benzina": 1.729,
+      "Gasolio": 1.669,
       "GPL": 0.749
     }
   },
@@ -112137,8 +112073,8 @@ const realFuelStations = [
     "latitude": 43.09492,
     "longitude": 13.40329,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.739
+      "Benzina": 1.709,
+      "Gasolio": 1.689
     }
   },
   {
@@ -112294,7 +112230,7 @@ const realFuelStations = [
     "longitude": 13.2893127,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.729,
+      "Gasolio": 1.739,
       "GPL": 0.759
     }
   },
@@ -112383,7 +112319,7 @@ const realFuelStations = [
     "longitude": 13.398737,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "GPL": 0.699
     }
   },
@@ -112458,7 +112394,7 @@ const realFuelStations = [
     "longitude": 13.084964600108947,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.789
     }
   },
@@ -112753,7 +112689,7 @@ const realFuelStations = [
     "longitude": 14.823925409648155,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -113162,8 +113098,8 @@ const realFuelStations = [
     "latitude": 38.48321165136625,
     "longitude": 14.963415786623955,
     "prices": {
-      "Benzina": 2.109,
-      "Gasolio": 2.039,
+      "Benzina": 2.119,
+      "Gasolio": 2.069,
       "GPL": 0.993
     }
   },
@@ -113381,7 +113317,7 @@ const realFuelStations = [
     "longitude": 15.480463238285687,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -114215,8 +114151,8 @@ const realFuelStations = [
     "latitude": 38.20031660255351,
     "longitude": 15.30444324016571,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.669
+      "Benzina": 1.749,
+      "Gasolio": 1.689
     }
   },
   {
@@ -114264,7 +114200,7 @@ const realFuelStations = [
     "longitude": 14.976374,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.771
     }
   },
@@ -114289,7 +114225,7 @@ const realFuelStations = [
     "latitude": 38.1407523,
     "longitude": 14.9705582,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.739,
       "Gasolio": 1.689
     }
   },
@@ -114482,7 +114418,7 @@ const realFuelStations = [
     "longitude": 9.6581,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.729
+      "Gasolio": 1.719
     }
   },
   {
@@ -115527,7 +115463,7 @@ const realFuelStations = [
     "latitude": 45.547483103026394,
     "longitude": 9.112569093704224,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.739,
       "Gasolio": 1.719
     }
   },
@@ -115746,7 +115682,7 @@ const realFuelStations = [
     "latitude": 45.57724081192453,
     "longitude": 9.41773831003411,
     "prices": {
-      "Benzina": 1.699,
+      "Benzina": 1.709,
       "Gasolio": 1.699,
       "GPL": 0.659
     }
@@ -115783,8 +115719,8 @@ const realFuelStations = [
     "latitude": 45.347231813446804,
     "longitude": 9.279609615344242,
     "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.639,
+      "Benzina": 1.698,
+      "Gasolio": 1.688,
       "GPL": 0.649
     }
   },
@@ -116816,8 +116752,8 @@ const realFuelStations = [
     "latitude": 45.49931127036905,
     "longitude": 9.02058823699953,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.669
+      "Benzina": 1.739,
+      "Gasolio": 1.709
     }
   },
   {
@@ -116949,7 +116885,7 @@ const realFuelStations = [
     "longitude": 9.043217510857176,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -118178,8 +118114,8 @@ const realFuelStations = [
     "latitude": 45.435904471365184,
     "longitude": 9.231637716293335,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.629
+      "Benzina": 1.679,
+      "Gasolio": 1.659
     }
   },
   {
@@ -118821,7 +118757,7 @@ const realFuelStations = [
     "longitude": 9.13694977760315,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -119158,8 +119094,8 @@ const realFuelStations = [
     "latitude": 45.43076618915102,
     "longitude": 9.177996218204498,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Benzina": 1.709,
+      "Gasolio": 1.709
     }
   },
   {
@@ -119744,7 +119680,7 @@ const realFuelStations = [
     "latitude": 45.45678067793206,
     "longitude": 9.072222709655762,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.759,
       "Gasolio": 1.749
     }
   },
@@ -121120,7 +121056,7 @@ const realFuelStations = [
     "longitude": 9.173429757356644,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.163,
       "GPL": 0.639
     }
@@ -121683,8 +121619,8 @@ const realFuelStations = [
     "latitude": 45.515219533472575,
     "longitude": 9.006143106056697,
     "prices": {
-      "Benzina": 1.737,
-      "Gasolio": 1.719
+      "Benzina": 1.747,
+      "Gasolio": 1.729
     }
   },
   {
@@ -121695,8 +121631,8 @@ const realFuelStations = [
     "latitude": 45.511141,
     "longitude": 9.013746,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.669
+      "Benzina": 1.739,
+      "Gasolio": 1.709
     }
   },
   {
@@ -121756,7 +121692,7 @@ const realFuelStations = [
     "longitude": 8.940021041264345,
     "prices": {
       "Benzina": 1.715,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "Metano": 1.299
     }
   },
@@ -122538,7 +122474,7 @@ const realFuelStations = [
     "longitude": 9.280756996364596,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.699
     }
   },
@@ -123796,7 +123732,7 @@ const realFuelStations = [
     "longitude": 10.4808517321998,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -123822,18 +123758,6 @@ const realFuelStations = [
       "Benzina": 1.749,
       "Gasolio": 1.689,
       "Metano": 1.399
-    }
-  },
-  {
-    "id": 60323,
-    "name": "COSTANTIN DISTRIBUZIONE E SERVIZI SRL",
-    "brand": "Costantin",
-    "address": "via roma 46 46014, CASTELLUCCHIO",
-    "latitude": 45.149239,
-    "longitude": 10.643923,
-    "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.677
     }
   },
   {
@@ -124081,7 +124005,7 @@ const realFuelStations = [
     "longitude": 10.6231153,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.666
     }
   },
@@ -124320,7 +124244,7 @@ const realFuelStations = [
     "longitude": 10.780877221660944,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -124564,7 +124488,7 @@ const realFuelStations = [
     "longitude": 10.829653,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "GPL": 0.619
     }
   },
@@ -124933,7 +124857,7 @@ const realFuelStations = [
     "longitude": 10.9819270552253,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -124944,8 +124868,8 @@ const realFuelStations = [
     "latitude": 45.03776413667837,
     "longitude": 11.122812422662658,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.689,
+      "Gasolio": 1.669
     }
   },
   {
@@ -125218,7 +125142,7 @@ const realFuelStations = [
     "longitude": 11.0399113100521,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.599
     }
   },
@@ -125616,7 +125540,7 @@ const realFuelStations = [
     "longitude": 11.11665,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.669
     }
   },
@@ -125825,7 +125749,7 @@ const realFuelStations = [
     "longitude": 10.88293069572835,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.719
+      "Gasolio": 1.709
     }
   },
   {
@@ -126254,7 +126178,7 @@ const realFuelStations = [
     "longitude": 11.30337,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Gasolio": 1.679,
       "GPL": 0.689
     }
   },
@@ -126492,7 +126416,7 @@ const realFuelStations = [
     "longitude": 10.80859910909353,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -127693,7 +127617,7 @@ const realFuelStations = [
     "latitude": 44.618494810580515,
     "longitude": 10.955740213394165,
     "prices": {
-      "Benzina": 1.679,
+      "Benzina": 1.689,
       "Gasolio": 1.679
     }
   },
@@ -128087,7 +128011,7 @@ const realFuelStations = [
     "longitude": 11.120923,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -128578,7 +128502,7 @@ const realFuelStations = [
     "latitude": 44.52255679975331,
     "longitude": 11.020241814002993,
     "prices": {
-      "Benzina": 1.679,
+      "Benzina": 1.699,
       "Gasolio": 1.689,
       "Metano": 1.359
     }
@@ -128788,7 +128712,7 @@ const realFuelStations = [
     "longitude": 9.968881,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -128860,7 +128784,7 @@ const realFuelStations = [
     "longitude": 10.073037930874648,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -129114,7 +129038,7 @@ const realFuelStations = [
     "longitude": 10.0530024,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -129198,7 +129122,7 @@ const realFuelStations = [
     "longitude": 10.13088607147387,
     "prices": {
       "Benzina": 1.727,
-      "Gasolio": 1.697
+      "Gasolio": 1.707
     }
   },
   {
@@ -129258,8 +129182,8 @@ const realFuelStations = [
     "latitude": 44.037157706468435,
     "longitude": 10.104457898596205,
     "prices": {
-      "Benzina": 1.687,
-      "Gasolio": 1.637
+      "Benzina": 1.747,
+      "Gasolio": 1.687
     }
   },
   {
@@ -129439,7 +129363,7 @@ const realFuelStations = [
     "longitude": 10.130691,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -129769,8 +129693,8 @@ const realFuelStations = [
     "latitude": 40.20529018899553,
     "longitude": 16.483402848243713,
     "prices": {
-      "Benzina": 1.678,
-      "Gasolio": 1.649,
+      "Benzina": 1.698,
+      "Gasolio": 1.669,
       "Metano": 1.478,
       "GPL": 0.697
     }
@@ -130320,7 +130244,7 @@ const realFuelStations = [
     "longitude": 16.659251153469086,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.699
+      "Gasolio": 1.719
     }
   },
   {
@@ -130416,8 +130340,8 @@ const realFuelStations = [
     "latitude": 40.17324365696433,
     "longitude": 16.522931903600693,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.699
+      "Benzina": 1.779,
+      "Gasolio": 1.719
     }
   },
   {
@@ -130478,8 +130402,8 @@ const realFuelStations = [
     "latitude": 40.486778506842185,
     "longitude": 16.24732221715324,
     "prices": {
-      "Benzina": 1.799,
-      "Gasolio": 1.739
+      "Benzina": 1.829,
+      "Gasolio": 1.779
     }
   },
   {
@@ -130626,7 +130550,7 @@ const realFuelStations = [
     "longitude": 14.428237974643707,
     "prices": {
       "Benzina": 1.698,
-      "Gasolio": 1.678
+      "Gasolio": 1.698
     }
   },
   {
@@ -130650,7 +130574,7 @@ const realFuelStations = [
     "longitude": 14.37202722453685,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.703
     }
   },
@@ -130676,7 +130600,7 @@ const realFuelStations = [
     "longitude": 14.3733038,
     "prices": {
       "Benzina": 1.645,
-      "Gasolio": 1.619,
+      "Gasolio": 1.629,
       "Metano": 1.249,
       "GPL": 0.599
     }
@@ -131185,7 +131109,7 @@ const realFuelStations = [
     "longitude": 13.926093264105589,
     "prices": {
       "Benzina": 1.934,
-      "Gasolio": 1.894
+      "Gasolio": 1.904
     }
   },
   {
@@ -131319,8 +131243,8 @@ const realFuelStations = [
     "latitude": 40.76970186414686,
     "longitude": 14.459966760747875,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.659
+      "Benzina": 1.729,
+      "Gasolio": 1.689
     }
   },
   {
@@ -131794,7 +131718,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.669,
-      "GPL": 0.635
+      "GPL": 0.639
     }
   },
   {
@@ -131819,7 +131743,7 @@ const realFuelStations = [
     "longitude": 14.248971864581108,
     "prices": {
       "Benzina": 1.804,
-      "Gasolio": 1.774,
+      "Gasolio": 1.784,
       "Metano": 1.298,
       "GPL": 0.619
     }
@@ -131917,8 +131841,8 @@ const realFuelStations = [
     "latitude": 40.886358130713596,
     "longitude": 14.317010790109634,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.699,
+      "Benzina": 1.768,
+      "Gasolio": 1.738,
       "GPL": 0.669
     }
   },
@@ -132751,7 +132675,7 @@ const realFuelStations = [
     "longitude": 14.034701585769653,
     "prices": {
       "Benzina": 1.649,
-      "Gasolio": 1.599,
+      "Gasolio": 1.619,
       "GPL": 0.536
     }
   },
@@ -133295,7 +133219,7 @@ const realFuelStations = [
     "longitude": 13.940872493254119,
     "prices": {
       "Benzina": 1.934,
-      "Gasolio": 1.894
+      "Gasolio": 1.904
     }
   },
   {
@@ -133431,7 +133355,7 @@ const realFuelStations = [
     "longitude": 14.160646006475872,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -133654,8 +133578,8 @@ const realFuelStations = [
     "latitude": 40.93504513250292,
     "longitude": 14.447655826807022,
     "prices": {
-      "Benzina": 1.619,
-      "Gasolio": 1.559
+      "Benzina": 1.629,
+      "Gasolio": 1.639
     }
   },
   {
@@ -134167,7 +134091,7 @@ const realFuelStations = [
     "longitude": 14.191690298339852,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.639
+      "Gasolio": 1.659
     }
   },
   {
@@ -134191,8 +134115,8 @@ const realFuelStations = [
     "latitude": 40.85272015344219,
     "longitude": 14.314351379871368,
     "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.594,
+      "Benzina": 1.635,
+      "Gasolio": 1.615,
       "GPL": 0.587
     }
   },
@@ -134314,8 +134238,8 @@ const realFuelStations = [
     "latitude": 40.869954915167455,
     "longitude": 14.237648224536912,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.629
+      "Benzina": 1.709,
+      "Gasolio": 1.609
     }
   },
   {
@@ -134633,7 +134557,7 @@ const realFuelStations = [
     "longitude": 14.196160220884101,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -134645,7 +134569,7 @@ const realFuelStations = [
     "longitude": 14.212370440363884,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.709
+      "Gasolio": 1.699
     }
   },
   {
@@ -134743,7 +134667,7 @@ const realFuelStations = [
     "longitude": 14.194533750414848,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -135167,8 +135091,8 @@ const realFuelStations = [
     "latitude": 40.85761292722807,
     "longitude": 14.267295762442375,
     "prices": {
-      "Benzina": 1.879,
-      "Gasolio": 1.799
+      "Benzina": 1.999,
+      "Gasolio": 1.899
     }
   },
   {
@@ -135372,7 +135296,7 @@ const realFuelStations = [
     "longitude": 14.231468439102173,
     "prices": {
       "Benzina": 1.706,
-      "Gasolio": 1.696
+      "Gasolio": 1.706
     }
   },
   {
@@ -135456,7 +135380,7 @@ const realFuelStations = [
     "longitude": 14.32515080414885,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.639
+      "Gasolio": 1.609
     }
   },
   {
@@ -136044,7 +135968,7 @@ const realFuelStations = [
     "latitude": 40.84786299922204,
     "longitude": 14.288355434862751,
     "prices": {
-      "Benzina": 1.659,
+      "Benzina": 1.679,
       "Gasolio": 1.649
     }
   },
@@ -136591,7 +136515,7 @@ const realFuelStations = [
     "longitude": 14.519601150708805,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.699,
+      "Gasolio": 1.689,
       "GPL": 0.639
     }
   },
@@ -136726,7 +136650,7 @@ const realFuelStations = [
     "longitude": 14.526148661971092,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.639
+      "Gasolio": 1.649
     }
   },
   {
@@ -137717,8 +137641,8 @@ const realFuelStations = [
     "latitude": 40.836756198076344,
     "longitude": 14.095617905259132,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.629
+      "Benzina": 1.689,
+      "Gasolio": 1.639
     }
   },
   {
@@ -137730,7 +137654,7 @@ const realFuelStations = [
     "longitude": 14.262460190857821,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.619
+      "Gasolio": 1.639
     }
   },
   {
@@ -138639,8 +138563,8 @@ const realFuelStations = [
     "latitude": 40.86874861757096,
     "longitude": 14.384150505065918,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.619
+      "Benzina": 1.699,
+      "Gasolio": 1.629
     }
   },
   {
@@ -138960,7 +138884,7 @@ const realFuelStations = [
     "longitude": 14.513941,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.699
     }
   },
   {
@@ -139585,7 +139509,7 @@ const realFuelStations = [
     "longitude": 14.394869122476166,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -140076,7 +140000,7 @@ const realFuelStations = [
     "latitude": 45.56569310976566,
     "longitude": 8.634843528270721,
     "prices": {
-      "Benzina": 1.659,
+      "Benzina": 1.669,
       "Gasolio": 1.659
     }
   },
@@ -141594,7 +141518,7 @@ const realFuelStations = [
     "longitude": 8.391731644180254,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.719
+      "Gasolio": 1.699
     }
   },
   {
@@ -142316,7 +142240,7 @@ const realFuelStations = [
     "longitude": 9.313315654894243,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -142340,7 +142264,7 @@ const realFuelStations = [
     "longitude": 9.3193603,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -142351,8 +142275,8 @@ const realFuelStations = [
     "latitude": 40.29700661668279,
     "longitude": 9.27009791135788,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.731,
+      "Benzina": 1.781,
+      "Gasolio": 1.778,
       "GPL": 0.83
     }
   },
@@ -142521,7 +142445,7 @@ const realFuelStations = [
     "latitude": 40.376209411812425,
     "longitude": 9.412420436751116,
     "prices": {
-      "Benzina": 1.769,
+      "Benzina": 1.799,
       "Gasolio": 1.729
     }
   },
@@ -142764,8 +142688,8 @@ const realFuelStations = [
     "latitude": 40.02587200756411,
     "longitude": 9.169942380384724,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Benzina": 1.769,
+      "Gasolio": 1.699
     }
   },
   {
@@ -143116,8 +143040,8 @@ const realFuelStations = [
     "longitude": 8.653737008571625,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
-      "GPL": 0.779
+      "Gasolio": 1.699,
+      "GPL": 0.759
     }
   },
   {
@@ -143129,8 +143053,8 @@ const realFuelStations = [
     "longitude": 8.655122369527817,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
-      "GPL": 0.779
+      "Gasolio": 1.699,
+      "GPL": 0.759
     }
   },
   {
@@ -143374,7 +143298,7 @@ const realFuelStations = [
     "longitude": 8.535803630948067,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.719
     }
   },
   {
@@ -143520,7 +143444,7 @@ const realFuelStations = [
     "longitude": 8.663748353719711,
     "prices": {
       "Benzina": 1.737,
-      "Gasolio": 1.687,
+      "Gasolio": 1.697,
       "GPL": 0.759
     }
   },
@@ -144027,7 +143951,7 @@ const realFuelStations = [
     "latitude": 38.04598282756764,
     "longitude": 13.397548198699951,
     "prices": {
-      "Benzina": 1.779,
+      "Benzina": 1.769,
       "Gasolio": 1.709
     }
   },
@@ -144355,7 +144279,7 @@ const realFuelStations = [
     "latitude": 38.15765672735595,
     "longitude": 13.198062752149568,
     "prices": {
-      "Benzina": 1.779,
+      "Benzina": 1.789,
       "Gasolio": 1.747
     }
   },
@@ -144428,8 +144352,8 @@ const realFuelStations = [
     "latitude": 38.15901762061601,
     "longitude": 13.17030742764473,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Benzina": 1.789,
+      "Gasolio": 1.719
     }
   },
   {
@@ -144464,8 +144388,8 @@ const realFuelStations = [
     "latitude": 38.063357466271874,
     "longitude": 13.536828607320786,
     "prices": {
-      "Benzina": 1.816,
-      "Gasolio": 1.746
+      "Benzina": 1.806,
+      "Gasolio": 1.736
     }
   },
   {
@@ -144526,7 +144450,7 @@ const realFuelStations = [
     "longitude": 13.999751061201096,
     "prices": {
       "Benzina": 1.764,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.686
     }
   },
@@ -145425,8 +145349,8 @@ const realFuelStations = [
     "latitude": 38.164145385376735,
     "longitude": 13.319412767887115,
     "prices": {
-      "Benzina": 1.746,
-      "Gasolio": 1.696
+      "Benzina": 1.766,
+      "Gasolio": 1.706
     }
   },
   {
@@ -145584,8 +145508,8 @@ const realFuelStations = [
     "latitude": 38.10619169905658,
     "longitude": 13.337864302425272,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.659
+      "Benzina": 1.757,
+      "Gasolio": 1.687
     }
   },
   {
@@ -145885,8 +145809,8 @@ const realFuelStations = [
     "latitude": 38.138100830064886,
     "longitude": 13.350352048873901,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.689
+      "Benzina": 1.789,
+      "Gasolio": 1.719
     }
   },
   {
@@ -145922,7 +145846,7 @@ const realFuelStations = [
     "longitude": 13.35061490535736,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -146289,7 +146213,7 @@ const realFuelStations = [
     "latitude": 38.11070069911125,
     "longitude": 13.350159871292213,
     "prices": {
-      "Benzina": 1.769,
+      "Benzina": 1.759,
       "Gasolio": 1.699
     }
   },
@@ -147398,7 +147322,7 @@ const realFuelStations = [
     "longitude": 13.399263950209843,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -147533,7 +147457,7 @@ const realFuelStations = [
     "longitude": 13.1097575,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -148142,8 +148066,8 @@ const realFuelStations = [
     "latitude": 37.97763485151147,
     "longitude": 13.689212948083878,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.669
+      "Benzina": 1.759,
+      "Gasolio": 1.689
     }
   },
   {
@@ -148251,8 +148175,8 @@ const realFuelStations = [
     "latitude": 37.99654760093777,
     "longitude": 13.651552936990356,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.669
+      "Benzina": 1.769,
+      "Gasolio": 1.699
     }
   },
   {
@@ -148705,7 +148629,7 @@ const realFuelStations = [
     "longitude": 9.990007148110863,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -148893,7 +148817,7 @@ const realFuelStations = [
     "longitude": 9.88991020882792,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "GPL": 0.629
     }
   },
@@ -149196,7 +149120,7 @@ const realFuelStations = [
     "longitude": 9.716925000123,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.668
+      "Gasolio": 1.689
     }
   },
   {
@@ -149208,7 +149132,7 @@ const realFuelStations = [
     "longitude": 9.734151436649041,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
+      "Gasolio": 1.669,
       "GPL": 0.749
     }
   },
@@ -150110,8 +150034,8 @@ const realFuelStations = [
     "latitude": 45.335411846345245,
     "longitude": 11.905099728836035,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.679,
+      "Benzina": 1.699,
+      "Gasolio": 1.689,
       "GPL": 0.637
     }
   },
@@ -150124,7 +150048,7 @@ const realFuelStations = [
     "longitude": 11.825482588532,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.349,
       "GPL": 0.699
     }
@@ -150212,7 +150136,7 @@ const realFuelStations = [
     "longitude": 11.776524754631055,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -150506,7 +150430,7 @@ const realFuelStations = [
     "longitude": 11.916952729225159,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -150744,7 +150668,7 @@ const realFuelStations = [
     "longitude": 11.782169405793638,
     "prices": {
       "Benzina": 1.678,
-      "Gasolio": 1.669
+      "Gasolio": 1.677
     }
   },
   {
@@ -150805,8 +150729,8 @@ const realFuelStations = [
     "latitude": 45.6222937826969,
     "longitude": 11.793902095383157,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -150932,7 +150856,7 @@ const realFuelStations = [
     "longitude": 11.8564085662364,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.629,
+      "Gasolio": 1.639,
       "GPL": 0.679
     }
   },
@@ -151011,18 +150935,6 @@ const realFuelStations = [
       "Benzina": 1.677,
       "Gasolio": 1.687,
       "GPL": 0.635
-    }
-  },
-  {
-    "id": 35289,
-    "name": "COSTANTIN DISTRIBUZIONE E SERVIZI SRL",
-    "brand": "Costantin",
-    "address": "VIA VIA DELL'INDUSTRIA, 2/A 35020, DUE CARRARE (PD) 2/a 35020, DUE CARRARE",
-    "latitude": 45.30036348994487,
-    "longitude": 11.857495531439781,
-    "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.669
     }
   },
   {
@@ -151923,7 +151835,7 @@ const realFuelStations = [
     "longitude": 12.3330007,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -152243,7 +152155,7 @@ const realFuelStations = [
     "longitude": 11.856798,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -153140,8 +153052,8 @@ const realFuelStations = [
     "latitude": 45.2920994,
     "longitude": 12.0713045,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.719,
+      "Benzina": 1.749,
+      "Gasolio": 1.729,
       "GPL": 0.699
     }
   },
@@ -153154,8 +153066,7 @@ const realFuelStations = [
     "longitude": 12.029027236644167,
     "prices": {
       "Benzina": 1.609,
-      "Gasolio": 1.579,
-      "GPL": 0.609
+      "Gasolio": 1.579
     }
   },
   {
@@ -153500,7 +153411,7 @@ const realFuelStations = [
     "longitude": 11.858428322753866,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "GPL": 0.657
     }
   },
@@ -154022,7 +153933,7 @@ const realFuelStations = [
     "latitude": 45.42107567683402,
     "longitude": 11.980767846107483,
     "prices": {
-      "Benzina": 1.687,
+      "Benzina": 1.697,
       "Gasolio": 1.677
     }
   },
@@ -154074,7 +153985,7 @@ const realFuelStations = [
     "longitude": 11.976694850136,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.659
     }
   },
@@ -154199,8 +154110,8 @@ const realFuelStations = [
     "latitude": 45.48777092584558,
     "longitude": 11.977195143699646,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.669,
+      "Benzina": 1.699,
+      "Gasolio": 1.679,
       "GPL": 0.659
     }
   },
@@ -154235,7 +154146,7 @@ const realFuelStations = [
     "latitude": 45.50929054896866,
     "longitude": 11.975800395011902,
     "prices": {
-      "Benzina": 1.689,
+      "Benzina": 1.709,
       "Gasolio": 1.679
     }
   },
@@ -154408,7 +154319,7 @@ const realFuelStations = [
     "longitude": 14.13216233253479,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.679,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -154484,7 +154395,7 @@ const realFuelStations = [
     "longitude": 14.137977000123,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -154520,7 +154431,7 @@ const realFuelStations = [
     "longitude": 14.062221302997614,
     "prices": {
       "Benzina": 1.789,
-      "Gasolio": 1.759
+      "Gasolio": 1.769
     }
   },
   {
@@ -154571,7 +154482,7 @@ const realFuelStations = [
     "longitude": 14.118219326991385,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -155058,8 +154969,8 @@ const realFuelStations = [
     "latitude": 42.42331752523229,
     "longitude": 13.929872810840607,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Benzina": 1.709,
+      "Gasolio": 1.689,
       "Metano": 1.399,
       "GPL": 0.747
     }
@@ -155193,7 +155104,7 @@ const realFuelStations = [
     "longitude": 14.210392252045494,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -155243,7 +155154,7 @@ const realFuelStations = [
     "longitude": 14.226201137653485,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -155255,7 +155166,7 @@ const realFuelStations = [
     "longitude": 14.205658882856369,
     "prices": {
       "Benzina": 1.727,
-      "Gasolio": 1.697
+      "Gasolio": 1.707
     }
   },
   {
@@ -155496,7 +155407,7 @@ const realFuelStations = [
     "longitude": 14.195016440484096,
     "prices": {
       "Benzina": 1.727,
-      "Gasolio": 1.697
+      "Gasolio": 1.707
     }
   },
   {
@@ -155628,7 +155539,7 @@ const realFuelStations = [
     "longitude": 13.834262,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -155640,7 +155551,7 @@ const realFuelStations = [
     "longitude": 13.836903423070908,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -155737,7 +155648,7 @@ const realFuelStations = [
     "longitude": 14.173516761678856,
     "prices": {
       "Benzina": 1.727,
-      "Gasolio": 1.697
+      "Gasolio": 1.707
     }
   },
   {
@@ -155786,7 +155697,7 @@ const realFuelStations = [
     "longitude": 14.180162656297664,
     "prices": {
       "Benzina": 1.727,
-      "Gasolio": 1.697
+      "Gasolio": 1.707
     }
   },
   {
@@ -155895,7 +155806,7 @@ const realFuelStations = [
     "longitude": 12.5635875,
     "prices": {
       "Benzina": 1.645,
-      "Gasolio": 1.608
+      "Gasolio": 1.618
     }
   },
   {
@@ -156003,8 +155914,8 @@ const realFuelStations = [
     "latitude": 43.056286778535195,
     "longitude": 12.56199866881324,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Benzina": 1.719,
+      "Gasolio": 1.699,
       "GPL": 0.679
     }
   },
@@ -156239,7 +156150,7 @@ const realFuelStations = [
     "longitude": 12.692206426199776,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Gasolio": 1.689
     }
   },
   {
@@ -157554,8 +157465,8 @@ const realFuelStations = [
     "latitude": 43.31215325999843,
     "longitude": 12.575422391401617,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Benzina": 1.749,
+      "Gasolio": 1.719
     }
   },
   {
@@ -157836,7 +157747,7 @@ const realFuelStations = [
     "longitude": 12.5242631,
     "prices": {
       "Benzina": 1.656,
-      "Gasolio": 1.608
+      "Gasolio": 1.618
     }
   },
   {
@@ -158006,7 +157917,7 @@ const realFuelStations = [
     "longitude": 12.154357685388959,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.659,
+      "Gasolio": 1.679,
       "Metano": 1.279,
       "GPL": 0.699
     }
@@ -158262,7 +158173,7 @@ const realFuelStations = [
     "longitude": 12.455474322753894,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.729
+      "Gasolio": 1.739
     }
   },
   {
@@ -158274,7 +158185,7 @@ const realFuelStations = [
     "longitude": 12.371678,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -158537,7 +158448,7 @@ const realFuelStations = [
     "longitude": 12.398297,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.719
     }
   },
   {
@@ -159158,8 +159069,8 @@ const realFuelStations = [
     "latitude": 42.97697734524163,
     "longitude": 12.68273413181305,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.679
+      "Benzina": 1.699,
+      "Gasolio": 1.669
     }
   },
   {
@@ -159344,7 +159255,7 @@ const realFuelStations = [
     "longitude": 12.73533814467208,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Gasolio": 1.689
     }
   },
   {
@@ -160164,7 +160075,7 @@ const realFuelStations = [
     "longitude": 10.448582,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.654
     }
   },
@@ -160498,7 +160409,7 @@ const realFuelStations = [
     "longitude": 10.765577,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -160712,8 +160623,8 @@ const realFuelStations = [
     "latitude": 43.69499386730775,
     "longitude": 10.444285629222122,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Benzina": 1.739,
+      "Gasolio": 1.719
     }
   },
   {
@@ -160725,7 +160636,7 @@ const realFuelStations = [
     "longitude": 10.29805889965519,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -160974,7 +160885,7 @@ const realFuelStations = [
     "longitude": 10.416319803954138,
     "prices": {
       "Benzina": 1.654,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "Metano": 1.599,
       "GPL": 0.674
     }
@@ -161072,7 +160983,7 @@ const realFuelStations = [
     "longitude": 10.348348617553711,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -161170,7 +161081,7 @@ const realFuelStations = [
     "longitude": 10.629396763492528,
     "prices": {
       "Benzina": 1.688,
-      "Gasolio": 1.688
+      "Gasolio": 1.698
     }
   },
   {
@@ -161184,6 +161095,19 @@ const realFuelStations = [
       "Benzina": 1.658,
       "Gasolio": 1.638,
       "GPL": 0.658
+    }
+  },
+  {
+    "id": 22297,
+    "name": "QUATTROPETROLI S.P.A.",
+    "brand": "Quattro Petroli",
+    "address": "VIA NUOVA CIRCONVALLAZIONE, S.R. 439 SNC 56038, PONSACCO",
+    "latitude": 43.62928634268702,
+    "longitude": 10.603405237197876,
+    "prices": {
+      "Benzina": 1.638,
+      "Gasolio": 1.638,
+      "GPL": 0.638
     }
   },
   {
@@ -161351,7 +161275,7 @@ const realFuelStations = [
     "longitude": 10.64996,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -161595,7 +161519,7 @@ const realFuelStations = [
     "longitude": 10.365339409858832,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -161781,7 +161705,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.668,
       "Gasolio": 1.678,
-      "Metano": 1.148,
+      "Metano": 1.248,
       "GPL": 0.668
     }
   },
@@ -161880,7 +161804,7 @@ const realFuelStations = [
     "longitude": 10.775405913591385,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.694
+      "Gasolio": 1.704
     }
   },
   {
@@ -162202,7 +162126,7 @@ const realFuelStations = [
     "longitude": 10.86864821612835,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -162214,7 +162138,7 @@ const realFuelStations = [
     "longitude": 10.81278,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -162688,7 +162612,7 @@ const realFuelStations = [
     "latitude": 45.85016451996798,
     "longitude": 12.881962837418728,
     "prices": {
-      "Benzina": 1.759,
+      "Benzina": 1.756,
       "Gasolio": 1.719
     }
   },
@@ -162982,8 +162906,8 @@ const realFuelStations = [
     "latitude": 46.04090343922261,
     "longitude": 12.509181510725398,
     "prices": {
-      "Benzina": 1.939,
-      "Gasolio": 1.869
+      "Benzina": 1.949,
+      "Gasolio": 1.909
     }
   },
   {
@@ -163118,7 +163042,7 @@ const realFuelStations = [
     "longitude": 12.64346231874083,
     "prices": {
       "Benzina": 1.677,
-      "Gasolio": 1.657
+      "Gasolio": 1.667
     }
   },
   {
@@ -163288,7 +163212,7 @@ const realFuelStations = [
     "longitude": 12.672473585319494,
     "prices": {
       "Benzina": 1.809,
-      "Gasolio": 1.779
+      "Gasolio": 1.784
     }
   },
   {
@@ -163372,8 +163296,8 @@ const realFuelStations = [
     "latitude": 45.930082031679405,
     "longitude": 12.645041181059241,
     "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.639
+      "Benzina": 1.664,
+      "Gasolio": 1.654
     }
   },
   {
@@ -163409,8 +163333,8 @@ const realFuelStations = [
     "latitude": 45.89857595694587,
     "longitude": 12.576983485488862,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.699,
+      "Benzina": 1.759,
+      "Gasolio": 1.719,
       "GPL": 0.789
     }
   },
@@ -163473,6 +163397,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.709,
       "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 36231,
+    "name": "COSTANTIN DISTRIBUZIONE E SERVIZI SRL",
+    "brand": "Costantin",
+    "address": "VIA VIA SAN LIBERALE 11 33077, SACILE (PN) 11 33077, SACILE",
+    "latitude": 45.95991739377027,
+    "longitude": 12.509834244847298,
+    "prices": {
+      "Benzina": 1.697,
+      "Gasolio": 1.667
     }
   },
   {
@@ -163765,7 +163701,7 @@ const realFuelStations = [
     "longitude": 12.888599038124084,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -164125,7 +164061,7 @@ const realFuelStations = [
     "longitude": 11.071154990401965,
     "prices": {
       "Benzina": 1.628,
-      "Gasolio": 1.628,
+      "Gasolio": 1.638,
       "GPL": 0.628
     }
   },
@@ -164236,7 +164172,7 @@ const realFuelStations = [
     "longitude": 11.1113823,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -164248,7 +164184,7 @@ const realFuelStations = [
     "longitude": 11.110557594204673,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -164260,7 +164196,7 @@ const realFuelStations = [
     "longitude": 11.111393568771689,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -164272,7 +164208,7 @@ const realFuelStations = [
     "longitude": 11.0976145,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -164626,7 +164562,7 @@ const realFuelStations = [
     "longitude": 11.0709134,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -164639,20 +164575,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.679,
-      "Metano": 1.599,
-      "GPL": 0.639
-    }
-  },
-  {
-    "id": 50187,
-    "name": "MAGIGAS S.P.A.",
-    "brand": "Api-Ip",
-    "address": "VIALE S. ALLENDE 7 59100, PRATO",
-    "latitude": 43.87565429386693,
-    "longitude": 11.06243647238732,
-    "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.629,
       "Metano": 1.599,
       "GPL": 0.639
     }
@@ -165337,7 +165259,7 @@ const realFuelStations = [
     "longitude": 10.0837141,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699,
+      "Gasolio": 1.729,
       "GPL": 0.697
     }
   },
@@ -165559,7 +165481,7 @@ const realFuelStations = [
     "longitude": 10.163565874099731,
     "prices": {
       "Benzina": 1.832,
-      "Gasolio": 1.732,
+      "Gasolio": 1.752,
       "GPL": 0.792
     }
   },
@@ -166781,7 +166703,7 @@ const realFuelStations = [
     "longitude": 10.002596821701797,
     "prices": {
       "Metano": 1.398,
-      "GPL": 0.699
+      "GPL": 0.659
     }
   },
   {
@@ -167125,18 +167047,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.759,
       "Gasolio": 1.719
-    }
-  },
-  {
-    "id": 48352,
-    "name": "ALA CARBURANTI S.R.L.",
-    "brand": "Q8",
-    "address": "VIA VIA CARLO MARX SNC 51031, AGLIANA (PT) NCM 51031, AGLIANA",
-    "latitude": 43.88699733967344,
-    "longitude": 11.003391742706293,
-    "prices": {
-      "Benzina": 1.677,
-      "Gasolio": 1.677
     }
   },
   {
@@ -167564,7 +167474,7 @@ const realFuelStations = [
     "longitude": 10.778724,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -167684,7 +167594,7 @@ const realFuelStations = [
     "latitude": 43.87839542314507,
     "longitude": 10.688739241802978,
     "prices": {
-      "Benzina": 1.667,
+      "Benzina": 1.674,
       "Gasolio": 1.689
     }
   },
@@ -167744,8 +167654,8 @@ const realFuelStations = [
     "latitude": 43.9224107669142,
     "longitude": 10.921048521995544,
     "prices": {
-      "Benzina": 1.697,
-      "Gasolio": 1.687
+      "Benzina": 1.727,
+      "Gasolio": 1.717
     }
   },
   {
@@ -167756,9 +167666,9 @@ const realFuelStations = [
     "latitude": 43.91858237930583,
     "longitude": 10.886490941047668,
     "prices": {
-      "Benzina": 1.687,
-      "Gasolio": 1.687,
-      "GPL": 0.687
+      "Benzina": 1.719,
+      "Gasolio": 1.699,
+      "GPL": 0.699
     }
   },
   {
@@ -167769,8 +167679,8 @@ const realFuelStations = [
     "latitude": 43.94028489791312,
     "longitude": 10.92697159630129,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Benzina": 1.759,
+      "Gasolio": 1.719
     }
   },
   {
@@ -167817,8 +167727,8 @@ const realFuelStations = [
     "latitude": 43.91670539797134,
     "longitude": 10.938181877136225,
     "prices": {
-      "Benzina": 1.697,
-      "Gasolio": 1.677,
+      "Benzina": 1.727,
+      "Gasolio": 1.707,
       "GPL": 0.727
     }
   },
@@ -167830,8 +167740,8 @@ const realFuelStations = [
     "latitude": 43.92203307338393,
     "longitude": 10.920927226543421,
     "prices": {
-      "Benzina": 1.697,
-      "Gasolio": 1.687
+      "Benzina": 1.727,
+      "Gasolio": 1.717
     }
   },
   {
@@ -167842,8 +167752,8 @@ const realFuelStations = [
     "latitude": 43.91852929728274,
     "longitude": 10.949420332908625,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Benzina": 1.719,
+      "Gasolio": 1.709
     }
   },
   {
@@ -167878,8 +167788,8 @@ const realFuelStations = [
     "latitude": 43.9177329,
     "longitude": 10.9183987,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.709
+      "Benzina": 1.746,
+      "Gasolio": 1.716
     }
   },
   {
@@ -168065,7 +167975,7 @@ const realFuelStations = [
     "longitude": 10.90093,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -168088,8 +167998,8 @@ const realFuelStations = [
     "latitude": 43.90296266666561,
     "longitude": 10.920669037850985,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.699,
+      "Benzina": 1.759,
+      "Gasolio": 1.729,
       "GPL": 0.789
     }
   },
@@ -168138,8 +168048,8 @@ const realFuelStations = [
     "latitude": 43.85446,
     "longitude": 10.746025,
     "prices": {
-      "Benzina": 1.628,
-      "Gasolio": 1.608
+      "Benzina": 1.679,
+      "Gasolio": 1.678
     }
   },
   {
@@ -168260,8 +168170,8 @@ const realFuelStations = [
     "latitude": 43.86065381768657,
     "longitude": 10.986513619643347,
     "prices": {
-      "Benzina": 1.697,
-      "Gasolio": 1.677
+      "Benzina": 1.727,
+      "Gasolio": 1.707
     }
   },
   {
@@ -168373,6 +168283,19 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.784,
       "Gasolio": 1.749
+    }
+  },
+  {
+    "id": 50907,
+    "name": "CHECCHI S.R.L.",
+    "brand": "Api-Ip",
+    "address": "A11 FIRENZE-PISA N., Km. 35,5, firenze - 51034, SERRAVALLE PISTOIESE",
+    "latitude": 43.89149160601557,
+    "longitude": 10.8261527121067,
+    "prices": {
+      "Benzina": 1.784,
+      "Gasolio": 1.749,
+      "GPL": 0.919
     }
   },
   {
@@ -168556,7 +168479,7 @@ const realFuelStations = [
     "longitude": 12.340372029223916,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -168862,7 +168785,7 @@ const realFuelStations = [
     "longitude": 13.113825470209122,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.659,
+      "Gasolio": 1.689,
       "Metano": 1.359,
       "GPL": 0.679
     }
@@ -169359,7 +169282,7 @@ const realFuelStations = [
     "longitude": 13.146569855542158,
     "prices": {
       "Benzina": 1.687,
-      "Gasolio": 1.677
+      "Gasolio": 1.687
     }
   },
   {
@@ -169853,7 +169776,7 @@ const realFuelStations = [
     "longitude": 12.890980839729309,
     "prices": {
       "Benzina": 1.687,
-      "Gasolio": 1.667,
+      "Gasolio": 1.677,
       "GPL": 0.719
     }
   },
@@ -170026,7 +169949,7 @@ const realFuelStations = [
     "longitude": 12.413462000123,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -170902,8 +170825,8 @@ const realFuelStations = [
     "latitude": 45.19139818389567,
     "longitude": 8.940188884735107,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.679
+      "Benzina": 1.789,
+      "Gasolio": 1.699
     }
   },
   {
@@ -171088,7 +171011,7 @@ const realFuelStations = [
     "latitude": 45.0947922,
     "longitude": 8.7303399,
     "prices": {
-      "Benzina": 1.739,
+      "Benzina": 1.759,
       "Gasolio": 1.699
     }
   },
@@ -171198,7 +171121,7 @@ const realFuelStations = [
     "longitude": 8.760951608419418,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.649,
+      "Gasolio": 1.659,
       "Metano": 1.529,
       "GPL": 0.589
     }
@@ -171836,8 +171759,8 @@ const realFuelStations = [
     "latitude": 45.09695999217715,
     "longitude": 8.90745358647348,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.639
+      "Benzina": 1.729,
+      "Gasolio": 1.659
     }
   },
   {
@@ -173655,7 +173578,7 @@ const realFuelStations = [
     "longitude": 15.968141988880006,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.659,
+      "Gasolio": 1.689,
       "GPL": 0.659
     }
   },
@@ -173692,7 +173615,7 @@ const realFuelStations = [
     "longitude": 15.502250120043755,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.729
     }
   },
@@ -173766,7 +173689,7 @@ const realFuelStations = [
     "longitude": 15.395565829266388,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -174011,7 +173934,7 @@ const realFuelStations = [
     "longitude": 15.823805787271908,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "Metano": 1.539,
       "GPL": 0.709
     }
@@ -174121,7 +174044,7 @@ const realFuelStations = [
     "longitude": 15.818784713728746,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -174670,7 +174593,7 @@ const realFuelStations = [
     "longitude": 16.076970501188654,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.701
+      "Gasolio": 1.699
     }
   },
   {
@@ -175131,7 +175054,7 @@ const realFuelStations = [
     "longitude": 12.339943664334,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.629
     }
   },
@@ -175192,8 +175115,8 @@ const realFuelStations = [
     "latitude": 44.385599957802555,
     "longitude": 11.944200579921963,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.689
+      "Benzina": 1.769,
+      "Gasolio": 1.699
     }
   },
   {
@@ -175972,7 +175895,7 @@ const realFuelStations = [
     "longitude": 12.087802160188176,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -176514,8 +176437,8 @@ const realFuelStations = [
     "latitude": 44.44263341451107,
     "longitude": 11.856081336736679,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.659,
+      "Benzina": 1.689,
+      "Gasolio": 1.669,
       "GPL": 0.608
     }
   },
@@ -176774,7 +176697,7 @@ const realFuelStations = [
     "longitude": 16.167835593223572,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.679
+      "Gasolio": 1.699
     }
   },
   {
@@ -176958,8 +176881,8 @@ const realFuelStations = [
     "latitude": 39.3087714,
     "longitude": 16.3463791,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.649
+      "Benzina": 1.719,
+      "Gasolio": 1.669
     }
   },
   {
@@ -177066,7 +176989,7 @@ const realFuelStations = [
     "longitude": 15.901313200592995,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.669
+      "Gasolio": 1.699
     }
   },
   {
@@ -177344,8 +177267,8 @@ const realFuelStations = [
     "latitude": 38.30330397415033,
     "longitude": 16.335707008838654,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.719
+      "Benzina": 1.749,
+      "Gasolio": 1.739
     }
   },
   {
@@ -177998,7 +177921,7 @@ const realFuelStations = [
     "longitude": 15.644049793481827,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -178324,7 +178247,7 @@ const realFuelStations = [
     "longitude": 15.65344624221325,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699
+      "Gasolio": 1.689
     }
   },
   {
@@ -178615,8 +178538,8 @@ const realFuelStations = [
     "latitude": 38.165526,
     "longitude": 15.8407837,
     "prices": {
-      "Benzina": 1.755,
-      "Gasolio": 1.699
+      "Benzina": 1.765,
+      "Gasolio": 1.719
     }
   },
   {
@@ -178713,7 +178636,7 @@ const realFuelStations = [
     "longitude": 16.30163,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -178762,7 +178685,7 @@ const realFuelStations = [
     "longitude": 16.006248593330383,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -178954,7 +178877,7 @@ const realFuelStations = [
     "longitude": 10.60889143663178,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.629
     }
   },
@@ -179015,7 +178938,7 @@ const realFuelStations = [
     "longitude": 10.627158880233765,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.729,
+      "Gasolio": 1.749,
       "GPL": 0.669
     }
   },
@@ -179140,7 +179063,7 @@ const realFuelStations = [
     "longitude": 10.597806,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -179292,7 +179215,7 @@ const realFuelStations = [
     "longitude": 10.768522024154663,
     "prices": {
       "Benzina": 1.789,
-      "Gasolio": 1.759
+      "Gasolio": 1.769
     }
   },
   {
@@ -179986,7 +179909,7 @@ const realFuelStations = [
     "longitude": 10.476783514022827,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Gasolio": 1.619
     }
   },
   {
@@ -180549,8 +180472,8 @@ const realFuelStations = [
     "latitude": 44.68315575472326,
     "longitude": 10.666267440475394,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.659,
+      "Benzina": 1.669,
+      "Gasolio": 1.669,
       "Metano": 1.349,
       "GPL": 0.699
     }
@@ -181374,7 +181297,7 @@ const realFuelStations = [
     "latitude": 44.48301646637511,
     "longitude": 10.339957997202873,
     "prices": {
-      "Benzina": 1.749,
+      "Benzina": 1.769,
       "Gasolio": 1.699
     }
   },
@@ -181386,7 +181309,7 @@ const realFuelStations = [
     "latitude": 44.609404041442204,
     "longitude": 10.551205426454544,
     "prices": {
-      "Benzina": 1.794,
+      "Benzina": 1.804,
       "Gasolio": 1.704,
       "GPL": 0.67
     }
@@ -181645,7 +181568,7 @@ const realFuelStations = [
     "longitude": 14.603264233135235,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -181789,8 +181712,8 @@ const realFuelStations = [
     "latitude": 36.7890899482802,
     "longitude": 14.926955054049944,
     "prices": {
-      "Benzina": 1.714,
-      "Gasolio": 1.644,
+      "Benzina": 1.725,
+      "Gasolio": 1.655,
       "GPL": 0.665
     }
   },
@@ -183398,7 +183321,7 @@ const realFuelStations = [
     "longitude": 12.9036095,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -183593,8 +183516,8 @@ const realFuelStations = [
     "latitude": 42.169893012060804,
     "longitude": 12.636996317791045,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.729
+      "Benzina": 1.759,
+      "Gasolio": 1.749
     }
   },
   {
@@ -183886,7 +183809,7 @@ const realFuelStations = [
     "longitude": 12.796429999999983,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -184920,6 +184843,19 @@ const realFuelStations = [
     }
   },
   {
+    "id": 62043,
+    "name": "ROSSETTI FUEL SRL",
+    "brand": "MyOil",
+    "address": "via di Vallecaia km 6 + 147 00040, ARDEA",
+    "latitude": 41.662500522612,
+    "longitude": 12.572664678955062,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.619,
+      "GPL": 0.599
+    }
+  },
+  {
     "id": 35716,
     "name": "TOIL S.P.A.",
     "brand": "Agip Eni",
@@ -185321,8 +185257,8 @@ const realFuelStations = [
     "latitude": 42.119908589306725,
     "longitude": 12.590333372354507,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Benzina": 1.699,
+      "Gasolio": 1.679
     }
   },
   {
@@ -185336,6 +185272,20 @@ const realFuelStations = [
       "Benzina": 1.699,
       "Gasolio": 1.679,
       "GPL": 0.649
+    }
+  },
+  {
+    "id": 41129,
+    "name": "MASCHERONE OVEST",
+    "brand": "Api-Ip",
+    "address": "Autostrada A1 MILANO-NAPOLI,  Km. 535,600, dir. sud 00060, CAPENA",
+    "latitude": 42.12268085435512,
+    "longitude": 12.61708314423322,
+    "prices": {
+      "Benzina": 1.859,
+      "Gasolio": 1.849,
+      "Metano": 1.559,
+      "GPL": 0.879
     }
   },
   {
@@ -185789,7 +185739,7 @@ const realFuelStations = [
     "longitude": 11.80947259068489,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -186179,7 +186129,7 @@ const realFuelStations = [
     "longitude": 12.998526692390442,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -187158,7 +187108,7 @@ const realFuelStations = [
     "longitude": 12.713984549045563,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.649,
+      "Gasolio": 1.669,
       "GPL": 0.699
     }
   },
@@ -187425,7 +187375,7 @@ const realFuelStations = [
     "longitude": 12.633565131282808,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.65,
       "GPL": 0.699
     }
@@ -187987,8 +187937,8 @@ const realFuelStations = [
     "latitude": 41.76518210818398,
     "longitude": 12.616113424301147,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.669
+      "Benzina": 1.729,
+      "Gasolio": 1.679
     }
   },
   {
@@ -188399,7 +188349,7 @@ const realFuelStations = [
     "longitude": 12.664315251592598,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.659,
+      "Gasolio": 1.669,
       "GPL": 0.589
     }
   },
@@ -189303,7 +189253,7 @@ const realFuelStations = [
     "longitude": 12.593754529953042,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "GPL": 0.659
     }
   },
@@ -189328,7 +189278,7 @@ const realFuelStations = [
     "longitude": 12.545439716735116,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -190246,8 +190196,8 @@ const realFuelStations = [
     "latitude": 41.94592855557475,
     "longitude": 12.531087666766325,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.669
+      "Benzina": 1.699,
+      "Gasolio": 1.679
     }
   },
   {
@@ -190451,8 +190401,8 @@ const realFuelStations = [
     "latitude": 41.75704091575024,
     "longitude": 12.35599547624588,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Benzina": 1.709,
+      "Gasolio": 1.699
     }
   },
   {
@@ -190914,8 +190864,8 @@ const realFuelStations = [
     "latitude": 41.91069084407895,
     "longitude": 12.549789306891014,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.679
+      "Benzina": 1.749,
+      "Gasolio": 1.739
     }
   },
   {
@@ -190963,7 +190913,7 @@ const realFuelStations = [
     "longitude": 12.44245075952449,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.669
     }
   },
   {
@@ -191058,8 +191008,8 @@ const realFuelStations = [
     "latitude": 41.73597276913193,
     "longitude": 12.268611385280337,
     "prices": {
-      "Benzina": 1.799,
-      "Gasolio": 1.699
+      "Benzina": 1.829,
+      "Gasolio": 1.729
     }
   },
   {
@@ -191240,7 +191190,7 @@ const realFuelStations = [
     "latitude": 41.91388031557007,
     "longitude": 12.41383696769958,
     "prices": {
-      "Benzina": 1.663,
+      "Benzina": 1.678,
       "Gasolio": 1.649
     }
   },
@@ -191838,8 +191788,8 @@ const realFuelStations = [
     "latitude": 41.844360095568526,
     "longitude": 12.582102417945862,
     "prices": {
-      "Benzina": 1.654,
-      "Gasolio": 1.664
+      "Benzina": 1.849,
+      "Gasolio": 1.839
     }
   },
   {
@@ -191863,7 +191813,7 @@ const realFuelStations = [
     "longitude": 12.414325947290763,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -191887,7 +191837,7 @@ const realFuelStations = [
     "longitude": 12.443565103670153,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -192033,7 +191983,7 @@ const realFuelStations = [
     "longitude": 12.621162000123,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.449,
       "GPL": 0.659
     }
@@ -192410,7 +192360,7 @@ const realFuelStations = [
     "longitude": 12.5372,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -192520,7 +192470,7 @@ const realFuelStations = [
     "longitude": 12.557991325686988,
     "prices": {
       "Benzina": 1.639,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -192532,7 +192482,7 @@ const realFuelStations = [
     "longitude": 12.432207,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -192556,7 +192506,7 @@ const realFuelStations = [
     "longitude": 12.422066,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.679
+      "Gasolio": 1.689
     }
   },
   {
@@ -192567,8 +192517,8 @@ const realFuelStations = [
     "latitude": 41.85815014384818,
     "longitude": 12.59282648563385,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Benzina": 1.719,
+      "Gasolio": 1.679,
       "Metano": 1.699,
       "GPL": 0.639
     }
@@ -192618,7 +192568,7 @@ const realFuelStations = [
     "longitude": 12.455539000123,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -192778,7 +192728,7 @@ const realFuelStations = [
     "longitude": 12.561128675806685,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.649
+      "Gasolio": 1.669
     }
   },
   {
@@ -192789,8 +192739,8 @@ const realFuelStations = [
     "latitude": 41.91109413829343,
     "longitude": 12.596658386751187,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.739,
+      "Benzina": 1.769,
+      "Gasolio": 1.769,
       "GPL": 0.679
     }
   },
@@ -193288,7 +193238,7 @@ const realFuelStations = [
     "longitude": 12.513008300314027,
     "prices": {
       "Benzina": 1.789,
-      "Gasolio": 1.759
+      "Gasolio": 1.769
     }
   },
   {
@@ -194101,8 +194051,8 @@ const realFuelStations = [
     "latitude": 41.863939536240444,
     "longitude": 12.531515881419182,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.639,
+      "Benzina": 1.679,
+      "Gasolio": 1.649,
       "Metano": 1.899,
       "GPL": 0.689
     }
@@ -194565,8 +194515,8 @@ const realFuelStations = [
     "latitude": 41.95177555609791,
     "longitude": 12.528524547815323,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Benzina": 1.679,
+      "Gasolio": 1.679
     }
   },
   {
@@ -194605,8 +194555,8 @@ const realFuelStations = [
     "latitude": 41.91208776442639,
     "longitude": 12.389328239416768,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.709,
+      "Benzina": 1.759,
+      "Gasolio": 1.719,
       "GPL": 0.699
     }
   },
@@ -194718,7 +194668,7 @@ const realFuelStations = [
     "longitude": 12.271479516032969,
     "prices": {
       "Benzina": 1.949,
-      "Gasolio": 1.849
+      "Gasolio": 1.869
     }
   },
   {
@@ -194764,8 +194714,8 @@ const realFuelStations = [
     "latitude": 41.85347728643,
     "longitude": 12.4725481457981,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.609
+      "Benzina": 1.679,
+      "Gasolio": 1.639
     }
   },
   {
@@ -194999,8 +194949,8 @@ const realFuelStations = [
     "latitude": 41.809103926813364,
     "longitude": 12.446461021900177,
     "prices": {
-      "Benzina": 1.704,
-      "Gasolio": 1.704
+      "Benzina": 1.699,
+      "Gasolio": 1.699
     }
   },
   {
@@ -195338,7 +195288,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.708,
       "Gasolio": 1.688,
-      "GPL": 0.669
+      "GPL": 0.699
     }
   },
   {
@@ -195387,7 +195337,7 @@ const realFuelStations = [
     "longitude": 12.457652193070317,
     "prices": {
       "Benzina": 1.784,
-      "Gasolio": 1.754
+      "Gasolio": 1.764
     }
   },
   {
@@ -195584,7 +195534,7 @@ const realFuelStations = [
     "longitude": 12.53431,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.679
     }
   },
   {
@@ -197011,7 +196961,7 @@ const realFuelStations = [
     "latitude": 41.85856389467363,
     "longitude": 12.459612603901519,
     "prices": {
-      "Benzina": 1.739,
+      "Benzina": 1.689,
       "Gasolio": 1.658
     }
   },
@@ -197228,8 +197178,8 @@ const realFuelStations = [
     "latitude": 41.85059406751798,
     "longitude": 12.435046004962942,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.659
+      "Benzina": 1.729,
+      "Gasolio": 1.669
     }
   },
   {
@@ -197585,7 +197535,7 @@ const realFuelStations = [
     "longitude": 12.54319,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -198405,7 +198355,7 @@ const realFuelStations = [
     "longitude": 12.60595,
     "prices": {
       "Benzina": 1.697,
-      "Gasolio": 1.667
+      "Gasolio": 1.679
     }
   },
   {
@@ -198565,7 +198515,7 @@ const realFuelStations = [
     "longitude": 12.673917683432364,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.649
+      "Gasolio": 1.669
     }
   },
   {
@@ -198807,7 +198757,7 @@ const realFuelStations = [
     "longitude": 12.5638226,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -198819,7 +198769,7 @@ const realFuelStations = [
     "longitude": 12.448841,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -198941,7 +198891,7 @@ const realFuelStations = [
     "longitude": 12.585918821473138,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "GPL": 0.639
     }
   },
@@ -199089,7 +199039,7 @@ const realFuelStations = [
       "Benzina": 1.709,
       "Gasolio": 1.699,
       "Metano": 1.499,
-      "GPL": 0.629
+      "GPL": 0.659
     }
   },
   {
@@ -199461,7 +199411,7 @@ const realFuelStations = [
     "latitude": 41.8947,
     "longitude": 12.49348,
     "prices": {
-      "Benzina": 1.618,
+      "Benzina": 1.628,
       "Gasolio": 1.598
     }
   },
@@ -199485,8 +199435,8 @@ const realFuelStations = [
     "latitude": 41.8947,
     "longitude": 12.49348,
     "prices": {
-      "Benzina": 1.638,
-      "Gasolio": 1.598
+      "Benzina": 1.639,
+      "Gasolio": 1.609
     }
   },
   {
@@ -199765,8 +199715,8 @@ const realFuelStations = [
     "latitude": 41.82806628146233,
     "longitude": 12.820928033251903,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.679
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -199924,8 +199874,8 @@ const realFuelStations = [
     "latitude": 42.03872207337272,
     "longitude": 11.87865749001503,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.699
+      "Benzina": 1.739,
+      "Gasolio": 1.719
     }
   },
   {
@@ -199974,7 +199924,7 @@ const realFuelStations = [
     "longitude": 11.967279016971588,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -201026,7 +200976,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.646,
       "Gasolio": 1.628,
-      "Metano": 1.289,
+      "Metano": 1.259,
       "GPL": 0.644
     }
   },
@@ -201173,7 +201123,7 @@ const realFuelStations = [
     "latitude": 44.00573067493958,
     "longitude": 12.633447661417003,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.729,
       "Gasolio": 1.699
     }
   },
@@ -201417,7 +201367,7 @@ const realFuelStations = [
     "longitude": 12.495929384937654,
     "prices": {
       "Benzina": 1.774,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -202498,7 +202448,7 @@ const realFuelStations = [
       "Benzina": 1.679,
       "Gasolio": 1.649,
       "Metano": 1.344,
-      "GPL": 0.699
+      "GPL": 0.679
     }
   },
   {
@@ -202643,8 +202593,8 @@ const realFuelStations = [
     "latitude": 45.04640641555813,
     "longitude": 11.87053276438337,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.659
+      "Benzina": 1.689,
+      "Gasolio": 1.669
     }
   },
   {
@@ -202667,8 +202617,8 @@ const realFuelStations = [
     "latitude": 45.04161321379479,
     "longitude": 11.710862273645375,
     "prices": {
-      "Benzina": 1.78,
-      "Gasolio": 1.74,
+      "Benzina": 1.8,
+      "Gasolio": 1.76,
       "GPL": 0.899
     }
   },
@@ -205329,7 +205279,7 @@ const realFuelStations = [
     "latitude": 40.71016576785081,
     "longitude": 14.699343790178299,
     "prices": {
-      "Benzina": 1.739,
+      "Benzina": 1.749,
       "Gasolio": 1.699
     }
   },
@@ -205734,7 +205684,7 @@ const realFuelStations = [
     "longitude": 14.767337000123,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.649
+      "Gasolio": 1.639
     }
   },
   {
@@ -205928,7 +205878,7 @@ const realFuelStations = [
     "latitude": 40.66631271451353,
     "longitude": 14.644361053938837,
     "prices": {
-      "Benzina": 1.759,
+      "Benzina": 1.749,
       "Gasolio": 1.709
     }
   },
@@ -206252,8 +206202,8 @@ const realFuelStations = [
     "latitude": 40.77310100446204,
     "longitude": 14.646015912294388,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Benzina": 1.739,
+      "Gasolio": 1.709
     }
   },
   {
@@ -206806,8 +206756,8 @@ const realFuelStations = [
     "latitude": 40.6975783153766,
     "longitude": 14.773820921018341,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Benzina": 1.729,
+      "Gasolio": 1.659
     }
   },
   {
@@ -207086,8 +207036,8 @@ const realFuelStations = [
     "latitude": 40.6540922,
     "longitude": 14.613551,
     "prices": {
-      "Benzina": 1.809,
-      "Gasolio": 1.769
+      "Benzina": 1.819,
+      "Gasolio": 1.779
     }
   },
   {
@@ -207481,8 +207431,8 @@ const realFuelStations = [
     "latitude": 40.68346516783326,
     "longitude": 14.775983170069228,
     "prices": {
-      "Benzina": 1.726,
-      "Gasolio": 1.726
+      "Benzina": 1.736,
+      "Gasolio": 1.736
     }
   },
   {
@@ -207493,8 +207443,8 @@ const realFuelStations = [
     "latitude": 40.65424365866962,
     "longitude": 14.859095364809036,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Benzina": 1.719,
+      "Gasolio": 1.719
     }
   },
   {
@@ -209223,8 +209173,8 @@ const realFuelStations = [
     "latitude": 43.150665092962036,
     "longitude": 11.586588940538851,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.689,
+      "Benzina": 1.689,
+      "Gasolio": 1.709,
       "GPL": 0.679
     }
   },
@@ -209571,7 +209521,7 @@ const realFuelStations = [
     "longitude": 11.148393,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -209583,7 +209533,7 @@ const realFuelStations = [
     "longitude": 11.153367929689812,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -209678,7 +209628,7 @@ const realFuelStations = [
     "longitude": 11.753672947515838,
     "prices": {
       "Benzina": 1.649,
-      "Gasolio": 1.659
+      "Gasolio": 1.669
     }
   },
   {
@@ -209801,8 +209751,8 @@ const realFuelStations = [
     "latitude": 43.46878030761496,
     "longitude": 11.04027051471519,
     "prices": {
-      "Benzina": 1.849,
-      "Gasolio": 1.809
+      "Benzina": 1.869,
+      "Gasolio": 1.839
     }
   },
   {
@@ -210059,7 +210009,7 @@ const realFuelStations = [
     "longitude": 11.3542092,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -210134,7 +210084,7 @@ const realFuelStations = [
     "longitude": 11.320682847779644,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -210268,7 +210218,7 @@ const realFuelStations = [
     "longitude": 11.275755573763417,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -210365,8 +210315,8 @@ const realFuelStations = [
     "latitude": 46.15488280019562,
     "longitude": 10.157345831394196,
     "prices": {
-      "Benzina": 1.779,
-      "Gasolio": 1.739
+      "Benzina": 1.789,
+      "Gasolio": 1.759
     }
   },
   {
@@ -210545,7 +210495,8 @@ const realFuelStations = [
     "latitude": 46.26146406818629,
     "longitude": 9.846933782100677,
     "prices": {
-      "Benzina": 1.729
+      "Benzina": 1.729,
+      "Gasolio": 1.717
     }
   },
   {
@@ -210628,8 +210579,8 @@ const realFuelStations = [
     "latitude": 46.554025226052566,
     "longitude": 10.145127028226852,
     "prices": {
-      "Benzina": 1.28,
-      "Gasolio": 1.17
+      "Benzina": 1.293,
+      "Gasolio": 1.198
     }
   },
   {
@@ -210724,8 +210675,8 @@ const realFuelStations = [
     "latitude": 46.52761921935373,
     "longitude": 10.135169724327566,
     "prices": {
-      "Benzina": 1.286,
-      "Gasolio": 1.179
+      "Benzina": 1.296,
+      "Gasolio": 1.199
     }
   },
   {
@@ -210870,7 +210821,7 @@ const realFuelStations = [
     "longitude": 9.924469903977183,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -211404,8 +211355,8 @@ const realFuelStations = [
     "latitude": 44.11384989247854,
     "longitude": 9.850873947143555,
     "prices": {
-      "Benzina": 1.707,
-      "Gasolio": 1.657,
+      "Benzina": 1.729,
+      "Gasolio": 1.699,
       "GPL": 0.779
     }
   },
@@ -211963,8 +211914,8 @@ const realFuelStations = [
     "latitude": 44.2903454,
     "longitude": 9.6723766,
     "prices": {
-      "Benzina": 1.757,
-      "Gasolio": 1.687
+      "Benzina": 1.767,
+      "Gasolio": 1.737
     }
   },
   {
@@ -212197,7 +212148,7 @@ const realFuelStations = [
     "longitude": 15.139661729335785,
     "prices": {
       "Benzina": 1.754,
-      "Gasolio": 1.694
+      "Gasolio": 1.704
     }
   },
   {
@@ -212549,8 +212500,8 @@ const realFuelStations = [
     "latitude": 37.077162779080595,
     "longitude": 15.170883244496721,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.649
+      "Benzina": 1.729,
+      "Gasolio": 1.679
     }
   },
   {
@@ -213095,8 +213046,8 @@ const realFuelStations = [
     "latitude": 43.1479,
     "longitude": 12.1097,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.669,
+      "Benzina": 1.739,
+      "Gasolio": 1.689,
       "GPL": 0.755
     }
   },
@@ -213194,7 +213145,7 @@ const realFuelStations = [
     "longitude": 15.152351260185242,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -213477,7 +213428,7 @@ const realFuelStations = [
     "longitude": 15.28694,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -213902,7 +213853,7 @@ const realFuelStations = [
     "longitude": 9.063703972071137,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -214108,7 +214059,7 @@ const realFuelStations = [
     "longitude": 9.382475194599264,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719,
+      "Gasolio": 1.729,
       "GPL": 0.899
     }
   },
@@ -214121,7 +214072,7 @@ const realFuelStations = [
     "longitude": 9.3901389,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -214157,7 +214108,7 @@ const realFuelStations = [
     "longitude": 8.87072,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.719
+      "Gasolio": 1.737
     }
   },
   {
@@ -214205,7 +214156,7 @@ const realFuelStations = [
     "longitude": 8.767086,
     "prices": {
       "Benzina": 1.789,
-      "Gasolio": 1.749
+      "Gasolio": 1.759
     }
   },
   {
@@ -214242,7 +214193,7 @@ const realFuelStations = [
     "longitude": 8.763861,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -214302,8 +214253,8 @@ const realFuelStations = [
     "latitude": 40.7017503816923,
     "longitude": 9.697351277136477,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.719,
+      "Benzina": 1.769,
+      "Gasolio": 1.729,
       "GPL": 0.79
     }
   },
@@ -214316,7 +214267,7 @@ const realFuelStations = [
     "longitude": 9.696921,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.719,
+      "Gasolio": 1.729,
       "GPL": 0.789
     }
   },
@@ -214987,7 +214938,7 @@ const realFuelStations = [
     "longitude": 9.098529741168022,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -215058,8 +215009,8 @@ const realFuelStations = [
     "latitude": 40.604092566537325,
     "longitude": 8.98817420024069,
     "prices": {
-      "Benzina": 1.727,
-      "Gasolio": 1.687,
+      "Benzina": 1.737,
+      "Gasolio": 1.699,
       "GPL": 0.759
     }
   },
@@ -215787,7 +215738,7 @@ const realFuelStations = [
     "longitude": 8.565408217768464,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -215848,7 +215799,7 @@ const realFuelStations = [
     "longitude": 8.588462769985199,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -216004,8 +215955,8 @@ const realFuelStations = [
     "latitude": 40.89714132933976,
     "longitude": 9.145859597553256,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.687,
+      "Benzina": 1.727,
+      "Gasolio": 1.699,
       "GPL": 0.859
     }
   },
@@ -216176,7 +216127,7 @@ const realFuelStations = [
     "longitude": 9.360125,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.729
+      "Gasolio": 1.739
     }
   },
   {
@@ -216845,7 +216796,7 @@ const realFuelStations = [
     "longitude": 8.3745717,
     "prices": {
       "Benzina": 1.679,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -216869,7 +216820,7 @@ const realFuelStations = [
     "longitude": 9.043809617512162,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.799
     }
   },
@@ -216968,7 +216919,7 @@ const realFuelStations = [
     "longitude": 9.02391379738871,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719,
+      "Gasolio": 1.729,
       "GPL": 0.799
     }
   },
@@ -216981,7 +216932,7 @@ const realFuelStations = [
     "longitude": 9.0164470947743,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -217149,8 +217100,8 @@ const realFuelStations = [
     "latitude": 39.10808119036582,
     "longitude": 8.526039719581604,
     "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.689
+      "Benzina": 1.717,
+      "Gasolio": 1.699
     }
   },
   {
@@ -217475,7 +217426,7 @@ const realFuelStations = [
     "longitude": 8.92675516611868,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.679,
+      "Gasolio": 1.689,
       "GPL": 0.759
     }
   },
@@ -218067,7 +218018,7 @@ const realFuelStations = [
     "longitude": 8.136099502444267,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.729
     }
   },
   {
@@ -218513,7 +218464,7 @@ const realFuelStations = [
     "latitude": 44.125449845303216,
     "longitude": 8.255229463788964,
     "prices": {
-      "Benzina": 1.719,
+      "Benzina": 1.716,
       "Gasolio": 1.679
     }
   },
@@ -219471,7 +219422,7 @@ const realFuelStations = [
     "longitude": 17.45960623025894,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.619
     }
   },
@@ -219755,7 +219706,7 @@ const realFuelStations = [
     "longitude": 16.790330618641747,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -219792,8 +219743,8 @@ const realFuelStations = [
     "latitude": 40.417778192915826,
     "longitude": 17.449744418263435,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.659,
+      "Benzina": 1.739,
+      "Gasolio": 1.669,
       "GPL": 0.639
     }
   },
@@ -220052,20 +220003,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 53243,
-    "name": "SIMEONE CARBURANTI S.R.L.",
-    "brand": "Simeone Carburanti",
-    "address": "MICELI SN 74015, MARTINA FRANCA",
-    "latitude": 40.7185942,
-    "longitude": 17.2193783,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659,
-      "Metano": 1.449,
-      "GPL": 0.639
-    }
-  },
-  {
     "id": 12604,
     "name": "CASTELLANA PAOLO",
     "brand": "Agip Eni",
@@ -220181,7 +220118,7 @@ const realFuelStations = [
     "latitude": 40.58055532966734,
     "longitude": 17.12259739637375,
     "prices": {
-      "Benzina": 1.779,
+      "Benzina": 1.789,
       "Gasolio": 1.699
     }
   },
@@ -220304,8 +220241,8 @@ const realFuelStations = [
     "latitude": 40.72972,
     "longitude": 16.97503,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.679,
+      "Benzina": 1.729,
+      "Gasolio": 1.699,
       "GPL": 0.629
     }
   },
@@ -220660,7 +220597,7 @@ const realFuelStations = [
     "latitude": 40.400491931223144,
     "longitude": 17.552441507577896,
     "prices": {
-      "Benzina": 1.769,
+      "Benzina": 1.789,
       "Gasolio": 1.749
     }
   },
@@ -220699,7 +220636,7 @@ const realFuelStations = [
     "longitude": 17.206000685691833,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.639
     }
   },
@@ -220855,7 +220792,7 @@ const realFuelStations = [
     "latitude": 40.430317552073774,
     "longitude": 17.258899211883545,
     "prices": {
-      "Benzina": 1.697,
+      "Benzina": 1.719,
       "Gasolio": 1.657,
       "GPL": 0.659
     }
@@ -221247,8 +221184,8 @@ const realFuelStations = [
     "latitude": 40.47370109193826,
     "longitude": 17.232473174218747,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Benzina": 1.789,
+      "Gasolio": 1.709
     }
   },
   {
@@ -221575,7 +221512,7 @@ const realFuelStations = [
     "longitude": 13.978493213653566,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -222050,7 +221987,7 @@ const realFuelStations = [
     "longitude": 13.963675,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -222122,7 +222059,7 @@ const realFuelStations = [
     "longitude": 13.9590311,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.669
+      "Gasolio": 1.679
     }
   },
   {
@@ -222205,8 +222142,8 @@ const realFuelStations = [
     "latitude": 42.87857389269861,
     "longitude": 13.904569521546364,
     "prices": {
-      "Benzina": 1.697,
-      "Gasolio": 1.667
+      "Benzina": 1.699,
+      "Gasolio": 1.699
     }
   },
   {
@@ -222292,7 +222229,7 @@ const realFuelStations = [
     "longitude": 13.636693,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -222391,7 +222328,7 @@ const realFuelStations = [
     "longitude": 13.899759650230408,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -222451,7 +222388,7 @@ const realFuelStations = [
     "longitude": 13.82150868685675,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -222720,7 +222657,7 @@ const realFuelStations = [
     "longitude": 13.997402,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -222866,7 +222803,7 @@ const realFuelStations = [
     "longitude": 14.102570191025734,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.729
+      "Gasolio": 1.739
     }
   },
   {
@@ -223040,7 +222977,7 @@ const realFuelStations = [
     "longitude": 13.81173,
     "prices": {
       "Benzina": 1.667,
-      "Gasolio": 1.667
+      "Gasolio": 1.677
     }
   },
   {
@@ -223284,8 +223221,8 @@ const realFuelStations = [
     "latitude": 42.80483924355712,
     "longitude": 13.928732872009277,
     "prices": {
-      "Benzina": 1.819,
-      "Gasolio": 1.749,
+      "Benzina": 1.829,
+      "Gasolio": 1.769,
       "GPL": 0.849
     }
   },
@@ -223528,7 +223465,7 @@ const realFuelStations = [
     "longitude": 11.116621,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.699
     }
   },
@@ -223662,7 +223599,7 @@ const realFuelStations = [
     "longitude": 11.096140923942585,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -224014,7 +223951,7 @@ const realFuelStations = [
     "longitude": 10.92544767976225,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -224231,8 +224168,8 @@ const realFuelStations = [
     "latitude": 45.88990137074366,
     "longitude": 10.728668421506882,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.699
+      "Benzina": 1.779,
+      "Gasolio": 1.729
     }
   },
   {
@@ -224559,8 +224496,8 @@ const realFuelStations = [
     "latitude": 46.31153689589303,
     "longitude": 10.750611259590865,
     "prices": {
-      "Benzina": 1.799,
-      "Gasolio": 1.749
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -225023,8 +224960,8 @@ const realFuelStations = [
     "latitude": 45.835736457576026,
     "longitude": 11.010415703058243,
     "prices": {
-      "Benzina": 1.717,
-      "Gasolio": 1.687
+      "Benzina": 1.737,
+      "Gasolio": 1.697
     }
   },
   {
@@ -225351,7 +225288,7 @@ const realFuelStations = [
     "longitude": 11.11626199717216,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.727
+      "Gasolio": 1.737
     }
   },
   {
@@ -225399,8 +225336,8 @@ const realFuelStations = [
     "latitude": 46.00757519604094,
     "longitude": 11.127074360847473,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.719
+      "Benzina": 1.759,
+      "Gasolio": 1.709
     }
   },
   {
@@ -225450,7 +225387,7 @@ const realFuelStations = [
     "longitude": 11.11009731888771,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.727,
+      "Gasolio": 1.737,
       "GPL": 0.759
     }
   },
@@ -225647,7 +225584,7 @@ const realFuelStations = [
     "longitude": 11.115481823313985,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.722
+      "Gasolio": 1.729
     }
   },
   {
@@ -225866,7 +225803,7 @@ const realFuelStations = [
     "longitude": 10.74717029929161,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.767
+      "Gasolio": 1.777
     }
   },
   {
@@ -226090,7 +226027,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.669,
-      "GPL": 0.669
+      "GPL": 0.599
     }
   },
   {
@@ -226101,7 +226038,7 @@ const realFuelStations = [
     "latitude": 45.26630319550874,
     "longitude": 7.519732564687729,
     "prices": {
-      "Benzina": 1.699,
+      "Benzina": 1.719,
       "Gasolio": 1.697
     }
   },
@@ -226468,8 +226405,8 @@ const realFuelStations = [
     "latitude": 44.84510298656677,
     "longitude": 7.312377020716667,
     "prices": {
-      "Benzina": 1.839,
-      "Gasolio": 1.799
+      "Benzina": 1.939,
+      "Gasolio": 1.899
     }
   },
   {
@@ -226480,8 +226417,8 @@ const realFuelStations = [
     "latitude": 45.018744938770375,
     "longitude": 7.481237870756541,
     "prices": {
-      "Benzina": 1.675,
-      "Gasolio": 1.649
+      "Benzina": 1.685,
+      "Gasolio": 1.659
     }
   },
   {
@@ -226988,8 +226925,8 @@ const realFuelStations = [
     "latitude": 45.18971374654478,
     "longitude": 7.642328962683678,
     "prices": {
-      "Benzina": 1.749,
-      "Gasolio": 1.649
+      "Benzina": 1.769,
+      "Gasolio": 1.699
     }
   },
   {
@@ -228031,7 +227968,7 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.669,
-      "GPL": 0.659
+      "GPL": 0.649
     }
   },
   {
@@ -229020,7 +228957,7 @@ const realFuelStations = [
     "longitude": 7.632060755775456,
     "prices": {
       "Benzina": 1.669,
-      "Gasolio": 1.645,
+      "Gasolio": 1.659,
       "GPL": 0.655
     }
   },
@@ -229097,7 +229034,7 @@ const realFuelStations = [
     "longitude": 7.6576424,
     "prices": {
       "Benzina": 1.829,
-      "Gasolio": 1.789,
+      "Gasolio": 1.799,
       "Metano": 1.482
     }
   },
@@ -229775,8 +229712,8 @@ const realFuelStations = [
     "latitude": 44.93354448535791,
     "longitude": 7.616615295410156,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.659,
+      "Benzina": 1.739,
+      "Gasolio": 1.669,
       "GPL": 0.655
     }
   },
@@ -229803,18 +229740,6 @@ const realFuelStations = [
       "Benzina": 1.629,
       "Gasolio": 1.589,
       "GPL": 0.689
-    }
-  },
-  {
-    "id": 33813,
-    "name": "ECONOMY S.R.L.",
-    "brand": "Api-Ip",
-    "address": "589 dei Laghi di Avigliana, Km. 18+500, cumiana - 10046, PIOSSASCO",
-    "latitude": 44.968925248533985,
-    "longitude": 7.432086020708084,
-    "prices": {
-      "Benzina": 1.698,
-      "Gasolio": 1.678
     }
   },
   {
@@ -229917,19 +229842,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 34735,
-    "name": "ECONOMY S.R.L.",
-    "brand": "Api-Ip",
-    "address": "EX S.S. 29 ORA S.R. KM 2+331,5 SNC 10046, POIRINO",
-    "latitude": 44.92211879859993,
-    "longitude": 7.864062488079071,
-    "prices": {
-      "Benzina": 1.688,
-      "Gasolio": 1.668,
-      "GPL": 0.679
-    }
-  },
-  {
     "id": 42191,
     "name": "ECONOMY S.R.L.",
     "brand": "Api-Ip",
@@ -229989,7 +229901,7 @@ const realFuelStations = [
     "longitude": 6.9465252337402,
     "prices": {
       "Benzina": 1.809,
-      "Gasolio": 1.769
+      "Gasolio": 1.779
     }
   },
   {
@@ -230874,8 +230786,8 @@ const realFuelStations = [
     "latitude": 45.203781454619026,
     "longitude": 7.636678218841553,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.649
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -230886,7 +230798,7 @@ const realFuelStations = [
     "latitude": 45.194391429784815,
     "longitude": 7.626498770569583,
     "prices": {
-      "Benzina": 1.689,
+      "Benzina": 1.679,
       "Gasolio": 1.625
     }
   },
@@ -230934,7 +230846,7 @@ const realFuelStations = [
     "longitude": 7.791512086987495,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -231227,8 +231139,8 @@ const realFuelStations = [
     "latitude": 45.1287046,
     "longitude": 7.7538472,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.699
+      "Benzina": 1.699,
+      "Gasolio": 1.689
     }
   },
   {
@@ -232220,7 +232132,7 @@ const realFuelStations = [
     "longitude": 7.621697999999999,
     "prices": {
       "Benzina": 1.714,
-      "Gasolio": 1.694
+      "Gasolio": 1.699
     }
   },
   {
@@ -232917,7 +232829,7 @@ const realFuelStations = [
     "latitude": 45.099595146470136,
     "longitude": 7.6499252195740155,
     "prices": {
-      "Benzina": 1.689,
+      "Benzina": 1.699,
       "Gasolio": 1.679
     }
   },
@@ -234864,8 +234776,8 @@ const realFuelStations = [
     "latitude": 37.684927947248326,
     "longitude": 12.823789865541446,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.609,
+      "Benzina": 1.679,
+      "Gasolio": 1.619,
       "GPL": 0.749
     }
   },
@@ -236091,8 +236003,8 @@ const realFuelStations = [
     "latitude": 37.70725112209311,
     "longitude": 12.516303062438965,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.609,
+      "Benzina": 1.709,
+      "Gasolio": 1.639,
       "GPL": 0.794
     }
   },
@@ -236251,7 +236163,7 @@ const realFuelStations = [
     "longitude": 12.868667542934418,
     "prices": {
       "Benzina": 1.777,
-      "Gasolio": 1.697
+      "Gasolio": 1.717
     }
   },
   {
@@ -236346,8 +236258,8 @@ const realFuelStations = [
     "latitude": 38.021878745096124,
     "longitude": 12.51994264779674,
     "prices": {
-      "Benzina": 1.789,
-      "Gasolio": 1.689
+      "Benzina": 1.777,
+      "Gasolio": 1.697
     }
   },
   {
@@ -236617,7 +236529,7 @@ const realFuelStations = [
     "longitude": 12.607785165309906,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.669
+      "Gasolio": 1.689
     }
   },
   {
@@ -236762,7 +236674,7 @@ const realFuelStations = [
     "longitude": 12.449409671099321,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.649,
+      "Gasolio": 1.659,
       "GPL": 0.679
     }
   },
@@ -237080,7 +236992,7 @@ const realFuelStations = [
     "longitude": 12.48811,
     "prices": {
       "Benzina": 1.605,
-      "Gasolio": 1.594
+      "Gasolio": 1.604
     }
   },
   {
@@ -237865,7 +237777,7 @@ const realFuelStations = [
     "longitude": 12.600004076957703,
     "prices": {
       "Benzina": 1.709,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -238433,7 +238345,7 @@ const realFuelStations = [
     "longitude": 13.77710998381934,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.739
+      "Gasolio": 1.749
     }
   },
   {
@@ -238724,8 +238636,8 @@ const realFuelStations = [
     "latitude": 45.805371197961534,
     "longitude": 11.773217841982841,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.739
+      "Benzina": 1.769,
+      "Gasolio": 1.749
     }
   },
   {
@@ -238847,7 +238759,7 @@ const realFuelStations = [
     "latitude": 45.690788,
     "longitude": 12.292548,
     "prices": {
-      "Benzina": 1.679,
+      "Benzina": 1.689,
       "Gasolio": 1.669
     }
   },
@@ -238971,8 +238883,8 @@ const realFuelStations = [
     "latitude": 45.611657622022605,
     "longitude": 12.328164875507355,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.659
+      "Benzina": 1.689,
+      "Gasolio": 1.669
     }
   },
   {
@@ -239378,8 +239290,8 @@ const realFuelStations = [
     "latitude": 45.86612472022949,
     "longitude": 12.443333805663483,
     "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.639
+      "Benzina": 1.649,
+      "Gasolio": 1.649
     }
   },
   {
@@ -240907,8 +240819,8 @@ const realFuelStations = [
     "latitude": 45.71603910400759,
     "longitude": 12.208990976214409,
     "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.619
+      "Benzina": 1.689,
+      "Gasolio": 1.669
     }
   },
   {
@@ -241217,7 +241129,7 @@ const realFuelStations = [
     "longitude": 12.392237,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -241265,7 +241177,7 @@ const realFuelStations = [
     "longitude": 12.349931001663208,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.709,
+      "Gasolio": 1.719,
       "GPL": 0.699
     }
   },
@@ -241401,18 +241313,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.769,
       "Gasolio": 1.709
-    }
-  },
-  {
-    "id": 60311,
-    "name": "GEFF S.R.L.",
-    "brand": "Api-Ip",
-    "address": "Via Liberazione 153  31020, SAN VENDEMIANO",
-    "latitude": 45.87670327241261,
-    "longitude": 12.33891734963211,
-    "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.669
     }
   },
   {
@@ -241631,8 +241531,8 @@ const realFuelStations = [
     "latitude": 45.83205924577309,
     "longitude": 12.226496078538958,
     "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.658
+      "Benzina": 1.689,
+      "Gasolio": 1.668
     }
   },
   {
@@ -241826,7 +241726,7 @@ const realFuelStations = [
     "longitude": 12.248933931877104,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -242429,7 +242329,7 @@ const realFuelStations = [
     "longitude": 12.280418872833252,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.229,
       "GPL": 0.699
     }
@@ -242831,8 +242731,8 @@ const realFuelStations = [
     "latitude": 46.016260769220615,
     "longitude": 13.147850632667542,
     "prices": {
-      "Benzina": 1.688,
-      "Gasolio": 1.667,
+      "Benzina": 1.698,
+      "Gasolio": 1.687,
       "GPL": 0.629
     }
   },
@@ -243015,8 +242915,7 @@ const realFuelStations = [
     "longitude": 12.944942,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699,
-      "GPL": 0.629
+      "Gasolio": 1.699
     }
   },
   {
@@ -243137,9 +243036,8 @@ const realFuelStations = [
     "latitude": 46.185850971325884,
     "longitude": 13.11955064535141,
     "prices": {
-      "Benzina": 1.789,
-      "Gasolio": 1.779,
-      "GPL": 0.799
+      "GPL": 0.799,
+      "Gasolio": 1.899
     }
   },
   {
@@ -243237,7 +243135,7 @@ const realFuelStations = [
     "longitude": 13.093640506267548,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.709
+      "Gasolio": 1.719
     }
   },
   {
@@ -243308,8 +243206,8 @@ const realFuelStations = [
     "latitude": 46.224686323392824,
     "longitude": 13.01092453300953,
     "prices": {
-      "Benzina": 1.779,
-      "Gasolio": 1.739
+      "Benzina": 1.789,
+      "Gasolio": 1.769
     }
   },
   {
@@ -243846,7 +243744,7 @@ const realFuelStations = [
     "longitude": 13.173729002513255,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.669,
+      "Gasolio": 1.679,
       "Metano": 1.349
     }
   },
@@ -244019,7 +243917,7 @@ const realFuelStations = [
     "longitude": 13.256919980049133,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -244434,7 +244332,7 @@ const realFuelStations = [
     "longitude": 13.222294673323631,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Gasolio": 1.679,
       "GPL": 0.634
     }
   },
@@ -244766,7 +244664,7 @@ const realFuelStations = [
     "longitude": 13.39819475214957,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -245202,7 +245100,7 @@ const realFuelStations = [
     "longitude": 13.206003964140336,
     "prices": {
       "Benzina": 1.697,
-      "Gasolio": 1.677,
+      "Gasolio": 1.687,
       "GPL": 0.639
     }
   },
@@ -245304,6 +245202,19 @@ const realFuelStations = [
       "Gasolio": 1.639,
       "Metano": 1.259,
       "GPL": 0.634
+    }
+  },
+  {
+    "id": 35394,
+    "name": "COMMERCIO PETROLI S.R.L.",
+    "brand": "Costantin",
+    "address": "VIA VIA LUMIGNACCO S.P. 94 501 33100, UDINE (UD) 501 33100, UDINE",
+    "latitude": 46.022084178697796,
+    "longitude": 13.239779066470305,
+    "prices": {
+      "Benzina": 1.697,
+      "Gasolio": 1.677,
+      "Metano": 1.357
     }
   },
   {
@@ -245631,7 +245542,7 @@ const realFuelStations = [
     "longitude": 13.248379322298433,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -245861,7 +245772,7 @@ const realFuelStations = [
     "longitude": 8.588541429430393,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -246295,8 +246206,8 @@ const realFuelStations = [
     "latitude": 45.580976311450684,
     "longitude": 8.859471538577509,
     "prices": {
-      "Benzina": 1.677,
-      "Gasolio": 1.657
+      "Benzina": 1.717,
+      "Gasolio": 1.697
     }
   },
   {
@@ -246944,7 +246855,7 @@ const realFuelStations = [
     "longitude": 8.769684880971909,
     "prices": {
       "Benzina": 1.678,
-      "Gasolio": 1.688
+      "Gasolio": 1.698
     }
   },
   {
@@ -247149,7 +247060,7 @@ const realFuelStations = [
     "latitude": 45.66498502191534,
     "longitude": 8.778295516967773,
     "prices": {
-      "Benzina": 1.697,
+      "Benzina": 1.707,
       "Gasolio": 1.677
     }
   },
@@ -247173,7 +247084,7 @@ const realFuelStations = [
     "latitude": 45.655140743708245,
     "longitude": 8.801605022186209,
     "prices": {
-      "Benzina": 1.697,
+      "Benzina": 1.707,
       "Gasolio": 1.677
     }
   },
@@ -247318,8 +247229,8 @@ const realFuelStations = [
     "latitude": 45.7780186,
     "longitude": 8.8395267,
     "prices": {
-      "Benzina": 1.724,
-      "Gasolio": 1.674
+      "Benzina": 1.719,
+      "Gasolio": 1.669
     }
   },
   {
@@ -248293,8 +248204,8 @@ const realFuelStations = [
     "latitude": 45.803962773081516,
     "longitude": 8.676253496632436,
     "prices": {
-      "Benzina": 1.709,
-      "Gasolio": 1.679
+      "Benzina": 1.719,
+      "Gasolio": 1.699
     }
   },
   {
@@ -248728,7 +248639,7 @@ const realFuelStations = [
     "longitude": 8.697485,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.639
     }
   },
@@ -248789,7 +248700,7 @@ const realFuelStations = [
     "longitude": 8.46025,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.769
+      "Gasolio": 1.779
     }
   },
   {
@@ -248971,7 +248882,7 @@ const realFuelStations = [
     "longitude": 8.431178033351898,
     "prices": {
       "Benzina": 1.799,
-      "Gasolio": 1.769
+      "Gasolio": 1.779
     }
   },
   {
@@ -249128,7 +249039,7 @@ const realFuelStations = [
     "longitude": 8.272799534121077,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.707,
+      "Gasolio": 1.717,
       "Metano": 1.447
     }
   },
@@ -249551,7 +249462,7 @@ const realFuelStations = [
     "longitude": 8.286269,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -249874,7 +249785,7 @@ const realFuelStations = [
     "longitude": 8.266940840197744,
     "prices": {
       "Benzina": 1.719,
-      "Gasolio": 1.649
+      "Gasolio": 1.659
     }
   },
   {
@@ -250512,8 +250423,8 @@ const realFuelStations = [
     "latitude": 45.354494946978974,
     "longitude": 12.091564701991274,
     "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.619
+      "Benzina": 1.679,
+      "Gasolio": 1.649
     }
   },
   {
@@ -250744,7 +250655,7 @@ const realFuelStations = [
     "longitude": 12.07599,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -251481,8 +251392,8 @@ const realFuelStations = [
     "latitude": 45.51106112812523,
     "longitude": 12.656173141664112,
     "prices": {
-      "Benzina": 1.759,
-      "Gasolio": 1.729
+      "Benzina": 1.769,
+      "Gasolio": 1.749
     }
   },
   {
@@ -252087,7 +251998,7 @@ const realFuelStations = [
     "longitude": 12.050531792423046,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -252295,8 +252206,8 @@ const realFuelStations = [
     "latitude": 45.76819,
     "longitude": 12.83323,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.659
+      "Benzina": 1.669,
+      "Gasolio": 1.679
     }
   },
   {
@@ -252417,8 +252328,8 @@ const realFuelStations = [
     "latitude": 45.785455692656186,
     "longitude": 12.81846836776733,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.659,
+      "Benzina": 1.669,
+      "Gasolio": 1.679,
       "GPL": 0.679
     }
   },
@@ -253130,8 +253041,8 @@ const realFuelStations = [
     "latitude": 45.52548613951412,
     "longitude": 12.260113954544067,
     "prices": {
-      "Benzina": 1.819,
-      "Gasolio": 1.779,
+      "Benzina": 1.829,
+      "Gasolio": 1.784,
       "GPL": 0.809
     }
   },
@@ -253266,7 +253177,7 @@ const realFuelStations = [
     "longitude": 12.232462987303734,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.699
+      "Gasolio": 1.719
     }
   },
   {
@@ -253996,7 +253907,7 @@ const realFuelStations = [
     "longitude": 11.453427755002975,
     "prices": {
       "Benzina": 1.689,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.679
     }
   },
@@ -254708,8 +254619,8 @@ const realFuelStations = [
     "latitude": 45.520818542440516,
     "longitude": 11.680875420570374,
     "prices": {
-      "Benzina": 1.729,
-      "Gasolio": 1.689,
+      "Benzina": 1.739,
+      "Gasolio": 1.699,
       "GPL": 0.689
     }
   },
@@ -254760,8 +254671,8 @@ const realFuelStations = [
     "latitude": 45.33498199460531,
     "longitude": 11.542847603559494,
     "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.619
+      "Benzina": 1.659,
+      "Gasolio": 1.639
     }
   },
   {
@@ -255532,18 +255443,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 4067,
-    "name": "ENERGAS ITALIA S.R.L.",
-    "brand": "Costantin",
-    "address": "VIA SCHIO 48 36034, MALO",
-    "latitude": 45.671324479860054,
-    "longitude": 11.405417919158936,
-    "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.649
-    }
-  },
-  {
     "id": 4489,
     "name": "NOALOIL S.P.A.",
     "brand": "Noaloil",
@@ -255824,6 +255723,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.639
+    }
+  },
+  {
+    "id": 5663,
+    "name": "LORO F.LLI-S.P.A.",
+    "brand": "Loro",
+    "address": "VIA TRIESTE  36075, MONTECCHIO MAGGIORE",
+    "latitude": 45.50476139386472,
+    "longitude": 11.440124640985895,
+    "prices": {
+      "Benzina": 1.669,
+      "Gasolio": 1.669
     }
   },
   {
@@ -256770,7 +256681,7 @@ const realFuelStations = [
     "longitude": 11.446493644180237,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.599
+      "Gasolio": 1.619
     }
   },
   {
@@ -258005,7 +257916,7 @@ const realFuelStations = [
     "longitude": 11.2863,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -259550,7 +259461,7 @@ const realFuelStations = [
     "longitude": 11.0444596409797,
     "prices": {
       "Benzina": 1.729,
-      "Gasolio": 1.699,
+      "Gasolio": 1.709,
       "GPL": 0.669
     }
   },
@@ -259654,8 +259565,8 @@ const realFuelStations = [
     "latitude": 45.30932338586772,
     "longitude": 11.17694291534417,
     "prices": {
-      "Benzina": 1.654,
-      "Gasolio": 1.644
+      "Benzina": 1.659,
+      "Gasolio": 1.649
     }
   },
   {
@@ -259691,7 +259602,7 @@ const realFuelStations = [
     "longitude": 10.875534111748948,
     "prices": {
       "Benzina": 1.779,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -259889,7 +259800,7 @@ const realFuelStations = [
     "longitude": 10.804309397935867,
     "prices": {
       "Benzina": 1.739,
-      "Gasolio": 1.699
+      "Gasolio": 1.709
     }
   },
   {
@@ -260098,7 +260009,7 @@ const realFuelStations = [
     "longitude": 11.2333723325061,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.669,
+      "Gasolio": 1.679,
       "GPL": 0.699
     }
   },
@@ -260161,7 +260072,7 @@ const realFuelStations = [
       "Benzina": 1.679,
       "Gasolio": 1.679,
       "Metano": 1.349,
-      "GPL": 0.599
+      "GPL": 0.629
     }
   },
   {
@@ -260172,8 +260083,8 @@ const realFuelStations = [
     "latitude": 45.41930258858804,
     "longitude": 11.076598312133797,
     "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.659,
+      "Benzina": 1.679,
+      "Gasolio": 1.679,
       "Metano": 1.289,
       "GPL": 0.679
     }
@@ -260517,7 +260428,7 @@ const realFuelStations = [
     "longitude": 11.247655084655776,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689
+      "Gasolio": 1.699
     }
   },
   {
@@ -260528,8 +260439,8 @@ const realFuelStations = [
     "latitude": 45.4105489749538,
     "longitude": 11.234126687049866,
     "prices": {
-      "Benzina": 1.832,
-      "Gasolio": 1.782,
+      "Benzina": 1.842,
+      "Gasolio": 1.802,
       "GPL": 0.802
     }
   },
@@ -260580,7 +260491,7 @@ const realFuelStations = [
     "longitude": 10.90069055557251,
     "prices": {
       "Benzina": 1.861,
-      "Gasolio": 1.818
+      "Gasolio": 1.828
     }
   },
   {
@@ -260618,7 +260529,7 @@ const realFuelStations = [
     "latitude": 45.41005554063914,
     "longitude": 10.854694694280624,
     "prices": {
-      "Benzina": 1.729,
+      "Benzina": 1.739,
       "Gasolio": 1.739,
       "GPL": 0.699
     }
@@ -260929,6 +260840,42 @@ const realFuelStations = [
     }
   },
   {
+    "id": 10475,
+    "name": "DE BENI STEFANO & C. S.N.C.",
+    "brand": "Pompe Bianche",
+    "address": "CORSO MILANO 108 37138, VERONA",
+    "latitude": 45.44575912767978,
+    "longitude": 10.955779105424881,
+    "prices": {
+      "Benzina": 1.699,
+      "Gasolio": 1.689
+    }
+  },
+  {
+    "id": 57768,
+    "name": "APSA S.R.L.",
+    "brand": "Pompe Bianche",
+    "address": "Piazzale Porta Nuova 3 37122, VERONA",
+    "latitude": 45.4217664,
+    "longitude": 10.9704257,
+    "prices": {
+      "Benzina": 1.699,
+      "Gasolio": 1.689
+    }
+  },
+  {
+    "id": 47849,
+    "name": "APSA S.R.L.",
+    "brand": "Pompe Bianche",
+    "address": "Via Francesco Torbido 25/A 37133, VERONA",
+    "latitude": 45.43414396549531,
+    "longitude": 11.007551292642463,
+    "prices": {
+      "Benzina": 1.699,
+      "Gasolio": 1.689
+    }
+  },
+  {
     "id": 61843,
     "name": "SAPRA GROUP SRLS",
     "brand": "Esso",
@@ -261038,7 +260985,7 @@ const realFuelStations = [
       "Benzina": 1.669,
       "Gasolio": 1.669,
       "Metano": 1.249,
-      "GPL": 0.599
+      "GPL": 0.649
     }
   },
   {
@@ -261064,7 +261011,7 @@ const realFuelStations = [
     "longitude": 10.929585993289948,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "Metano": 1.133
     }
   },
@@ -261164,7 +261111,7 @@ const realFuelStations = [
     "longitude": 11.018389,
     "prices": {
       "Benzina": 1.749,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -261177,7 +261124,7 @@ const realFuelStations = [
     "longitude": 10.959205,
     "prices": {
       "Benzina": 1.769,
-      "Gasolio": 1.689,
+      "Gasolio": 1.699,
       "GPL": 0.699
     }
   },
@@ -261642,7 +261589,7 @@ const realFuelStations = [
     "latitude": 45.441087000123,
     "longitude": 10.947601000123,
     "prices": {
-      "Benzina": 1.679,
+      "Benzina": 1.699,
       "Gasolio": 1.669
     }
   },
@@ -262431,6 +262378,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 62046,
+    "name": "SACCARELLO DANIELE",
+    "brand": "Q8",
+    "address": "S. BATTAGLINI SNC 01022, BAGNOREGIO",
+    "latitude": 42.62749,
+    "longitude": 12.09257,
+    "prices": {
+      "Benzina": 1.729,
+      "Gasolio": 1.699
+    }
+  },
+  {
     "id": 22036,
     "name": "PARRANO E PARRANO S.N.C. DI PARRANO ADRIANO & C.",
     "brand": "Q8",
@@ -262549,7 +262508,7 @@ const realFuelStations = [
     "longitude": 12.2336522,
     "prices": {
       "Benzina": 1.686,
-      "Gasolio": 1.625
+      "Gasolio": 1.635
     }
   },
   {
@@ -262585,7 +262544,7 @@ const realFuelStations = [
     "longitude": 11.759781,
     "prices": {
       "Benzina": 1.659,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -262829,8 +262788,8 @@ const realFuelStations = [
     "latitude": 42.346450522205345,
     "longitude": 12.45694489189032,
     "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.749
+      "Benzina": 1.759,
+      "Gasolio": 1.729
     }
   },
   {
@@ -263893,7 +263852,7 @@ const realFuelStations = [
     "longitude": 12.085754,
     "prices": {
       "Benzina": 1.759,
-      "Gasolio": 1.719
+      "Gasolio": 1.729
     }
   },
   {
@@ -264215,8 +264174,8 @@ const realFuelStations = [
     "latitude": 42.463377000123,
     "longitude": 12.073458000123,
     "prices": {
-      "Benzina": 1.719,
-      "Gasolio": 1.679,
+      "Benzina": 1.729,
+      "Gasolio": 1.699,
       "GPL": 0.639
     }
   },
@@ -264277,7 +264236,7 @@ const realFuelStations = [
     "longitude": 12.062354000123,
     "prices": {
       "Benzina": 1.699,
-      "Gasolio": 1.649,
+      "Gasolio": 1.659,
       "GPL": 0.629
     }
   },
@@ -264350,7 +264309,7 @@ const realFuelStations = [
     "longitude": 12.1105216,
     "prices": {
       "Benzina": 1.676,
-      "Gasolio": 1.619
+      "Gasolio": 1.629
     }
   },
   {
@@ -264740,8 +264699,8 @@ const realFuelStations = [
     "latitude": 38.554413146298074,
     "longitude": 15.939181775463105,
     "prices": {
-      "Benzina": 1.739,
-      "Gasolio": 1.689
+      "Benzina": 1.759,
+      "Gasolio": 1.709
     }
   },
   {
@@ -265242,7 +265201,7 @@ function getCurrentTimestamp() {
 
 // Return data update timestamp
 function updateDataTimestamp() {
-    return "Dati aggiornati: 18/11/2025 07:12";
+    return "Dati aggiornati: 19/11/2025 07:12";
 }
 
 // Export for use in app.js
