@@ -10,11 +10,11 @@
  * - Creazione di opere derivate
  * 
  * Aggiornato automaticamente via GitHub Actions
- * Ultimo aggiornamento: 02/02/2026 07:43
+ * Ultimo aggiornamento: 03/02/2026 07:35
  * Totale stazioni: 21506
  */
 
-const DATA_TIMESTAMP = "02/02/2026 07:43";
+const DATA_TIMESTAMP = "03/02/2026 07:35";
 const DATA_SOURCE = "MIMIT - Ministero delle Imprese e del Made in Italy";
 const DATA_LICENSE = "Italian Open Data License v2.0 (IODL 2.0)";
 
@@ -263425,7 +263425,7 @@ function getCurrentTimestamp() {
 
 // Return data update timestamp
 function updateDataTimestamp() {
-    return "Dati aggiornati: 02/02/2026 07:43";
+    return "Dati aggiornati: 03/02/2026 07:35";
 }
 
 // Export for use in app.js
