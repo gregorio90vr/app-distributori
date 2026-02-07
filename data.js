@@ -10,11 +10,11 @@
  * - Creazione di opere derivate
  * 
  * Aggiornato automaticamente via GitHub Actions
- * Ultimo aggiornamento: 06/02/2026 07:39
- * Totale stazioni: 21492
+ * Ultimo aggiornamento: 07/02/2026 07:24
+ * Totale stazioni: 21495
  */
 
-const DATA_TIMESTAMP = "06/02/2026 07:39";
+const DATA_TIMESTAMP = "07/02/2026 07:24";
 const DATA_SOURCE = "MIMIT - Ministero delle Imprese e del Made in Italy";
 const DATA_LICENSE = "Italian Open Data License v2.0 (IODL 2.0)";
 
@@ -22780,6 +22780,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 59457,
+    "name": "FM DI FILIPPOLI LORENZO",
+    "brand": "Retitalia",
+    "address": "STATALE 42 KM 24 + 493 SNC 24050, GRASSOBBIO",
+    "latitude": 45.639280325679344,
+    "longitude": 9.71838351762909,
+    "prices": {
+      "Benzina": 1.599,
+      "Gasolio": 1.679
+    }
+  },
+  {
     "id": 54194,
     "name": "FM DI FILIPPOLI LORENZO",
     "brand": "Retitalia",
@@ -22790,18 +22802,6 @@ const realFuelStations = [
       "Benzina": 1.599,
       "Gasolio": 1.679,
       "GPL": 0.649
-    }
-  },
-  {
-    "id": 59457,
-    "name": "FM DI FILIPPOLI LORENZO",
-    "brand": "Retitalia",
-    "address": "STATALE 42 KM 24 + 493 SNC 24050, GRASSOBBIO",
-    "latitude": 45.639280325679344,
-    "longitude": 9.71838351762909,
-    "prices": {
-      "Benzina": 1.599,
-      "Gasolio": 1.679
     }
   },
   {
@@ -49879,6 +49879,19 @@ const realFuelStations = [
     }
   },
   {
+    "id": 62408,
+    "name": "S.NICOLA OVEST",
+    "brand": "Sarni Oil",
+    "address": "Autostrada A1 MILANO-NAPOLI,  Km. 737.200, dir. SUD 81020, SAN NICOLA LA STRADA",
+    "latitude": 41.04943,
+    "longitude": 14.32096,
+    "prices": {
+      "Benzina": 1.698,
+      "Gasolio": 1.779,
+      "GPL": 0.789
+    }
+  },
+  {
     "id": 60703,
     "name": "FALCIGLIA MASSIMO",
     "brand": "Api-Ip",
@@ -61829,24 +61842,24 @@ const realFuelStations = [
     }
   },
   {
-    "id": 14099,
-    "name": "FALBO GIOVANNI BATTISTA STAZIONE DI SERVIZIO",
-    "brand": "Api-Ip",
-    "address": "CONTRADA SISTO - LACCATA SNC 87011, CASSANO ALL'IONIO",
-    "latitude": 39.76964617203755,
-    "longitude": 16.374409943819046,
-    "prices": {
-      "Benzina": 1.687,
-      "Gasolio": 1.687
-    }
-  },
-  {
     "id": 60589,
     "name": "FALBO GIOVANNI BATTISTA STAZIONE DI SERVIZIO",
     "brand": "Api-Ip",
     "address": "Via Sibari  87011, CASSANO ALL'IONIO",
     "latitude": 39.777728,
     "longitude": 16.3419497,
+    "prices": {
+      "Benzina": 1.687,
+      "Gasolio": 1.687
+    }
+  },
+  {
+    "id": 14099,
+    "name": "FALBO GIOVANNI BATTISTA STAZIONE DI SERVIZIO",
+    "brand": "Api-Ip",
+    "address": "CONTRADA SISTO - LACCATA SNC 87011, CASSANO ALL'IONIO",
+    "latitude": 39.76964617203755,
+    "longitude": 16.374409943819046,
     "prices": {
       "Benzina": 1.687,
       "Gasolio": 1.687
@@ -62282,6 +62295,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 55347,
+    "name": "RAFFAELE RUFFO SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
+    "brand": "Itala Petroli",
+    "address": "Via San Bartolomeo SNC 87064, CORIGLIANO-ROSSANO",
+    "latitude": 40.7666688,
+    "longitude": 14.6931712,
+    "prices": {
+      "Benzina": 1.789,
+      "Gasolio": 1.889
+    }
+  },
+  {
     "id": 36808,
     "name": "COFONE SIMONE",
     "brand": "Api-Ip",
@@ -62303,18 +62328,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.689
-    }
-  },
-  {
-    "id": 55347,
-    "name": "RAFFAELE RUFFO SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
-    "brand": "Itala Petroli",
-    "address": "Via San Bartolomeo SNC 87064, CORIGLIANO-ROSSANO",
-    "latitude": 40.7666688,
-    "longitude": 14.6931712,
-    "prices": {
-      "Benzina": 1.789,
-      "Gasolio": 1.889
     }
   },
   {
@@ -64792,18 +64805,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 51815,
-    "name": "EGI-2GO S.R.L.",
-    "brand": "Esso",
-    "address": "VIA DELLE TERME 36 95024, ACIREALE",
-    "latitude": 37.60207752060504,
-    "longitude": 15.16667427771162,
-    "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.669
-    }
-  },
-  {
     "id": 59134,
     "name": "CO.GE.KAT. S.R.L.",
     "brand": "Pompe Bianche",
@@ -64813,6 +64814,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.599,
       "Gasolio": 1.639
+    }
+  },
+  {
+    "id": 51815,
+    "name": "EGI-2GO S.R.L.",
+    "brand": "Esso",
+    "address": "VIA DELLE TERME 36 95024, ACIREALE",
+    "latitude": 37.60207752060504,
+    "longitude": 15.16667427771162,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.669
     }
   },
   {
@@ -87957,18 +87970,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 55713,
-    "name": "SEGALERBA ANDREA",
-    "brand": "Esso",
-    "address": "Via Monte Zovetto 25r 16145, GENOVA",
-    "latitude": 44.40200442108915,
-    "longitude": 8.964167804537956,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.679
-    }
-  },
-  {
     "id": 61369,
     "name": "SEGALERBA ANDREA",
     "brand": "Esso",
@@ -87978,6 +87979,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.669
+    }
+  },
+  {
+    "id": 55713,
+    "name": "SEGALERBA ANDREA",
+    "brand": "Esso",
+    "address": "Via Monte Zovetto 25r 16145, GENOVA",
+    "latitude": 44.40200442108915,
+    "longitude": 8.964167804537956,
+    "prices": {
+      "Benzina": 1.669,
+      "Gasolio": 1.679
     }
   },
   {
@@ -110477,7 +110490,7 @@ const realFuelStations = [
   },
   {
     "id": 13580,
-    "name": "LEONANGELI FERNANDO",
+    "name": "Tamoil Matelica",
     "brand": "Tamoil",
     "address": "Via Meccese SP 256 Km. 28+865, MATELICA",
     "latitude": 43.27382302991076,
@@ -112116,8 +112129,8 @@ const realFuelStations = [
     "name": "PETROL COMPANY FLORESTA SOLO PAGAMENTO ELETTRONICO",
     "brand": "Petrol Company",
     "address": "S.S. 116 KM 20 + 035 SNC 98030, FLORESTA",
-    "latitude": 37.98952,
-    "longitude": 14.91734,
+    "latitude": 37.98943967131685,
+    "longitude": 14.917346705522533,
     "prices": {
       "Benzina": 1.649,
       "Gasolio": 1.619
@@ -115256,6 +115269,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 37970,
+    "name": "IP SERVICES S.R.L.",
+    "brand": "Api-Ip",
+    "address": "S.P.121  KM.6+250 20063, CERNUSCO SUL NAVIGLIO",
+    "latitude": 45.54543517250591,
+    "longitude": 9.334397882212215,
+    "prices": {
+      "Benzina": 1.549,
+      "Gasolio": 1.619
+    }
+  },
+  {
     "id": 58861,
     "name": "CORO S.R.L.",
     "brand": "Q8",
@@ -115266,18 +115291,6 @@ const realFuelStations = [
       "Benzina": 1.589,
       "Gasolio": 1.669,
       "GPL": 0.654
-    }
-  },
-  {
-    "id": 37970,
-    "name": "IP SERVICES S.R.L.",
-    "brand": "Api-Ip",
-    "address": "S.P.121  KM.6+250 20063, CERNUSCO SUL NAVIGLIO",
-    "latitude": 45.54543517250591,
-    "longitude": 9.334397882212215,
-    "prices": {
-      "Benzina": 1.549,
-      "Gasolio": 1.619
     }
   },
   {
@@ -118215,18 +118228,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 62072,
-    "name": "VUOTTI ANTONIO",
-    "brand": "Esso",
-    "address": "DELLE FORZE ARMATE 189 20152, MILANO",
-    "latitude": 45.459952,
-    "longitude": 9.1127052,
-    "prices": {
-      "Benzina": 1.599,
-      "Gasolio": 1.699
-    }
-  },
-  {
     "id": 58356,
     "name": "M. M. DI ALAM MANZURUL",
     "brand": "Esso",
@@ -118248,6 +118249,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.589,
       "Gasolio": 1.629
+    }
+  },
+  {
+    "id": 62072,
+    "name": "VUOTTI ANTONIO",
+    "brand": "Esso",
+    "address": "DELLE FORZE ARMATE 189 20152, MILANO",
+    "latitude": 45.459952,
+    "longitude": 9.1127052,
+    "prices": {
+      "Benzina": 1.599,
+      "Gasolio": 1.699
     }
   },
   {
@@ -118433,6 +118446,19 @@ const realFuelStations = [
     }
   },
   {
+    "id": 54594,
+    "name": "MANGIALETTI ROSA",
+    "brand": "Api-Ip",
+    "address": "FERMI ENRICO 130 20161, MILANO",
+    "latitude": 45.52040884082528,
+    "longitude": 9.176931226261836,
+    "prices": {
+      "Benzina": 1.649,
+      "Gasolio": 1.699,
+      "GPL": 0.649
+    }
+  },
+  {
     "id": 56142,
     "name": "DM S.A.S. DI DONADEI FEDERICA E C.",
     "brand": "Api-Ip",
@@ -118454,19 +118480,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.729
-    }
-  },
-  {
-    "id": 54594,
-    "name": "MANGIALETTI ROSA",
-    "brand": "Api-Ip",
-    "address": "FERMI ENRICO 130 20161, MILANO",
-    "latitude": 45.52040884082528,
-    "longitude": 9.176931226261836,
-    "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.699,
-      "GPL": 0.649
     }
   },
   {
@@ -125094,7 +125107,7 @@ const realFuelStations = [
   },
   {
     "id": 48568,
-    "name": "Enercoop Carpi",
+    "name": "VEGA CARBURANTI S.P.A.",
     "brand": "Vega",
     "address": "Tangenziale 12 Luglio 1944 SNC  41012, CARPI",
     "latitude": 44.80645958197752,
@@ -133878,24 +133891,12 @@ const realFuelStations = [
     }
   },
   {
-    "id": 35599,
-    "name": "AURINO ALFREDO E C. DI ALFREDO AURINO SAS",
+    "id": 36198,
+    "name": "DE LUCA EMANUELE",
     "brand": "Agip Eni",
-    "address": "VIA CASERTA AL BRAVO 116 80144, NAPOLI",
-    "latitude": 40.89066579584919,
-    "longitude": 14.278779923915863,
-    "prices": {
-      "Benzina": 1.689,
-      "Gasolio": 1.709
-    }
-  },
-  {
-    "id": 33957,
-    "name": "MINOPOLI VINCENZO",
-    "brand": "Agip Eni",
-    "address": "VIA AGNANO ASTRONI SNC 80125, NAPOLI",
-    "latitude": 40.83213228994187,
-    "longitude": 14.163332283496857,
+    "address": "VIA CINTHIA SNC 80126, NAPOLI",
+    "latitude": 40.836921585333165,
+    "longitude": 14.19002965092659,
     "prices": {
       "Benzina": 1.689,
       "Gasolio": 1.709
@@ -133914,12 +133915,24 @@ const realFuelStations = [
     }
   },
   {
-    "id": 36198,
-    "name": "DE LUCA EMANUELE",
+    "id": 35599,
+    "name": "AURINO ALFREDO E C. DI ALFREDO AURINO SAS",
     "brand": "Agip Eni",
-    "address": "VIA CINTHIA SNC 80126, NAPOLI",
-    "latitude": 40.836921585333165,
-    "longitude": 14.19002965092659,
+    "address": "VIA CASERTA AL BRAVO 116 80144, NAPOLI",
+    "latitude": 40.89066579584919,
+    "longitude": 14.278779923915863,
+    "prices": {
+      "Benzina": 1.689,
+      "Gasolio": 1.709
+    }
+  },
+  {
+    "id": 33957,
+    "name": "MINOPOLI VINCENZO",
+    "brand": "Agip Eni",
+    "address": "VIA AGNANO ASTRONI SNC 80125, NAPOLI",
+    "latitude": 40.83213228994187,
+    "longitude": 14.163332283496857,
     "prices": {
       "Benzina": 1.689,
       "Gasolio": 1.709
@@ -134026,30 +134039,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 27723,
-    "name": "MARINOIL S.R.L.",
-    "brand": "Esso",
-    "address": "VIA DEL RIPOSO SNC 80144, NAPOLI",
-    "latitude": 40.87055987770187,
-    "longitude": 14.28497314453125,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.699
-    }
-  },
-  {
-    "id": 33709,
-    "name": "FRATELLI MORENO DI MORENO NICOLA E ANTONIO SNC",
-    "brand": "Esso",
-    "address": "Via giustiniano 305 80126, NAPOLI",
-    "latitude": 40.84365499492473,
-    "longitude": 14.207467470327174,
-    "prices": {
-      "Benzina": 1.699,
-      "Gasolio": 1.749
-    }
-  },
-  {
     "id": 16240,
     "name": "DE BIASE MARCO",
     "brand": "Esso",
@@ -134071,6 +134060,30 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.749,
       "Gasolio": 1.759
+    }
+  },
+  {
+    "id": 27723,
+    "name": "MARINOIL S.R.L.",
+    "brand": "Esso",
+    "address": "VIA DEL RIPOSO SNC 80144, NAPOLI",
+    "latitude": 40.87055987770187,
+    "longitude": 14.28497314453125,
+    "prices": {
+      "Benzina": 1.669,
+      "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 33709,
+    "name": "FRATELLI MORENO DI MORENO NICOLA E ANTONIO SNC",
+    "brand": "Esso",
+    "address": "Via giustiniano 305 80126, NAPOLI",
+    "latitude": 40.84365499492473,
+    "longitude": 14.207467470327174,
+    "prices": {
+      "Benzina": 1.699,
+      "Gasolio": 1.749
     }
   },
   {
@@ -134363,18 +134376,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 56932,
-    "name": "CRYPTO CARBURANTI S.A.S. DI ROMANO CARMINE & C.",
-    "brand": "Italiana Carburanti",
-    "address": "ROMA VERSO SCAMPIA 52 80144, NAPOLI",
-    "latitude": 40.89955730654885,
-    "longitude": 14.25401248582276,
-    "prices": {
-      "Benzina": 1.636,
-      "Gasolio": 1.636
-    }
-  },
-  {
     "id": 57549,
     "name": "FUEL STATION S.R.L.",
     "brand": "Api-Ip",
@@ -134384,6 +134385,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.827,
       "Gasolio": 1.827
+    }
+  },
+  {
+    "id": 56932,
+    "name": "CRYPTO CARBURANTI S.A.S. DI ROMANO CARMINE & C.",
+    "brand": "Italiana Carburanti",
+    "address": "ROMA VERSO SCAMPIA 52 80144, NAPOLI",
+    "latitude": 40.89955730654885,
+    "longitude": 14.25401248582276,
+    "prices": {
+      "Benzina": 1.636,
+      "Gasolio": 1.636
     }
   },
   {
@@ -135540,18 +135553,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 53078,
-    "name": "MUROLO MARIO",
-    "brand": "FUELPP",
-    "address": "VIA VIA SAVERIO ALTAMURA 15 80127, NAPOLI (NA) 15 80128, NAPOLI",
-    "latitude": 40.85189055798149,
-    "longitude": 14.225102323046258,
-    "prices": {
-      "Benzina": 1.799,
-      "Gasolio": 1.699
-    }
-  },
-  {
     "id": 16241,
     "name": "STRAZZULLO LUIGI",
     "brand": "Pompe Bianche",
@@ -135561,6 +135562,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.739,
       "Gasolio": 1.739
+    }
+  },
+  {
+    "id": 53078,
+    "name": "MUROLO MARIO",
+    "brand": "FUELPP",
+    "address": "VIA VIA SAVERIO ALTAMURA 15 80127, NAPOLI (NA) 15 80128, NAPOLI",
+    "latitude": 40.85189055798149,
+    "longitude": 14.225102323046258,
+    "prices": {
+      "Benzina": 1.799,
+      "Gasolio": 1.699
     }
   },
   {
@@ -145034,18 +145047,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 54304,
-    "name": "P. C. CARBURANTI DI PIRRONE FRANCESCO PAOLO & C. S.A.S.",
-    "brand": "Esso",
-    "address": "REGIONE SICILIANA S E 5146/A 90124, PALERMO",
-    "latitude": 38.091166,
-    "longitude": 13.381913,
-    "prices": {
-      "Benzina": 1.669,
-      "Gasolio": 1.689
-    }
-  },
-  {
     "id": 59702,
     "name": "DT OIL & COMPANY DI TRAFICANTE DANILO",
     "brand": "Esso",
@@ -145055,6 +145056,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.669,
       "Gasolio": 1.679
+    }
+  },
+  {
+    "id": 54304,
+    "name": "P. C. CARBURANTI DI PIRRONE FRANCESCO PAOLO & C. S.A.S.",
+    "brand": "Esso",
+    "address": "REGIONE SICILIANA S E 5146/A 90124, PALERMO",
+    "latitude": 38.091166,
+    "longitude": 13.381913,
+    "prices": {
+      "Benzina": 1.669,
+      "Gasolio": 1.689
     }
   },
   {
@@ -151252,6 +151265,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 49957,
+    "name": "FOOD & SERVICE OIL SAS DI BUSINARO LUCA",
+    "brand": "Agip Eni",
+    "address": "DON GIUSEPPE LAGO 2 35129, PADOVA",
+    "latitude": 45.42354719894195,
+    "longitude": 11.941623491512718,
+    "prices": {
+      "Benzina": 1.664,
+      "Gasolio": 1.684
+    }
+  },
+  {
     "id": 34904,
     "name": "MIX S.N.C. DI BUSINARO LUCA & C.",
     "brand": "Agip Eni",
@@ -151263,18 +151288,6 @@ const realFuelStations = [
       "Gasolio": 1.714,
       "Metano": 1.289,
       "GPL": 0.679
-    }
-  },
-  {
-    "id": 25706,
-    "name": "RISTOSYSTEM S.A.S. DI PAOLO BORDIN E IDA BORDIN",
-    "brand": "Agip Eni",
-    "address": "via Canaletta 3 35129, PADOVA",
-    "latitude": 45.4169565452905,
-    "longitude": 11.935764402151108,
-    "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.714
     }
   },
   {
@@ -151302,6 +151315,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 25706,
+    "name": "RISTOSYSTEM S.A.S. DI PAOLO BORDIN E IDA BORDIN",
+    "brand": "Agip Eni",
+    "address": "via Canaletta 3 35129, PADOVA",
+    "latitude": 45.4169565452905,
+    "longitude": 11.935764402151108,
+    "prices": {
+      "Benzina": 1.659,
+      "Gasolio": 1.714
+    }
+  },
+  {
     "id": 33587,
     "name": "SATTIN MICHELE",
     "brand": "Agip Eni",
@@ -151311,18 +151336,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.629,
       "Gasolio": 1.714
-    }
-  },
-  {
-    "id": 49957,
-    "name": "FOOD & SERVICE OIL SAS DI BUSINARO LUCA",
-    "brand": "Agip Eni",
-    "address": "DON GIUSEPPE LAGO 2 35129, PADOVA",
-    "latitude": 45.42354719894195,
-    "longitude": 11.941623491512718,
-    "prices": {
-      "Benzina": 1.664,
-      "Gasolio": 1.684
     }
   },
   {
@@ -154313,18 +154326,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 49242,
-    "name": "DI IULIO GIUSEPPE",
-    "brand": "Api-Ip",
-    "address": "Piazza Ovidio 1.2  65100, PESCARA",
-    "latitude": 42.45306172115843,
-    "longitude": 14.220435181971752,
-    "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.719
-    }
-  },
-  {
     "id": 32382,
     "name": "CIALINI GIACOMO",
     "brand": "Api-Ip",
@@ -154334,6 +154335,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.619,
       "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 49242,
+    "name": "DI IULIO GIUSEPPE",
+    "brand": "Api-Ip",
+    "address": "Piazza Ovidio 1.2  65100, PESCARA",
+    "latitude": 42.45306172115843,
+    "longitude": 14.220435181971752,
+    "prices": {
+      "Benzina": 1.659,
+      "Gasolio": 1.719
     }
   },
   {
@@ -154506,24 +154519,24 @@ const realFuelStations = [
     }
   },
   {
-    "id": 48021,
-    "name": "FLORINDI S.A.S. DI FLORINDI GABRIELE & C.",
-    "brand": "Q8",
-    "address": "VIA DEL CIRCUITO 107 65124, PESCARA",
-    "latitude": 42.463396964758466,
-    "longitude": 14.2030946032928,
-    "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.689
-    }
-  },
-  {
     "id": 18374,
     "name": "DI FELICE GIANCARLO & C. S.N.C.",
     "brand": "Q8",
     "address": "VIA E. FERRARI  65124, PESCARA",
     "latitude": 42.469592186742396,
     "longitude": 14.201663732528687,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.689
+    }
+  },
+  {
+    "id": 48021,
+    "name": "FLORINDI S.A.S. DI FLORINDI GABRIELE & C.",
+    "brand": "Q8",
+    "address": "VIA DEL CIRCUITO 107 65124, PESCARA",
+    "latitude": 42.463396964758466,
+    "longitude": 14.2030946032928,
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.689
@@ -155212,7 +155225,7 @@ const realFuelStations = [
   },
   {
     "id": 32158,
-    "name": "FILIPPUCCI DEBORAH",
+    "name": "impianto ip di Filippucci Deborah",
     "brand": "Api-Ip",
     "address": "VIA DELLA STAZIONE 18 06033, CANNARA",
     "latitude": 42.99712826385168,
@@ -157224,7 +157237,7 @@ const realFuelStations = [
   },
   {
     "id": 39342,
-    "name": "BACCARELLI NAZARENO S.A.S. DI LEONARDO BACCARELLI",
+    "name": "Collestra Carburanti",
     "brand": "Pompe Bianche",
     "address": "Via della Valtiera  182 06135, PERUGIA",
     "latitude": 43.088062634673385,
@@ -158417,18 +158430,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 10151,
-    "name": "IP SERVICES S.R.L.",
-    "brand": "Api-Ip",
-    "address": "via Martiri della Resistenza  12 06049, SPOLETO",
-    "latitude": 42.73464397238579,
-    "longitude": 12.731343805789948,
-    "prices": {
-      "Benzina": 1.619,
-      "Gasolio": 1.659
-    }
-  },
-  {
     "id": 48078,
     "name": "NUOVA SIDAP S.R.L.",
     "brand": "Esso",
@@ -158439,6 +158440,18 @@ const realFuelStations = [
       "Benzina": 1.649,
       "Gasolio": 1.719,
       "GPL": 0.679
+    }
+  },
+  {
+    "id": 10151,
+    "name": "IP SERVICES S.R.L.",
+    "brand": "Api-Ip",
+    "address": "via Martiri della Resistenza  12 06049, SPOLETO",
+    "latitude": 42.73464397238579,
+    "longitude": 12.731343805789948,
+    "prices": {
+      "Benzina": 1.619,
+      "Gasolio": 1.659
     }
   },
   {
@@ -160805,6 +160818,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 21742,
+    "name": "IP SERVICES S.R.L.",
+    "brand": "Api-Ip",
+    "address": "S.S. 67 KM 39+630 FRAZ. S. MINIATO BASSO  56028, SAN MINIATO",
+    "latitude": 43.69292080230581,
+    "longitude": 10.8484947681427,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.669
+    }
+  },
+  {
     "id": 24209,
     "name": "TIBER OIL S.R.L.",
     "brand": "Agip Eni",
@@ -160815,18 +160840,6 @@ const realFuelStations = [
       "Benzina": 1.629,
       "Gasolio": 1.679,
       "GPL": 0.658
-    }
-  },
-  {
-    "id": 21742,
-    "name": "IP SERVICES S.R.L.",
-    "brand": "Api-Ip",
-    "address": "S.S. 67 KM 39+630 FRAZ. S. MINIATO BASSO  56028, SAN MINIATO",
-    "latitude": 43.69292080230581,
-    "longitude": 10.8484947681427,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.669
     }
   },
   {
@@ -165159,24 +165172,24 @@ const realFuelStations = [
     }
   },
   {
-    "id": 44362,
-    "name": "VESELI KLODJAN",
-    "brand": "Api-Ip",
-    "address": "via la spezia 141/b 43125, PARMA",
-    "latitude": 44.788139982565895,
-    "longitude": 10.300630001776995,
-    "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.709
-    }
-  },
-  {
     "id": 46606,
     "name": "HONG TAOTAO",
     "brand": "Api-Ip",
     "address": "VIA EMILIA OVEST 48/A 43126, PARMA",
     "latitude": 44.80862150167696,
     "longitude": 10.292435581316681,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.709
+    }
+  },
+  {
+    "id": 44362,
+    "name": "VESELI KLODJAN",
+    "brand": "Api-Ip",
+    "address": "via la spezia 141/b 43125, PARMA",
+    "latitude": 44.788139982565895,
+    "longitude": 10.300630001776995,
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.709
@@ -167685,18 +167698,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 10097,
-    "name": "IP SERVICES S.R.L.",
-    "brand": "Api-Ip",
-    "address": "Viale Romagna   61032, FANO",
-    "latitude": 43.854675793429244,
-    "longitude": 13.002386391162872,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.689
-    }
-  },
-  {
     "id": 22303,
     "name": "IP SERVICES S.R.L.",
     "brand": "Api-Ip",
@@ -167706,6 +167707,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 10097,
+    "name": "IP SERVICES S.R.L.",
+    "brand": "Api-Ip",
+    "address": "Viale Romagna   61032, FANO",
+    "latitude": 43.854675793429244,
+    "longitude": 13.002386391162872,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.689
     }
   },
   {
@@ -171117,15 +171130,15 @@ const realFuelStations = [
     }
   },
   {
-    "id": 44702,
-    "name": "PASI CHRISTIAN",
-    "brand": "Api-Ip",
-    "address": "CORSO TORINO 51/B 27029, VIGEVANO",
-    "latitude": 45.310634792908104,
-    "longitude": 8.844638543878318,
+    "id": 58511,
+    "name": "SAJJAD SAMINA",
+    "brand": "Itala Petroli",
+    "address": "GIUSEPPE DI VITTORIO 44 27029, VIGEVANO",
+    "latitude": 45.312007261498366,
+    "longitude": 8.865984050445572,
     "prices": {
-      "Benzina": 1.609,
-      "Gasolio": 1.649
+      "Benzina": 1.599,
+      "Gasolio": 1.679
     }
   },
   {
@@ -171141,15 +171154,15 @@ const realFuelStations = [
     }
   },
   {
-    "id": 58511,
-    "name": "SAJJAD SAMINA",
-    "brand": "Itala Petroli",
-    "address": "GIUSEPPE DI VITTORIO 44 27029, VIGEVANO",
-    "latitude": 45.312007261498366,
-    "longitude": 8.865984050445572,
+    "id": 44702,
+    "name": "PASI CHRISTIAN",
+    "brand": "Api-Ip",
+    "address": "CORSO TORINO 51/B 27029, VIGEVANO",
+    "latitude": 45.310634792908104,
+    "longitude": 8.844638543878318,
     "prices": {
-      "Benzina": 1.599,
-      "Gasolio": 1.679
+      "Benzina": 1.609,
+      "Gasolio": 1.649
     }
   },
   {
@@ -171213,18 +171226,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 10851,
-    "name": "MAGGI STEFANO",
-    "brand": "Tamoil",
-    "address": "VIA GRAVELLONA 68 27029, VIGEVANO",
-    "latitude": 45.322295204228396,
-    "longitude": 8.828567415475845,
-    "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.699
-    }
-  },
-  {
     "id": 14096,
     "name": "DI PALMA CARLO",
     "brand": "Tamoil",
@@ -171235,6 +171236,18 @@ const realFuelStations = [
       "Benzina": 1.609,
       "Gasolio": 1.659,
       "GPL": 0.649
+    }
+  },
+  {
+    "id": 10851,
+    "name": "MAGGI STEFANO",
+    "brand": "Tamoil",
+    "address": "VIA GRAVELLONA 68 27029, VIGEVANO",
+    "latitude": 45.322295204228396,
+    "longitude": 8.828567415475845,
+    "prices": {
+      "Benzina": 1.679,
+      "Gasolio": 1.699
     }
   },
   {
@@ -179321,18 +179334,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 41983,
-    "name": "OIL CANALINA DI PARISI MARCO",
-    "brand": "Agip Eni",
-    "address": "VIA CANALINA 1/1 42123, REGGIO NELL'EMILIA",
-    "latitude": 44.6895329091898,
-    "longitude": 10.618640184402466,
-    "prices": {
-      "Benzina": 1.659,
-      "Gasolio": 1.699
-    }
-  },
-  {
     "id": 43660,
     "name": "DANESE MASSIMO",
     "brand": "Agip Eni",
@@ -179344,6 +179345,18 @@ const realFuelStations = [
       "Gasolio": 1.739,
       "Metano": 1.599,
       "GPL": 0.649
+    }
+  },
+  {
+    "id": 41983,
+    "name": "OIL CANALINA DI PARISI MARCO",
+    "brand": "Agip Eni",
+    "address": "VIA CANALINA 1/1 42123, REGGIO NELL'EMILIA",
+    "latitude": 44.6895329091898,
+    "longitude": 10.618640184402466,
+    "prices": {
+      "Benzina": 1.659,
+      "Gasolio": 1.699
     }
   },
   {
@@ -183723,6 +183736,19 @@ const realFuelStations = [
     }
   },
   {
+    "id": 58108,
+    "name": "GEF SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
+    "brand": "Api-Ip",
+    "address": "SS. 148 PONTINA KM36+521 00040, ARDEA",
+    "latitude": 41.63546585447178,
+    "longitude": 12.56226271390915,
+    "prices": {
+      "Benzina": 1.599,
+      "Gasolio": 1.689,
+      "GPL": 0.629
+    }
+  },
+  {
     "id": 59881,
     "name": "M. E. F. CARBURANTI S.A.S. DI ERCOLANI MASSIMO & C.",
     "brand": "Api-Ip",
@@ -183746,19 +183772,6 @@ const realFuelStations = [
       "Benzina": 1.649,
       "Gasolio": 1.689,
       "GPL": 0.639
-    }
-  },
-  {
-    "id": 58108,
-    "name": "GEF SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
-    "brand": "Api-Ip",
-    "address": "SS. 148 PONTINA KM36+521 00040, ARDEA",
-    "latitude": 41.63546585447178,
-    "longitude": 12.56226271390915,
-    "prices": {
-      "Benzina": 1.599,
-      "Gasolio": 1.689,
-      "GPL": 0.629
     }
   },
   {
@@ -188823,18 +188836,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 59400,
-    "name": "I.C.M. SOCIETA' IN NOME COLLETTIVO DI BRUNO, CRISTIANO E FABRIZIO MAGGI",
-    "brand": "ICM",
-    "address": "Via Anagnina KM 2+200, ROMA",
-    "latitude": 41.82434203590703,
-    "longitude": 12.60522904033662,
-    "prices": {
-      "Benzina": 1.585,
-      "Gasolio": 1.649
-    }
-  },
-  {
     "id": 61062,
     "name": "ZARA ZAYAN OIL SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
     "brand": "Plus",
@@ -188844,6 +188845,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.739
+    }
+  },
+  {
+    "id": 59400,
+    "name": "I.C.M. SOCIETA' IN NOME COLLETTIVO DI BRUNO, CRISTIANO E FABRIZIO MAGGI",
+    "brand": "ICM",
+    "address": "Via Anagnina KM 2+200, ROMA",
+    "latitude": 41.82434203590703,
+    "longitude": 12.60522904033662,
+    "prices": {
+      "Benzina": 1.585,
+      "Gasolio": 1.649
     }
   },
   {
@@ -190697,6 +190710,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 11061,
+    "name": "GARGANO DI DI BERNARDO VINCENZO SOCIETA' IN ACCOMANDITA SEMPLICE",
+    "brand": "Agip Eni",
+    "address": "VIA VIA GARGANO 17/B 17/B 00141, ROMA (RM) 17/B 00141, ROMA",
+    "latitude": 41.936170713117534,
+    "longitude": 12.534189974740457,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.699
+    }
+  },
+  {
     "id": 9386,
     "name": "M.A.M. S.N.C.DI TEMPERINI MASSIMO, ALESSANDRO E MAURO",
     "brand": "Agip Eni",
@@ -190710,15 +190735,15 @@ const realFuelStations = [
     }
   },
   {
-    "id": 11061,
-    "name": "GARGANO DI DI BERNARDO VINCENZO SOCIETA' IN ACCOMANDITA SEMPLICE",
+    "id": 61663,
+    "name": "GI.FRE. SAS DI FREZZA GIANNI",
     "brand": "Agip Eni",
-    "address": "VIA VIA GARGANO 17/B 17/B 00141, ROMA (RM) 17/B 00141, ROMA",
-    "latitude": 41.936170713117534,
-    "longitude": 12.534189974740457,
+    "address": "PONTINA 331 00128, ROMA",
+    "latitude": 41.880485,
+    "longitude": 12.401626,
     "prices": {
       "Benzina": 1.639,
-      "Gasolio": 1.699
+      "Gasolio": 1.689
     }
   },
   {
@@ -190731,18 +190756,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.699
-    }
-  },
-  {
-    "id": 61663,
-    "name": "GI.FRE. SAS DI FREZZA GIANNI",
-    "brand": "Agip Eni",
-    "address": "PONTINA 331 00128, ROMA",
-    "latitude": 41.880485,
-    "longitude": 12.401626,
-    "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.689
     }
   },
   {
@@ -190782,15 +190795,27 @@ const realFuelStations = [
     }
   },
   {
-    "id": 23907,
-    "name": "PIT STOP DI LACOPO STEFANO SNC",
+    "id": 24985,
+    "name": "LU.M.A. S.A.S. DI MOROTTI ANDREA",
     "brand": "Agip Eni",
-    "address": "via delle valli 120 00199, ROMA",
-    "latitude": 41.93608656336001,
-    "longitude": 12.524434895024505,
+    "address": "viale dei colli portuensi 412 00151, ROMA",
+    "latitude": 41.86453927692604,
+    "longitude": 12.443565103670153,
     "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.709
+      "Benzina": 1.619,
+      "Gasolio": 1.689
+    }
+  },
+  {
+    "id": 24607,
+    "name": "DELLA BINA SANTE E PIAZZA FIORELLA - SOCIETA IN NOME COLLETTIVO",
+    "brand": "Agip Eni",
+    "address": "VIALE DELL' OCEANO PACIFICO 185, 00144 - -, ROMA",
+    "latitude": 41.82330880557328,
+    "longitude": 12.457721124467525,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.689
     }
   },
   {
@@ -190818,27 +190843,15 @@ const realFuelStations = [
     }
   },
   {
-    "id": 24985,
-    "name": "LU.M.A. S.A.S. DI MOROTTI ANDREA",
+    "id": 23907,
+    "name": "PIT STOP DI LACOPO STEFANO SNC",
     "brand": "Agip Eni",
-    "address": "viale dei colli portuensi 412 00151, ROMA",
-    "latitude": 41.86453927692604,
-    "longitude": 12.443565103670153,
+    "address": "via delle valli 120 00199, ROMA",
+    "latitude": 41.93608656336001,
+    "longitude": 12.524434895024505,
     "prices": {
-      "Benzina": 1.619,
-      "Gasolio": 1.689
-    }
-  },
-  {
-    "id": 24607,
-    "name": "DELLA BINA SANTE E PIAZZA FIORELLA - SOCIETA IN NOME COLLETTIVO",
-    "brand": "Agip Eni",
-    "address": "VIALE DELL' OCEANO PACIFICO 185, 00144 - -, ROMA",
-    "latitude": 41.82330880557328,
-    "longitude": 12.457721124467525,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.689
+      "Benzina": 1.649,
+      "Gasolio": 1.709
     }
   },
   {
@@ -191133,6 +191146,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.619,
       "Gasolio": 1.689
+    }
+  },
+  {
+    "id": 62409,
+    "name": "DIAMANTI PAOLO",
+    "brand": "Agip Eni",
+    "address": "ROBERTO MORRA DI LAVRIANO SNC 00135, ROMA",
+    "latitude": 41.9262253,
+    "longitude": 12.4578933,
+    "prices": {
+      "Benzina": 1.709,
+      "Gasolio": 1.779
     }
   },
   {
@@ -191976,19 +192001,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 62275,
-    "name": "SORIANO FRANCO",
-    "brand": "Api-Ip",
-    "address": "RIGAMONTI 122 00142, ROMA",
-    "latitude": 41.8146,
-    "longitude": 12.8026,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.689,
-      "GPL": 0.659
-    }
-  },
-  {
     "id": 47595,
     "name": "MERIDIONALE PETROLI - SOCIETA A RESPONSABILITA LIMITATA S.M.P.",
     "brand": "Api-Ip",
@@ -192059,6 +192071,19 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.619,
       "Gasolio": 1.679
+    }
+  },
+  {
+    "id": 62275,
+    "name": "SORIANO FRANCO",
+    "brand": "Api-Ip",
+    "address": "Via Mario Rigamonti 122 00142, ROMA",
+    "latitude": 41.8363579,
+    "longitude": 12.5047996,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.689,
+      "GPL": 0.659
     }
   },
   {
@@ -192451,6 +192476,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 57407,
+    "name": "BENDIESEL S.R.L.",
+    "brand": "Itala Petroli",
+    "address": "ARDEATINA KM.19,00 00179, ROMA",
+    "latitude": 41.7227,
+    "longitude": 12.5719,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.699
+    }
+  },
+  {
     "id": 59696,
     "name": "AMIN MANIRUL",
     "brand": "Itala Petroli",
@@ -192472,18 +192509,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.599,
       "Gasolio": 1.659
-    }
-  },
-  {
-    "id": 57407,
-    "name": "BENDIESEL S.R.L.",
-    "brand": "Itala Petroli",
-    "address": "ARDEATINA KM.19,00 00179, ROMA",
-    "latitude": 41.7227,
-    "longitude": 12.5719,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.699
     }
   },
   {
@@ -194358,7 +194383,7 @@ const realFuelStations = [
   },
   {
     "id": 19088,
-    "name": "PORTALEONE MASSIMILIANO & C. - SOCIETA' IN NOME COLLETTIVO",
+    "name": "PORTALEONE E C SNC",
     "brand": "Esso",
     "address": "DEI  PRATI FISCALI 217 00141, ROMA",
     "latitude": 41.9461391060566,
@@ -196244,24 +196269,24 @@ const realFuelStations = [
     }
   },
   {
-    "id": 37016,
-    "name": "SARHAN SOCIETA' IN NOME COLLETTIVO DI SARHAN HOSNY ABD ELMAKSOD EL SAYED",
-    "brand": "Tamoil",
-    "address": "VIALE DELLA MARINA 9 00122, ROMA",
-    "latitude": 41.73115808931634,
-    "longitude": 12.277638981517839,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.679
-    }
-  },
-  {
     "id": 53874,
     "name": "SARHAN SOCIETA' IN NOME COLLETTIVO DI SARHAN HOSNY ABD ELMAKSOD EL SAYED",
     "brand": "Tamoil",
     "address": "VIA DELL'IDROSCALO 19 00121, ROMA",
     "latitude": 41.74026169246369,
     "longitude": 12.253593429923058,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.679
+    }
+  },
+  {
+    "id": 37016,
+    "name": "SARHAN SOCIETA' IN NOME COLLETTIVO DI SARHAN HOSNY ABD ELMAKSOD EL SAYED",
+    "brand": "Tamoil",
+    "address": "VIALE DELLA MARINA 9 00122, ROMA",
+    "latitude": 41.73115808931634,
+    "longitude": 12.277638981517839,
     "prices": {
       "Benzina": 1.629,
       "Gasolio": 1.679
@@ -196973,18 +196998,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 59698,
-    "name": "ULLAH MOHAMMAD KHALIL",
-    "brand": "Api-Ip",
-    "address": "DELLA MAGLIANA 76/a 00146, ROMA",
-    "latitude": 41.909046,
-    "longitude": 12.417706,
-    "prices": {
-      "Benzina": 1.609,
-      "Gasolio": 1.629
-    }
-  },
-  {
     "id": 60600,
     "name": "ULLAH MOHAMMAD KHALIL",
     "brand": "Smaf",
@@ -196997,6 +197010,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 59698,
+    "name": "ULLAH MOHAMMAD KHALIL",
+    "brand": "Api-Ip",
+    "address": "DELLA MAGLIANA 76/a 00146, ROMA",
+    "latitude": 41.909046,
+    "longitude": 12.417706,
+    "prices": {
+      "Benzina": 1.609,
+      "Gasolio": 1.629
+    }
+  },
+  {
     "id": 19407,
     "name": "STAM DI AHMED UPOL E C. SAS",
     "brand": "Esso",
@@ -197006,30 +197031,6 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.769
-    }
-  },
-  {
-    "id": 62193,
-    "name": "MIAH YUSUF",
-    "brand": "STOM",
-    "address": "Piazza Galeno 2  00162, ROMA",
-    "latitude": 41.9113687,
-    "longitude": 12.5091841,
-    "prices": {
-      "Benzina": 1.629,
-      "Gasolio": 1.644
-    }
-  },
-  {
-    "id": 61478,
-    "name": "ISRA OIL SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
-    "brand": "Pompe Bianche",
-    "address": "Via Salaria 413 00199, ROMA",
-    "latitude": 41.934321448430744,
-    "longitude": 12.50943134604074,
-    "prices": {
-      "Benzina": 1.589,
-      "Gasolio": 1.649
     }
   },
   {
@@ -197054,6 +197055,30 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.539,
       "Gasolio": 1.579
+    }
+  },
+  {
+    "id": 62193,
+    "name": "MIAH YUSUF",
+    "brand": "STOM",
+    "address": "Piazza Galeno 2  00162, ROMA",
+    "latitude": 41.9113687,
+    "longitude": 12.5091841,
+    "prices": {
+      "Benzina": 1.629,
+      "Gasolio": 1.644
+    }
+  },
+  {
+    "id": 61478,
+    "name": "ISRA OIL SOCIETA' A RESPONSABILITA' LIMITATA SEMPLIFICATA",
+    "brand": "Pompe Bianche",
+    "address": "Via Salaria 413 00199, ROMA",
+    "latitude": 41.934321448430744,
+    "longitude": 12.50943134604074,
+    "prices": {
+      "Benzina": 1.589,
+      "Gasolio": 1.649
     }
   },
   {
@@ -197556,18 +197581,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 59478,
-    "name": "TERMO TRADING PETROLI S.R.L.",
-    "brand": "Tamoil",
-    "address": "Viale dell'Oceano Atlantico 85 00144, ROMA",
-    "latitude": 41.82019040000001,
-    "longitude": 12.4715506,
-    "prices": {
-      "Benzina": 1.589,
-      "Gasolio": 1.629
-    }
-  },
-  {
     "id": 36942,
     "name": "SANTOSUOSSO PAOLO",
     "brand": "Tamoil",
@@ -197577,6 +197590,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.599,
       "Gasolio": 1.659
+    }
+  },
+  {
+    "id": 59478,
+    "name": "TERMO TRADING PETROLI S.R.L.",
+    "brand": "Tamoil",
+    "address": "Viale dell'Oceano Atlantico 85 00144, ROMA",
+    "latitude": 41.82019040000001,
+    "longitude": 12.4715506,
+    "prices": {
+      "Benzina": 1.589,
+      "Gasolio": 1.629
     }
   },
   {
@@ -198964,19 +198989,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 3897,
-    "name": "FEVALMA DI LAURA VECCHIONE E LA VIA S.R.L.",
-    "brand": "Tamoil",
-    "address": "Autostrada A24 ROMA-L'AQUILA-TERAMO, Km. 10.9, dir. Ovest - 00019, TIVOLI",
-    "latitude": 41.92772330353017,
-    "longitude": 12.738122108216317,
-    "prices": {
-      "Benzina": 1.758,
-      "Gasolio": 1.699,
-      "GPL": 0.769
-    }
-  },
-  {
     "id": 62276,
     "name": "SARNI S.R.L.",
     "brand": "Tamoil",
@@ -198987,6 +198999,19 @@ const realFuelStations = [
       "Benzina": 1.699,
       "Gasolio": 1.749,
       "GPL": 0.779
+    }
+  },
+  {
+    "id": 3897,
+    "name": "FEVALMA DI LAURA VECCHIONE E LA VIA S.R.L.",
+    "brand": "Tamoil",
+    "address": "Autostrada A24 ROMA-L'AQUILA-TERAMO, Km. 10.9, dir. Ovest - 00019, TIVOLI",
+    "latitude": 41.92772330353017,
+    "longitude": 12.738122108216317,
+    "prices": {
+      "Benzina": 1.758,
+      "Gasolio": 1.699,
+      "GPL": 0.769
     }
   },
   {
@@ -199017,9 +199042,9 @@ const realFuelStations = [
     "id": 62274,
     "name": "SORIANO FRANCO",
     "brand": "Api-Ip",
-    "address": "TIBURTINA KM23,825 00019, TIVOLI",
-    "latitude": 41.8146,
-    "longitude": 12.8026,
+    "address": "Via Nazionale Tiburtina 23  00019, TIVOLI",
+    "latitude": 41.9571231,
+    "longitude": 12.7930981,
     "prices": {
       "Benzina": 1.619,
       "Gasolio": 1.659
@@ -199996,18 +200021,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 33533,
-    "name": "FI.NE.MA. S.N.C. DI COLI NEVIO E C.",
-    "brand": "Q8",
-    "address": "VIALE ROMAGNA 19 47838, RICCIONE (RN) 19 47838, RICCIONE",
-    "latitude": 44.00318383819206,
-    "longitude": 12.644433960282413,
-    "prices": {
-      "Benzina": 1.604,
-      "Gasolio": 1.674
-    }
-  },
-  {
     "id": 12619,
     "name": "ARTHAS DI SACRIPANTI FRANCO E C. SNC",
     "brand": "Q8",
@@ -200017,6 +200030,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 33533,
+    "name": "FI.NE.MA. S.N.C. DI COLI NEVIO E C.",
+    "brand": "Q8",
+    "address": "VIALE ROMAGNA 19 47838, RICCIONE (RN) 19 47838, RICCIONE",
+    "latitude": 44.00318383819206,
+    "longitude": 12.644433960282413,
+    "prices": {
+      "Benzina": 1.604,
+      "Gasolio": 1.674
     }
   },
   {
@@ -206157,6 +206182,18 @@ const realFuelStations = [
     }
   },
   {
+    "id": 62209,
+    "name": "TRY TO INVEST S.R.L.",
+    "brand": "Pompe Bianche",
+    "address": "PROVINCIALE AVERSANA SNC 84131, SALERNO",
+    "latitude": 40.63512248200552,
+    "longitude": 14.85399842262268,
+    "prices": {
+      "Benzina": 1.679,
+      "Gasolio": 1.649
+    }
+  },
+  {
     "id": 14359,
     "name": "F.LLI GIOVANNI & GERARDO D'AMORA -  S.N.C.",
     "brand": "Esso",
@@ -206206,18 +206243,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 58149,
-    "name": "BAGGIANO MASSIMILIANO",
-    "brand": "Api-Ip",
-    "address": "Via Generale Clark snc 84131, SALERNO",
-    "latitude": 40.6499427,
-    "longitude": 14.8128577,
-    "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.699
-    }
-  },
-  {
     "id": 30907,
     "name": "PRISCO FERNANDA",
     "brand": "Api-Ip",
@@ -206226,6 +206251,18 @@ const realFuelStations = [
     "longitude": 14.81014832854271,
     "prices": {
       "Benzina": 1.629,
+      "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 58149,
+    "name": "BAGGIANO MASSIMILIANO",
+    "brand": "Api-Ip",
+    "address": "Via Generale Clark snc 84131, SALERNO",
+    "latitude": 40.6499427,
+    "longitude": 14.8128577,
+    "prices": {
+      "Benzina": 1.649,
       "Gasolio": 1.699
     }
   },
@@ -208860,18 +208897,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 47665,
-    "name": "NIVA.STATION DI SICA VALERIA",
-    "brand": "Agip Eni",
-    "address": "Strada Statale, Km. 44,300, Siena- Bettolle - 53048, SINALUNGA",
-    "latitude": 43.218181000123,
-    "longitude": 11.789539000123,
-    "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.689
-    }
-  },
-  {
     "id": 29210,
     "name": "GAROSI LEONARDO E FRANCESCO & C. S.N.C.",
     "brand": "Agip Eni",
@@ -208883,6 +208908,18 @@ const realFuelStations = [
       "Gasolio": 1.689,
       "Metano": 1.399,
       "GPL": 0.694
+    }
+  },
+  {
+    "id": 47665,
+    "name": "NIVA.STATION DI SICA VALERIA",
+    "brand": "Agip Eni",
+    "address": "Strada Statale, Km. 44,300, Siena- Bettolle - 53048, SINALUNGA",
+    "latitude": 43.218181000123,
+    "longitude": 11.789539000123,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.689
     }
   },
   {
@@ -219046,18 +219083,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 13036,
-    "name": "CARANGELO GABRIELE",
-    "brand": "Pompe Bianche",
-    "address": "VIA ADUA 47 74019, PALAGIANO",
-    "latitude": 40.57790152521366,
-    "longitude": 17.040576115250587,
-    "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.709
-    }
-  },
-  {
     "id": 8980,
     "name": "SCARCIA DANIELE",
     "brand": "Menga petroli",
@@ -219067,6 +219092,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.639,
       "Gasolio": 1.669
+    }
+  },
+  {
+    "id": 13036,
+    "name": "CARANGELO GABRIELE",
+    "brand": "Pompe Bianche",
+    "address": "VIA ADUA 47 74019, PALAGIANO",
+    "latitude": 40.57790152521366,
+    "longitude": 17.040576115250587,
+    "prices": {
+      "Benzina": 1.679,
+      "Gasolio": 1.709
     }
   },
   {
@@ -251541,18 +251578,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 30485,
-    "name": "BUGIN PAOLO",
-    "brand": "Api-Ip",
-    "address": "VIA MIRANESE 165 30174, VENEZIA",
-    "latitude": 45.48499375263348,
-    "longitude": 12.210651428241704,
-    "prices": {
-      "Benzina": 1.639,
-      "Gasolio": 1.669
-    }
-  },
-  {
     "id": 18937,
     "name": "MAZZOLIN MARCO E NICOLA S.N.C.",
     "brand": "Api-Ip",
@@ -251562,6 +251587,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.659,
       "Gasolio": 1.719
+    }
+  },
+  {
+    "id": 30485,
+    "name": "BUGIN PAOLO",
+    "brand": "Api-Ip",
+    "address": "VIA MIRANESE 165 30174, VENEZIA",
+    "latitude": 45.48499375263348,
+    "longitude": 12.210651428241704,
+    "prices": {
+      "Benzina": 1.639,
+      "Gasolio": 1.669
     }
   },
   {
@@ -253840,18 +253877,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 52903,
-    "name": "BUSSINELLO S.R.L.",
-    "brand": "Esso",
-    "address": "s.s. 248 km 26+850  36063, MAROSTICA",
-    "latitude": 45.74541,
-    "longitude": 11.66237,
-    "prices": {
-      "Benzina": 1.619,
-      "Gasolio": 1.679
-    }
-  },
-  {
     "id": 60016,
     "name": "SPAZIO S.R.L.S.",
     "brand": "Pompe Bianche",
@@ -253861,6 +253886,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.644,
       "Gasolio": 1.574
+    }
+  },
+  {
+    "id": 52903,
+    "name": "BUSSINELLO S.R.L.",
+    "brand": "Esso",
+    "address": "s.s. 248 km 26+850  36063, MAROSTICA",
+    "latitude": 45.74541,
+    "longitude": 11.66237,
+    "prices": {
+      "Benzina": 1.619,
+      "Gasolio": 1.679
     }
   },
   {
@@ -255551,18 +255588,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 7450,
-    "name": "LEME S.N.C. DI DOTTO RAFFAELE E C.",
-    "brand": "Agip Eni",
-    "address": "VIA MAROSTICANA 83 36100, VICENZA",
-    "latitude": 45.57212004317626,
-    "longitude": 11.548034995794296,
-    "prices": {
-      "Benzina": 1.679,
-      "Gasolio": 1.709
-    }
-  },
-  {
     "id": 18771,
     "name": "F.V. SERVICE S.N.C. DI FABRIS ANTONIO E FABRIS DAVIDE",
     "brand": "Agip Eni",
@@ -255572,6 +255597,18 @@ const realFuelStations = [
     "prices": {
       "Benzina": 1.699,
       "Gasolio": 1.719
+    }
+  },
+  {
+    "id": 7450,
+    "name": "LEME S.N.C. DI DOTTO RAFFAELE E C.",
+    "brand": "Agip Eni",
+    "address": "VIA MAROSTICANA 83 36100, VICENZA",
+    "latitude": 45.57212004317626,
+    "longitude": 11.548034995794296,
+    "prices": {
+      "Benzina": 1.679,
+      "Gasolio": 1.709
     }
   },
   {
@@ -257393,6 +257430,19 @@ const realFuelStations = [
     }
   },
   {
+    "id": 5618,
+    "name": "OROGAS S.R.L.",
+    "brand": "Pompe Bianche",
+    "address": "Via Malon 10/12/14 37045, LEGNAGO",
+    "latitude": 45.19260426942202,
+    "longitude": 11.290240013561288,
+    "prices": {
+      "Benzina": 1.769,
+      "Gasolio": 1.699,
+      "GPL": 0.729
+    }
+  },
+  {
     "id": 4280,
     "name": "OROGAS S.R.L.",
     "brand": "Pompe Bianche",
@@ -257403,19 +257453,6 @@ const realFuelStations = [
       "Benzina": 1.769,
       "Gasolio": 1.699,
       "Metano": 1.439,
-      "GPL": 0.729
-    }
-  },
-  {
-    "id": 5618,
-    "name": "OROGAS S.R.L.",
-    "brand": "Pompe Bianche",
-    "address": "Via Malon 10/12/14 37045, LEGNAGO",
-    "latitude": 45.19260426942202,
-    "longitude": 11.290240013561288,
-    "prices": {
-      "Benzina": 1.769,
-      "Gasolio": 1.699,
       "GPL": 0.729
     }
   },
@@ -260973,18 +261010,6 @@ const realFuelStations = [
     }
   },
   {
-    "id": 30923,
-    "name": "ACCETTONE STEFANO",
-    "brand": "Tamoil",
-    "address": "VIA DEGLI EROI 89 01034, FABRICA DI ROMA",
-    "latitude": 42.33359079648655,
-    "longitude": 12.302594348652974,
-    "prices": {
-      "Benzina": 1.649,
-      "Gasolio": 1.699
-    }
-  },
-  {
     "id": 16345,
     "name": "ACCETTONE STEFANO",
     "brand": "Tamoil",
@@ -261004,6 +261029,18 @@ const realFuelStations = [
     "address": "VIA ROMA SNC 01034, FABRICA DI ROMA",
     "latitude": 42.33303461474845,
     "longitude": 12.299445136064833,
+    "prices": {
+      "Benzina": 1.649,
+      "Gasolio": 1.699
+    }
+  },
+  {
+    "id": 30923,
+    "name": "ACCETTONE STEFANO",
+    "brand": "Tamoil",
+    "address": "VIA DEGLI EROI 89 01034, FABRICA DI ROMA",
+    "latitude": 42.33359079648655,
+    "longitude": 12.302594348652974,
     "prices": {
       "Benzina": 1.649,
       "Gasolio": 1.699
@@ -263258,7 +263295,7 @@ function getCurrentTimestamp() {
 
 // Return data update timestamp
 function updateDataTimestamp() {
-    return "Dati aggiornati: 06/02/2026 07:39";
+    return "Dati aggiornati: 07/02/2026 07:24";
 }
 
 // Export for use in app.js
