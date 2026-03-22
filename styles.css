@@ -342,33 +342,6 @@ button {
     gap: 18px;
 }
 
-.sheet-tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.sheet-tab {
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--text-muted);
-    background: rgba(255, 250, 243, 0.92);
-}
-
-.sheet-tab.is-active {
-    color: white;
-    border-color: var(--surface-ink);
-    background: var(--surface-ink);
-}
-
-.sheet-tab:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 .setup-flow {
     display: flex;
     gap: 8px;
@@ -1124,10 +1097,6 @@ li {
     display: none;
 }
 
-.app-shell[data-view="list"][data-list-setup="open"] .setup-panel {
-    display: flex;
-}
-
 .app-shell[data-view="list"] .results-panel {
     flex: 1 1 auto;
     min-height: 0;
@@ -1146,11 +1115,7 @@ li {
     padding-bottom: 26px;
 }
 
-.app-shell[data-view="map"][data-sheet-tab="setup"] .results-panel {
-    display: none;
-}
-
-.app-shell[data-view="map"][data-sheet-tab="results"] .setup-panel {
+.app-shell[data-view="map"] .results-panel {
     display: none;
 }
 
@@ -1242,22 +1207,8 @@ li {
         font-size: 24px;
     }
 
-    .sheet-tabs {
-        position: sticky;
-        top: 0;
-        z-index: 3;
-        margin-top: -4px;
-        padding: 4px 0 2px;
-        background: linear-gradient(180deg, rgba(255, 250, 243, 0.98) 0%, rgba(255, 250, 243, 0.9) 80%, rgba(255, 250, 243, 0) 100%);
-    }
-
     .setup-flow {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        margin: -4px -4px 2px;
-        padding: 8px 4px;
-        background: linear-gradient(180deg, rgba(255, 250, 243, 0.98) 0%, rgba(255, 250, 243, 0.88) 70%, rgba(255, 250, 243, 0) 100%);
+        display: none;
     }
 
     .setup-panel .search-cta {
@@ -1267,11 +1218,7 @@ li {
     }
 
     .setup-subtabs {
-        position: sticky;
-        top: 34px;
-        z-index: 2;
         padding-top: 2px;
-        background: rgba(255, 250, 243, 0.95);
     }
 }
 
@@ -1315,10 +1262,6 @@ li {
         gap: 14px;
     }
 
-    .setup-flow {
-        display: none;
-    }
-
     .flow-pill {
         font-size: 11px;
         padding: 7px 10px;
@@ -1327,10 +1270,6 @@ li {
     .setup-subtab {
         min-height: 42px;
         font-size: 14px;
-    }
-
-    .sheet-tab {
-        min-height: 42px;
     }
 
     .app-shell[data-view="map"][data-sheet-state="peek"] .control-sheet {

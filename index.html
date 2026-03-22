@@ -78,11 +78,6 @@
                     </button>
                 </div>
 
-                <div class="sheet-tabs" role="tablist" aria-label="Navigazione pannello">
-                    <button id="tabSetupBtn" class="sheet-tab is-active" type="button" role="tab" aria-selected="true">Specifiche</button>
-                    <button id="tabResultsBtn" class="sheet-tab" type="button" role="tab" aria-selected="false">Risultati</button>
-                </div>
-
                 <section class="setup-panel">
                     <div class="setup-flow" aria-label="Guida rapida alla ricerca">
                         <span id="stepLocation" class="flow-pill current">1. Posizione</span>
@@ -213,7 +208,7 @@
                         <div class="results-toolbar">
                             <button id="resultsSetupToggle" class="ghost-action compact" type="button">
                                 <i class="fas fa-sliders" aria-hidden="true"></i>
-                                Modifica ricerca
+                                Modifica parametri
                             </button>
                             <div id="resultsSummaryChips" class="results-summary-chips"></div>
                         </div>
@@ -281,7 +276,7 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="../data.js"></script>
+    <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

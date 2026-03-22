@@ -84,8 +84,6 @@ function cacheDom() {
     ui.loadingTitle = document.getElementById('loadingTitle');
     ui.loadingText = document.getElementById('loadingText');
     ui.fuelGrid = document.getElementById('fuelGrid');
-    ui.tabSetupBtn = document.getElementById('tabSetupBtn');
-    ui.tabResultsBtn = document.getElementById('tabResultsBtn');
     ui.setupBasicTabBtn = document.getElementById('setupBasicTabBtn');
     ui.setupFiltersTabBtn = document.getElementById('setupFiltersTabBtn');
     ui.basicSetupSection = document.getElementById('basicSetupSection');
@@ -148,9 +146,7 @@ function bindEvents() {
     document.getElementById('viewListBtn').addEventListener('click', () => setView('list'));
     document.getElementById('infoToggleBtn').addEventListener('click', () => toggleInfoPanel(true));
     document.getElementById('closeInfoBtn').addEventListener('click', () => toggleInfoPanel(false));
-    ui.resultsSetupToggle.addEventListener('click', () => setListSetupOpen(!appState.listSetupOpen));
-    ui.tabSetupBtn.addEventListener('click', () => setSheetTab('setup'));
-    ui.tabResultsBtn.addEventListener('click', () => setSheetTab('results'));
+    ui.resultsSetupToggle.addEventListener('click', openSetupFromResultsView);
     ui.setupBasicTabBtn.addEventListener('click', () => setSetupSection('basic'));
     ui.setupFiltersTabBtn.addEventListener('click', () => setSetupSection('filters'));
 
@@ -248,13 +244,13 @@ function setView(view) {
 
     if (view === 'list') {
         appState.sheetExpanded = true;
-        appState.listSetupOpen = appState.currentResults.length === 0;
-        appState.sheetTab = appState.listSetupOpen ? 'setup' : 'results';
-        appState.setupSection = appState.listSetupOpen ? 'basic' : 'filters';
+        appState.listSetupOpen = false;
+        appState.sheetTab = 'results';
+        appState.setupSection = hasSearchContext() ? 'filters' : 'basic';
     } else {
         appState.listSetupOpen = true;
-        appState.sheetTab = appState.currentResults.length > 0 ? 'results' : 'setup';
-        if (appState.currentResults.length === 0) {
+        appState.sheetTab = 'setup';
+        if (!hasSearchContext()) {
             appState.setupSection = 'basic';
         }
         if (isMobileViewport()) {
@@ -271,7 +267,7 @@ function setView(view) {
 
 function toggleSheet() {
     if (appState.currentView === 'list') {
-        setListSetupOpen(!appState.listSetupOpen);
+        openSetupFromResultsView();
         return;
     }
 
@@ -303,9 +299,23 @@ function setSheetExpanded(expanded) {
 function setListSetupOpen(open) {
     appState.listSetupOpen = open;
     if (appState.currentView === 'list') {
-        appState.sheetTab = open ? 'setup' : 'results';
+        appState.sheetTab = 'results';
     }
     updateSheetPresentation();
+}
+
+function openSetupFromResultsView() {
+    if (appState.currentView !== 'list') {
+        return;
+    }
+
+    setView('map');
+    appState.sheetTab = 'setup';
+    appState.setupSection = hasSearchContext() ? 'filters' : 'basic';
+    if (isMobileViewport()) {
+        appState.sheetState = 'full';
+    }
+    setSheetExpanded(true);
 }
 
 function setSetupSection(sectionName) {
@@ -314,11 +324,6 @@ function setSetupSection(sectionName) {
 }
 
 function setSheetTab(tabName) {
-    if (tabName === 'results' && appState.currentResults.length === 0) {
-        showInlineMessage('Esegui prima una ricerca per vedere i risultati.', 'info');
-        return;
-    }
-
     appState.sheetTab = tabName;
     if (tabName === 'setup' && !hasSearchContext()) {
         appState.setupSection = 'basic';
@@ -345,25 +350,16 @@ function updateSheetPresentation() {
     ui.appShell.dataset.listSetup = appState.listSetupOpen ? 'open' : 'closed';
     ui.appShell.dataset.sheetState = appState.sheetState;
     ui.appShell.dataset.sheetTab = appState.sheetTab;
-
-    const hasResults = appState.currentResults.length > 0;
-    ui.tabSetupBtn.classList.toggle('is-active', appState.sheetTab === 'setup');
-    ui.tabResultsBtn.classList.toggle('is-active', appState.sheetTab === 'results');
-    ui.tabSetupBtn.setAttribute('aria-selected', appState.sheetTab === 'setup' ? 'true' : 'false');
-    ui.tabResultsBtn.setAttribute('aria-selected', appState.sheetTab === 'results' ? 'true' : 'false');
-    ui.tabResultsBtn.disabled = !hasResults;
     updateSetupSectionUi();
 
     if (isListView) {
-        ui.sheetTitle.textContent = appState.listSetupOpen ? 'Lista risultati e filtri' : 'Lista risultati';
+        ui.sheetTitle.textContent = 'Lista risultati';
         ui.resultsSetupToggle.hidden = false;
-        ui.resultsSetupToggle.innerHTML = appState.listSetupOpen
-            ? '<i class="fas fa-xmark" aria-hidden="true"></i>Chiudi filtri'
-            : '<i class="fas fa-sliders" aria-hidden="true"></i>Modifica ricerca';
-        collapseIcon.className = `fas ${appState.listSetupOpen ? 'fa-xmark' : 'fa-sliders'}`;
-        collapseButton.setAttribute('aria-label', appState.listSetupOpen ? 'Chiudi filtri' : 'Apri filtri');
+        ui.resultsSetupToggle.innerHTML = '<i class="fas fa-sliders" aria-hidden="true"></i>Modifica parametri';
+        collapseIcon.className = 'fas fa-sliders';
+        collapseButton.setAttribute('aria-label', 'Apri modifica parametri');
     } else {
-        ui.sheetTitle.textContent = appState.sheetTab === 'setup' ? 'Imposta la ricerca' : 'Risultati in area';
+        ui.sheetTitle.textContent = 'Imposta la ricerca';
         ui.resultsSetupToggle.hidden = true;
         if (isMobileViewport()) {
             collapseIcon.className = 'fas fa-grip-lines';
@@ -377,7 +373,7 @@ function updateSheetPresentation() {
 
 function updateSetupSectionUi() {
     const isBasic = appState.setupSection === 'basic';
-    const setupAvailable = appState.sheetTab === 'setup' || appState.currentView === 'list';
+    const setupAvailable = appState.currentView === 'map';
 
     ui.setupBasicTabBtn.classList.toggle('is-active', isBasic);
     ui.setupFiltersTabBtn.classList.toggle('is-active', !isBasic);
@@ -699,7 +695,10 @@ async function handleSearch(options = {}) {
             renderResults([]);
             updateFlowGuide();
             if (appState.currentView === 'list') {
-                setListSetupOpen(true);
+                setView('map');
+                appState.sheetTab = 'setup';
+                appState.setupSection = 'basic';
+                setSheetExpanded(true);
             } else {
                 setSheetExpanded(true);
             }
@@ -709,13 +708,13 @@ async function handleSearch(options = {}) {
         }
 
         appState.currentResults = maxResults === 100 ? stations : stations.slice(0, maxResults);
-        appState.sheetTab = 'results';
+        appState.sheetTab = 'setup';
         appState.setupSection = 'filters';
         renderResults(appState.currentResults);
         renderMapMarkers(appState.currentResults);
         updateFlowGuide();
         if (appState.currentView === 'list') {
-            setListSetupOpen(false);
+            setView('list');
         } else {
             setSheetExpanded(false);
         }
@@ -908,7 +907,7 @@ function renderMapMarkers(stations) {
 
 function focusStationOnMap(station) {
     setView('map');
-    appState.sheetTab = 'results';
+    appState.sheetTab = 'setup';
     updateSheetPresentation();
     appState.map.setView([station.lat, station.lng], 16);
 
