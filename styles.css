@@ -5288,6 +5288,13 @@ body {
     box-shadow: 0 2px 8px rgba(79, 172, 254, 0.25);
 }
 
+.results-option-premium.active {
+    border-color: var(--primary-blue);
+    background: var(--primary-blue);
+    color: white;
+    box-shadow: 0 2px 8px rgba(79, 172, 254, 0.25);
+}
+
 /* Hidden Elements */
 .hidden-select {
     display: none;

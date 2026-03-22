@@ -10,6 +10,8 @@ let map = null;
 let dataTimestamp = null;
 let activePanel = null;
 let lastGpsAddress = null; // Traccia l'ultimo indirizzo impostato dal GPS
+let currentSearchContext = null;
+const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
 // Sistema Menu Persistenti - UX Mobile-First Ottimizzata
 let persistentPanels = {
     'location': false,
@@ -51,6 +53,7 @@ function initializeNewApp() {
     initializeNewMap();
     // Load timestamp
     updateNewDataTimestamp().catch(console.error);
+    updateFuelPriceDisplaysNew();
     // Initialize stations selector
     initializeStationsSelector();
     // Initialize calculator preview
@@ -152,8 +155,19 @@ function bindNewEventListeners() {
         calcValueInput.addEventListener('input', markSearchOutdatedNew);
         calcValueInput.addEventListener('input', updateCalcPreviewNew);
     }
-    if (fuelTypeSelect) fuelTypeSelect.addEventListener('change', markSearchOutdatedNew);
-    if (radiusSelect) radiusSelect.addEventListener('change', markSearchOutdatedNew);
+    if (fuelTypeSelect) {
+        fuelTypeSelect.addEventListener('change', () => {
+            markSearchOutdatedNew();
+            updateCalcPreviewNew();
+            updateFuelPriceDisplaysNew();
+        });
+    }
+    if (radiusSelect) {
+        radiusSelect.addEventListener('change', () => {
+            markSearchOutdatedNew();
+            updateFuelPriceDisplaysNew();
+        });
+    }
     // Event listener gestito dalla funzione initializeStationsSelector()
     if (addressInput) {
         // Multiple events for address input to catch all changes
@@ -371,10 +385,12 @@ async function performActualSearch(address, fuelType, radius, maxStations) {
             showEmptyStateNew('list', 'Impossibile determinare la posizione. Verifica l\'indirizzo o prova con il GPS.');
             return;
         }
+        currentSearchContext = { coordinates, radius };
         // Aggiorna la mappa alla nuova posizione (GPS o geocodificata)
         if (map) {
             map.setView([coordinates.lat, coordinates.lng], 13);
         }
+        updateFuelPriceDisplaysNew();
         // Cerca le stazioni di servizio usando i dati reali
         const results = await searchFuelStationsNew(coordinates, radius, fuelType);
         if (results.length === 0) {
@@ -815,6 +831,7 @@ async function getCurrentLocationNew() {
         const addressInput = document.getElementById('address-new');
         addressInput.value = address;
         lastGpsAddress = address; // Salva l'indirizzo GPS
+        updateFuelPriceDisplaysNew();
         markSearchOutdatedNew();
         showLoadingNew(false);
     } catch (error) {
@@ -1065,6 +1082,84 @@ function calculateDistanceNew(lat1, lng1, lat2, lng2) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     return R * c;
 }
+
+function getActiveAverageScopeNew() {
+    const radiusElement = document.getElementById('radius-new');
+    const selectedRadius = radiusElement ? parseInt(radiusElement.value, 10) : NaN;
+
+    if (currentSearchContext?.coordinates && currentSearchContext?.radius) {
+        return {
+            coordinates: currentSearchContext.coordinates,
+            radius: Number.isFinite(selectedRadius) ? selectedRadius : currentSearchContext.radius
+        };
+    }
+
+    if (userLocation && Number.isFinite(selectedRadius)) {
+        return {
+            coordinates: userLocation,
+            radius: selectedRadius
+        };
+    }
+
+    return null;
+}
+
+function getScopedStationsForAveragesNew() {
+    if (typeof realFuelStations === 'undefined' || !Array.isArray(realFuelStations)) {
+        return [];
+    }
+
+    const scope = getActiveAverageScopeNew();
+    if (!scope) {
+        return realFuelStations;
+    }
+
+    return realFuelStations.filter(station => {
+        const distance = calculateDistanceNew(
+            scope.coordinates.lat,
+            scope.coordinates.lng,
+            station.latitude,
+            station.longitude
+        );
+
+        return distance <= scope.radius;
+    });
+}
+
+function getAveragePriceForFuelNew(fuelType, stations = getScopedStationsForAveragesNew()) {
+    const prices = stations
+        .map(station => station?.prices?.[fuelType])
+        .filter(price => Number.isFinite(price) && price > 0);
+
+    if (prices.length === 0) {
+        return null;
+    }
+
+    const total = prices.reduce((sum, price) => sum + price, 0);
+    return total / prices.length;
+}
+
+function updateFuelPriceCardsNew() {
+    const scopedStations = getScopedStationsForAveragesNew();
+
+    document.querySelectorAll('.fuel-card-premium').forEach(card => {
+        const fuelType = card.dataset.fuel;
+        const priceElement = card.querySelector('.fuel-price-premium');
+
+        if (!fuelType || !priceElement) {
+            return;
+        }
+
+        const averagePrice = getAveragePriceForFuelNew(fuelType, scopedStations);
+        priceElement.textContent = averagePrice === null ? 'N/D' : `€${averagePrice.toFixed(3)}/L`;
+    });
+}
+
+function updateFuelPriceDisplaysNew() {
+    updateFuelPriceCardsNew();
+    updateCalcPreviewNew();
+}
+
 // Utility function to integrate with existing data loading
 function getDataTimestampNew() {
     // Usa il timestamp dal data.js
@@ -1083,29 +1178,29 @@ function updateCalcPreviewNew() {
     }
     // Ottieni il tipo di carburante selezionato
     const selectedFuelType = document.getElementById('fuelType-new').value;
-    // Prezzi medi stimati per tipo di carburante
-    const avgPrices = {
-        'Benzina': 1.650,
-        'Gasolio': 1.550,
-        'GPL': 0.750,
-        'Metano': 1.250
-    };
-    const avgPrice = avgPrices[selectedFuelType] || avgPrices['Benzina'];
+    const fallbackFuelType = FUEL_TYPES.includes(selectedFuelType) ? selectedFuelType : 'Benzina';
+    const avgPrice = getAveragePriceForFuelNew(fallbackFuelType);
     // Aggiorna il prezzo medio mostrato e la sua etichetta
     if (avgPriceElement) {
-        avgPriceElement.textContent = `€${avgPrice.toFixed(3)}/L`;
+        avgPriceElement.textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
     }
     const avgPriceLabelElement = document.getElementById('avgPriceLabel-new');
     if (avgPriceLabelElement) {
-        avgPriceLabelElement.textContent = `Prezzo medio ${selectedFuelType.toLowerCase()}:`;
+        avgPriceLabelElement.textContent = `Prezzo medio ${fallbackFuelType.toLowerCase()}:`;
+    }
+    if (avgPrice === null) {
+        previewLabel.textContent = `Nessun prezzo disponibile (${fallbackFuelType})`;
+        previewValue.textContent = 'N/D';
+        preview.style.display = 'block';
+        return;
     }
     if (mode === 'liters') {
         const estimatedCost = (calcValue * avgPrice).toFixed(2);
-        previewLabel.textContent = `Costo stimato (${selectedFuelType}):`;
+        previewLabel.textContent = `Costo stimato (${fallbackFuelType}):`;
         previewValue.textContent = `€${estimatedCost}`;
     } else {
         const estimatedLiters = (calcValue / avgPrice).toFixed(1);
-        previewLabel.textContent = `Litri stimati (${selectedFuelType}):`;
+        previewLabel.textContent = `Litri stimati (${fallbackFuelType}):`;
         previewValue.textContent = `${estimatedLiters}L`;
     }
     preview.style.display = 'block';
@@ -1386,8 +1481,15 @@ function initializePremiumPanelInteractions() {
         addressInput.addEventListener('input', function() {
             // Il pannello rimane aperto mentre l'utente digita
         });
+        addressInput.addEventListener('change', function() {
+            // Quando l'utente seleziona un indirizzo (da autocomplete o manualmente), esegui ricerca
+            if (addressInput.value.trim()) {
+                handleNewSearch();
+            }
+        });
         addressInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
+                handleNewSearch();
             }
         });
     }
