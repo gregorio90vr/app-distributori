@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <p class="eyebrow">FuelExplorer</p>
-                    <h1>Trova il distributore giusto, e risparmia</h1>
+                    <h1>Trova il distributore giusto, senza attriti</h1>
                 </div>
             </div>
             <div class="topbar-actions">
@@ -78,7 +78,18 @@
                     </button>
                 </div>
 
+                <div class="sheet-tabs" role="tablist" aria-label="Navigazione pannello">
+                    <button id="tabSetupBtn" class="sheet-tab is-active" type="button" role="tab" aria-selected="true">Specifiche</button>
+                    <button id="tabResultsBtn" class="sheet-tab" type="button" role="tab" aria-selected="false">Risultati</button>
+                </div>
+
                 <section class="setup-panel">
+                    <div class="setup-flow" aria-label="Guida rapida alla ricerca">
+                        <span id="stepLocation" class="flow-pill current">1. Posizione</span>
+                        <span id="stepFilters" class="flow-pill">2. Filtri</span>
+                        <span id="stepSearch" class="flow-pill">3. Cerca</span>
+                    </div>
+
                     <div class="section-head">
                         <div>
                             <h3>1. Posizione</h3>
@@ -177,7 +188,7 @@
 
                     <button id="searchBtn" class="search-cta" type="button">
                         <span class="cta-copy">
-                            <strong>3. Cerca distributori</strong>
+                            <strong id="searchCtaTitle">3. Cerca distributori</strong>
                             <small id="searchHint">Imposta prima una posizione</small>
                         </span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -261,7 +272,7 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="../data.js"></script>
+    <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

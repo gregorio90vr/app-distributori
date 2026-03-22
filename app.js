@@ -15,6 +15,7 @@ const appState = {
     currentView: 'map',
     currentResults: [],
     currentSearchContext: null,
+    sheetTab: 'setup',
     sheetExpanded: false,
     sheetState: 'half',
     listSetupOpen: true,
@@ -39,6 +40,7 @@ function initializeApp() {
     updateResultsSummary();
     updateSheetPresentation();
     syncSearchHint();
+    updateFlowGuide();
 }
 
 function isMobileViewport() {
@@ -57,6 +59,7 @@ function cacheDom() {
     ui.radiusSelect = document.getElementById('radiusSelect');
     ui.maxResultsSelect = document.getElementById('maxResultsSelect');
     ui.searchBtn = document.getElementById('searchBtn');
+    ui.searchCtaTitle = document.getElementById('searchCtaTitle');
     ui.searchHint = document.getElementById('searchHint');
     ui.resultsHeadline = document.getElementById('resultsHeadline');
     ui.resultsSummaryChips = document.getElementById('resultsSummaryChips');
@@ -77,6 +80,11 @@ function cacheDom() {
     ui.loadingTitle = document.getElementById('loadingTitle');
     ui.loadingText = document.getElementById('loadingText');
     ui.fuelGrid = document.getElementById('fuelGrid');
+    ui.tabSetupBtn = document.getElementById('tabSetupBtn');
+    ui.tabResultsBtn = document.getElementById('tabResultsBtn');
+    ui.stepLocation = document.getElementById('stepLocation');
+    ui.stepFilters = document.getElementById('stepFilters');
+    ui.stepSearch = document.getElementById('stepSearch');
 }
 
 function initializeMap() {
@@ -132,6 +140,8 @@ function bindEvents() {
     document.getElementById('infoToggleBtn').addEventListener('click', () => toggleInfoPanel(true));
     document.getElementById('closeInfoBtn').addEventListener('click', () => toggleInfoPanel(false));
     ui.resultsSetupToggle.addEventListener('click', () => setListSetupOpen(!appState.listSetupOpen));
+    ui.tabSetupBtn.addEventListener('click', () => setSheetTab('setup'));
+    ui.tabResultsBtn.addEventListener('click', () => setSheetTab('results'));
 
     window.addEventListener('resize', () => {
         if (!isMobileViewport() && appState.currentView === 'map') {
@@ -228,8 +238,10 @@ function setView(view) {
     if (view === 'list') {
         appState.sheetExpanded = true;
         appState.listSetupOpen = appState.currentResults.length === 0;
+        appState.sheetTab = appState.listSetupOpen ? 'setup' : 'results';
     } else {
         appState.listSetupOpen = true;
+        appState.sheetTab = appState.currentResults.length > 0 ? 'results' : 'setup';
         if (isMobileViewport()) {
             appState.sheetState = appState.currentResults.length > 0 ? 'peek' : 'half';
         }
@@ -275,6 +287,29 @@ function setSheetExpanded(expanded) {
 
 function setListSetupOpen(open) {
     appState.listSetupOpen = open;
+    if (appState.currentView === 'list') {
+        appState.sheetTab = open ? 'setup' : 'results';
+    }
+    updateSheetPresentation();
+}
+
+function setSheetTab(tabName) {
+    if (tabName === 'results' && appState.currentResults.length === 0) {
+        showInlineMessage('Esegui prima una ricerca per vedere i risultati.', 'info');
+        return;
+    }
+
+    appState.sheetTab = tabName;
+
+    if (appState.currentView === 'list') {
+        appState.listSetupOpen = tabName === 'setup';
+    }
+
+    if (appState.currentView === 'map' && !appState.sheetExpanded) {
+        setSheetExpanded(true);
+        return;
+    }
+
     updateSheetPresentation();
 }
 
@@ -286,6 +321,14 @@ function updateSheetPresentation() {
     ui.sheet.classList.toggle('is-peek', !isListView && !appState.sheetExpanded);
     ui.appShell.dataset.listSetup = appState.listSetupOpen ? 'open' : 'closed';
     ui.appShell.dataset.sheetState = appState.sheetState;
+    ui.appShell.dataset.sheetTab = appState.sheetTab;
+
+    const hasResults = appState.currentResults.length > 0;
+    ui.tabSetupBtn.classList.toggle('is-active', appState.sheetTab === 'setup');
+    ui.tabResultsBtn.classList.toggle('is-active', appState.sheetTab === 'results');
+    ui.tabSetupBtn.setAttribute('aria-selected', appState.sheetTab === 'setup' ? 'true' : 'false');
+    ui.tabResultsBtn.setAttribute('aria-selected', appState.sheetTab === 'results' ? 'true' : 'false');
+    ui.tabResultsBtn.disabled = !hasResults;
 
     if (isListView) {
         ui.sheetTitle.textContent = appState.listSetupOpen ? 'Lista risultati e filtri' : 'Lista risultati';
@@ -296,14 +339,14 @@ function updateSheetPresentation() {
         collapseIcon.className = `fas ${appState.listSetupOpen ? 'fa-xmark' : 'fa-sliders'}`;
         collapseButton.setAttribute('aria-label', appState.listSetupOpen ? 'Chiudi filtri' : 'Apri filtri');
     } else {
-        ui.sheetTitle.textContent = appState.sheetExpanded ? 'Controlli e risultati' : 'Imposta la ricerca';
+        ui.sheetTitle.textContent = appState.sheetTab === 'setup' ? 'Imposta la ricerca' : 'Risultati in area';
         ui.resultsSetupToggle.hidden = true;
         if (isMobileViewport()) {
             collapseIcon.className = 'fas fa-grip-lines';
             collapseButton.setAttribute('aria-label', 'Cambia stato pannello: peek, half, full');
         } else {
             collapseIcon.className = `fas ${appState.sheetExpanded ? 'fa-chevron-down' : 'fa-chevron-up'}`;
-            collapseButton.setAttribute('aria-label', appState.sheetExpanded ? 'Comprimi pannello' : 'Espandi pannello');
+            collapseButton.setAttribute('aria-label', appState.sheetExpanded ? 'Nascondi menu e mostra mappa' : 'Mostra menu');
         }
     }
 }
@@ -346,6 +389,29 @@ function syncSearchHint() {
     ui.searchHint.textContent = locationReady
         ? `${appState.selectedFuel} entro ${radius} km`
         : 'Imposta prima una posizione';
+    updateSearchCtaState();
+    updateFlowGuide();
+}
+
+function updateSearchCtaState() {
+    const locationReady = hasSearchContext();
+    ui.searchBtn.disabled = !locationReady;
+    ui.searchBtn.classList.toggle('is-disabled', !locationReady);
+    ui.searchCtaTitle.textContent = locationReady ? '3. Cerca distributori' : '3. Imposta prima la posizione';
+}
+
+function updateFlowGuide() {
+    const locationReady = hasSearchContext();
+    const hasResults = appState.currentResults.length > 0;
+
+    ui.stepLocation.classList.toggle('done', locationReady);
+    ui.stepLocation.classList.toggle('current', !locationReady);
+
+    ui.stepFilters.classList.toggle('done', locationReady);
+    ui.stepFilters.classList.toggle('current', locationReady && !hasResults);
+
+    ui.stepSearch.classList.toggle('done', hasResults);
+    ui.stepSearch.classList.toggle('current', locationReady && !hasResults);
 }
 
 function updateDatasetInfo() {
@@ -566,6 +632,7 @@ async function handleSearch(options = {}) {
         }
 
         if (!coordinates) {
+            updateFlowGuide();
             if (!isAuto) {
                 showInlineMessage('Imposta un indirizzo oppure usa il GPS prima di cercare.', 'error');
             }
@@ -585,8 +652,10 @@ async function handleSearch(options = {}) {
 
         if (stations.length === 0) {
             appState.currentResults = [];
+            appState.sheetTab = 'setup';
             renderMapMarkers([]);
             renderResults([]);
+            updateFlowGuide();
             if (appState.currentView === 'list') {
                 setListSetupOpen(true);
             } else {
@@ -598,16 +667,14 @@ async function handleSearch(options = {}) {
         }
 
         appState.currentResults = maxResults === 100 ? stations : stations.slice(0, maxResults);
+        appState.sheetTab = 'results';
         renderResults(appState.currentResults);
         renderMapMarkers(appState.currentResults);
+        updateFlowGuide();
         if (appState.currentView === 'list') {
             setListSetupOpen(false);
         } else {
-            setSheetExpanded(true);
-            if (isMobileViewport()) {
-                appState.sheetState = 'peek';
-                updateSheetPresentation();
-            }
+            setSheetExpanded(false);
         }
         ui.emptyState.style.display = 'none';
         if (isAuto) {
@@ -630,6 +697,7 @@ function renderResults(stations) {
     if (stations.length === 0) {
         ui.resultsHeadline.textContent = 'Nessun risultato disponibile';
         updateResultsSummary();
+        updateFlowGuide();
         return;
     }
 
@@ -674,6 +742,7 @@ function renderResults(stations) {
 
     ui.resultsHeadline.textContent = `${stationsWithCosts.length} distributori trovati`;
     updateResultsSummary();
+    updateFlowGuide();
 }
 
 function updateResultsSummary() {
@@ -796,6 +865,8 @@ function renderMapMarkers(stations) {
 
 function focusStationOnMap(station) {
     setView('map');
+    appState.sheetTab = 'results';
+    updateSheetPresentation();
     appState.map.setView([station.lat, station.lng], 16);
 
     appState.markersLayer.eachLayer((layer) => {
