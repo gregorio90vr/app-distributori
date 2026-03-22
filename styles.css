@@ -178,6 +178,12 @@ button {
     border-color: transparent;
 }
 
+#openSetupBtn {
+    background: var(--primary-soft);
+    color: var(--primary-strong);
+    border-color: rgba(15, 118, 110, 0.2);
+}
+
 .workspace {
     position: relative;
     flex: 1;
@@ -342,6 +348,15 @@ button {
     gap: 18px;
 }
 
+.guide-status {
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(15, 118, 110, 0.12);
+    color: var(--primary-strong);
+    font-size: 13px;
+    font-weight: 700;
+}
+
 .setup-flow {
     display: flex;
     gap: 8px;
@@ -350,17 +365,22 @@ button {
 
 .setup-subtabs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-top: 2px;
+    background: linear-gradient(180deg, rgba(255, 250, 243, 0.98) 0%, rgba(255, 250, 243, 0.9) 80%, rgba(255, 250, 243, 0) 100%);
 }
 
 .setup-subtab {
     border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 9px 12px;
+    padding: 9px 8px;
     background: rgba(255, 250, 243, 0.92);
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
 }
 
@@ -386,6 +406,10 @@ button {
     letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.setup-flow {
+    display: none;
 }
 
 .flow-pill.current {
@@ -1217,8 +1241,9 @@ li {
         z-index: 3;
     }
 
-    .setup-subtabs {
-        padding-top: 2px;
+    .guide-status {
+        font-size: 12px;
+        padding: 9px 10px;
     }
 }
 
@@ -1269,7 +1294,7 @@ li {
 
     .setup-subtab {
         min-height: 42px;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .app-shell[data-view="map"][data-sheet-state="peek"] .control-sheet {

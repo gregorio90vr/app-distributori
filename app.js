@@ -65,9 +65,9 @@ function cacheDom() {
     ui.searchBtn = document.getElementById('searchBtn');
     ui.searchCtaTitle = document.getElementById('searchCtaTitle');
     ui.searchHint = document.getElementById('searchHint');
+    ui.guideStatus = document.getElementById('guideStatus');
     ui.resultsHeadline = document.getElementById('resultsHeadline');
     ui.resultsSummaryChips = document.getElementById('resultsSummaryChips');
-    ui.resultsSetupToggle = document.getElementById('resultsSetupToggle');
     ui.listContainer = document.getElementById('listContainer');
     ui.inlineMessage = document.getElementById('inlineMessage');
     ui.calcInput = document.getElementById('calcInput');
@@ -86,12 +86,11 @@ function cacheDom() {
     ui.fuelGrid = document.getElementById('fuelGrid');
     ui.setupBasicTabBtn = document.getElementById('setupBasicTabBtn');
     ui.setupFiltersTabBtn = document.getElementById('setupFiltersTabBtn');
+    ui.setupCostsTabBtn = document.getElementById('setupCostsTabBtn');
     ui.basicSetupSection = document.getElementById('basicSetupSection');
     ui.filtersSetupSection = document.getElementById('filtersSetupSection');
+    ui.costsSetupSection = document.getElementById('costsSetupSection');
     ui.calcSection = document.getElementById('calcSection');
-    ui.stepLocation = document.getElementById('stepLocation');
-    ui.stepFilters = document.getElementById('stepFilters');
-    ui.stepSearch = document.getElementById('stepSearch');
 }
 
 function initializeMap() {
@@ -144,11 +143,12 @@ function bindEvents() {
     document.getElementById('searchBtn').addEventListener('click', handleSearch);
     document.getElementById('viewMapBtn').addEventListener('click', () => setView('map'));
     document.getElementById('viewListBtn').addEventListener('click', () => setView('list'));
+    document.getElementById('openSetupBtn').addEventListener('click', openSetupPanel);
     document.getElementById('infoToggleBtn').addEventListener('click', () => toggleInfoPanel(true));
     document.getElementById('closeInfoBtn').addEventListener('click', () => toggleInfoPanel(false));
-    ui.resultsSetupToggle.addEventListener('click', openSetupFromResultsView);
     ui.setupBasicTabBtn.addEventListener('click', () => setSetupSection('basic'));
     ui.setupFiltersTabBtn.addEventListener('click', () => setSetupSection('filters'));
+    ui.setupCostsTabBtn.addEventListener('click', () => setSetupSection('costs'));
 
     window.addEventListener('resize', () => {
         if (!isMobileViewport() && appState.currentView === 'map') {
@@ -267,7 +267,7 @@ function setView(view) {
 
 function toggleSheet() {
     if (appState.currentView === 'list') {
-        openSetupFromResultsView();
+        openSetupPanel();
         return;
     }
 
@@ -304,11 +304,7 @@ function setListSetupOpen(open) {
     updateSheetPresentation();
 }
 
-function openSetupFromResultsView() {
-    if (appState.currentView !== 'list') {
-        return;
-    }
-
+function openSetupPanel() {
     setView('map');
     appState.sheetTab = 'setup';
     appState.setupSection = hasSearchContext() ? 'filters' : 'basic';
@@ -354,13 +350,10 @@ function updateSheetPresentation() {
 
     if (isListView) {
         ui.sheetTitle.textContent = 'Lista risultati';
-        ui.resultsSetupToggle.hidden = false;
-        ui.resultsSetupToggle.innerHTML = '<i class="fas fa-sliders" aria-hidden="true"></i>Modifica parametri';
         collapseIcon.className = 'fas fa-sliders';
         collapseButton.setAttribute('aria-label', 'Apri modifica parametri');
     } else {
         ui.sheetTitle.textContent = 'Imposta la ricerca';
-        ui.resultsSetupToggle.hidden = true;
         if (isMobileViewport()) {
             collapseIcon.className = 'fas fa-grip-lines';
             collapseButton.setAttribute('aria-label', 'Cambia stato pannello: peek, half, full');
@@ -373,15 +366,20 @@ function updateSheetPresentation() {
 
 function updateSetupSectionUi() {
     const isBasic = appState.setupSection === 'basic';
+    const isFilters = appState.setupSection === 'filters';
+    const isCosts = appState.setupSection === 'costs';
     const setupAvailable = appState.currentView === 'map';
 
     ui.setupBasicTabBtn.classList.toggle('is-active', isBasic);
-    ui.setupFiltersTabBtn.classList.toggle('is-active', !isBasic);
+    ui.setupFiltersTabBtn.classList.toggle('is-active', isFilters);
+    ui.setupCostsTabBtn.classList.toggle('is-active', isCosts);
     ui.setupBasicTabBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
-    ui.setupFiltersTabBtn.setAttribute('aria-selected', !isBasic ? 'true' : 'false');
+    ui.setupFiltersTabBtn.setAttribute('aria-selected', isFilters ? 'true' : 'false');
+    ui.setupCostsTabBtn.setAttribute('aria-selected', isCosts ? 'true' : 'false');
 
     ui.basicSetupSection.hidden = !setupAvailable || !isBasic;
-    ui.filtersSetupSection.hidden = !setupAvailable || isBasic;
+    ui.filtersSetupSection.hidden = !setupAvailable || !isFilters;
+    ui.costsSetupSection.hidden = !setupAvailable || !isCosts;
 }
 
 function hasSearchContext() {
@@ -422,9 +420,7 @@ function syncSearchHint() {
     ui.searchHint.textContent = locationReady
         ? `${appState.selectedFuel} entro ${radius} km`
         : 'Imposta prima una posizione';
-    if (!locationReady) {
-        appState.setupSection = 'basic';
-    }
+    appState.setupSection = locationReady ? 'filters' : 'basic';
     updateSearchCtaState();
     updateFlowGuide();
     updateSetupSectionUi();
@@ -434,21 +430,26 @@ function updateSearchCtaState() {
     const locationReady = hasSearchContext();
     ui.searchBtn.disabled = !locationReady;
     ui.searchBtn.classList.toggle('is-disabled', !locationReady);
-    ui.searchCtaTitle.textContent = locationReady ? '3. Cerca distributori' : '3. Imposta prima la posizione';
+    ui.searchCtaTitle.textContent = locationReady ? 'Cerca distributori' : 'Imposta prima la posizione';
 }
 
 function updateFlowGuide() {
     const locationReady = hasSearchContext();
     const hasResults = appState.currentResults.length > 0;
 
-    ui.stepLocation.classList.toggle('done', locationReady);
-    ui.stepLocation.classList.toggle('current', !locationReady);
+    if (!locationReady) {
+        ui.guideStatus.textContent = 'Step 1 di 3: imposta la posizione';
+        return;
+    }
 
-    ui.stepFilters.classList.toggle('done', locationReady);
-    ui.stepFilters.classList.toggle('current', locationReady && !hasResults && appState.setupSection === 'filters');
+    if (!hasResults) {
+        ui.guideStatus.textContent = appState.setupSection === 'costs'
+            ? 'Step 3 di 3: controlla i costi e poi Cerca distributori'
+            : 'Step 2 di 3: scegli filtri e passa ai costi';
+        return;
+    }
 
-    ui.stepSearch.classList.toggle('done', hasResults);
-    ui.stepSearch.classList.toggle('current', locationReady && !hasResults);
+    ui.guideStatus.textContent = 'Step 3 di 3: risultati aggiornati, passa a Lista per confrontare';
 }
 
 function updateDatasetInfo() {
@@ -1021,7 +1022,7 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
         Math.sin(dLng / 2) * Math.sin(dLng / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return earthRadius * c;
-} 
+}
 
 function escapeHtml(value) {
     return String(value)

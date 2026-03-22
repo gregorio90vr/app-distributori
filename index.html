@@ -29,6 +29,9 @@
                     <button id="viewMapBtn" class="view-pill is-active" type="button" data-view="map">Mappa</button>
                     <button id="viewListBtn" class="view-pill" type="button" data-view="list">Lista</button>
                 </div>
+                <button id="openSetupBtn" class="icon-button" type="button" aria-label="Apri menu parametri">
+                    <i class="fas fa-sliders" aria-hidden="true"></i>
+                </button>
                 <button id="infoToggleBtn" class="icon-button" type="button" aria-label="Informazioni app">
                     <i class="fas fa-circle-info" aria-hidden="true"></i>
                 </button>
@@ -78,16 +81,13 @@
                     </button>
                 </div>
 
-                <section class="setup-panel">
-                    <div class="setup-flow" aria-label="Guida rapida alla ricerca">
-                        <span id="stepLocation" class="flow-pill current">1. Posizione</span>
-                        <span id="stepFilters" class="flow-pill">2. Filtri</span>
-                        <span id="stepSearch" class="flow-pill">3. Cerca</span>
-                    </div>
+                <div id="guideStatus" class="guide-status" aria-live="polite">Step 1 di 3: imposta la posizione</div>
 
+                <section class="setup-panel">
                     <div class="setup-subtabs" role="tablist" aria-label="Dettaglio specifiche">
-                        <button id="setupBasicTabBtn" class="setup-subtab is-active" type="button" role="tab" aria-selected="true">Base</button>
-                        <button id="setupFiltersTabBtn" class="setup-subtab" type="button" role="tab" aria-selected="false">Filtri</button>
+                        <button id="setupBasicTabBtn" class="setup-subtab is-active" type="button" role="tab" aria-selected="true">1. Posizione</button>
+                        <button id="setupFiltersTabBtn" class="setup-subtab" type="button" role="tab" aria-selected="false">2. Filtri</button>
+                        <button id="setupCostsTabBtn" class="setup-subtab" type="button" role="tab" aria-selected="false">3. Costi</button>
                     </div>
 
                     <section id="basicSetupSection" class="setup-subsection">
@@ -152,6 +152,15 @@
                                 </select>
                             </div>
                         </div>
+                    </section>
+
+                    <section id="costsSetupSection" class="setup-subsection" hidden>
+                        <div class="section-head tight">
+                            <div>
+                                <h3>3. Costi</h3>
+                                <p>Simula subito spesa o litri con il carburante selezionato.</p>
+                            </div>
+                        </div>
 
                         <details id="calcSection" class="calc-section" open>
                             <summary>
@@ -192,7 +201,7 @@
 
                     <button id="searchBtn" class="search-cta" type="button">
                         <span class="cta-copy">
-                            <strong id="searchCtaTitle">3. Cerca distributori</strong>
+                            <strong id="searchCtaTitle">Cerca distributori</strong>
                             <small id="searchHint">Imposta prima una posizione</small>
                         </span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -206,10 +215,6 @@
                             <h3 id="resultsHeadline">Nessuna ricerca eseguita</h3>
                         </div>
                         <div class="results-toolbar">
-                            <button id="resultsSetupToggle" class="ghost-action compact" type="button">
-                                <i class="fas fa-sliders" aria-hidden="true"></i>
-                                Modifica parametri
-                            </button>
                             <div id="resultsSummaryChips" class="results-summary-chips"></div>
                         </div>
                     </div>
@@ -271,7 +276,7 @@
                 <div class="loader-orbit"></div>
                 <h3 id="loadingTitle">Ricerca in corso</h3>
                 <p id="loadingText">Sto cercando i distributori migliori per te</p>
-            </div> 
+            </div>
         </div>
     </div>
 
