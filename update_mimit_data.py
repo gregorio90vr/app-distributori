@@ -69,7 +69,7 @@ class MIMITDataUpdater:
             # Read with pandas
             df = pd.read_csv(
                 tmp_path,
-                sep=';',
+                sep='|',
                 skiprows=1,  # Skip metadata line
                 encoding='utf-8',
                 dtype=str,  # Read all as strings first
