@@ -375,6 +375,34 @@ button {
     flex-wrap: wrap;
 }
 
+.setup-subtabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.setup-subtab {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 9px 12px;
+    background: rgba(255, 250, 243, 0.92);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.setup-subtab.is-active {
+    background: rgba(15, 118, 110, 0.14);
+    border-color: rgba(15, 118, 110, 0.25);
+    color: var(--primary-strong);
+}
+
+.setup-subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 .flow-pill {
     padding: 8px 12px;
     border-radius: 999px;
@@ -1237,6 +1265,14 @@ li {
         bottom: 2px;
         z-index: 3;
     }
+
+    .setup-subtabs {
+        position: sticky;
+        top: 34px;
+        z-index: 2;
+        padding-top: 2px;
+        background: rgba(255, 250, 243, 0.95);
+    }
 }
 
 @media (max-width: 640px) {
@@ -1280,12 +1316,17 @@ li {
     }
 
     .setup-flow {
-        gap: 6px;
+        display: none;
     }
 
     .flow-pill {
         font-size: 11px;
         padding: 7px 10px;
+    }
+
+    .setup-subtab {
+        min-height: 42px;
+        font-size: 14px;
     }
 
     .sheet-tab {

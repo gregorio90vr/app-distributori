@@ -16,6 +16,7 @@ const appState = {
     currentResults: [],
     currentSearchContext: null,
     sheetTab: 'setup',
+    setupSection: 'basic',
     sheetExpanded: false,
     sheetState: 'half',
     listSetupOpen: true,
@@ -41,6 +42,9 @@ function initializeApp() {
     updateSheetPresentation();
     syncSearchHint();
     updateFlowGuide();
+    if (isMobileViewport()) {
+        ui.calcSection.open = false;
+    }
 }
 
 function isMobileViewport() {
@@ -82,6 +86,11 @@ function cacheDom() {
     ui.fuelGrid = document.getElementById('fuelGrid');
     ui.tabSetupBtn = document.getElementById('tabSetupBtn');
     ui.tabResultsBtn = document.getElementById('tabResultsBtn');
+    ui.setupBasicTabBtn = document.getElementById('setupBasicTabBtn');
+    ui.setupFiltersTabBtn = document.getElementById('setupFiltersTabBtn');
+    ui.basicSetupSection = document.getElementById('basicSetupSection');
+    ui.filtersSetupSection = document.getElementById('filtersSetupSection');
+    ui.calcSection = document.getElementById('calcSection');
     ui.stepLocation = document.getElementById('stepLocation');
     ui.stepFilters = document.getElementById('stepFilters');
     ui.stepSearch = document.getElementById('stepSearch');
@@ -142,6 +151,8 @@ function bindEvents() {
     ui.resultsSetupToggle.addEventListener('click', () => setListSetupOpen(!appState.listSetupOpen));
     ui.tabSetupBtn.addEventListener('click', () => setSheetTab('setup'));
     ui.tabResultsBtn.addEventListener('click', () => setSheetTab('results'));
+    ui.setupBasicTabBtn.addEventListener('click', () => setSetupSection('basic'));
+    ui.setupFiltersTabBtn.addEventListener('click', () => setSetupSection('filters'));
 
     window.addEventListener('resize', () => {
         if (!isMobileViewport() && appState.currentView === 'map') {
@@ -239,9 +250,13 @@ function setView(view) {
         appState.sheetExpanded = true;
         appState.listSetupOpen = appState.currentResults.length === 0;
         appState.sheetTab = appState.listSetupOpen ? 'setup' : 'results';
+        appState.setupSection = appState.listSetupOpen ? 'basic' : 'filters';
     } else {
         appState.listSetupOpen = true;
         appState.sheetTab = appState.currentResults.length > 0 ? 'results' : 'setup';
+        if (appState.currentResults.length === 0) {
+            appState.setupSection = 'basic';
+        }
         if (isMobileViewport()) {
             appState.sheetState = appState.currentResults.length > 0 ? 'peek' : 'half';
         }
@@ -293,6 +308,11 @@ function setListSetupOpen(open) {
     updateSheetPresentation();
 }
 
+function setSetupSection(sectionName) {
+    appState.setupSection = sectionName;
+    updateSetupSectionUi();
+}
+
 function setSheetTab(tabName) {
     if (tabName === 'results' && appState.currentResults.length === 0) {
         showInlineMessage('Esegui prima una ricerca per vedere i risultati.', 'info');
@@ -300,6 +320,9 @@ function setSheetTab(tabName) {
     }
 
     appState.sheetTab = tabName;
+    if (tabName === 'setup' && !hasSearchContext()) {
+        appState.setupSection = 'basic';
+    }
 
     if (appState.currentView === 'list') {
         appState.listSetupOpen = tabName === 'setup';
@@ -329,6 +352,7 @@ function updateSheetPresentation() {
     ui.tabSetupBtn.setAttribute('aria-selected', appState.sheetTab === 'setup' ? 'true' : 'false');
     ui.tabResultsBtn.setAttribute('aria-selected', appState.sheetTab === 'results' ? 'true' : 'false');
     ui.tabResultsBtn.disabled = !hasResults;
+    updateSetupSectionUi();
 
     if (isListView) {
         ui.sheetTitle.textContent = appState.listSetupOpen ? 'Lista risultati e filtri' : 'Lista risultati';
@@ -349,6 +373,19 @@ function updateSheetPresentation() {
             collapseButton.setAttribute('aria-label', appState.sheetExpanded ? 'Nascondi menu e mostra mappa' : 'Mostra menu');
         }
     }
+}
+
+function updateSetupSectionUi() {
+    const isBasic = appState.setupSection === 'basic';
+    const setupAvailable = appState.sheetTab === 'setup' || appState.currentView === 'list';
+
+    ui.setupBasicTabBtn.classList.toggle('is-active', isBasic);
+    ui.setupFiltersTabBtn.classList.toggle('is-active', !isBasic);
+    ui.setupBasicTabBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
+    ui.setupFiltersTabBtn.setAttribute('aria-selected', !isBasic ? 'true' : 'false');
+
+    ui.basicSetupSection.hidden = !setupAvailable || !isBasic;
+    ui.filtersSetupSection.hidden = !setupAvailable || isBasic;
 }
 
 function hasSearchContext() {
@@ -389,8 +426,12 @@ function syncSearchHint() {
     ui.searchHint.textContent = locationReady
         ? `${appState.selectedFuel} entro ${radius} km`
         : 'Imposta prima una posizione';
+    if (!locationReady) {
+        appState.setupSection = 'basic';
+    }
     updateSearchCtaState();
     updateFlowGuide();
+    updateSetupSectionUi();
 }
 
 function updateSearchCtaState() {
@@ -408,7 +449,7 @@ function updateFlowGuide() {
     ui.stepLocation.classList.toggle('current', !locationReady);
 
     ui.stepFilters.classList.toggle('done', locationReady);
-    ui.stepFilters.classList.toggle('current', locationReady && !hasResults);
+    ui.stepFilters.classList.toggle('current', locationReady && !hasResults && appState.setupSection === 'filters');
 
     ui.stepSearch.classList.toggle('done', hasResults);
     ui.stepSearch.classList.toggle('current', locationReady && !hasResults);
@@ -653,6 +694,7 @@ async function handleSearch(options = {}) {
         if (stations.length === 0) {
             appState.currentResults = [];
             appState.sheetTab = 'setup';
+            appState.setupSection = 'basic';
             renderMapMarkers([]);
             renderResults([]);
             updateFlowGuide();
@@ -668,6 +710,7 @@ async function handleSearch(options = {}) {
 
         appState.currentResults = maxResults === 100 ? stations : stations.slice(0, maxResults);
         appState.sheetTab = 'results';
+        appState.setupSection = 'filters';
         renderResults(appState.currentResults);
         renderMapMarkers(appState.currentResults);
         updateFlowGuide();

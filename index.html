@@ -90,101 +90,110 @@
                         <span id="stepSearch" class="flow-pill">3. Cerca</span>
                     </div>
 
-                    <div class="section-head">
-                        <div>
-                            <h3>1. Posizione</h3>
-                            <p>Usa GPS oppure inserisci un indirizzo manualmente.</p>
-                        </div>
-                        <button id="gpsBtn" class="ghost-action" type="button">
-                            <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                            GPS
-                        </button>
+                    <div class="setup-subtabs" role="tablist" aria-label="Dettaglio specifiche">
+                        <button id="setupBasicTabBtn" class="setup-subtab is-active" type="button" role="tab" aria-selected="true">Base</button>
+                        <button id="setupFiltersTabBtn" class="setup-subtab" type="button" role="tab" aria-selected="false">Filtri</button>
                     </div>
 
-                    <div class="address-box">
-                        <label class="field-label" for="addressInput">Indirizzo di partenza</label>
-                        <div class="address-input-row">
-                            <input id="addressInput" class="text-input" type="text" placeholder="Via Roma 1, Milano">
-                            <button id="addressSearchBtn" class="icon-button accent" type="button" aria-label="Usa questo indirizzo">
-                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <section id="basicSetupSection" class="setup-subsection">
+                        <div class="section-head">
+                            <div>
+                                <h3>1. Posizione</h3>
+                                <p>Usa GPS oppure inserisci un indirizzo manualmente.</p>
+                            </div>
+                            <button id="gpsBtn" class="ghost-action" type="button">
+                                <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
+                                GPS
                             </button>
                         </div>
-                    </div>
 
-                    <div class="section-head tight">
-                        <div>
-                            <h3>2. Filtri</h3>
-                            <p>Le medie mostrate sono reali e aggiornate sul contesto attivo.</p>
-                        </div>
-                    </div>
-
-                    <div id="fuelGrid" class="fuel-grid" role="list"></div>
-
-                    <div class="control-grid">
-                        <div class="control-card">
-                            <label class="field-label" for="radiusSelect">Raggio</label>
-                            <select id="radiusSelect" class="select-input">
-                                <option value="1">1 km</option>
-                                <option value="2">2 km</option>
-                                <option value="5" selected>5 km</option>
-                                <option value="10">10 km</option>
-                                <option value="15">15 km</option>
-                                <option value="20">20 km</option>
-                                <option value="30">30 km</option>
-                            </select>
-                        </div>
-                        <div class="control-card">
-                            <label class="field-label" for="maxResultsSelect">Risultati</label>
-                            <select id="maxResultsSelect" class="select-input">
-                                <option value="5">5</option>
-                                <option value="10" selected>10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="75">75</option>
-                                <option value="100">Tutti</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <details id="calcSection" class="calc-section" open>
-                        <summary>
-                            <span>
-                                <i class="fas fa-calculator" aria-hidden="true"></i>
-                                Calcolatore costi
-                            </span>
-                            <span id="calcSummaryTag" class="summary-tag">55L</span>
-                        </summary>
-                        <div class="calc-body">
-                            <div class="mode-toggle" role="radiogroup" aria-label="Modalita calcolo">
-                                <label class="mode-pill is-active">
-                                    <input type="radio" name="calcMode" value="liters" checked>
-                                    Litri → Costo
-                                </label>
-                                <label class="mode-pill">
-                                    <input type="radio" name="calcMode" value="budget">
-                                    Budget → Litri
-                                </label>
+                        <div class="address-box">
+                            <label class="field-label" for="addressInput">Indirizzo di partenza</label>
+                            <div class="address-input-row">
+                                <input id="addressInput" class="text-input" type="text" placeholder="Via Roma 1, Milano">
+                                <button id="addressSearchBtn" class="icon-button accent" type="button" aria-label="Usa questo indirizzo">
+                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
                             </div>
-                            <div class="calc-input-row">
-                                <div class="calc-input-card">
-                                    <label id="calcInputLabel" class="field-label" for="calcInput">Quanti litri vuoi acquistare?</label>
-                                    <div class="calc-number-wrap">
-                                        <input id="calcInput" class="text-input" type="number" value="55" min="1" step="0.1">
-                                        <span id="calcInputUnit" class="calc-unit">L</span>
+                        </div>
+                    </section>
+
+                    <section id="filtersSetupSection" class="setup-subsection" hidden>
+                        <div class="section-head tight">
+                            <div>
+                                <h3>2. Filtri</h3>
+                                <p>Le medie mostrate sono reali e aggiornate sul contesto attivo.</p>
+                            </div>
+                        </div>
+
+                        <div id="fuelGrid" class="fuel-grid" role="list"></div>
+
+                        <div class="control-grid">
+                            <div class="control-card">
+                                <label class="field-label" for="radiusSelect">Raggio</label>
+                                <select id="radiusSelect" class="select-input">
+                                    <option value="1">1 km</option>
+                                    <option value="2">2 km</option>
+                                    <option value="5" selected>5 km</option>
+                                    <option value="10">10 km</option>
+                                    <option value="15">15 km</option>
+                                    <option value="20">20 km</option>
+                                    <option value="30">30 km</option>
+                                </select>
+                            </div>
+                            <div class="control-card">
+                                <label class="field-label" for="maxResultsSelect">Risultati</label>
+                                <select id="maxResultsSelect" class="select-input">
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                    <option value="75">75</option>
+                                    <option value="100">Tutti</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <details id="calcSection" class="calc-section" open>
+                            <summary>
+                                <span>
+                                    <i class="fas fa-calculator" aria-hidden="true"></i>
+                                    Calcolatore costi
+                                </span>
+                                <span id="calcSummaryTag" class="summary-tag">55L</span>
+                            </summary>
+                            <div class="calc-body">
+                                <div class="mode-toggle" role="radiogroup" aria-label="Modalita calcolo">
+                                    <label class="mode-pill is-active">
+                                        <input type="radio" name="calcMode" value="liters" checked>
+                                        Litri → Costo
+                                    </label>
+                                    <label class="mode-pill">
+                                        <input type="radio" name="calcMode" value="budget">
+                                        Budget → Litri
+                                    </label>
+                                </div>
+                                <div class="calc-input-row">
+                                    <div class="calc-input-card">
+                                        <label id="calcInputLabel" class="field-label" for="calcInput">Quanti litri vuoi acquistare?</label>
+                                        <div class="calc-number-wrap">
+                                            <input id="calcInput" class="text-input" type="number" value="55" min="1" step="0.1">
+                                            <span id="calcInputUnit" class="calc-unit">L</span>
+                                        </div>
+                                    </div>
+                                    <div class="calc-preview-card">
+                                        <p id="avgPriceLabel" class="preview-overline">Prezzo medio benzina</p>
+                                        <strong id="avgPriceValue">€1.650/L</strong>
+                                        <span id="calcPreviewValue">€90.75</span>
                                     </div>
                                 </div>
-                                <div class="calc-preview-card">
-                                    <p id="avgPriceLabel" class="preview-overline">Prezzo medio benzina</p>
-                                    <strong id="avgPriceValue">€1.650/L</strong>
-                                    <span id="calcPreviewValue">€90.75</span>
-                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </section>
 
                     <button id="searchBtn" class="search-cta" type="button">
                         <span class="cta-copy">
@@ -272,7 +281,7 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="data.js"></script>
+    <script src="../data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
