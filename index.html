@@ -13,136 +13,127 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="appOnboarding" class="onboarding-layer" aria-hidden="false" data-step="splash">
+    <div id="appOnboarding" class="onboarding-layer" aria-hidden="false" data-step="intro">
         <div class="onboarding-gradient" aria-hidden="true"></div>
+        <div class="onboarding-progress" aria-label="Progresso configurazione iniziale">
+            <span class="onboarding-progress-dot is-active" data-onboarding-step="intro"></span>
+            <span class="onboarding-progress-dot" data-onboarding-step="fuel"></span>
+            <span class="onboarding-progress-dot" data-onboarding-step="location"></span>
+        </div>
 
-        <section id="splashScreen" class="intro-screen splash-screen is-active" aria-labelledby="splashTitle">
-            <div class="splash-brand">
-                <div class="splash-mark">
-                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
+        <section id="introScreen" class="intro-screen intro-page is-active" aria-labelledby="introTitle">
+            <div class="intro-page-shell">
+                <div class="splash-brand">
+                    <div class="splash-mark">
+                        <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                    </div>
+                    <p class="eyebrow">FuelExplorer</p>
                 </div>
-                <p class="eyebrow">FuelExplorer</p>
-            </div>
-            <div class="splash-copy">
-                <h1 id="splashTitle">Individua il distributore piu adatto con un avvio chiaro e immediato.</h1>
-                <p>Un percorso iniziale essenziale per impostare il contesto di ricerca e accedere alla mappa con maggiore precisione.</p>
-            </div>
-            <div class="splash-loader" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
+
+                <div class="intro-copy-panel">
+                    <p class="eyebrow">Configurazione iniziale</p>
+                    <h1 id="introTitle">Configura l’app in pochi passaggi.</h1>
+                    <p>Seleziona il carburante, scegli l’area e naviga sulla mappa.</p>
+                </div>
+
+                <div class="intro-summary-list">
+                    <div>
+                        <strong>1. Carburante</strong>
+                        <span>Scegli cosa vuoi confrontare.</span>
+                    </div>
+                    <div>
+                        <strong>2. Area</strong>
+                        <span>Usa il GPS oppure inserisci un indirizzo.</span>
+                    </div>
+                    <div>
+                        <strong>3. Mappa pronta</strong>
+                        <span>Apri subito la ricerca gia configurata.</span>
+                    </div>
+                </div>
+
+                <div class="intro-footer simple">
+                    <button id="introContinueBtn" class="intro-primary-button" type="button">Inizia</button>
+                </div>
             </div>
         </section>
 
-        <section id="onboardingScreen" class="intro-screen onboarding-screen" hidden aria-labelledby="onboardingTitle">
-            <div class="intro-shell">
-                <div class="intro-topbar">
+        <section id="fuelScreen" class="intro-screen onboarding-screen" hidden aria-labelledby="fuelTitle">
+            <div class="intro-page-shell compact">
+                <div class="intro-topbar compact">
                     <div>
-                        <p class="eyebrow">Onboarding iniziale</p>
-                        <h2 id="onboardingTitle">Tre passaggi essenziali prima della mappa.</h2>
+                        <p class="eyebrow">Passaggio 2 di 3</p>
+                        <h2 id="fuelTitle">Seleziona il carburante.</h2>
+                        <p class="intro-subcopy">La prima ricerca usera subito questa preferenza.</p>
                     </div>
-                    <button id="skipOnboardingBtn" class="intro-text-button" type="button">Salta</button>
                 </div>
 
-                <div id="onboardingSlides" class="onboarding-slides" aria-live="polite">
-                    <article class="onboarding-slide" data-slide-index="0">
-                        <div class="slide-visual aurora-card">
-                            <span class="slide-badge">1</span>
-                            <strong>Accesso immediato</strong>
-                            <p>Il percorso iniziale riduce i passaggi e porta rapidamente alla ricerca.</p>
-                        </div>
-                        <div class="slide-copy">
-                            <h3>Imposta la ricerca con un flusso lineare e leggibile</h3>
-                            <p>Ogni schermata presenta una sola decisione alla volta, per favorire orientamento e rapidita anche su mobile.</p>
-                            <ul class="intro-feature-list">
-                                <li>Struttura guidata dall’inizio alla ricerca</li>
-                                <li>Azioni principali sempre riconoscibili</li>
-                                <li>Interfaccia ottimizzata per l’uso in mobilita</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="onboarding-slide" data-slide-index="1">
-                        <div class="slide-visual metric-card">
-                            <span class="slide-badge">2</span>
-                            <strong>Confronto ordinato</strong>
-                            <p>Filtri, raggio e carburante restano sempre comprensibili anche su schermi compatti.</p>
-                        </div>
-                        <div class="slide-copy">
-                            <h3>Consulta mappa e risultati senza perdere continuita</h3>
-                            <p>La mappa rimane il punto centrale dell’esperienza, mentre i controlli si aprono solo quando sono utili alla decisione.</p>
-                            <ul class="intro-feature-list">
-                                <li>Vista mappa e lista perfettamente coerenti</li>
-                                <li>Informazioni chiave visibili a colpo d’occhio</li>
-                                <li>Riduzione dei passaggi superflui</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="onboarding-slide" data-slide-index="2">
-                        <div class="slide-visual signal-card">
-                            <span class="slide-badge">3</span>
-                            <strong>Scelta consapevole</strong>
-                            <p>Una stima immediata aiuta a confrontare convenienza e distanza prima di partire.</p>
-                        </div>
-                        <div class="slide-copy">
-                            <h3>Valuta rapidamente costo e quantita</h3>
-                            <p>Con il carburante selezionato puoi stimare la spesa o i litri ottenibili, cosi da scegliere con maggiore consapevolezza.</p>
-                            <ul class="intro-feature-list">
-                                <li>Simulazione immediata del rifornimento</li>
-                                <li>Evidenza del prezzo piu conveniente</li>
-                                <li>Accesso rapido alla ricerca finale</li>
-                            </ul>
-                        </div>
-                    </article>
+                <div class="slide-copy fullwidth">
+                    <div class="onboarding-fuel-grid" role="list" aria-label="Scelta carburante iniziale">
+                        <button class="onboarding-fuel-option is-active" type="button" data-onboarding-fuel="Benzina">
+                            <span class="fuel-badge benzina">
+                                <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                            </span>
+                            <span>Benzina</span>
+                        </button>
+                        <button class="onboarding-fuel-option" type="button" data-onboarding-fuel="Gasolio">
+                            <span class="fuel-badge gasolio">
+                                <i class="fas fa-truck" aria-hidden="true"></i>
+                            </span>
+                            <span>Gasolio</span>
+                        </button>
+                        <button class="onboarding-fuel-option" type="button" data-onboarding-fuel="GPL">
+                            <span class="fuel-badge gpl">
+                                <i class="fas fa-fire" aria-hidden="true"></i>
+                            </span>
+                            <span>GPL</span>
+                        </button>
+                        <button class="onboarding-fuel-option" type="button" data-onboarding-fuel="Metano">
+                            <span class="fuel-badge metano">
+                                <i class="fas fa-wind" aria-hidden="true"></i>
+                            </span>
+                            <span>Metano</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="intro-footer">
-                    <p class="intro-scroll-hint">Se il contenuto supera lo schermo, scorri verso il basso.</p>
-                    <div id="onboardingDots" class="intro-dots" aria-label="Progresso onboarding">
-                        <button class="intro-dot is-active" type="button" data-slide="0" aria-label="Vai alla schermata 1"></button>
-                        <button class="intro-dot" type="button" data-slide="1" aria-label="Vai alla schermata 2"></button>
-                        <button class="intro-dot" type="button" data-slide="2" aria-label="Vai alla schermata 3"></button>
-                    </div>
-
                     <div class="intro-actions">
-                        <button id="prevOnboardingBtn" class="intro-secondary-button" type="button">Indietro</button>
-                        <button id="nextOnboardingBtn" class="intro-primary-button" type="button">Continua</button>
+                        <button id="fuelBackBtn" class="intro-secondary-button" type="button">Indietro</button>
+                        <button id="fuelContinueBtn" class="intro-primary-button" type="button">Continua</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="permissionScreen" class="intro-screen permission-screen" hidden aria-labelledby="permissionTitle">
+        <section id="locationScreen" class="intro-screen permission-screen" hidden aria-labelledby="locationTitle">
             <div class="permission-shell">
-                <div class="permission-panel">
-                    <p class="eyebrow">Permessi posizione</p>
-                    <h2 id="permissionTitle">Autorizza la posizione per visualizzare i distributori piu vicini.</h2>
-                    <p>La posizione viene utilizzata per centrare la mappa, calcolare la distanza dai punti vendita e mostrarti risultati piu pertinenti fin dal primo accesso.</p>
+                <div class="permission-panel onboarding-location-panel">
+                    <p class="eyebrow">Passaggio 3 di 3</p>
+                    <h2 id="locationTitle">Scegli l’area di partenza.</h2>
+                    <p>Attiva la posizione per aprire la mappa gia centrata. Se non vuoi usare il GPS, inserisci un indirizzo manualmente.</p>
 
-                    <div class="permission-points">
-                        <div>
-                            <strong>Mappa gia centrata sul tuo contesto</strong>
-                            <span>La schermata principale si apre gia nell’area piu rilevante per la ricerca.</span>
-                        </div>
-                        <div>
-                            <strong>Risultati piu precisi per distanza</strong>
-                            <span>Il confronto tra i distributori tiene conto della posizione reale e del raggio selezionato.</span>
-                        </div>
-                        <div>
-                            <strong>Massima flessibilita</strong>
-                            <span>Puoi proseguire anche senza autorizzazione e impostare manualmente un indirizzo.</span>
+                    <div class="permission-actions stacked">
+                        <button id="grantPermissionBtn" class="intro-primary-button" type="button">
+                            <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
+                            Usa la mia posizione
+                        </button>
+                        <button id="manualLocationBtn" class="intro-secondary-button" type="button">Inserisci un indirizzo</button>
+                    </div>
+
+                    <div id="manualLocationPanel" class="manual-location-panel" hidden>
+                        <label class="field-label onboarding-field-label" for="onboardingAddressInput">Indirizzo</label>
+                        <div class="manual-location-row">
+                            <input id="onboardingAddressInput" class="text-input" type="text" placeholder="Via Roma 1, Milano">
+                            <button id="onboardingAddressBtn" class="intro-primary-button compact" type="button">Conferma</button>
                         </div>
                     </div>
 
-                    <p class="intro-scroll-hint permission-hint">Se necessario, scorri verso il basso per leggere tutti i dettagli.</p>
+                    <div id="onboardingLocationMessage" class="onboarding-location-message" hidden></div>
 
-                    <div class="permission-actions">
-                        <button id="grantPermissionBtn" class="intro-primary-button" type="button">
-                            <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                            Consenti posizione
-                        </button>
-                        <button id="continueManualBtn" class="intro-secondary-button" type="button">Continua senza GPS</button>
+                    <div class="intro-footer location-footer">
+                        <div class="intro-actions">
+                            <button id="locationBackBtn" class="intro-secondary-button" type="button">Indietro</button>
+                        </div>
                     </div>
                 </div>
             </div>
