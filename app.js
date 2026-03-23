@@ -7,7 +7,7 @@ const FUEL_META = {
     Gasolio: { icon: 'fa-truck', className: 'gasolio' },
     GPL: { icon: 'fa-fire', className: 'gpl' },
     Metano: { icon: 'fa-wind', className: 'metano' }
-}; 
+};
 
 const appState = {
     map: null,
@@ -102,6 +102,7 @@ function cacheDom() {
     ui.searchHint = document.getElementById('searchHint');
     ui.guideStatus = document.getElementById('guideStatus');
     ui.resultsHeadline = document.getElementById('resultsHeadline');
+    ui.listOpenFiltersBtn = document.getElementById('listOpenFiltersBtn');
     ui.resultsSummaryChips = document.getElementById('resultsSummaryChips');
     ui.listContainer = document.getElementById('listContainer');
     ui.inlineMessage = document.getElementById('inlineMessage');
@@ -114,6 +115,7 @@ function cacheDom() {
     ui.calcPreviewValue = document.getElementById('calcPreviewValue');
     ui.infoPanel = document.getElementById('infoPanel');
     ui.infoStationCount = document.getElementById('infoStationCount');
+    ui.infoDataSource = document.getElementById('infoDataSource');
     ui.infoTimestamp = document.getElementById('infoTimestamp');
     ui.loadingState = document.getElementById('loadingState');
     ui.loadingTitle = document.getElementById('loadingTitle');
@@ -206,6 +208,7 @@ function bindEvents() {
     document.getElementById('viewMapBtn').addEventListener('click', () => setView('map'));
     document.getElementById('viewListBtn').addEventListener('click', () => setView('list'));
     document.getElementById('openSetupBtn').addEventListener('click', openSetupPanel);
+    ui.listOpenFiltersBtn.addEventListener('click', openSetupPanel);
     document.getElementById('infoToggleBtn').addEventListener('click', () => toggleInfoPanel(true));
     document.getElementById('closeInfoBtn').addEventListener('click', () => toggleInfoPanel(false));
     ui.setupBasicTabBtn.addEventListener('click', () => setSetupSection('basic'));
@@ -705,7 +708,8 @@ function updateDatasetInfo() {
     ui.infoStationCount.textContent = Array.isArray(realFuelStations)
         ? realFuelStations.length.toLocaleString('it-IT')
         : '0';
-    ui.statusDataset.textContent = DATA_SOURCE || 'Dati MIMIT';
+    ui.statusDataset.textContent = 'Dati MIMIT';
+    ui.infoDataSource.textContent = DATA_SOURCE || 'MIMIT';
 }
 
 function updateStatusLocation(label) {
@@ -1048,9 +1052,12 @@ function updateResultsSummary() {
 
     const chips = [
         appState.selectedFuel,
-        `${ui.radiusSelect.value} km`,
-        `${appState.currentResults.length} risultati`
+        `${ui.radiusSelect.value} km`
     ];
+
+    if (appState.currentView !== 'list') {
+        chips.push(`${appState.currentResults.length} risultati`);
+    }
 
     chips.forEach((label) => {
         const chip = document.createElement('span');
