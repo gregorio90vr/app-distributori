@@ -1466,6 +1466,10 @@ li {
     gap: 10px;
 }
 
+.list-filters-btn {
+    display: none;
+}
+
 .results-summary-chips {
     display: flex;
     flex-wrap: wrap;
@@ -1809,7 +1813,11 @@ li {
     border: 0;
     box-shadow: none;
     background: rgba(255, 250, 243, 0.98);
-    padding: 18px 18px 26px;
+    padding: 10px 12px 18px;
+}
+
+.app-shell[data-view="list"] #openSetupBtn {
+    display: none;
 }
 
 .app-shell[data-view="list"] .hero-stage {
@@ -1821,8 +1829,9 @@ li {
     display: none;
 }
 
-.app-shell[data-view="list"] .sheet-header {
-    align-items: center;
+.app-shell[data-view="list"] .sheet-header,
+.app-shell[data-view="list"] .guide-status {
+    display: none;
 }
 
 .app-shell[data-view="list"] .setup-panel {
@@ -1833,18 +1842,70 @@ li {
     flex: 1 1 auto;
     min-height: 0;
     overflow: auto;
+    padding-top: 0;
+    gap: 10px;
 }
 
 .app-shell[data-view="list"] .results-header {
     position: sticky;
     top: 0;
     z-index: 2;
-    padding: 6px 0 12px;
-    background: rgba(255, 250, 243, 0.96);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 0 8px;
+    background: rgba(255, 250, 243, 0.95);
+    backdrop-filter: blur(8px);
+}
+
+.app-shell[data-view="list"] .results-header .eyebrow {
+    display: none;
+}
+
+.app-shell[data-view="list"] .results-header h3 {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.app-shell[data-view="list"] .results-toolbar {
+    width: 100%;
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.app-shell[data-view="list"] .results-summary-chips {
+    justify-content: flex-start;
+    gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.app-shell[data-view="list"] .results-summary-chips::-webkit-scrollbar {
+    display: none;
+}
+
+.app-shell[data-view="list"] .results-summary-chips .status-chip {
+    font-size: 11px;
+    padding: 7px 10px;
+    white-space: nowrap;
+}
+
+.app-shell[data-view="list"] .list-filters-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 11px;
+    border-radius: 12px;
+    flex: 0 0 auto;
 }
 
 .app-shell[data-view="list"] .results-list {
-    padding-bottom: 26px;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
 }
 
 .app-shell[data-view="map"] .results-panel {
@@ -2121,7 +2182,15 @@ li {
         left: 0;
         right: 0;
         bottom: 0;
-        padding: 16px 14px 22px;
+        top: 0;
+        height: 100dvh;
+        padding: 8px 10px calc(10px + env(safe-area-inset-bottom));
+        gap: 10px;
+    }
+
+    .app-shell[data-view="list"] .results-header {
+        z-index: 3;
+        font-size: 18px;
     }
 
     .sheet-header h2 {
@@ -2277,6 +2346,18 @@ li {
     .results-toolbar {
         align-items: stretch;
         flex-direction: column;
+    }
+
+    .app-shell[data-view="list"] .results-header {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .app-shell[data-view="list"] .results-toolbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .fuel-grid,
