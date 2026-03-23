@@ -1,6 +1,5 @@
 const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
-const ONBOARDING_SLIDE_COUNT = 3;
-const SPLASH_DURATION = 1400;
+const ONBOARDING_STEPS = ['intro', 'fuel', 'location'];
 const ONBOARDING_EXIT_DURATION = 650;
 
 const FUEL_META = {
@@ -27,11 +26,11 @@ const appState = {
     autoSearchTimer: null,
     loading: false,
     onboarding: {
-        step: 'splash',
-        slideIndex: 0,
-        splashTimer: null,
+        step: 'intro',
+        stepIndex: 0,
         isComplete: false,
-        isTransitioning: false
+        isTransitioning: false,
+        manualLocationVisible: false
     }
 };
 
@@ -57,7 +56,7 @@ function initializeApp() {
     if (isMobileViewport()) {
         ui.calcSection.open = false;
     }
-    startIntroSequence();
+    initializeOnboarding();
 }
 
 function isMobileViewport() {
@@ -66,16 +65,21 @@ function isMobileViewport() {
 
 function cacheDom() {
     ui.onboardingLayer = document.getElementById('appOnboarding');
-    ui.splashScreen = document.getElementById('splashScreen');
-    ui.onboardingScreen = document.getElementById('onboardingScreen');
-    ui.permissionScreen = document.getElementById('permissionScreen');
-    ui.onboardingSlides = document.getElementById('onboardingSlides');
-    ui.onboardingDots = document.getElementById('onboardingDots');
-    ui.prevOnboardingBtn = document.getElementById('prevOnboardingBtn');
-    ui.nextOnboardingBtn = document.getElementById('nextOnboardingBtn');
-    ui.skipOnboardingBtn = document.getElementById('skipOnboardingBtn');
+    ui.onboardingProgressDots = Array.from(document.querySelectorAll('[data-onboarding-step]'));
+    ui.introScreen = document.getElementById('introScreen');
+    ui.fuelScreen = document.getElementById('fuelScreen');
+    ui.locationScreen = document.getElementById('locationScreen');
+    ui.onboardingFuelOptions = Array.from(document.querySelectorAll('[data-onboarding-fuel]'));
+    ui.introContinueBtn = document.getElementById('introContinueBtn');
+    ui.fuelBackBtn = document.getElementById('fuelBackBtn');
+    ui.fuelContinueBtn = document.getElementById('fuelContinueBtn');
+    ui.locationBackBtn = document.getElementById('locationBackBtn');
     ui.grantPermissionBtn = document.getElementById('grantPermissionBtn');
-    ui.continueManualBtn = document.getElementById('continueManualBtn');
+    ui.manualLocationBtn = document.getElementById('manualLocationBtn');
+    ui.manualLocationPanel = document.getElementById('manualLocationPanel');
+    ui.onboardingAddressInput = document.getElementById('onboardingAddressInput');
+    ui.onboardingAddressBtn = document.getElementById('onboardingAddressBtn');
+    ui.onboardingLocationMessage = document.getElementById('onboardingLocationMessage');
     ui.appShell = document.querySelector('.app-shell');
     ui.sheet = document.getElementById('controlSheet');
     ui.sheetTitle = document.getElementById('sheetTitle');
@@ -115,6 +119,13 @@ function cacheDom() {
     ui.filtersSetupSection = document.getElementById('filtersSetupSection');
     ui.costsSetupSection = document.getElementById('costsSetupSection');
     ui.calcSection = document.getElementById('calcSection');
+}
+
+function initializeOnboarding() {
+    syncOnboardingFuelSelection();
+    setManualLocationVisible(false);
+    showOnboardingLocationMessage('');
+    setOnboardingStep('intro');
 }
 
 function initializeMap() {
@@ -159,19 +170,26 @@ function initializeFuelGrid() {
 }
 
 function bindEvents() {
-    ui.prevOnboardingBtn.addEventListener('click', goToPreviousOnboardingSlide);
-    ui.nextOnboardingBtn.addEventListener('click', goToNextOnboardingStep);
-    ui.skipOnboardingBtn.addEventListener('click', () => setOnboardingStep('permission'));
+    ui.introContinueBtn.addEventListener('click', () => setOnboardingStep('fuel'));
+    ui.fuelBackBtn.addEventListener('click', () => setOnboardingStep('intro'));
+    ui.fuelContinueBtn.addEventListener('click', () => setOnboardingStep('location'));
+    ui.locationBackBtn.addEventListener('click', () => setOnboardingStep('fuel'));
     ui.grantPermissionBtn.addEventListener('click', handleOnboardingPermissionRequest);
-    ui.continueManualBtn.addEventListener('click', handleContinueWithoutGps);
-    ui.onboardingDots.addEventListener('click', (event) => {
-        const dot = event.target.closest('.intro-dot');
-        if (!dot) {
-            return;
-        }
-        updateOnboardingSlide(Number(dot.dataset.slide));
+    ui.manualLocationBtn.addEventListener('click', () => {
+        setManualLocationVisible(true);
+        showOnboardingLocationMessage('Inserisci un indirizzo per proseguire senza GPS.', 'info');
+        ui.onboardingAddressInput.focus();
     });
-    ui.onboardingSlides.addEventListener('scroll', handleOnboardingScroll, { passive: true });
+    ui.onboardingAddressBtn.addEventListener('click', handleOnboardingManualAddress);
+    ui.onboardingAddressInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleOnboardingManualAddress();
+        }
+    });
+    ui.onboardingFuelOptions.forEach((button) => {
+        button.addEventListener('click', () => setSelectedFuel(button.dataset.onboardingFuel));
+    });
     document.getElementById('heroGpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('gpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('sheetHandleBtn').addEventListener('click', toggleSheet);
@@ -190,9 +208,6 @@ function bindEvents() {
     window.addEventListener('resize', () => {
         if (!isMobileViewport() && appState.currentView === 'map') {
             appState.sheetState = appState.sheetExpanded ? 'full' : 'peek';
-        }
-        if (appState.onboarding.step === 'onboarding') {
-            updateOnboardingSlide(appState.onboarding.slideIndex, 'auto');
         }
         updateSheetPresentation();
     });
@@ -276,32 +291,20 @@ function bindEvents() {
     });
 }
 
-function startIntroSequence() {
-    setOnboardingStep('splash');
-    if (appState.onboarding.splashTimer) {
-        clearTimeout(appState.onboarding.splashTimer);
-    }
-
-    appState.onboarding.splashTimer = window.setTimeout(() => {
-        if (!appState.onboarding.isComplete) {
-            setOnboardingStep('onboarding');
-        }
-    }, SPLASH_DURATION);
-}
-
 function setOnboardingStep(stepName) {
     appState.onboarding.step = stepName;
+    appState.onboarding.stepIndex = ONBOARDING_STEPS.indexOf(stepName);
     ui.onboardingLayer.dataset.step = stepName;
 
-    toggleIntroScreen(ui.splashScreen, stepName === 'splash');
-    toggleIntroScreen(ui.onboardingScreen, stepName === 'onboarding');
-    toggleIntroScreen(ui.permissionScreen, stepName === 'permission');
+    toggleIntroScreen(ui.introScreen, stepName === 'intro');
+    toggleIntroScreen(ui.fuelScreen, stepName === 'fuel');
+    toggleIntroScreen(ui.locationScreen, stepName === 'location');
 
-    if (stepName === 'onboarding') {
-        window.requestAnimationFrame(() => {
-            updateOnboardingSlide(appState.onboarding.slideIndex, 'auto');
-        });
+    if (stepName !== 'location') {
+        showOnboardingLocationMessage('');
     }
+
+    updateOnboardingProgress();
 }
 
 function toggleIntroScreen(element, isActive) {
@@ -309,65 +312,11 @@ function toggleIntroScreen(element, isActive) {
     element.classList.toggle('is-active', isActive);
 }
 
-function goToPreviousOnboardingSlide() {
-    if (appState.onboarding.step !== 'onboarding') {
-        return;
-    }
-
-    updateOnboardingSlide(appState.onboarding.slideIndex - 1);
-}
-
-function goToNextOnboardingStep() {
-    if (appState.onboarding.step !== 'onboarding') {
-        return;
-    }
-
-    if (appState.onboarding.slideIndex >= ONBOARDING_SLIDE_COUNT - 1) {
-        setOnboardingStep('permission');
-        return;
-    }
-
-    updateOnboardingSlide(appState.onboarding.slideIndex + 1);
-}
-
-function handleOnboardingScroll() {
-    if (appState.onboarding.step !== 'onboarding') {
-        return;
-    }
-
-    const slideWidth = ui.onboardingSlides.clientWidth || 1;
-    const nextIndex = Math.round(ui.onboardingSlides.scrollLeft / slideWidth);
-    if (nextIndex !== appState.onboarding.slideIndex) {
-        appState.onboarding.slideIndex = nextIndex;
-        updateOnboardingControls();
-    }
-}
-
-function updateOnboardingSlide(nextIndex, behavior = 'smooth') {
-    const normalizedIndex = Math.max(0, Math.min(nextIndex, ONBOARDING_SLIDE_COUNT - 1));
-    appState.onboarding.slideIndex = normalizedIndex;
-
-    const slideWidth = ui.onboardingSlides.clientWidth;
-    if (slideWidth) {
-        ui.onboardingSlides.scrollTo({
-            left: slideWidth * normalizedIndex,
-            behavior
-        });
-    }
-
-    updateOnboardingControls();
-}
-
-function updateOnboardingControls() {
-    ui.prevOnboardingBtn.disabled = appState.onboarding.slideIndex === 0;
-    ui.nextOnboardingBtn.textContent = appState.onboarding.slideIndex === ONBOARDING_SLIDE_COUNT - 1
-        ? 'Vai ai permessi'
-        : 'Continua';
-
-    ui.onboardingDots.querySelectorAll('.intro-dot').forEach((dot) => {
-        const isActive = Number(dot.dataset.slide) === appState.onboarding.slideIndex;
-        dot.classList.toggle('is-active', isActive);
+function updateOnboardingProgress() {
+    ui.onboardingProgressDots.forEach((dot) => {
+        dot.classList.toggle('is-active', dot.dataset.onboardingStep === appState.onboarding.step);
     });
+    syncOnboardingFuelSelection();
 }
 
 async function handleOnboardingPermissionRequest() {
@@ -375,18 +324,82 @@ async function handleOnboardingPermissionRequest() {
         return;
     }
 
-    completeOnboarding();
-    await handleGpsRequest();
+    const gpsResult = await handleGpsRequest();
+    if (gpsResult.success) {
+        completeOnboarding();
+        await handleSearch();
+        return;
+    }
+
+    setManualLocationVisible(true);
+    showOnboardingLocationMessage(gpsResult.message || 'Inserisci un indirizzo per continuare.', 'error');
+    ui.onboardingAddressInput.focus();
 }
 
-function handleContinueWithoutGps() {
+function setSelectedFuel(fuelType) {
+    if (!FUEL_TYPES.includes(fuelType)) {
+        return;
+    }
+
+    appState.selectedFuel = fuelType;
+    refreshFuelSelection();
+    syncOnboardingFuelSelection();
+    updateFuelAverages();
+    updateCalcUi();
+    syncSearchHint();
+}
+
+function syncOnboardingFuelSelection() {
+    ui.onboardingFuelOptions.forEach((button) => {
+        const isActive = button.dataset.onboardingFuel === appState.selectedFuel;
+        button.classList.toggle('is-active', isActive);
+    });
+}
+
+function setManualLocationVisible(visible) {
+    appState.onboarding.manualLocationVisible = visible;
+    ui.manualLocationPanel.hidden = !visible;
+    ui.manualLocationBtn.hidden = visible;
+}
+
+function showOnboardingLocationMessage(message, type = 'info') {
+    ui.onboardingLocationMessage.hidden = !message;
+    ui.onboardingLocationMessage.textContent = message;
+    ui.onboardingLocationMessage.className = `onboarding-location-message ${type}`;
+    if (!message) {
+        ui.onboardingLocationMessage.className = 'onboarding-location-message';
+    }
+}
+
+async function handleOnboardingManualAddress() {
     if (appState.onboarding.isTransitioning) {
         return;
     }
 
-    completeOnboarding();
-    openSetupPanel();
-    showInlineMessage('Puoi inserire un indirizzo manualmente oppure attivare il GPS quando vuoi.', 'info');
+    const address = ui.onboardingAddressInput.value.trim();
+    if (!address) {
+        showOnboardingLocationMessage('Inserisci un indirizzo per continuare.', 'error');
+        ui.onboardingAddressInput.focus();
+        return;
+    }
+
+    setLoadingState(true, 'Verifica indirizzo', 'Sto impostando l’area iniziale sulla mappa');
+    try {
+        const coordinates = await geocodeAddress(address);
+        appState.userLocation = coordinates;
+        appState.lastGpsAddress = null;
+        ui.addressInput.value = address;
+        updateStatusLocation(address);
+        updateFuelAverages();
+        updateCalcUi();
+        syncSearchHint();
+        completeOnboarding();
+        await handleSearch();
+    } catch (error) {
+        showOnboardingLocationMessage('Indirizzo non valido. Controlla e riprova.', 'error');
+    } finally {
+        setLoadingState(false);
+    }
 }
 
 function completeOnboarding() {
@@ -396,10 +409,6 @@ function completeOnboarding() {
 
     appState.onboarding.isComplete = true;
     appState.onboarding.isTransitioning = true;
-    if (appState.onboarding.splashTimer) {
-        clearTimeout(appState.onboarding.splashTimer);
-        appState.onboarding.splashTimer = null;
-    }
 
     ui.appShell.dataset.onboarding = 'revealing';
     ui.onboardingLayer.classList.add('is-exiting');
@@ -409,6 +418,7 @@ function completeOnboarding() {
         ui.onboardingLayer.hidden = true;
         ui.appShell.dataset.onboarding = 'ready';
         appState.onboarding.step = 'complete';
+        appState.onboarding.stepIndex = ONBOARDING_STEPS.length;
         appState.onboarding.isTransitioning = false;
         if (appState.map) {
             window.setTimeout(() => appState.map.invalidateSize(), 120);
@@ -769,8 +779,9 @@ function updateFuelAverages() {
 
 async function handleGpsRequest() {
     if (!navigator.geolocation) {
-        showInlineMessage('La geolocalizzazione non e supportata dal browser.', 'error');
-        return;
+        const message = 'La geolocalizzazione non e supportata dal browser.';
+        showInlineMessage(message, 'error');
+        return { success: false, message };
     }
 
     setLoadingState(true, 'Sto rilevando la posizione', 'Uso il GPS per trovare il tuo punto di partenza');
@@ -799,6 +810,7 @@ async function handleGpsRequest() {
         updateCalcUi();
         syncSearchHint();
         showInlineMessage('Posizione rilevata. Puoi cercare subito oppure rifinire i filtri.', 'info');
+        return { success: true, address };
     } catch (error) {
         const code = error?.code;
         const message = code === 1
@@ -809,6 +821,7 @@ async function handleGpsRequest() {
                     ? 'Timeout nella richiesta posizione.'
                     : 'Impossibile ottenere la posizione GPS.';
         showInlineMessage(message, 'error');
+        return { success: false, message };
     } finally {
         setLoadingState(false);
     }
