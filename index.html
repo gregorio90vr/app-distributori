@@ -253,7 +253,7 @@
                         <div class="control-grid">
                             <div class="control-card">
                                 <label class="field-label" for="radiusSelect">Raggio</label>
-                                <select id="radiusSelect" class="select-input">
+                                <select id="radiusSelect" class="select-input legacy-select">
                                     <option value="1">1 km</option>
                                     <option value="2">2 km</option>
                                     <option value="5" selected>5 km</option>
@@ -262,10 +262,17 @@
                                     <option value="20">20 km</option>
                                     <option value="30">30 km</option>
                                 </select>
+                                <div class="radius-mobile-control" aria-hidden="true">
+                                    <div class="radius-mobile-head">
+                                        <span>Area di ricerca</span>
+                                        <strong id="radiusRangeValue">5 km</strong>
+                                    </div>
+                                    <input id="radiusRange" class="radius-range" type="range" min="1" max="30" step="1" value="5">
+                                </div>
                             </div>
                             <div class="control-card">
                                 <label class="field-label" for="maxResultsSelect">Risultati</label>
-                                <select id="maxResultsSelect" class="select-input">
+                                <select id="maxResultsSelect" class="select-input legacy-select">
                                     <option value="5">5</option>
                                     <option value="10" selected>10</option>
                                     <option value="15">15</option>
@@ -277,6 +284,18 @@
                                     <option value="75">75</option>
                                     <option value="100">Tutti</option>
                                 </select>
+                                <div class="stepper-control" role="group" aria-label="Numero risultati">
+                                    <button id="maxResultsMinusBtn" class="stepper-btn" type="button" aria-label="Riduci risultati">
+                                        <i class="fas fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="stepper-value-wrap">
+                                        <strong id="maxResultsValue">10</strong>
+                                        <small>distributori</small>
+                                    </div>
+                                    <button id="maxResultsPlusBtn" class="stepper-btn" type="button" aria-label="Aumenta risultati">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -328,7 +347,7 @@
 
                     <button id="searchBtn" class="search-cta" type="button">
                         <span class="cta-copy">
-                            <strong id="searchCtaTitle">Cerca distributori</strong>
+                            <strong id="searchCtaTitle">Mostra risultati</strong>
                             <small id="searchHint">Imposta prima una posizione</small>
                         </span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -408,7 +427,7 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="data.js"></script>
+    <script src="../data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
