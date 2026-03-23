@@ -175,7 +175,6 @@
                             <i class="fas fa-location-dot" aria-hidden="true"></i>
                             Posizione da impostare
                         </span>
-                        <span id="statusDataset" class="status-chip subdued">Dati MIMIT</span>
                         <span id="statusTimestamp" class="status-chip subdued">Caricamento dati...</span>
                     </div>
 
@@ -381,7 +380,7 @@
                 <div class="sheet-header">
                     <div>
                         <p class="eyebrow">Informazioni</p>
-                        <h2>Fonte dati e note d'uso</h2>
+                        <h2>Dati, trasparenza e note d'uso</h2>
                     </div>
                     <button id="closeInfoBtn" class="icon-button subtle" type="button" aria-label="Chiudi informazioni">
                         <i class="fas fa-xmark" aria-hidden="true"></i>
@@ -390,33 +389,33 @@
 
                 <div class="info-stack">
                     <section class="info-card">
-                        <h3>Fonte dati</h3>
-                        <p>I prezzi arrivano dal dataset ufficiale MIMIT e vengono letti direttamente da <code>../data.js</code> senza modificarne il formato.</p>
-                        <p><strong>Fonte ufficiale:</strong> <span id="infoDataSource">-</span></p>
+                        <h3>Origine dei dati</h3>
+                        <p>I prezzi mostrati nell'app derivano dal dataset pubblico ufficiale del MIMIT. I dati vengono caricati localmente dal file <code>../data.js</code> senza alterarne la struttura.</p>
+                        <p><strong>Fonte istituzionale:</strong> <span id="infoDataSource">-</span></p>
                         <div class="mini-stats">
                             <div>
                                 <span id="infoStationCount">0</span>
-                                <small>distributori</small>
+                                <small>impianti nel dataset</small>
                             </div>
                             <div>
                                 <span id="infoTimestamp">-</span>
-                                <small>ultimo aggiornamento</small>
+                                <small>ultimo aggiornamento rilevato</small>
                             </div>
                         </div>
                     </section>
 
                     <section class="info-card">
-                        <h3>Come leggere i risultati</h3>
+                        <h3>Come interpretare i risultati</h3>
                         <ul>
-                            <li>Il badge verde identifica il prezzo migliore trovato.</li>
-                            <li>Il calcolatore mostra costo totale o litri ottenibili sul carburante selezionato.</li>
-                            <li>La lista e la mappa sono due viste dello stesso risultato.</li>
+                            <li>Il badge verde evidenzia il prezzo piu conveniente nel set corrente.</li>
+                            <li>Il costo stimato dipende da carburante selezionato, raggio e modalita di calcolo.</li>
+                            <li>Mappa e Lista rappresentano lo stesso insieme risultati, con due viste complementari.</li>
                         </ul>
                     </section>
 
                     <section class="info-card">
-                        <h3>Disclaimer</h3>
-                        <p>I dati sono informativi. Prima di fare rifornimento verifica sempre disponibilita e prezzo direttamente presso il distributore.</p>
+                        <h3>Avvertenze</h3>
+                        <p>I dati hanno finalita informative. Prima del rifornimento verifica sempre disponibilita del carburante, prezzo applicato e condizioni commerciali direttamente presso il punto vendita.</p>
                     </section>
                 </div>
             </div>
