@@ -1,4 +1,8 @@
 const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
+const ONBOARDING_SLIDE_COUNT = 3;
+const SPLASH_DURATION = 1400;
+const ONBOARDING_EXIT_DURATION = 650;
+
 const FUEL_META = {
     Benzina: { icon: 'fa-gas-pump', className: 'benzina' },
     Gasolio: { icon: 'fa-truck', className: 'gasolio' },
@@ -21,7 +25,14 @@ const appState = {
     sheetState: 'half',
     listSetupOpen: true,
     autoSearchTimer: null,
-    loading: false
+    loading: false,
+    onboarding: {
+        step: 'splash',
+        slideIndex: 0,
+        splashTimer: null,
+        isComplete: false,
+        isTransitioning: false
+    }
 };
 
 const ui = {};
@@ -30,6 +41,7 @@ document.addEventListener('DOMContentLoaded', initializeApp);
 
 function initializeApp() {
     cacheDom();
+    ui.appShell.dataset.onboarding = 'active';
     setLoadingState(false);
     initializeMap();
     initializeFuelGrid();
@@ -45,6 +57,7 @@ function initializeApp() {
     if (isMobileViewport()) {
         ui.calcSection.open = false;
     }
+    startIntroSequence();
 }
 
 function isMobileViewport() {
@@ -52,6 +65,17 @@ function isMobileViewport() {
 }
 
 function cacheDom() {
+    ui.onboardingLayer = document.getElementById('appOnboarding');
+    ui.splashScreen = document.getElementById('splashScreen');
+    ui.onboardingScreen = document.getElementById('onboardingScreen');
+    ui.permissionScreen = document.getElementById('permissionScreen');
+    ui.onboardingSlides = document.getElementById('onboardingSlides');
+    ui.onboardingDots = document.getElementById('onboardingDots');
+    ui.prevOnboardingBtn = document.getElementById('prevOnboardingBtn');
+    ui.nextOnboardingBtn = document.getElementById('nextOnboardingBtn');
+    ui.skipOnboardingBtn = document.getElementById('skipOnboardingBtn');
+    ui.grantPermissionBtn = document.getElementById('grantPermissionBtn');
+    ui.continueManualBtn = document.getElementById('continueManualBtn');
     ui.appShell = document.querySelector('.app-shell');
     ui.sheet = document.getElementById('controlSheet');
     ui.sheetTitle = document.getElementById('sheetTitle');
@@ -135,6 +159,19 @@ function initializeFuelGrid() {
 }
 
 function bindEvents() {
+    ui.prevOnboardingBtn.addEventListener('click', goToPreviousOnboardingSlide);
+    ui.nextOnboardingBtn.addEventListener('click', goToNextOnboardingStep);
+    ui.skipOnboardingBtn.addEventListener('click', () => setOnboardingStep('permission'));
+    ui.grantPermissionBtn.addEventListener('click', handleOnboardingPermissionRequest);
+    ui.continueManualBtn.addEventListener('click', handleContinueWithoutGps);
+    ui.onboardingDots.addEventListener('click', (event) => {
+        const dot = event.target.closest('.intro-dot');
+        if (!dot) {
+            return;
+        }
+        updateOnboardingSlide(Number(dot.dataset.slide));
+    });
+    ui.onboardingSlides.addEventListener('scroll', handleOnboardingScroll, { passive: true });
     document.getElementById('heroGpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('gpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('sheetHandleBtn').addEventListener('click', toggleSheet);
@@ -153,6 +190,9 @@ function bindEvents() {
     window.addEventListener('resize', () => {
         if (!isMobileViewport() && appState.currentView === 'map') {
             appState.sheetState = appState.sheetExpanded ? 'full' : 'peek';
+        }
+        if (appState.onboarding.step === 'onboarding') {
+            updateOnboardingSlide(appState.onboarding.slideIndex, 'auto');
         }
         updateSheetPresentation();
     });
@@ -234,6 +274,146 @@ function bindEvents() {
             toggleInfoPanel(false);
         }
     });
+}
+
+function startIntroSequence() {
+    setOnboardingStep('splash');
+    if (appState.onboarding.splashTimer) {
+        clearTimeout(appState.onboarding.splashTimer);
+    }
+
+    appState.onboarding.splashTimer = window.setTimeout(() => {
+        if (!appState.onboarding.isComplete) {
+            setOnboardingStep('onboarding');
+        }
+    }, SPLASH_DURATION);
+}
+
+function setOnboardingStep(stepName) {
+    appState.onboarding.step = stepName;
+    ui.onboardingLayer.dataset.step = stepName;
+
+    toggleIntroScreen(ui.splashScreen, stepName === 'splash');
+    toggleIntroScreen(ui.onboardingScreen, stepName === 'onboarding');
+    toggleIntroScreen(ui.permissionScreen, stepName === 'permission');
+
+    if (stepName === 'onboarding') {
+        window.requestAnimationFrame(() => {
+            updateOnboardingSlide(appState.onboarding.slideIndex, 'auto');
+        });
+    }
+}
+
+function toggleIntroScreen(element, isActive) {
+    element.hidden = !isActive;
+    element.classList.toggle('is-active', isActive);
+}
+
+function goToPreviousOnboardingSlide() {
+    if (appState.onboarding.step !== 'onboarding') {
+        return;
+    }
+
+    updateOnboardingSlide(appState.onboarding.slideIndex - 1);
+}
+
+function goToNextOnboardingStep() {
+    if (appState.onboarding.step !== 'onboarding') {
+        return;
+    }
+
+    if (appState.onboarding.slideIndex >= ONBOARDING_SLIDE_COUNT - 1) {
+        setOnboardingStep('permission');
+        return;
+    }
+
+    updateOnboardingSlide(appState.onboarding.slideIndex + 1);
+}
+
+function handleOnboardingScroll() {
+    if (appState.onboarding.step !== 'onboarding') {
+        return;
+    }
+
+    const slideWidth = ui.onboardingSlides.clientWidth || 1;
+    const nextIndex = Math.round(ui.onboardingSlides.scrollLeft / slideWidth);
+    if (nextIndex !== appState.onboarding.slideIndex) {
+        appState.onboarding.slideIndex = nextIndex;
+        updateOnboardingControls();
+    }
+}
+
+function updateOnboardingSlide(nextIndex, behavior = 'smooth') {
+    const normalizedIndex = Math.max(0, Math.min(nextIndex, ONBOARDING_SLIDE_COUNT - 1));
+    appState.onboarding.slideIndex = normalizedIndex;
+
+    const slideWidth = ui.onboardingSlides.clientWidth;
+    if (slideWidth) {
+        ui.onboardingSlides.scrollTo({
+            left: slideWidth * normalizedIndex,
+            behavior
+        });
+    }
+
+    updateOnboardingControls();
+}
+
+function updateOnboardingControls() {
+    ui.prevOnboardingBtn.disabled = appState.onboarding.slideIndex === 0;
+    ui.nextOnboardingBtn.textContent = appState.onboarding.slideIndex === ONBOARDING_SLIDE_COUNT - 1
+        ? 'Vai ai permessi'
+        : 'Continua';
+
+    ui.onboardingDots.querySelectorAll('.intro-dot').forEach((dot) => {
+        const isActive = Number(dot.dataset.slide) === appState.onboarding.slideIndex;
+        dot.classList.toggle('is-active', isActive);
+    });
+}
+
+async function handleOnboardingPermissionRequest() {
+    if (appState.onboarding.isTransitioning) {
+        return;
+    }
+
+    completeOnboarding();
+    await handleGpsRequest();
+}
+
+function handleContinueWithoutGps() {
+    if (appState.onboarding.isTransitioning) {
+        return;
+    }
+
+    completeOnboarding();
+    openSetupPanel();
+    showInlineMessage('Puoi inserire un indirizzo manualmente oppure attivare il GPS quando vuoi.', 'info');
+}
+
+function completeOnboarding() {
+    if (appState.onboarding.isComplete || appState.onboarding.isTransitioning) {
+        return;
+    }
+
+    appState.onboarding.isComplete = true;
+    appState.onboarding.isTransitioning = true;
+    if (appState.onboarding.splashTimer) {
+        clearTimeout(appState.onboarding.splashTimer);
+        appState.onboarding.splashTimer = null;
+    }
+
+    ui.appShell.dataset.onboarding = 'revealing';
+    ui.onboardingLayer.classList.add('is-exiting');
+    ui.onboardingLayer.setAttribute('aria-hidden', 'true');
+
+    window.setTimeout(() => {
+        ui.onboardingLayer.hidden = true;
+        ui.appShell.dataset.onboarding = 'ready';
+        appState.onboarding.step = 'complete';
+        appState.onboarding.isTransitioning = false;
+        if (appState.map) {
+            window.setTimeout(() => appState.map.invalidateSize(), 120);
+        }
+    }, ONBOARDING_EXIT_DURATION);
 }
 
 function setView(view) {
