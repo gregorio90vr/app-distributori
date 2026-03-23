@@ -13,6 +13,139 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="appOnboarding" class="onboarding-layer" aria-hidden="false" data-step="splash">
+        <div class="onboarding-gradient" aria-hidden="true"></div>
+
+        <section id="splashScreen" class="intro-screen splash-screen is-active" aria-labelledby="splashTitle">
+            <div class="splash-brand">
+                <div class="splash-mark">
+                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                </div>
+                <p class="eyebrow">FuelExplorer</p>
+            </div>
+            <div class="splash-copy">
+                <h1 id="splashTitle">Apri la mappa con il contesto giusto, fin dal primo tocco.</h1>
+                <p>Un avvio rapido per scegliere posizione, confrontare prezzi e partire subito con un’esperienza mobile pulita.</p>
+            </div>
+            <div class="splash-loader" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </section>
+
+        <section id="onboardingScreen" class="intro-screen onboarding-screen" hidden aria-labelledby="onboardingTitle">
+            <div class="intro-shell">
+                <div class="intro-topbar">
+                    <div>
+                        <p class="eyebrow">Onboarding iniziale</p>
+                        <h2 id="onboardingTitle">Tre passaggi rapidi prima della mappa.</h2>
+                    </div>
+                    <button id="skipOnboardingBtn" class="intro-text-button" type="button">Salta</button>
+                </div>
+
+                <div id="onboardingSlides" class="onboarding-slides" aria-live="polite">
+                    <article class="onboarding-slide" data-slide-index="0">
+                        <div class="slide-visual aurora-card">
+                            <span class="slide-badge">1</span>
+                            <strong>Avvio chiaro</strong>
+                            <p>La schermata iniziale ti porta subito verso la ricerca senza menu da interpretare.</p>
+                        </div>
+                        <div class="slide-copy">
+                            <h3>Parti con una navigazione semplice e immediata</h3>
+                            <p>Ogni step occupa tutto lo schermo per farti concentrare solo su quello che serve adesso.</p>
+                            <ul class="intro-feature-list">
+                                <li>Flusso lineare, una decisione per volta</li>
+                                <li>CTA sempre visibili e leggibili</li>
+                                <li>Layout pensato per una mano sola</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="onboarding-slide" data-slide-index="1">
+                        <div class="slide-visual metric-card">
+                            <span class="slide-badge">2</span>
+                            <strong>Confronto rapido</strong>
+                            <p>Filtri, raggio e carburante restano chiari anche su schermi piccoli.</p>
+                        </div>
+                        <div class="slide-copy">
+                            <h3>Confronta i distributori senza cambiare contesto</h3>
+                            <p>La mappa resta la home principale, mentre lista e controlli si aprono solo quando ti servono.</p>
+                            <ul class="intro-feature-list">
+                                <li>Vista mappa e lista coerenti</li>
+                                <li>Risultati subito leggibili</li>
+                                <li>Interazioni brevi, senza attriti</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="onboarding-slide" data-slide-index="2">
+                        <div class="slide-visual signal-card">
+                            <span class="slide-badge">3</span>
+                            <strong>Decisione migliore</strong>
+                            <p>Puoi stimare costo o litri prima ancora di partire verso il distributore.</p>
+                        </div>
+                        <div class="slide-copy">
+                            <h3>Calcola subito quanto spenderai</h3>
+                            <p>Con il carburante selezionato l’app mostra una stima utile per scegliere il punto migliore vicino a te.</p>
+                            <ul class="intro-feature-list">
+                                <li>Stima costo o litri in pochi tocchi</li>
+                                <li>Focus sul miglior prezzo disponibile</li>
+                                <li>Passaggio naturale verso la ricerca</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="intro-footer">
+                    <div id="onboardingDots" class="intro-dots" aria-label="Progresso onboarding">
+                        <button class="intro-dot is-active" type="button" data-slide="0" aria-label="Vai alla schermata 1"></button>
+                        <button class="intro-dot" type="button" data-slide="1" aria-label="Vai alla schermata 2"></button>
+                        <button class="intro-dot" type="button" data-slide="2" aria-label="Vai alla schermata 3"></button>
+                    </div>
+
+                    <div class="intro-actions">
+                        <button id="prevOnboardingBtn" class="intro-secondary-button" type="button">Indietro</button>
+                        <button id="nextOnboardingBtn" class="intro-primary-button" type="button">Continua</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="permissionScreen" class="intro-screen permission-screen" hidden aria-labelledby="permissionTitle">
+            <div class="permission-shell">
+                <div class="permission-panel">
+                    <p class="eyebrow">Permessi posizione</p>
+                    <h2 id="permissionTitle">Consenti la posizione per mostrare i distributori piu vicini.</h2>
+                    <p>La tua posizione serve per centrare la mappa, calcolare le distanze reali e proporti subito i risultati piu utili vicino a te.</p>
+
+                    <div class="permission-points">
+                        <div>
+                            <strong>Mappa centrata subito</strong>
+                            <span>Apri l’app gia nel punto giusto, senza cercare manualmente.</span>
+                        </div>
+                        <div>
+                            <strong>Risultati ordinati per distanza</strong>
+                            <span>Confronti piu rapidi e percorsi coerenti con la tua posizione reale.</span>
+                        </div>
+                        <div>
+                            <strong>Controllo totale</strong>
+                            <span>Se preferisci, puoi continuare senza permessi e inserire un indirizzo manualmente.</span>
+                        </div>
+                    </div>
+
+                    <div class="permission-actions">
+                        <button id="grantPermissionBtn" class="intro-primary-button" type="button">
+                            <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
+                            Consenti posizione
+                        </button>
+                        <button id="continueManualBtn" class="intro-secondary-button" type="button">Continua senza GPS</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <div class="app-shell" data-view="map">
         <header class="topbar">
             <div class="brand-lockup">
