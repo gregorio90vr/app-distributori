@@ -1222,6 +1222,79 @@ li {
     gap: 12px;
 }
 
+.radius-mobile-control,
+.stepper-control {
+    display: none;
+}
+
+.radius-mobile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.radius-mobile-head strong {
+    color: var(--primary-strong);
+    font-family: 'Sora', sans-serif;
+}
+
+.radius-range {
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(15, 118, 110, 0.25) 0%, rgba(15, 118, 110, 0.75) 100%);
+    appearance: none;
+}
+
+.radius-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.stepper-control {
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.stepper-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: #fffdf9;
+    color: var(--surface-ink);
+    display: grid;
+    place-items: center;
+}
+
+.stepper-value-wrap {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 14px;
+    background: #fffdf9;
+    border: 1px solid var(--line);
+}
+
+.stepper-value-wrap strong {
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+}
+
+.stepper-value-wrap small {
+    color: var(--text-soft);
+}
+
 .calc-section {
     padding: 0;
     overflow: hidden;
@@ -1343,12 +1416,12 @@ li {
 
 .search-cta {
     width: 100%;
-    padding: 18px 20px;
-    border-radius: 22px;
+    padding: 14px 16px;
+    border-radius: 18px;
     background: linear-gradient(135deg, var(--surface-ink) 0%, #20382d 100%);
     color: white;
     justify-content: space-between;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .search-cta.is-disabled {
@@ -1366,7 +1439,7 @@ li {
 }
 
 .cta-copy strong {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .cta-copy small {
@@ -1892,30 +1965,83 @@ li {
         padding: 12px 14px;
     }
 
-    .intro-footer {
-        padding-top: 8px;
-        padding-bottom: calc(8px + env(safe-area-inset-bottom));
-    }
-
-    .intro-scroll-hint {
-        display: block;
-    }
 
     .intro-dots {
         justify-content: center;
     }
 
-    .intro-actions {
-        width: 100%;
-        justify-content: stretch;
+    .app-shell[data-view="map"] .control-sheet {
+        top: 0;
+        max-height: none;
+        height: 100dvh;
+        border-radius: 0;
+        border: 0;
+        box-shadow: none;
+        background: rgba(255, 250, 243, 0.98);
+        padding: 14px 14px calc(20px + env(safe-area-inset-bottom));
     }
 
-    .intro-actions .intro-secondary-button,
-    .intro-actions .intro-primary-button,
-    .permission-actions .intro-secondary-button,
-    .permission-actions .intro-primary-button {
-        flex: 1 1 auto;
-        width: 100%;
+    .app-shell[data-view="map"] .sheet-handle {
+        display: none;
+    }
+
+    .app-shell[data-view="map"] .sheet-header {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        padding: 4px 0 10px;
+        background: rgba(255, 250, 243, 0.98);
+    }
+
+    .app-shell[data-view="map"] .setup-panel,
+    .app-shell[data-view="map"] .results-panel {
+        overflow: auto;
+    }
+
+    .app-shell[data-view="map"] .setup-panel {
+        padding-bottom: 6px;
+        gap: 16px;
+    }
+
+    .app-shell[data-view="map"] .setup-subtabs {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        padding: 2px 0 8px;
+        background: linear-gradient(180deg, rgba(255, 250, 243, 0.98) 0%, rgba(255, 250, 243, 0.92) 78%, rgba(255, 250, 243, 0) 100%);
+    }
+
+    .legacy-select {
+        display: none;
+    }
+
+    .radius-mobile-control,
+    .stepper-control {
+        display: block;
+    }
+
+    .stepper-control {
+        display: flex;
+    }
+
+    .control-card {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .app-shell[data-view="map"] .search-cta {
+        position: sticky;
+        bottom: 0;
+        z-index: 4;
+        margin-top: 4px;
+        border: 1px solid rgba(20, 40, 31, 0.08);
+        background: rgba(20, 40, 31, 0.92);
+        backdrop-filter: blur(10px);
+    }
+
+    .intro-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .permission-panel {
@@ -1987,16 +2113,6 @@ li {
         overflow: auto;
     }
 
-    .app-shell[data-view="map"][data-sheet-state="peek"] .setup-panel,
-    .app-shell[data-view="map"][data-sheet-state="peek"] .inline-message,
-    .app-shell[data-view="map"][data-sheet-state="peek"] .results-list {
-        display: none;
-    }
-
-    .app-shell[data-view="map"][data-sheet-state="peek"] .results-header {
-        margin-top: 2px;
-    }
-
     .app-shell[data-view="map"][data-sheet-state="peek"] .results-summary-chips {
         justify-content: flex-start;
     }
@@ -2014,12 +2130,6 @@ li {
 
     .setup-flow {
         display: none;
-    }
-
-    .setup-panel .search-cta {
-        position: sticky;
-        bottom: 2px;
-        z-index: 3;
     }
 
     .guide-status {
@@ -2161,14 +2271,6 @@ li {
     .setup-subtab {
         min-height: 42px;
         font-size: 12px;
-    }
-
-    .app-shell[data-view="map"][data-sheet-state="peek"] .control-sheet {
-        top: calc(100dvh - 144px);
-    }
-
-    .app-shell[data-view="map"][data-sheet-state="half"] .control-sheet {
-        top: calc(100dvh - 60dvh);
     }
 
     .results-header,
