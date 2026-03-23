@@ -7,7 +7,7 @@ const FUEL_META = {
     Gasolio: { icon: 'fa-truck', className: 'gasolio' },
     GPL: { icon: 'fa-fire', className: 'gpl' },
     Metano: { icon: 'fa-wind', className: 'metano' }
-};
+}; 
 
 const appState = {
     map: null,
