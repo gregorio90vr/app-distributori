@@ -66,7 +66,7 @@ button {
     position: fixed;
     inset: 0;
     z-index: 1300;
-    overflow: hidden;
+    overflow: auto;
     color: white;
     background:
         radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
@@ -90,6 +90,27 @@ button {
     opacity: 0.72;
 }
 
+.onboarding-progress {
+    position: absolute;
+    top: 24px;
+    left: 20px;
+    right: 20px;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+}
+
+.onboarding-progress-dot {
+    height: 4px;
+    flex: 1 1 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.onboarding-progress-dot.is-active {
+    background: rgba(255, 250, 243, 0.96);
+}
+
 .intro-screen {
     position: absolute;
     inset: 0;
@@ -104,6 +125,7 @@ button {
     opacity: 1;
     transform: none;
     pointer-events: auto;
+    overflow-y: auto;
 }
 
 .splash-screen {
@@ -116,9 +138,95 @@ button {
 .splash-brand,
 .splash-copy,
 .intro-shell,
+.intro-page-shell,
 .permission-shell {
     position: relative;
     z-index: 1;
+}
+
+.intro-page-shell {
+    width: min(720px, 100%);
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 88px 20px calc(28px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.intro-page-shell.compact {
+    justify-content: flex-start;
+}
+
+.intro-copy-panel,
+.intro-summary-list,
+.manual-location-panel,
+.onboarding-location-panel {
+    border-radius: 30px;
+    background: rgba(7, 23, 27, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 22px 50px rgba(3, 14, 17, 0.2);
+}
+
+.intro-copy-panel {
+    padding: 28px;
+}
+
+.intro-copy-panel h1 {
+    margin: 12px 0 0;
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.04;
+}
+
+.intro-copy-panel p:last-child {
+    margin: 16px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.intro-summary-list {
+    padding: 18px;
+    display: grid;
+    gap: 12px;
+}
+
+.intro-summary-list div {
+    padding: 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.intro-summary-list strong,
+.intro-summary-list span {
+    display: block;
+}
+
+.intro-summary-list strong {
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.intro-summary-list span,
+.intro-subcopy {
+    color: rgba(255, 255, 255, 0.76);
+    line-height: 1.6;
+}
+
+.intro-topbar.compact {
+    padding-top: 72px;
+}
+
+.intro-topbar.compact h2 {
+    max-width: none;
+}
+
+.intro-subcopy {
+    margin: 10px 0 0;
 }
 
 .splash-brand {
@@ -266,30 +374,21 @@ button {
 }
 
 .onboarding-slides {
-    flex: 1 1 auto;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+    position: relative;
     border-radius: 32px;
     min-height: 0;
 }
 
-.onboarding-slides::-webkit-scrollbar {
-    display: none;
-}
-
 .onboarding-slide {
-    min-width: 100%;
-    min-height: 100%;
-    scroll-snap-align: start;
-    display: grid;
+    display: none;
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     gap: 22px;
     align-items: stretch;
     padding: 8px 0;
+}
+
+.onboarding-slide.is-active {
+    display: grid;
 }
 
 .slide-visual,
@@ -363,6 +462,10 @@ button {
     gap: 16px;
 }
 
+.slide-copy.fullwidth {
+    width: 100%;
+}
+
 .slide-copy h3 {
     font-size: clamp(28px, 4vw, 42px);
     line-height: 1.08;
@@ -383,6 +486,35 @@ button {
     gap: 12px;
 }
 
+.onboarding-fuel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.onboarding-fuel-option {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    font-weight: 800;
+}
+
+.onboarding-fuel-option.is-active {
+    background: rgba(255, 250, 243, 0.92);
+    color: var(--surface-ink);
+    border-color: rgba(255, 250, 243, 0.92);
+}
+
+.onboarding-fuel-option .fuel-badge {
+    flex: 0 0 auto;
+}
+
 .intro-feature-list li {
     padding: 14px 16px;
     border-radius: 18px;
@@ -393,6 +525,10 @@ button {
 
 .intro-footer {
     padding-bottom: 2px;
+}
+
+.intro-footer.simple {
+    padding-top: 0;
 }
 
 .intro-scroll-hint {
@@ -488,6 +624,54 @@ button {
 
 .permission-actions {
     margin-top: 26px;
+}
+
+.permission-actions.stacked {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.manual-location-panel {
+    margin-top: 18px;
+    padding: 18px;
+}
+
+.manual-location-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+}
+
+.intro-primary-button.compact {
+    min-height: 52px;
+    padding: 12px 16px;
+}
+
+.onboarding-field-label {
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.onboarding-location-message {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.onboarding-location-message.info {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.onboarding-location-message.error {
+    background: rgba(180, 35, 24, 0.18);
+    color: #ffe1de;
+    border: 1px solid rgba(255, 225, 222, 0.22);
+}
+
+.location-footer {
+    margin-top: 18px;
 }
 
 .app-shell {
@@ -1428,7 +1612,7 @@ li {
 .loading-state {
     position: fixed;
     inset: 0;
-    z-index: 1200;
+    z-index: 1400;
     background: rgba(20, 40, 31, 0.28);
     display: grid;
     place-items: center;
@@ -1614,9 +1798,21 @@ li {
 }
 
 @media (max-width: 900px) {
+    .onboarding-progress {
+        top: 18px;
+        left: 16px;
+        right: 16px;
+    }
+
+    .intro-page-shell,
+    .intro-topbar.compact {
+        padding-top: 74px;
+    }
+
+    .onboarding-layer,
     .onboarding-screen,
-    .permission-screen {
-        overflow-y: auto;
+    .permission-screen,
+    .intro-screen.is-active {
         -webkit-overflow-scrolling: touch;
     }
 
@@ -1628,6 +1824,12 @@ li {
     .permission-shell {
         padding: 20px 16px calc(18px + env(safe-area-inset-bottom));
         min-height: 100dvh;
+    }
+
+    .intro-page-shell {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
     }
 
     .intro-topbar,
@@ -1645,10 +1847,7 @@ li {
         grid-template-columns: 1fr;
         align-content: start;
         align-items: start;
-        min-height: 100%;
-        overflow-y: auto;
         padding: 4px 0 10px;
-        overscroll-behavior: contain;
     }
 
     .slide-visual {
@@ -1673,17 +1872,29 @@ li {
         line-height: 1.6;
     }
 
+    .intro-copy-panel,
+    .intro-summary-list,
+    .manual-location-panel,
+    .onboarding-location-panel {
+        border-radius: 24px;
+    }
+
+    .onboarding-fuel-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .onboarding-fuel-option {
+        padding: 12px;
+        gap: 10px;
+    }
+
     .intro-feature-list li {
         padding: 12px 14px;
     }
 
     .intro-footer {
-        position: sticky;
-        bottom: 0;
-        z-index: 3;
-        padding-top: 12px;
-        padding-bottom: calc(2px + env(safe-area-inset-bottom));
-        background: linear-gradient(180deg, rgba(8, 42, 46, 0) 0%, rgba(8, 42, 46, 0.92) 34%, rgba(8, 42, 46, 0.98) 100%);
+        padding-top: 8px;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
     }
 
     .intro-scroll-hint {
@@ -1711,8 +1922,13 @@ li {
         padding: 24px 20px;
     }
 
+    .manual-location-row {
+        grid-template-columns: 1fr;
+    }
+
     .permission-shell {
         align-items: start;
+        min-height: auto;
     }
 
     .topbar {
@@ -1833,6 +2049,12 @@ li {
         padding-right: 14px;
     }
 
+    .intro-page-shell {
+        padding-left: 14px;
+        padding-right: 14px;
+        gap: 18px;
+    }
+
     .intro-topbar {
         gap: 12px;
     }
@@ -1840,6 +2062,23 @@ li {
     .intro-topbar h2,
     .permission-panel h2 {
         font-size: 30px;
+    }
+
+    .intro-copy-panel {
+        padding: 22px 18px;
+    }
+
+    .intro-copy-panel h1 {
+        font-size: 34px;
+    }
+
+    .intro-copy-panel p:last-child {
+        font-size: 16px;
+    }
+
+    .intro-shell {
+        grid-template-rows: auto auto auto;
+        gap: 14px;
     }
 
     .slide-visual,
@@ -1861,6 +2100,10 @@ li {
     .permission-points span {
         font-size: 15px;
         line-height: 1.65;
+    }
+
+    .onboarding-fuel-grid {
+        grid-template-columns: 1fr;
     }
 
     .onboarding-slide {
