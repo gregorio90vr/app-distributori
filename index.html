@@ -361,6 +361,10 @@
                             <h3 id="resultsHeadline">Nessuna ricerca eseguita</h3>
                         </div>
                         <div class="results-toolbar">
+                            <button id="listOpenFiltersBtn" class="ghost-action compact list-filters-btn" type="button">
+                                <i class="fas fa-sliders" aria-hidden="true"></i>
+                                Filtri
+                            </button>
                             <div id="resultsSummaryChips" class="results-summary-chips"></div>
                         </div>
                     </div>
@@ -388,6 +392,7 @@
                     <section class="info-card">
                         <h3>Fonte dati</h3>
                         <p>I prezzi arrivano dal dataset ufficiale MIMIT e vengono letti direttamente da <code>../data.js</code> senza modificarne il formato.</p>
+                        <p><strong>Fonte ufficiale:</strong> <span id="infoDataSource">-</span></p>
                         <div class="mini-stats">
                             <div>
                                 <span id="infoStationCount">0</span>
@@ -411,7 +416,7 @@
 
                     <section class="info-card">
                         <h3>Disclaimer</h3>
-                        <p>I dati sono informativi, possono contenere inesattezze. Prima di fare rifornimento verifica sempre disponibilita e prezzo direttamente presso il distributore.</p>
+                        <p>I dati sono informativi. Prima di fare rifornimento verifica sempre disponibilita e prezzo direttamente presso il distributore.</p>
                     </section>
                 </div>
             </div>
