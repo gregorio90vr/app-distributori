@@ -52,6 +52,8 @@ function initializeApp() {
     updateResultsSummary();
     updateSheetPresentation();
     syncSearchHint();
+    syncRadiusMobileControl();
+    syncMaxResultsMobileControl();
     updateFlowGuide();
     if (isMobileViewport()) {
         ui.calcSection.open = false;
@@ -89,7 +91,12 @@ function cacheDom() {
     ui.statusDataset = document.getElementById('statusDataset');
     ui.addressInput = document.getElementById('addressInput');
     ui.radiusSelect = document.getElementById('radiusSelect');
+    ui.radiusRange = document.getElementById('radiusRange');
+    ui.radiusRangeValue = document.getElementById('radiusRangeValue');
     ui.maxResultsSelect = document.getElementById('maxResultsSelect');
+    ui.maxResultsMinusBtn = document.getElementById('maxResultsMinusBtn');
+    ui.maxResultsPlusBtn = document.getElementById('maxResultsPlusBtn');
+    ui.maxResultsValue = document.getElementById('maxResultsValue');
     ui.searchBtn = document.getElementById('searchBtn');
     ui.searchCtaTitle = document.getElementById('searchCtaTitle');
     ui.searchHint = document.getElementById('searchHint');
@@ -233,6 +240,20 @@ function bindEvents() {
     });
 
     ui.radiusSelect.addEventListener('change', () => {
+        syncRadiusMobileControl();
+        updateFuelAverages();
+        updateCalcUi();
+        syncSearchHint();
+        queueAutoSearch('raggio');
+    });
+
+    ui.radiusRange.addEventListener('input', () => {
+        ui.radiusRangeValue.textContent = `${ui.radiusRange.value} km`;
+    });
+
+    ui.radiusRange.addEventListener('change', () => {
+        ui.radiusSelect.value = ui.radiusRange.value;
+        syncRadiusMobileControl();
         updateFuelAverages();
         updateCalcUi();
         syncSearchHint();
@@ -240,9 +261,13 @@ function bindEvents() {
     });
 
     ui.maxResultsSelect.addEventListener('change', () => {
+        syncMaxResultsMobileControl();
         syncSearchHint();
         queueAutoSearch('numero risultati');
     });
+
+    ui.maxResultsMinusBtn.addEventListener('click', () => stepMaxResults(-1));
+    ui.maxResultsPlusBtn.addEventListener('click', () => stepMaxResults(1));
 
     ui.fuelGrid.addEventListener('click', (event) => {
         const option = event.target.closest('.fuel-option');
@@ -620,7 +645,39 @@ function updateSearchCtaState() {
     const locationReady = hasSearchContext();
     ui.searchBtn.disabled = !locationReady;
     ui.searchBtn.classList.toggle('is-disabled', !locationReady);
-    ui.searchCtaTitle.textContent = locationReady ? 'Cerca distributori' : 'Imposta prima la posizione';
+    ui.searchCtaTitle.textContent = locationReady ? 'Mostra risultati' : 'Imposta prima la posizione';
+}
+
+function syncRadiusMobileControl() {
+    const radiusValue = ui.radiusSelect.value;
+    ui.radiusRange.value = radiusValue;
+    ui.radiusRangeValue.textContent = `${radiusValue} km`;
+}
+
+function getMaxResultsOptions() {
+    return Array.from(ui.maxResultsSelect.options).map((option) => Number(option.value));
+}
+
+function syncMaxResultsMobileControl() {
+    const selectedValue = Number(ui.maxResultsSelect.value);
+    ui.maxResultsValue.textContent = selectedValue === 100 ? 'Tutti' : String(selectedValue);
+}
+
+function stepMaxResults(direction) {
+    const options = getMaxResultsOptions();
+    const currentValue = Number(ui.maxResultsSelect.value);
+    const currentIndex = options.indexOf(currentValue);
+    const safeIndex = currentIndex === -1 ? 0 : currentIndex;
+    const targetIndex = Math.max(0, Math.min(options.length - 1, safeIndex + direction));
+
+    if (targetIndex === safeIndex) {
+        return;
+    }
+
+    ui.maxResultsSelect.value = String(options[targetIndex]);
+    syncMaxResultsMobileControl();
+    syncSearchHint();
+    queueAutoSearch('numero risultati');
 }
 
 function updateFlowGuide() {
