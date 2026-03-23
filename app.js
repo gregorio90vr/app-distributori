@@ -88,7 +88,6 @@ function cacheDom() {
     ui.emptyState = document.getElementById('emptyState');
     ui.statusLocation = document.getElementById('statusLocation');
     ui.statusTimestamp = document.getElementById('statusTimestamp');
-    ui.statusDataset = document.getElementById('statusDataset');
     ui.addressInput = document.getElementById('addressInput');
     ui.radiusSelect = document.getElementById('radiusSelect');
     ui.radiusRange = document.getElementById('radiusRange');
@@ -708,7 +707,6 @@ function updateDatasetInfo() {
     ui.infoStationCount.textContent = Array.isArray(realFuelStations)
         ? realFuelStations.length.toLocaleString('it-IT')
         : '0';
-    ui.statusDataset.textContent = 'Dati MIMIT';
     ui.infoDataSource.textContent = DATA_SOURCE || 'MIMIT';
 }
 
