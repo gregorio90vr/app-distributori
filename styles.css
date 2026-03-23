@@ -196,8 +196,8 @@ button {
 .intro-shell {
     width: min(1080px, 100%);
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
     gap: 18px;
 }
 
@@ -269,10 +269,12 @@ button {
     flex: 1 1 auto;
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
     border-radius: 32px;
+    min-height: 0;
 }
 
 .onboarding-slides::-webkit-scrollbar {
@@ -281,6 +283,7 @@ button {
 
 .onboarding-slide {
     min-width: 100%;
+    min-height: 100%;
     scroll-snap-align: start;
     display: grid;
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -390,6 +393,18 @@ button {
 
 .intro-footer {
     padding-bottom: 2px;
+}
+
+.intro-scroll-hint {
+    display: none;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.permission-hint {
+    margin-top: 18px;
 }
 
 .intro-dots {
@@ -1599,6 +1614,12 @@ li {
 }
 
 @media (max-width: 900px) {
+    .onboarding-screen,
+    .permission-screen {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     .splash-screen {
         padding: 22px;
     }
@@ -1606,6 +1627,7 @@ li {
     .intro-shell,
     .permission-shell {
         padding: 20px 16px calc(18px + env(safe-area-inset-bottom));
+        min-height: 100dvh;
     }
 
     .intro-topbar,
@@ -1622,10 +1644,50 @@ li {
     .onboarding-slide {
         grid-template-columns: 1fr;
         align-content: start;
+        align-items: start;
+        min-height: 100%;
+        overflow-y: auto;
+        padding: 4px 0 10px;
+        overscroll-behavior: contain;
     }
 
     .slide-visual {
-        min-height: 240px;
+        min-height: 180px;
+        padding: 20px;
+    }
+
+    .slide-copy {
+        padding: 22px;
+        gap: 14px;
+    }
+
+    .slide-copy h3 {
+        font-size: clamp(24px, 4.8vw, 34px);
+    }
+
+    .slide-copy p,
+    .intro-feature-list li,
+    .permission-panel > p,
+    .permission-points span {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .intro-feature-list li {
+        padding: 12px 14px;
+    }
+
+    .intro-footer {
+        position: sticky;
+        bottom: 0;
+        z-index: 3;
+        padding-top: 12px;
+        padding-bottom: calc(2px + env(safe-area-inset-bottom));
+        background: linear-gradient(180deg, rgba(8, 42, 46, 0) 0%, rgba(8, 42, 46, 0.92) 34%, rgba(8, 42, 46, 0.98) 100%);
+    }
+
+    .intro-scroll-hint {
+        display: block;
     }
 
     .intro-dots {
@@ -1647,6 +1709,10 @@ li {
 
     .permission-panel {
         padding: 24px 20px;
+    }
+
+    .permission-shell {
+        align-items: start;
     }
 
     .topbar {
@@ -1767,6 +1833,15 @@ li {
         padding-right: 14px;
     }
 
+    .intro-topbar {
+        gap: 12px;
+    }
+
+    .intro-topbar h2,
+    .permission-panel h2 {
+        font-size: 30px;
+    }
+
     .slide-visual,
     .slide-copy,
     .permission-panel {
@@ -1786,6 +1861,10 @@ li {
     .permission-points span {
         font-size: 15px;
         line-height: 1.65;
+    }
+
+    .onboarding-slide {
+        gap: 14px;
     }
 
     .intro-actions {
