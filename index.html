@@ -13,101 +13,116 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ONBOARDING: UNICA SCHERMATA -->
+    <!-- ONBOARDING: DUE STEP CONSECUTIVI -->
     <div id="appOnboarding" class="onboarding-layer" aria-hidden="false">
         <div class="onboarding-gradient" aria-hidden="true"></div>
-        
-        <div class="onboarding-shell">
-            <!-- HEADER STICKY -->
-            <div class="onboarding-header">
-                <div class="splash-brand-inline">
-                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                    <span>FuelExplorer</span>
-                </div>
-                <div class="onboarding-progress" aria-label="Progresso configurazione">
-                    <span class="progress-dot is-active" data-step="fuel"></span>
-                    <span class="progress-dot" data-step="location"></span>
-                </div>
-            </div>
 
-            <!-- INTRO DESCRITIVA -->
-            <div class="onboarding-intro">
-                <h1>Configura in 2 semplici passaggi</h1>
-                <p>Seleziona carburante e posizione, poi l'app si avvia</p>
-            </div>
-
-            <!-- STEP 1: SELEZIONE CARBURANTE -->
-            <section class="onboarding-section fuel-section" aria-labelledby="fuelHeading">
-                <div class="section-header">
-                    <span class="step-badge">1</span>
-                    <h2 id="fuelHeading">Che carburante cerchi?</h2>
-                    <p>Scegli quello che desideri</p>
-                </div>
-                <div class="onboarding-fuel-grid" role="list" aria-label="Scelta carburante">
-                    <button class="fuel-option is-active" type="button" data-fuel="Benzina">
-                        <span class="fuel-badge benzina">
-                            <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                        </span>
-                        <span>Benzina</span>
-                    </button>
-                    <button class="fuel-option" type="button" data-fuel="Gasolio">
-                        <span class="fuel-badge gasolio">
-                            <i class="fas fa-truck" aria-hidden="true"></i>
-                        </span>
-                        <span>Gasolio</span>
-                    </button>
-                    <button class="fuel-option" type="button" data-fuel="GPL">
-                        <span class="fuel-badge gpl">
-                            <i class="fas fa-fire" aria-hidden="true"></i>
-                        </span>
-                        <span>GPL</span>
-                    </button>
-                    <button class="fuel-option" type="button" data-fuel="Metano">
-                        <span class="fuel-badge metano">
-                            <i class="fas fa-wind" aria-hidden="true"></i>
-                        </span>
-                        <span>Metano</span>
-                    </button>
-                </div>
-                <div class="fuel-preview">
-                    <small>Media: <strong data-role="avg-price">€1.87/L</strong></small>
-                </div>
-            </section>
-
-            <!-- STEP 2: SELEZIONE POSIZIONE -->
-            <section class="onboarding-section location-section" aria-labelledby="locationHeading">
-                <div class="section-header">
-                    <span class="step-badge">2</span>
-                    <h2 id="locationHeading">Dove cerchiamo?</h2>
-                    <p>Seleziona la tua area di ricerca</p>
-                </div>
-                
-                <div class="location-grid">
-                    <!-- GPS OPTION -->
-                    <div class="location-panel">
-                        <button id="grantPermissionBtn" class="location-action primary" type="button">
-                            <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                            <span>Usa la mia posizione</span>
-                        </button>
-                        <small>Consigliato: app userà il GPS</small>
+        <!-- STEP 1: SELEZIONE CARBURANTE -->
+        <div class="onboarding-step is-active" id="onboardingStep1">
+            <div class="onboarding-step-inner">
+                <div class="onboarding-header">
+                    <div class="splash-brand-inline">
+                        <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                        <span>FuelExplorer</span>
                     </div>
-                    
-                    <!-- MANUAL ADDRESS OPTION -->
-                    <div class="location-panel">
-                        <div class="location-input-wrapper">
-                            <input id="onboardingAddressInput" class="text-input" type="text" placeholder="Es: Via Roma 1, Milano" aria-label="Indirizzo ricerca">
-                            <button id="onboardingAddressBtn" class="btn-compact" type="button">Conferma</button>
+                    <div class="onboarding-progress" aria-label="Progresso configurazione">
+                        <span class="progress-dot is-active"></span>
+                        <span class="progress-dot"></span>
+                    </div>
+                </div>
+
+                <div class="onboarding-step-content">
+                    <div class="onboarding-intro">
+                        <h1>Che carburante cerchi?</h1>
+                        <p>Sceglilo per vedere le medie aggiornate</p>
+                    </div>
+
+                    <div class="onboarding-section">
+                        <div class="onboarding-fuel-grid" role="list" aria-label="Scelta carburante">
+                            <button class="fuel-option is-active" type="button" data-fuel="Benzina">
+                                <span class="fuel-badge benzina">
+                                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                                </span>
+                                <span>Benzina</span>
+                            </button>
+                            <button class="fuel-option" type="button" data-fuel="Gasolio">
+                                <span class="fuel-badge gasolio">
+                                    <i class="fas fa-truck" aria-hidden="true"></i>
+                                </span>
+                                <span>Gasolio</span>
+                            </button>
+                            <button class="fuel-option" type="button" data-fuel="GPL">
+                                <span class="fuel-badge gpl">
+                                    <i class="fas fa-fire" aria-hidden="true"></i>
+                                </span>
+                                <span>GPL</span>
+                            </button>
+                            <button class="fuel-option" type="button" data-fuel="Metano">
+                                <span class="fuel-badge metano">
+                                    <i class="fas fa-wind" aria-hidden="true"></i>
+                                </span>
+                                <span>Metano</span>
+                            </button>
                         </div>
-                        <small>Oppure inserisci manualmente</small>
+                        <div class="fuel-preview">
+                            <small>Media nazionale: <strong data-role="avg-price">—</strong></small>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- MESSAGGIO FEEDBACK -->
-                <div id="locationMessage" class="location-message" hidden role="alert"></div>
-            </section>
 
-            <div class="progress-text">
-                <span data-role="step-count">1/2 completati</span>
+                <div class="onboarding-step-footer">
+                    <button id="fuelNextBtn" class="intro-primary-button full-width" type="button">
+                        Avanti <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                    <p class="step-indicator">Passaggio 1 di 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: SELEZIONE POSIZIONE -->
+        <div class="onboarding-step" id="onboardingStep2">
+            <div class="onboarding-step-inner">
+                <div class="onboarding-header">
+                    <button id="locationBackBtn" class="onboarding-back-btn" type="button">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>Indietro</span>
+                    </button>
+                    <div class="onboarding-progress" aria-label="Progresso configurazione">
+                        <span class="progress-dot"></span>
+                        <span class="progress-dot is-active"></span>
+                    </div>
+                </div>
+
+                <div class="onboarding-step-content">
+                    <div class="onboarding-intro">
+                        <h1>Dove cerchiamo?</h1>
+                        <p>Scegli come impostare la tua area di ricerca</p>
+                    </div>
+
+                    <div class="onboarding-section">
+                        <div class="location-grid">
+                            <div class="location-panel">
+                                <button id="grantPermissionBtn" class="location-action primary" type="button">
+                                    <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
+                                    <span>Usa la mia posizione</span>
+                                </button>
+                                <small>Consigliato: usa il GPS del dispositivo</small>
+                            </div>
+                            <div class="location-panel">
+                                <div class="location-input-wrapper">
+                                    <input id="onboardingAddressInput" class="text-input" type="text" placeholder="Es: Via Roma 1, Milano" aria-label="Indirizzo ricerca">
+                                    <button id="onboardingAddressBtn" class="btn-compact" type="button">Cerca</button>
+                                </div>
+                                <small>Oppure inserisci un indirizzo</small>
+                            </div>
+                        </div>
+                        <div id="locationMessage" class="location-message" hidden role="alert"></div>
+                    </div>
+                </div>
+
+                <div class="onboarding-step-footer">
+                    <p class="step-indicator">Passaggio 2 di 2</p>
+                </div>
             </div>
         </div>
     </div>
