@@ -1,5 +1,5 @@
 const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
-const ONBOARDING_STEPS = ['intro', 'fuel', 'location'];
+const ONBOARDING_STEPS = ['fuel', 'location'];
 const ONBOARDING_EXIT_DURATION = 650;
 
 const FUEL_META = {
@@ -67,21 +67,14 @@ function isMobileViewport() {
 
 function cacheDom() {
     ui.onboardingLayer = document.getElementById('appOnboarding');
-    ui.onboardingProgressDots = Array.from(document.querySelectorAll('[data-onboarding-step]'));
-    ui.introScreen = document.getElementById('introScreen');
-    ui.fuelScreen = document.getElementById('fuelScreen');
-    ui.locationScreen = document.getElementById('locationScreen');
-    ui.onboardingFuelOptions = Array.from(document.querySelectorAll('[data-onboarding-fuel]'));
-    ui.introContinueBtn = document.getElementById('introContinueBtn');
-    ui.fuelBackBtn = document.getElementById('fuelBackBtn');
-    ui.fuelContinueBtn = document.getElementById('fuelContinueBtn');
-    ui.locationBackBtn = document.getElementById('locationBackBtn');
+    ui.progressDots = Array.from(document.querySelectorAll('.progress-dot'));
+    ui.fuelOptions = Array.from(document.querySelectorAll('.fuel-option'));
     ui.grantPermissionBtn = document.getElementById('grantPermissionBtn');
-    ui.manualLocationBtn = document.getElementById('manualLocationBtn');
-    ui.manualLocationPanel = document.getElementById('manualLocationPanel');
     ui.onboardingAddressInput = document.getElementById('onboardingAddressInput');
     ui.onboardingAddressBtn = document.getElementById('onboardingAddressBtn');
-    ui.onboardingLocationMessage = document.getElementById('onboardingLocationMessage');
+    ui.locationMessage = document.getElementById('locationMessage');
+    ui.stepCount = document.querySelector('[data-role="step-count"]');
+    ui.avgPrice = document.querySelector('[data-role="avg-price"]');
     ui.appShell = document.querySelector('.app-shell');
     ui.sheet = document.getElementById('controlSheet');
     ui.sheetTitle = document.getElementById('sheetTitle');
@@ -130,10 +123,12 @@ function cacheDom() {
 }
 
 function initializeOnboarding() {
-    syncOnboardingFuelSelection();
-    setManualLocationVisible(false);
-    showOnboardingLocationMessage('');
-    setOnboardingStep('intro');
+    appState.selectedFuel = 'Benzina';
+    appState.userLocation = null;
+    syncFuelSelection();
+    updateOnboardingAverage();
+    updateProgressDots();
+    updateProgressText();
 }
 
 function initializeMap() {
@@ -178,26 +173,28 @@ function initializeFuelGrid() {
 }
 
 function bindEvents() {
-    ui.introContinueBtn.addEventListener('click', () => setOnboardingStep('fuel'));
-    ui.fuelBackBtn.addEventListener('click', () => setOnboardingStep('intro'));
-    ui.fuelContinueBtn.addEventListener('click', () => setOnboardingStep('location'));
-    ui.locationBackBtn.addEventListener('click', () => setOnboardingStep('fuel'));
-    ui.grantPermissionBtn.addEventListener('click', handleOnboardingPermissionRequest);
-    ui.manualLocationBtn.addEventListener('click', () => {
-        setManualLocationVisible(true);
-        showOnboardingLocationMessage('Inserisci un indirizzo per proseguire senza GPS.', 'info');
-        ui.onboardingAddressInput.focus();
+    // ONBOARDING - NEW UNIFIED STRUCTURE
+    ui.fuelOptions.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            appState.selectedFuel = btn.dataset.fuel;
+            syncFuelSelection();
+            updateOnboardingAverage();
+            updateProgressText();
+            updateProgressDots();
+        });
     });
-    ui.onboardingAddressBtn.addEventListener('click', handleOnboardingManualAddress);
-    ui.onboardingAddressInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleOnboardingManualAddress();
+
+    ui.grantPermissionBtn.addEventListener('click', handleOnboardingGps);
+
+    ui.onboardingAddressBtn.addEventListener('click', handleOnboardingAddress);
+    ui.onboardingAddressInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleOnboardingAddress();
         }
     });
-    ui.onboardingFuelOptions.forEach((button) => {
-        button.addEventListener('click', () => setSelectedFuel(button.dataset.onboardingFuel));
-    });
+
+    // APP SHELL - MAINTAINED
     document.getElementById('heroGpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('gpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('sheetHandleBtn').addEventListener('click', toggleSheet);
@@ -318,114 +315,69 @@ function bindEvents() {
     });
 }
 
-function setOnboardingStep(stepName) {
-    appState.onboarding.step = stepName;
-    appState.onboarding.stepIndex = ONBOARDING_STEPS.indexOf(stepName);
-    ui.onboardingLayer.dataset.step = stepName;
+// Functions setOnboardingStep, toggleIntroScreen, updateOnboardingProgress removed
+// Replaced with unified single-screen onboarding logic
 
-    toggleIntroScreen(ui.introScreen, stepName === 'intro');
-    toggleIntroScreen(ui.fuelScreen, stepName === 'fuel');
-    toggleIntroScreen(ui.locationScreen, stepName === 'location');
-
-    if (stepName !== 'location') {
-        showOnboardingLocationMessage('');
-    }
-
-    updateOnboardingProgress();
-}
-
-function toggleIntroScreen(element, isActive) {
-    element.hidden = !isActive;
-    element.classList.toggle('is-active', isActive);
-}
-
-function updateOnboardingProgress() {
-    ui.onboardingProgressDots.forEach((dot) => {
-        dot.classList.toggle('is-active', dot.dataset.onboardingStep === appState.onboarding.step);
-    });
-    syncOnboardingFuelSelection();
-}
-
-async function handleOnboardingPermissionRequest() {
-    if (appState.onboarding.isTransitioning) {
+async function handleOnboardingGps() {
+    if (!navigator.geolocation) {
+        showLocationMessage('Geolocalizzazione non disponibile', 'error');
         return;
     }
 
-    const gpsResult = await handleGpsRequest();
-    if (gpsResult.success) {
-        completeOnboarding();
-        await handleSearch();
-        return;
-    }
+    showLocationMessage('Richiesta posizione...', 'info');
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const { latitude, longitude } = position.coords;
+            appState.userLocation = { lat: latitude, lng: longitude };
 
-    setManualLocationVisible(true);
-    showOnboardingLocationMessage(gpsResult.message || 'Inserisci un indirizzo per continuare.', 'error');
-    ui.onboardingAddressInput.focus();
+            ui.addressInput.value = '';
+            updateStatusLocation('Posizione GPS attiva');
+            updateProgressDots();
+            updateProgressText();
+            completeOnboarding();
+            handleSearch();
+            
+            showLocationMessage('✓ Posizione acquisita', 'success');
+            setTimeout(() => showLocationMessage('', 'info'), 2000);
+        },
+        (error) => {
+            console.warn('Geolocation error:', error);
+            showLocationMessage('Impossibile acquisire posizione', 'error');
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+    );
 }
 
-function setSelectedFuel(fuelType) {
-    if (!FUEL_TYPES.includes(fuelType)) {
-        return;
-    }
+// Functions setSelectedFuel, syncOnboardingFuelSelection, setManualLocationVisible, showOnboardingLocationMessage removed
+// Replaced with unified single-screen helper functions
 
-    appState.selectedFuel = fuelType;
-    refreshFuelSelection();
-    syncOnboardingFuelSelection();
-    updateFuelAverages();
-    updateCalcUi();
-    syncSearchHint();
-}
-
-function syncOnboardingFuelSelection() {
-    ui.onboardingFuelOptions.forEach((button) => {
-        const isActive = button.dataset.onboardingFuel === appState.selectedFuel;
-        button.classList.toggle('is-active', isActive);
-    });
-}
-
-function setManualLocationVisible(visible) {
-    appState.onboarding.manualLocationVisible = visible;
-    ui.manualLocationPanel.hidden = !visible;
-    ui.manualLocationBtn.hidden = visible;
-}
-
-function showOnboardingLocationMessage(message, type = 'info') {
-    ui.onboardingLocationMessage.hidden = !message;
-    ui.onboardingLocationMessage.textContent = message;
-    ui.onboardingLocationMessage.className = `onboarding-location-message ${type}`;
-    if (!message) {
-        ui.onboardingLocationMessage.className = 'onboarding-location-message';
-    }
-}
-
-async function handleOnboardingManualAddress() {
-    if (appState.onboarding.isTransitioning) {
-        return;
-    }
-
+async function handleOnboardingAddress() {
     const address = ui.onboardingAddressInput.value.trim();
     if (!address) {
-        showOnboardingLocationMessage('Inserisci un indirizzo per continuare.', 'error');
+        showLocationMessage('Inserisci un indirizzo', 'error');
         ui.onboardingAddressInput.focus();
         return;
     }
 
-    setLoadingState(true, 'Verifica indirizzo', 'Sto impostando l’area iniziale sulla mappa');
+    showLocationMessage('Ricerca indirizzo...', 'info');
+
     try {
         const coordinates = await geocodeAddress(address);
         appState.userLocation = coordinates;
-        appState.lastGpsAddress = null;
+
         ui.addressInput.value = address;
+        appState.lastGpsAddress = null;
         updateStatusLocation(address);
-        updateFuelAverages();
-        updateCalcUi();
-        syncSearchHint();
+        updateProgressDots();
+        updateProgressText();
         completeOnboarding();
         await handleSearch();
+
+        showLocationMessage('✓ Indirizzo trovato', 'success');
+        setTimeout(() => showLocationMessage('', 'info'), 2000);
     } catch (error) {
-        showOnboardingLocationMessage('Indirizzo non valido. Controlla e riprova.', 'error');
-    } finally {
-        setLoadingState(false);
+        showLocationMessage('Indirizzo non valido. Controlla e riprova.', 'error');
     }
 }
 
@@ -451,6 +403,50 @@ function completeOnboarding() {
             window.setTimeout(() => appState.map.invalidateSize(), 120);
         }
     }, ONBOARDING_EXIT_DURATION);
+}
+
+// NEW HELPER FUNCTIONS FOR UNIFIED ONBOARDING
+
+function syncFuelSelection() {
+    ui.fuelOptions.forEach((btn) => {
+        btn.classList.toggle('is-active', btn.dataset.fuel === appState.selectedFuel);
+    });
+}
+
+function updateOnboardingAverage() {
+    if (!ui.avgPrice) {
+        return;
+    }
+
+    const avgPrice = getAveragePriceForFuel(appState.selectedFuel);
+    ui.avgPrice.textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
+}
+
+function updateProgressDots() {
+    const isFuelDone = !!appState.selectedFuel;
+    const isLocationDone = appState.userLocation || ui.onboardingAddressInput.value.trim();
+    
+    if (ui.progressDots[0]) ui.progressDots[0].classList.toggle('is-active', isFuelDone);
+    if (ui.progressDots[1]) ui.progressDots[1].classList.toggle('is-active', isLocationDone);
+}
+
+function updateProgressText() {
+    const isFuelDone = !!appState.selectedFuel;
+    const isLocationDone = appState.userLocation || ui.onboardingAddressInput.value.trim();
+    
+    let count = 0;
+    if (isFuelDone) count++;
+    if (isLocationDone) count++;
+    
+    if (ui.stepCount) {
+        ui.stepCount.textContent = `${count}/2 completati`;
+    }
+}
+
+function showLocationMessage(message, type = 'info') {
+    ui.locationMessage.hidden = !message;
+    ui.locationMessage.textContent = message;
+    ui.locationMessage.className = `location-message ${type}`.trim();
 }
 
 function setView(view) {
@@ -828,12 +824,22 @@ function updateFuelAverages() {
     const scopedStations = getScopedStationsForAverages();
     const scopeLabel = getCurrentAverageScope() ? `Entro ${ui.radiusSelect.value} km` : 'Tutte le pompe';
 
-    document.querySelectorAll('.fuel-option').forEach((option) => {
+    document.querySelectorAll('#fuelGrid .fuel-option').forEach((option) => {
         const fuelType = option.dataset.fuel;
         const avgPrice = getAveragePriceForFuel(fuelType, scopedStations);
-        option.querySelector('[data-role="avg-price"]').textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
-        option.querySelector('[data-role="avg-scope"]').textContent = scopeLabel;
+        const avgPriceElement = option.querySelector('[data-role="avg-price"]');
+        const avgScopeElement = option.querySelector('[data-role="avg-scope"]');
+
+        if (avgPriceElement) {
+            avgPriceElement.textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
+        }
+
+        if (avgScopeElement) {
+            avgScopeElement.textContent = scopeLabel;
+        }
     });
+
+    updateOnboardingAverage();
 }
 
 async function handleGpsRequest() {
@@ -1287,3 +1293,4 @@ function escapeHtml(value) {
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#39;');
 }
+
