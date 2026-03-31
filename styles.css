@@ -1,4 +1,4 @@
-/* ====== STILI ORIGINALI VERSION3.0 + NUOVI PER ONBOARDING UNICO ====== */
+﻿/* ====== STILI ORIGINALI VERSION3.0 + NUOVI PER ONBOARDING UNICO ====== */
 
 :root {
     --bg: #f4efe6;
@@ -340,7 +340,7 @@ button {
 }
 
 .onboarding-layer .fuel-option.is-active::after {
-    content: '✓';
+    content: 'âœ“';
     position: absolute;
     top: -8px;
     right: -8px;
@@ -873,7 +873,8 @@ button {
 }
 
 .control-sheet.is-peek {
-    max-height: calc(100vh - 180px);
+    max-height: 52px;
+    overflow: hidden;
 }
 
 .sheet-handle {
@@ -1837,10 +1838,44 @@ li {
         flex-wrap: wrap;
     }
 
+    /* ---- Bottom-drawer mobile ---- */
     .control-sheet {
-        right: 10px;
-        bottom: 10px;
-        width: calc(100% - 20px);
-        max-height: calc(100vh - 110px);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: none;
+        border-radius: 24px 24px 0 0;
+        border-bottom: 0;
+        padding: 12px 12px calc(14px + env(safe-area-inset-bottom));
+        transition: top 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Override desktop is-peek: su mobile usa top positioning */
+    .control-sheet.is-peek {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .app-shell[data-view="map"][data-sheet-state="peek"] .control-sheet {
+        top: calc(100dvh - 164px);
+    }
+
+    .app-shell[data-view="map"][data-sheet-state="half"] .control-sheet {
+        top: calc(100dvh - 56dvh);
+    }
+
+    .app-shell[data-view="map"][data-sheet-state="full"] .control-sheet {
+        top: calc(var(--topbar-h) + 2px);
+    }
+
+    .app-shell[data-view="map"] .sheet-header {
+        align-items: center;
+    }
+
+    .app-shell[data-view="map"] .results-panel {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: auto;
     }
 }
