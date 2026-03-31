@@ -70,8 +70,7 @@ button {
     position: fixed;
     inset: 0;
     z-index: 1300;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     color: white;
     background:
         radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
@@ -106,6 +105,79 @@ button {
     flex-direction: column;
     gap: 0;
     padding-bottom: 24px;
+}
+
+/* ---- Two-step slide layout ---- */
+.onboarding-step {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(100%);
+    transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    z-index: 1;
+}
+
+.onboarding-step.is-active {
+    transform: translateX(0);
+    z-index: 2;
+}
+
+.onboarding-step.slide-out-left {
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.onboarding-step-inner {
+    position: relative;
+    z-index: 2;
+    width: min(720px, 100%);
+    margin: 0 auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+}
+
+.onboarding-step-content {
+    flex: 1;
+    padding: 0 0 8px;
+}
+
+.onboarding-step-footer {
+    padding: 12px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.step-indicator {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.onboarding-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 250, 243, 0.88);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    font-family: inherit;
+}
+
+.onboarding-back-btn:hover {
+    opacity: 0.7;
 }
 
 /* ---- Header Sticky ---- */
@@ -232,7 +304,7 @@ button {
     }
 }
 
-.onboarding-shell .fuel-option {
+.onboarding-layer .fuel-option {
     padding: 16px 12px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.08);
@@ -250,12 +322,12 @@ button {
     position: relative;
 }
 
-.onboarding-shell .fuel-option:hover {
+.onboarding-layer .fuel-option:hover {
     background: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
 }
 
-.onboarding-shell .fuel-option.is-active {
+.onboarding-layer .fuel-option.is-active {
     background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
     color: #ffffff;
     border-color: #0f766e;
@@ -267,7 +339,7 @@ button {
     transform: scale(1.08);
 }
 
-.onboarding-shell .fuel-option.is-active::after {
+.onboarding-layer .fuel-option.is-active::after {
     content: '✓';
     position: absolute;
     top: -8px;
@@ -286,7 +358,7 @@ button {
     z-index: 2;
 }
 
-.onboarding-shell .fuel-badge {
+.onboarding-layer .fuel-badge {
     width: 42px;
     height: 42px;
     border-radius: 12px;
@@ -298,7 +370,7 @@ button {
     transition: all 0.3s ease;
 }
 
-.onboarding-shell .fuel-option.is-active .fuel-badge {
+.onboarding-layer .fuel-option.is-active .fuel-badge {
     background: rgba(255, 255, 255, 0.25);
     color: #ffffff;
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
