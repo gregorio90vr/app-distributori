@@ -870,7 +870,19 @@ button {
     backdrop-filter: blur(24px);
     z-index: 700;
     overflow: hidden;
-    transition: inset 0.28s ease, width 0.28s ease, max-height 0.28s ease, border-radius 0.28s ease, box-shadow 0.28s ease;
+    transition: inset 0.28s ease, width 0.28s ease, max-height 0.28s ease, border-radius 0.28s ease, box-shadow 0.28s ease, opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+    /* Mostra il sheet quando il setup e la lista risultati sono attivi */
+    .app-shell[data-sheet-tab="setup"] .control-sheet,
+    .app-shell[data-sheet-tab="results"] .control-sheet,
+    .app-shell[data-view="list"] .control-sheet {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .control-sheet.is-peek {
@@ -1716,10 +1728,6 @@ li {
     padding: 10px 12px 18px;
 }
 
-.app-shell[data-view="list"] #openSetupBtn {
-    display: none;
-}
-
 .app-shell[data-view="list"] .hero-stage {
     opacity: 0;
     pointer-events: none;
@@ -1771,7 +1779,7 @@ li {
 .app-shell[data-view="list"] .results-toolbar {
     width: 100%;
     grid-column: 1 / -1;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 8px;
     flex-wrap: nowrap;
 }
@@ -1796,7 +1804,7 @@ li {
 }
 
 .app-shell[data-view="list"] .list-filters-btn {
-    display: inline-flex;
+    display: none;
     align-items: center;
     gap: 8px;
     padding: 9px 11px;
@@ -1850,7 +1858,25 @@ li {
         border-radius: 24px 24px 0 0;
         border-bottom: 0;
         padding: 12px 12px calc(14px + env(safe-area-inset-bottom));
-        transition: top 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: top 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* Fullscreen setup modal su mobile */
+    .app-shell[data-sheet-tab="setup"] .control-sheet {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
+        border-radius: 0;
+        border: 0;
+        padding: 12px 12px calc(14px + env(safe-area-inset-bottom));
+    }
+
+    .app-shell[data-sheet-tab="setup"] .sheet-handle {
+        display: none;
     }
 
     /* Override desktop is-peek: su mobile usa top positioning */
