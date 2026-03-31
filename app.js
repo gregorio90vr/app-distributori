@@ -67,6 +67,10 @@ function isMobileViewport() {
 
 function cacheDom() {
     ui.onboardingLayer = document.getElementById('appOnboarding');
+    ui.onboardingStep1 = document.getElementById('onboardingStep1');
+    ui.onboardingStep2 = document.getElementById('onboardingStep2');
+    ui.fuelNextBtn = document.getElementById('fuelNextBtn');
+    ui.locationBackBtn = document.getElementById('locationBackBtn');
     ui.progressDots = Array.from(document.querySelectorAll('.progress-dot'));
     ui.fuelOptions = Array.from(document.querySelectorAll('.fuel-option'));
     ui.grantPermissionBtn = document.getElementById('grantPermissionBtn');
@@ -127,8 +131,6 @@ function initializeOnboarding() {
     appState.userLocation = null;
     syncFuelSelection();
     updateOnboardingAverage();
-    updateProgressDots();
-    updateProgressText();
 }
 
 function initializeMap() {
@@ -179,10 +181,11 @@ function bindEvents() {
             appState.selectedFuel = btn.dataset.fuel;
             syncFuelSelection();
             updateOnboardingAverage();
-            updateProgressText();
-            updateProgressDots();
         });
     });
+
+    ui.fuelNextBtn.addEventListener('click', () => goToOnboardingStep(2));
+    ui.locationBackBtn.addEventListener('click', () => goToOnboardingStep(1));
 
     ui.grantPermissionBtn.addEventListener('click', handleOnboardingGps);
 
@@ -333,13 +336,8 @@ async function handleOnboardingGps() {
 
             ui.addressInput.value = '';
             updateStatusLocation('Posizione GPS attiva');
-            updateProgressDots();
-            updateProgressText();
             completeOnboarding();
             handleSearch();
-            
-            showLocationMessage('✓ Posizione acquisita', 'success');
-            setTimeout(() => showLocationMessage('', 'info'), 2000);
         },
         (error) => {
             console.warn('Geolocation error:', error);
@@ -369,13 +367,8 @@ async function handleOnboardingAddress() {
         ui.addressInput.value = address;
         appState.lastGpsAddress = null;
         updateStatusLocation(address);
-        updateProgressDots();
-        updateProgressText();
         completeOnboarding();
         await handleSearch();
-
-        showLocationMessage('✓ Indirizzo trovato', 'success');
-        setTimeout(() => showLocationMessage('', 'info'), 2000);
     } catch (error) {
         showLocationMessage('Indirizzo non valido. Controlla e riprova.', 'error');
     }
@@ -388,6 +381,18 @@ function completeOnboarding() {
 
     appState.onboarding.isComplete = true;
     appState.onboarding.isTransitioning = true;
+
+    // Sheet chiuso all'apertura: l'utente lo apre manualmente
+    appState.sheetExpanded = false;
+    appState.sheetState = 'peek';
+    appState.sheetTab = 'setup';
+    appState.setupSection = 'basic';
+
+    // Sheet collapsed when app opens – user opens it manually
+    appState.sheetExpanded = false;
+    appState.sheetState = 'peek';
+    appState.sheetTab = 'setup';
+    appState.setupSection = 'basic';
 
     ui.appShell.dataset.onboarding = 'revealing';
     ui.onboardingLayer.classList.add('is-exiting');
@@ -406,6 +411,18 @@ function completeOnboarding() {
 }
 
 // NEW HELPER FUNCTIONS FOR UNIFIED ONBOARDING
+
+function goToOnboardingStep(step) {
+    if (step === 2) {
+        ui.onboardingStep1.classList.add('slide-out-left');
+        ui.onboardingStep1.classList.remove('is-active');
+        ui.onboardingStep2.classList.add('is-active');
+    } else {
+        ui.onboardingStep2.classList.remove('is-active');
+        ui.onboardingStep1.classList.remove('slide-out-left');
+        ui.onboardingStep1.classList.add('is-active');
+    }
+}
 
 function syncFuelSelection() {
     ui.fuelOptions.forEach((btn) => {
