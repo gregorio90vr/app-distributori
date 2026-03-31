@@ -56,8 +56,9 @@ function initializeApp() {
     syncMaxResultsMobileControl();
     updateFlowGuide();
     if (isMobileViewport()) {
-        ui.calcSection.open = false;
+        ui.calcSection.open = true;
     }
+    enforceCalcSectionOpen();
     initializeOnboarding();
 }
 
@@ -100,6 +101,7 @@ function cacheDom() {
     ui.resultsHeadline = document.getElementById('resultsHeadline');
     ui.listOpenFiltersBtn = document.getElementById('listOpenFiltersBtn');
     ui.resultsSummaryChips = document.getElementById('resultsSummaryChips');
+    ui.resultsPanel = document.getElementById('resultsPanel');
     ui.listContainer = document.getElementById('listContainer');
     ui.inlineMessage = document.getElementById('inlineMessage');
     ui.calcInput = document.getElementById('calcInput');
@@ -502,11 +504,30 @@ function toggleSheet() {
     }
 
     if (isMobileViewport()) {
-        cycleSheetState();
+        if (!appState.sheetExpanded || appState.sheetState === 'peek') {
+            appState.sheetState = 'full';
+            setSheetExpanded(true);
+            return;
+        }
+
+        setSheetExpanded(false);
         return;
     }
 
     setSheetExpanded(!appState.sheetExpanded);
+}
+
+function enforceCalcSectionOpen() {
+    if (!ui.calcSection) {
+        return;
+    }
+
+    ui.calcSection.open = true;
+    ui.calcSection.addEventListener('toggle', () => {
+        if (!ui.calcSection.open) {
+            ui.calcSection.open = true;
+        }
+    });
 }
 
 function cycleSheetState() {
@@ -571,11 +592,15 @@ function updateSheetPresentation() {
     const isListView = appState.currentView === 'list';
     const collapseButton = document.getElementById('collapseSheetBtn');
     const collapseIcon = collapseButton.querySelector('i');
+    const showResultsPanel = isListView || appState.sheetTab === 'results';
 
     ui.sheet.classList.toggle('is-peek', !isListView && !appState.sheetExpanded);
     ui.appShell.dataset.listSetup = appState.listSetupOpen ? 'open' : 'closed';
     ui.appShell.dataset.sheetState = appState.sheetState;
     ui.appShell.dataset.sheetTab = appState.sheetTab;
+    if (ui.resultsPanel) {
+        ui.resultsPanel.hidden = !showResultsPanel;
+    }
     updateSetupSectionUi();
 
     if (isListView) {
@@ -644,6 +669,10 @@ function setLoadingState(isLoading, title = 'Ricerca in corso', text = 'Sto cerc
 }
 
 function syncSearchHint() {
+    if (!ui.searchHint) {
+        return;
+    }
+
     const address = ui.addressInput.value.trim();
     const radius = Number(ui.radiusSelect.value);
     const locationReady = Boolean(address || appState.userLocation);
@@ -1309,5 +1338,5 @@ function escapeHtml(value) {
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#39;');
-} 
+}
 
