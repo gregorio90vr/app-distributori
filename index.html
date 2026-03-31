@@ -13,133 +13,106 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="appOnboarding" class="onboarding-layer" aria-hidden="false" data-step="intro">
+    <!-- ONBOARDING: UNICA SCHERMATA -->
+    <div id="appOnboarding" class="onboarding-layer" aria-hidden="false">
         <div class="onboarding-gradient" aria-hidden="true"></div>
-        <div class="onboarding-progress" aria-label="Progresso configurazione iniziale">
-            <span class="onboarding-progress-dot is-active" data-onboarding-step="intro"></span>
-            <span class="onboarding-progress-dot" data-onboarding-step="fuel"></span>
-            <span class="onboarding-progress-dot" data-onboarding-step="location"></span>
-        </div>
-
-        <section id="introScreen" class="intro-screen intro-page is-active" aria-labelledby="introTitle">
-            <div class="intro-page-shell">
-                <div class="splash-brand">
-                    <div class="splash-mark">
-                        <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                    </div>
-                    <p class="eyebrow">FuelExplorer</p>
+        
+        <div class="onboarding-shell">
+            <!-- HEADER STICKY -->
+            <div class="onboarding-header">
+                <div class="splash-brand-inline">
+                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                    <span>FuelExplorer</span>
                 </div>
-
-                <div class="intro-copy-panel">
-                    <p class="eyebrow">Configurazione iniziale</p>
-                    <h1 id="introTitle">Configura l’app in pochi passaggi.</h1>
-                    <p>Seleziona il carburante, scegli l’area e naviga sulla mappa.</p>
-                </div>
-
-                <div class="intro-summary-list">
-                    <div>
-                        <strong>1. Carburante</strong>
-                        <span>Scegli cosa vuoi confrontare.</span>
-                    </div>
-                    <div>
-                        <strong>2. Area</strong>
-                        <span>Usa il GPS oppure inserisci un indirizzo.</span>
-                    </div>
-                    <div>
-                        <strong>3. Mappa pronta</strong>
-                        <span>Apri subito la ricerca gia configurata.</span>
-                    </div>
-                </div>
-
-                <div class="intro-footer simple">
-                    <button id="introContinueBtn" class="intro-primary-button" type="button">Inizia</button>
+                <div class="onboarding-progress" aria-label="Progresso configurazione">
+                    <span class="progress-dot is-active" data-step="fuel"></span>
+                    <span class="progress-dot" data-step="location"></span>
                 </div>
             </div>
-        </section>
 
-        <section id="fuelScreen" class="intro-screen onboarding-screen" hidden aria-labelledby="fuelTitle">
-            <div class="intro-page-shell compact">
-                <div class="intro-topbar compact">
-                    <div>
-                        <p class="eyebrow">Passaggio 2 di 3</p>
-                        <h2 id="fuelTitle">Seleziona il carburante.</h2>
-                        <p class="intro-subcopy">La prima ricerca usera subito questa preferenza.</p>
-                    </div>
-                </div>
-
-                <div class="slide-copy fullwidth">
-                    <div class="onboarding-fuel-grid" role="list" aria-label="Scelta carburante iniziale">
-                        <button class="onboarding-fuel-option is-active" type="button" data-onboarding-fuel="Benzina">
-                            <span class="fuel-badge benzina">
-                                <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                            </span>
-                            <span>Benzina</span>
-                        </button>
-                        <button class="onboarding-fuel-option" type="button" data-onboarding-fuel="Gasolio">
-                            <span class="fuel-badge gasolio">
-                                <i class="fas fa-truck" aria-hidden="true"></i>
-                            </span>
-                            <span>Gasolio</span>
-                        </button>
-                        <button class="onboarding-fuel-option" type="button" data-onboarding-fuel="GPL">
-                            <span class="fuel-badge gpl">
-                                <i class="fas fa-fire" aria-hidden="true"></i>
-                            </span>
-                            <span>GPL</span>
-                        </button>
-                        <button class="onboarding-fuel-option" type="button" data-onboarding-fuel="Metano">
-                            <span class="fuel-badge metano">
-                                <i class="fas fa-wind" aria-hidden="true"></i>
-                            </span>
-                            <span>Metano</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="intro-footer">
-                    <div class="intro-actions">
-                        <button id="fuelBackBtn" class="intro-secondary-button" type="button">Indietro</button>
-                        <button id="fuelContinueBtn" class="intro-primary-button" type="button">Continua</button>
-                    </div>
-                </div>
+            <!-- INTRO DESCRITIVA -->
+            <div class="onboarding-intro">
+                <h1>Configura in 2 semplici passaggi</h1>
+                <p>Seleziona carburante e posizione, poi l'app si avvia</p>
             </div>
-        </section>
 
-        <section id="locationScreen" class="intro-screen permission-screen" hidden aria-labelledby="locationTitle">
-            <div class="permission-shell">
-                <div class="permission-panel onboarding-location-panel">
-                    <p class="eyebrow">Passaggio 3 di 3</p>
-                    <h2 id="locationTitle">Scegli l’area di partenza.</h2>
-                    <p>Attiva la posizione per aprire la mappa gia centrata. Se non vuoi usare il GPS, inserisci un indirizzo manualmente.</p>
+            <!-- STEP 1: SELEZIONE CARBURANTE -->
+            <section class="onboarding-section fuel-section" aria-labelledby="fuelHeading">
+                <div class="section-header">
+                    <span class="step-badge">1</span>
+                    <h2 id="fuelHeading">Che carburante cerchi?</h2>
+                    <p>Scegli quello che desideri</p>
+                </div>
+                <div class="onboarding-fuel-grid" role="list" aria-label="Scelta carburante">
+                    <button class="fuel-option is-active" type="button" data-fuel="Benzina">
+                        <span class="fuel-badge benzina">
+                            <i class="fas fa-gas-pump" aria-hidden="true"></i>
+                        </span>
+                        <span>Benzina</span>
+                    </button>
+                    <button class="fuel-option" type="button" data-fuel="Gasolio">
+                        <span class="fuel-badge gasolio">
+                            <i class="fas fa-truck" aria-hidden="true"></i>
+                        </span>
+                        <span>Gasolio</span>
+                    </button>
+                    <button class="fuel-option" type="button" data-fuel="GPL">
+                        <span class="fuel-badge gpl">
+                            <i class="fas fa-fire" aria-hidden="true"></i>
+                        </span>
+                        <span>GPL</span>
+                    </button>
+                    <button class="fuel-option" type="button" data-fuel="Metano">
+                        <span class="fuel-badge metano">
+                            <i class="fas fa-wind" aria-hidden="true"></i>
+                        </span>
+                        <span>Metano</span>
+                    </button>
+                </div>
+                <div class="fuel-preview">
+                    <small>Media: <strong data-role="avg-price">€1.87/L</strong></small>
+                </div>
+            </section>
 
-                    <div class="permission-actions stacked">
-                        <button id="grantPermissionBtn" class="intro-primary-button" type="button">
+            <!-- STEP 2: SELEZIONE POSIZIONE -->
+            <section class="onboarding-section location-section" aria-labelledby="locationHeading">
+                <div class="section-header">
+                    <span class="step-badge">2</span>
+                    <h2 id="locationHeading">Dove cerchiamo?</h2>
+                    <p>Seleziona la tua area di ricerca</p>
+                </div>
+                
+                <div class="location-grid">
+                    <!-- GPS OPTION -->
+                    <div class="location-panel">
+                        <button id="grantPermissionBtn" class="location-action primary" type="button">
                             <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                            Usa la mia posizione
+                            <span>Usa la mia posizione</span>
                         </button>
-                        <button id="manualLocationBtn" class="intro-secondary-button" type="button">Inserisci un indirizzo</button>
+                        <small>Consigliato: app userà il GPS</small>
                     </div>
-
-                    <div id="manualLocationPanel" class="manual-location-panel" hidden>
-                        <label class="field-label onboarding-field-label" for="onboardingAddressInput">Indirizzo</label>
-                        <div class="manual-location-row">
-                            <input id="onboardingAddressInput" class="text-input" type="text" placeholder="Via Roma 1, Milano">
-                            <button id="onboardingAddressBtn" class="intro-primary-button compact" type="button">Conferma</button>
+                    
+                    <!-- MANUAL ADDRESS OPTION -->
+                    <div class="location-panel">
+                        <div class="location-input-wrapper">
+                            <input id="onboardingAddressInput" class="text-input" type="text" placeholder="Es: Via Roma 1, Milano" aria-label="Indirizzo ricerca">
+                            <button id="onboardingAddressBtn" class="btn-compact" type="button">Conferma</button>
                         </div>
-                    </div>
-
-                    <div id="onboardingLocationMessage" class="onboarding-location-message" hidden></div>
-
-                    <div class="intro-footer location-footer">
-                        <div class="intro-actions">
-                            <button id="locationBackBtn" class="intro-secondary-button" type="button">Indietro</button>
-                        </div>
+                        <small>Oppure inserisci manualmente</small>
                     </div>
                 </div>
+                
+                <!-- MESSAGGIO FEEDBACK -->
+                <div id="locationMessage" class="location-message" hidden role="alert"></div>
+            </section>
+
+            <div class="progress-text">
+                <span data-role="step-count">1/2 completati</span>
             </div>
-        </section>
+        </div>
     </div>
 
+    <!-- APP SHELL PRINCIPALE (originale da version3.0) -->
     <div class="app-shell" data-view="map">
         <header class="topbar">
             <div class="brand-lockup">
@@ -349,89 +322,80 @@
                             <strong id="searchCtaTitle">Mostra risultati</strong>
                             <small id="searchHint">Imposta prima una posizione</small>
                         </span>
-                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
                     </button>
                 </section>
 
-                <section class="results-panel">
-                    <div class="results-header">
+                <section id="resultsPanel" class="results-panel" hidden>
+                    <div id="resultsHeader" class="results-header">
                         <div>
                             <p class="eyebrow">Risultati</p>
-                            <h3 id="resultsHeadline">Nessuna ricerca eseguita</h3>
+                            <h3 id="resultsHeadline">Seleziona un distributore</h3>
                         </div>
                         <div class="results-toolbar">
-                            <button id="listOpenFiltersBtn" class="ghost-action compact list-filters-btn" type="button">
-                                <i class="fas fa-sliders" aria-hidden="true"></i>
-                                Filtri
-                            </button>
                             <div id="resultsSummaryChips" class="results-summary-chips"></div>
+                            <button id="listOpenFiltersBtn" class="list-filters-btn" type="button" aria-label="Modifica filtri">
+                                <i class="fas fa-sliders" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
-
-                    <div id="inlineMessage" class="inline-message is-hidden"></div>
 
                     <div id="listContainer" class="results-list"></div>
                 </section>
+
+                <div id="inlineMessage" class="inline-message" hidden role="status" aria-live="polite"></div>
             </aside>
         </main>
+    </div>
 
-        <aside id="infoPanel" class="info-panel" aria-hidden="true">
-            <div class="info-panel-inner">
-                <div class="sheet-header">
-                    <div>
-                        <p class="eyebrow">Informazioni</p>
-                        <h2>Dati, trasparenza e note d'uso</h2>
-                    </div>
-                    <button id="closeInfoBtn" class="icon-button subtle" type="button" aria-label="Chiudi informazioni">
-                        <i class="fas fa-xmark" aria-hidden="true"></i>
+    <!-- INFO PANEL -->
+    <div id="infoPanel" class="info-panel" aria-hidden="true" role="dialog" aria-labelledby="infoTitle">
+        <div class="info-panel-inner">
+            <div class="info-card">
+                <span style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h3 id="infoTitle">Informazioni</h3>
+                    <button id="closeInfoBtn" class="icon-button" type="button" aria-label="Chiudi pannello info">
+                        <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
-                </div>
-
-                <div class="info-stack">
-                    <section class="info-card">
-                        <h3>Origine dei dati</h3>
-                        <p>I prezzi mostrati nell'app derivano dal dataset pubblico ufficiale del MIMIT. I dati vengono caricati localmente dal file <code>../data.js</code> senza alterarne la struttura.</p>
-                        <p><strong>Fonte istituzionale:</strong> <span id="infoDataSource">-</span></p>
-                        <div class="mini-stats">
-                            <div>
-                                <span id="infoStationCount">0</span>
-                                <small>impianti nel dataset</small>
-                            </div>
-                            <div>
-                                <span id="infoTimestamp">-</span>
-                                <small>ultimo aggiornamento rilevato</small>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="info-card">
-                        <h3>Come interpretare i risultati</h3>
-                        <ul>
-                            <li>Il badge verde evidenzia il prezzo piu conveniente nel set corrente.</li>
-                            <li>Il costo stimato dipende da carburante selezionato, raggio e modalita di calcolo.</li>
-                            <li>Mappa e Lista rappresentano lo stesso insieme risultati, con due viste complementari.</li>
-                        </ul>
-                    </section>
-
-                    <section class="info-card">
-                        <h3>Avvertenze</h3>
-                        <p>I dati hanno finalita informative. Prima del rifornimento verifica sempre disponibilita del carburante, prezzo applicato e condizioni commerciali direttamente presso il punto vendita.</p>
-                    </section>
+                </span>
+                <p>FuelExplorer ti aiuta a trovare i distributori di carburante più convenienti nella tua area.</p>
+                <ul>
+                    <li>Scegli il carburante che preferisci (Benzina, Gasolio, GPL, Metano)</li>
+                    <li>Imposta la tua area di ricerca via GPS o indirizzo</li>
+                    <li>Visualizza i prezzi medi e scegli il migliore per il tuo budget</li>
+                    <li>Ottieni indicazioni stradali direttamente verso il distributore</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Statistiche</h3>
+                <div class="mini-stats">
+                    <div>
+                        <span id="infoStationCount">0</span>
+                        <small>distributori</small>
+                    </div>
+                    <div>
+                        <span id="infoTimestamp">-</span>
+                        <small>aggiornamento</small>
+                    </div>
                 </div>
             </div>
-        </aside>
-
-        <div id="loadingState" class="loading-state" hidden>
-            <div class="loading-card">
-                <div class="loader-orbit"></div>
-                <h3 id="loadingTitle">Ricerca in corso</h3>
-                <p id="loadingText">Sto cercando i distributori migliori per te</p>
+            <div class="info-card">
+                <p><strong>Fonte dati:</strong> <span id="infoDataSource">MIMIT</span></p>
             </div>
         </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- LOADING STATE -->
+    <div id="loadingState" class="loading-state" hidden>
+        <div class="loading-card">
+            <div class="loader-orbit"></div>
+            <h3 id="loadingTitle">Ricerca in corso</h3>
+            <p id="loadingText">Sto cercando i distributori migliori per te</p>
+        </div>
+    </div>
+
     <script src="data.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
