@@ -203,7 +203,7 @@ function bindEvents() {
     document.getElementById('heroGpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('gpsBtn').addEventListener('click', handleGpsRequest);
     document.getElementById('sheetHandleBtn').addEventListener('click', toggleSheet);
-    document.getElementById('collapseSheetBtn').addEventListener('click', toggleSheet);
+    document.getElementById('collapseSheetBtn').addEventListener('click', closeSetupPanel);
     document.getElementById('addressSearchBtn').addEventListener('click', handleSearch);
     document.getElementById('searchBtn').addEventListener('click', handleSearch);
     document.getElementById('viewMapBtn').addEventListener('click', () => setView('map'));
@@ -563,6 +563,53 @@ function openSetupPanel() {
         appState.sheetState = 'full';
     }
     setSheetExpanded(true);
+    updateSheetPresentation();
+    attachSwipeHandler();
+}
+
+function closeSetupPanel() {
+    appState.sheetTab = 'initial';
+    appState.sheetExpanded = false;
+    setSheetExpanded(false);
+    updateSheetPresentation();
+    detachSwipeHandler();
+}
+
+function attachSwipeHandler() {
+    if (!isMobileViewport()) {
+        return;
+    }
+
+    const sheet = document.getElementById('controlSheet');
+    if (!sheet || sheet._swipeHandler) {
+        return;
+    }
+
+    let touchStartY = 0;
+    const swipeHandler = (e) => {
+        if (e.type === 'touchstart') {
+            touchStartY = e.touches[0].clientY;
+        } else if (e.type === 'touchend') {
+            const touchEndY = e.changedTouches[0].clientY;
+            const swipeDistance = touchEndY - touchStartY;
+            if (swipeDistance > 80) {
+                closeSetupPanel();
+            }
+        }
+    };
+
+    sheet.addEventListener('touchstart', swipeHandler);
+    sheet.addEventListener('touchend', swipeHandler);
+    sheet._swipeHandler = swipeHandler;
+}
+
+function detachSwipeHandler() {
+    const sheet = document.getElementById('controlSheet');
+    if (sheet && sheet._swipeHandler) {
+        sheet.removeEventListener('touchstart', sheet._swipeHandler);
+        sheet.removeEventListener('touchend', sheet._swipeHandler);
+        delete sheet._swipeHandler;
+    }
 }
 
 function setSetupSection(sectionName) {
