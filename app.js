@@ -1,1389 +1,655 @@
-const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
-const ONBOARDING_STEPS = ['fuel', 'location'];
-const ONBOARDING_EXIT_DURATION = 650;
+/* =====================================================
+   FuelExplorer · Light UX
+   Stato semplificato: view, hasLocation, fuel, results
+   ===================================================== */
 
+const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
 const FUEL_META = {
-    Benzina: { icon: 'fa-gas-pump', className: 'benzina' },
-    Gasolio: { icon: 'fa-truck', className: 'gasolio' },
-    GPL: { icon: 'fa-fire', className: 'gpl' },
-    Metano: { icon: 'fa-wind', className: 'metano' }
+    Benzina: { icon: 'fa-gas-pump' },
+    Gasolio: { icon: 'fa-truck' },
+    GPL:     { icon: 'fa-fire' },
+    Metano:  { icon: 'fa-wind' }
 };
 
-const appState = {
+const state = {
     map: null,
     markersLayer: null,
     userLocation: null,
     lastGpsAddress: null,
     selectedFuel: 'Benzina',
-    currentView: 'map',
-    currentResults: [],
-    currentSearchContext: null,
-    sheetTab: 'setup',
-    setupSection: 'basic',
-    sheetExpanded: false,
-    sheetState: 'half',
-    listSetupOpen: true,
+    view: 'map',                // 'map' | 'list'
+    results: [],
+    searchContext: null,        // { coordinates, radius }
     autoSearchTimer: null,
-    loading: false,
-    onboarding: {
-        step: 'intro',
-        stepIndex: 0,
-        isComplete: false,
-        isTransitioning: false,
-        manualLocationVisible: false
-    }
+    toastTimer: null,
 };
 
-const ui = {};
+const dom = {};
 
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener('DOMContentLoaded', init);
 
-function initializeApp() {
+function init() {
     cacheDom();
-    ui.appShell.dataset.onboarding = 'active';
-    setLoadingState(false);
-    initializeMap();
-    initializeFuelGrid();
+    initMap();
+    renderFuelPills();
     bindEvents();
     updateDatasetInfo();
-    updateStatusLocation('Posizione da impostare');
-    updateFuelAverages();
+    updateFuelAverageLabel();
     updateCalcUi();
-    updateResultsSummary();
-    updateSheetPresentation();
-    syncSearchHint();
-    syncRadiusMobileControl();
-    syncMaxResultsMobileControl();
-    updateFlowGuide();
-    if (isMobileViewport()) {
-        ui.calcSection.open = true;
-    }
-    enforceCalcSectionOpen();
-    initializeOnboarding();
-}
-
-function isMobileViewport() {
-    return window.matchMedia('(max-width: 900px)').matches;
 }
 
 function cacheDom() {
-    ui.onboardingLayer = document.getElementById('appOnboarding');
-    ui.onboardingStep1 = document.getElementById('onboardingStep1');
-    ui.onboardingStep2 = document.getElementById('onboardingStep2');
-    ui.fuelNextBtn = document.getElementById('fuelNextBtn');
-    ui.locationBackBtn = document.getElementById('locationBackBtn');
-    ui.progressDots = Array.from(document.querySelectorAll('.progress-dot'));
-    ui.fuelOptions = Array.from(document.querySelectorAll('.fuel-option'));
-    ui.grantPermissionBtn = document.getElementById('grantPermissionBtn');
-    ui.onboardingAddressInput = document.getElementById('onboardingAddressInput');
-    ui.onboardingAddressBtn = document.getElementById('onboardingAddressBtn');
-    ui.locationMessage = document.getElementById('locationMessage');
-    ui.stepCount = document.querySelector('[data-role="step-count"]');
-    ui.avgPrice = document.querySelector('[data-role="avg-price"]');
-    ui.appShell = document.querySelector('.app-shell');
-    ui.sheet = document.getElementById('controlSheet');
-    ui.sheetTitle = document.getElementById('sheetTitle');
-    ui.emptyState = document.getElementById('emptyState');
-    ui.statusLocation = document.getElementById('statusLocation');
-    ui.statusTimestamp = document.getElementById('statusTimestamp');
-    ui.addressInput = document.getElementById('addressInput');
-    ui.radiusSelect = document.getElementById('radiusSelect');
-    ui.radiusRange = document.getElementById('radiusRange');
-    ui.radiusRangeValue = document.getElementById('radiusRangeValue');
-    ui.maxResultsSelect = document.getElementById('maxResultsSelect');
-    ui.maxResultsMinusBtn = document.getElementById('maxResultsMinusBtn');
-    ui.maxResultsPlusBtn = document.getElementById('maxResultsPlusBtn');
-    ui.maxResultsValue = document.getElementById('maxResultsValue');
-    ui.searchBtn = document.getElementById('searchBtn');
-    ui.searchCtaTitle = document.getElementById('searchCtaTitle');
-    ui.searchHint = document.getElementById('searchHint');
-    ui.guideStatus = document.getElementById('guideStatus');
-    ui.resultsHeadline = document.getElementById('resultsHeadline');
-    ui.listOpenFiltersBtn = document.getElementById('listOpenFiltersBtn');
-    ui.resultsSummaryChips = document.getElementById('resultsSummaryChips');
-    ui.resultsPanel = document.getElementById('resultsPanel');
-    ui.listContainer = document.getElementById('listContainer');
-    ui.inlineMessage = document.getElementById('inlineMessage');
-    ui.calcInput = document.getElementById('calcInput');
-    ui.calcInputLabel = document.getElementById('calcInputLabel');
-    ui.calcInputUnit = document.getElementById('calcInputUnit');
-    ui.calcSummaryTag = document.getElementById('calcSummaryTag');
-    ui.avgPriceLabel = document.getElementById('avgPriceLabel');
-    ui.avgPriceValue = document.getElementById('avgPriceValue');
-    ui.calcPreviewValue = document.getElementById('calcPreviewValue');
-    ui.infoPanel = document.getElementById('infoPanel');
-    ui.infoStationCount = document.getElementById('infoStationCount');
-    ui.infoDataSource = document.getElementById('infoDataSource');
-    ui.infoTimestamp = document.getElementById('infoTimestamp');
-    ui.loadingState = document.getElementById('loadingState');
-    ui.loadingTitle = document.getElementById('loadingTitle');
-    ui.loadingText = document.getElementById('loadingText');
-    ui.fuelGrid = document.getElementById('fuelGrid');
-    ui.setupBasicTabBtn = document.getElementById('setupBasicTabBtn');
-    ui.setupFiltersTabBtn = document.getElementById('setupFiltersTabBtn');
-    ui.setupCostsTabBtn = document.getElementById('setupCostsTabBtn');
-    ui.basicSetupSection = document.getElementById('basicSetupSection');
-    ui.filtersSetupSection = document.getElementById('filtersSetupSection');
-    ui.costsSetupSection = document.getElementById('costsSetupSection');
-    ui.calcSection = document.getElementById('calcSection');
+    const id = (x) => document.getElementById(x);
+    dom.body = document.body;
+    dom.viewMapBtn = id('viewMapBtn');
+    dom.viewListBtn = id('viewListBtn');
+    dom.openFiltersBtn = id('openFiltersBtn');
+    dom.infoBtn = id('infoBtn');
+    dom.fuelPills = id('fuelPills');
+    dom.fuelAvg = id('fuelAvg');
+    dom.dataTimestamp = id('dataTimestamp');
+
+    dom.welcomeBanner = id('welcomeBanner');
+    dom.welcomeGpsBtn = id('welcomeGpsBtn');
+    dom.welcomeAddressForm = id('welcomeAddressForm');
+    dom.welcomeAddressInput = id('welcomeAddressInput');
+    dom.welcomeMessage = id('welcomeMessage');
+
+    dom.map = id('map');
+    dom.locationChip = id('locationChip');
+    dom.locationChipText = id('locationChipText');
+    dom.changeLocationBtn = id('changeLocationBtn');
+    dom.fabFilters = id('fabFilters');
+
+    dom.listHeadline = id('listHeadline');
+    dom.listSubline = id('listSubline');
+    dom.listContainer = id('listContainer');
+
+    dom.filtersPanel = id('filtersPanel');
+    dom.filtersBackdrop = id('filtersBackdrop');
+    dom.closeFiltersBtn = id('closeFiltersBtn');
+    dom.addressInput = id('addressInput');
+    dom.gpsBtn = id('gpsBtn');
+    dom.radiusRange = id('radiusRange');
+    dom.radiusValue = id('radiusValue');
+    dom.maxResultsRange = id('maxResultsRange');
+    dom.maxResultsValue = id('maxResultsValue');
+    dom.calcSection = id('calcSection');
+    dom.calcInput = id('calcInput');
+    dom.calcUnit = id('calcUnit');
+    dom.calcResult = id('calcResult');
+    dom.calcSummary = id('calcSummary');
+    dom.searchBtn = id('searchBtn');
+
+    dom.infoPanel = id('infoPanel');
+    dom.closeInfoBtn = id('closeInfoBtn');
+    dom.infoStationCount = id('infoStationCount');
+    dom.infoTimestamp = id('infoTimestamp');
+    dom.infoDataSource = id('infoDataSource');
+
+    dom.loadingOverlay = id('loadingOverlay');
+    dom.loadingText = id('loadingText');
+    dom.toast = id('toast');
 }
 
-function initializeOnboarding() {
-    appState.selectedFuel = 'Benzina';
-    appState.userLocation = null;
-    syncFuelSelection();
-    updateOnboardingAverage();
-}
-
-function initializeMap() {
-    appState.map = L.map('map', {
-        zoomControl: false,
-        preferCanvas: true
-    }).setView([45.4642, 9.19], 12);
+function initMap() {
+    state.map = L.map('map', { zoomControl: false, preferCanvas: true })
+        .setView([41.9028, 12.4964], 6); // Italia overview
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
         subdomains: 'abcd',
-        maxZoom: 20
-    }).addTo(appState.map);
+        maxZoom: 19
+    }).addTo(state.map);
 
-    L.control.zoom({ position: 'bottomright' }).addTo(appState.map);
-    appState.markersLayer = L.layerGroup().addTo(appState.map);
+    L.control.zoom({ position: 'bottomright' }).addTo(state.map);
+    state.markersLayer = L.layerGroup().addTo(state.map);
 }
 
-function initializeFuelGrid() {
-    ui.fuelGrid.innerHTML = '';
-    FUEL_TYPES.forEach((fuelType) => {
-        const fuelMeta = FUEL_META[fuelType];
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = `fuel-option ${fuelType === appState.selectedFuel ? 'is-active' : ''}`;
-        button.dataset.fuel = fuelType;
-        button.innerHTML = `
-            <div class="fuel-option-head">
-                <span class="fuel-badge ${fuelMeta.className}">
-                    <i class="fas ${fuelMeta.icon}" aria-hidden="true"></i>
-                </span>
-                <span class="summary-tag">Media</span>
-            </div>
-            <div class="fuel-meta">
-                <strong>${fuelType}</strong>
-                <span data-role="avg-price">N/D</span>
-                <small data-role="avg-scope">Tutte le pompe</small>
-            </div>
-        `;
-        ui.fuelGrid.appendChild(button);
-    });
+function renderFuelPills() {
+    dom.fuelPills.innerHTML = FUEL_TYPES.map((fuel) => `
+        <button class="fuel-pill ${fuel === state.selectedFuel ? 'is-active' : ''}" type="button" role="tab" data-fuel="${fuel}">
+            <i class="fas ${FUEL_META[fuel].icon}" aria-hidden="true"></i>
+            <span>${fuel}</span>
+        </button>
+    `).join('');
 }
 
 function bindEvents() {
-    // ONBOARDING - NEW UNIFIED STRUCTURE
-    ui.fuelOptions.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            appState.selectedFuel = btn.dataset.fuel;
-            syncFuelSelection();
-            updateOnboardingAverage();
-        });
-    });
+    // View toggle
+    dom.viewMapBtn.addEventListener('click', () => setView('map'));
+    dom.viewListBtn.addEventListener('click', () => setView('list'));
 
-    ui.fuelNextBtn.addEventListener('click', () => goToOnboardingStep(2));
-    ui.locationBackBtn.addEventListener('click', () => goToOnboardingStep(1));
+    // Topbar
+    dom.openFiltersBtn.addEventListener('click', () => openFilters());
+    dom.infoBtn.addEventListener('click', () => toggleInfo(true));
+    dom.closeInfoBtn.addEventListener('click', () => toggleInfo(false));
+    dom.infoPanel.addEventListener('click', (e) => { if (e.target === dom.infoPanel) toggleInfo(false); });
 
-    ui.grantPermissionBtn.addEventListener('click', handleOnboardingGps);
-
-    ui.onboardingAddressBtn.addEventListener('click', handleOnboardingAddress);
-    ui.onboardingAddressInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            handleOnboardingAddress();
-        }
-    });
-
-    // APP SHELL - MAINTAINED
-    document.getElementById('heroGpsBtn').addEventListener('click', handleGpsRequest);
-    document.getElementById('gpsBtn').addEventListener('click', handleGpsRequest);
-    document.getElementById('sheetHandleBtn').addEventListener('click', toggleSheet);
-    document.getElementById('collapseSheetBtn').addEventListener('click', closeSetupPanel);
-    document.getElementById('addressSearchBtn').addEventListener('click', handleSearch);
-    document.getElementById('searchBtn').addEventListener('click', handleSearch);
-    document.getElementById('viewMapBtn').addEventListener('click', () => setView('map'));
-    document.getElementById('viewListBtn').addEventListener('click', () => setView('list'));
-    document.getElementById('openSetupBtn').addEventListener('click', openSetupPanel);
-    ui.listOpenFiltersBtn.addEventListener('click', openSetupPanel);
-    document.getElementById('infoToggleBtn').addEventListener('click', () => toggleInfoPanel(true));
-    document.getElementById('closeInfoBtn').addEventListener('click', () => toggleInfoPanel(false));
-    ui.setupBasicTabBtn.addEventListener('click', () => setSetupSection('basic'));
-    ui.setupFiltersTabBtn.addEventListener('click', () => setSetupSection('filters'));
-    ui.setupCostsTabBtn.addEventListener('click', () => setSetupSection('costs'));
-
-    window.addEventListener('resize', () => {
-        if (!isMobileViewport() && appState.currentView === 'map') {
-            appState.sheetState = appState.sheetExpanded ? 'full' : 'peek';
-        }
-        updateSheetPresentation();
-    });
-
-    ui.addressInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleSearch();
-        }
-    });
-
-    ui.addressInput.addEventListener('input', () => {
-        if (!ui.addressInput.value.trim()) {
-            appState.lastGpsAddress = null;
-        }
-        syncSearchHint();
-    });
-
-    ui.addressInput.addEventListener('change', () => {
-        if (ui.addressInput.value.trim()) {
-            queueAutoSearch('indirizzo');
-        }
-    });
-
-    ui.radiusSelect.addEventListener('change', () => {
-        syncRadiusMobileControl();
-        updateFuelAverages();
+    // Fuel pills (event delegation)
+    dom.fuelPills.addEventListener('click', (e) => {
+        const pill = e.target.closest('.fuel-pill');
+        if (!pill) return;
+        state.selectedFuel = pill.dataset.fuel;
+        renderFuelPills();
+        updateFuelAverageLabel();
         updateCalcUi();
-        syncSearchHint();
-        queueAutoSearch('raggio');
+        if (hasLocation()) queueAutoSearch();
     });
 
-    ui.radiusRange.addEventListener('input', () => {
-        ui.radiusRangeValue.textContent = `${ui.radiusRange.value} km`;
+    // Welcome banner
+    dom.welcomeGpsBtn.addEventListener('click', useGps);
+    dom.welcomeAddressForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const addr = dom.welcomeAddressInput.value.trim();
+        if (!addr) return;
+        dom.addressInput.value = addr;
+        searchByAddress(addr, dom.welcomeMessage);
     });
 
-    ui.radiusRange.addEventListener('change', () => {
-        ui.radiusSelect.value = ui.radiusRange.value;
-        syncRadiusMobileControl();
-        updateFuelAverages();
+    // Filters panel
+    dom.closeFiltersBtn.addEventListener('click', closeFilters);
+    dom.filtersBackdrop.addEventListener('click', closeFilters);
+
+    dom.gpsBtn.addEventListener('click', useGps);
+    dom.addressInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); handleSearch(); }
+    });
+    dom.addressInput.addEventListener('input', () => {
+        if (!dom.addressInput.value.trim()) state.lastGpsAddress = null;
+    });
+
+    dom.radiusRange.addEventListener('input', () => {
+        dom.radiusValue.textContent = `${dom.radiusRange.value} km`;
+    });
+    dom.radiusRange.addEventListener('change', () => {
+        updateFuelAverageLabel();
         updateCalcUi();
-        syncSearchHint();
-        queueAutoSearch('raggio');
+        if (hasLocation()) queueAutoSearch();
     });
 
-    ui.maxResultsSelect.addEventListener('change', () => {
-        syncMaxResultsMobileControl();
-        syncSearchHint();
-        queueAutoSearch('numero risultati');
+    dom.maxResultsRange.addEventListener('input', () => {
+        const v = Number(dom.maxResultsRange.value);
+        dom.maxResultsValue.textContent = v >= 100 ? 'Tutti' : String(v);
+    });
+    dom.maxResultsRange.addEventListener('change', () => {
+        if (hasLocation()) queueAutoSearch();
     });
 
-    ui.maxResultsMinusBtn.addEventListener('click', () => stepMaxResults(-1));
-    ui.maxResultsPlusBtn.addEventListener('click', () => stepMaxResults(1));
+    document.querySelectorAll('input[name="calcMode"]').forEach((r) => r.addEventListener('change', updateCalcUi));
+    dom.calcInput.addEventListener('input', updateCalcUi);
 
-    ui.fuelGrid.addEventListener('click', (event) => {
-        const option = event.target.closest('.fuel-option');
-        if (!option) {
+    dom.searchBtn.addEventListener('click', () => { handleSearch(); closeFilters(); });
+
+    // Lista
+    dom.listContainer.addEventListener('click', (e) => {
+        const dirBtn = e.target.closest('[data-role="directions"]');
+        if (dirBtn) {
+            const station = state.results.find((s) => s.id === Number(dirBtn.dataset.id));
+            if (station) openDirections(station);
             return;
         }
-        appState.selectedFuel = option.dataset.fuel;
-        refreshFuelSelection();
-        updateCalcUi();
-        syncSearchHint();
-        queueAutoSearch('carburante');
-    });
-
-    document.querySelectorAll('input[name="calcMode"]').forEach((radio) => {
-        radio.addEventListener('change', updateCalcUi);
-    });
-
-    ui.calcInput.addEventListener('input', updateCalcUi);
-
-    ui.listContainer.addEventListener('click', (event) => {
-        const stationCard = event.target.closest('.station-card');
-        const directionsButton = event.target.closest('[data-role="directions"]');
-
-        if (directionsButton) {
-            const stationId = Number(directionsButton.dataset.stationId);
-            const station = appState.currentResults.find((result) => result.id === stationId);
+        const card = e.target.closest('.station-card');
+        if (card) {
+            const station = state.results.find((s) => s.id === Number(card.dataset.id));
             if (station) {
-                openDirections(station);
-            }
-            return;
-        }
-
-        if (stationCard) {
-            const stationId = Number(stationCard.dataset.stationId);
-            const station = appState.currentResults.find((result) => result.id === stationId);
-            if (station) {
+                setView('map');
                 focusStationOnMap(station);
             }
         }
     });
 
-    ui.infoPanel.addEventListener('click', (event) => {
-        if (event.target === ui.infoPanel) {
-            toggleInfoPanel(false);
-        }
+    document.querySelectorAll('[data-go-map]').forEach((b) => b.addEventListener('click', () => setView('map')));
+    document.querySelectorAll('[data-open-filters]').forEach((b) => b.addEventListener('click', () => openFilters()));
+
+    // Location chip
+    dom.changeLocationBtn.addEventListener('click', () => openFilters());
+
+    // FAB filtri (mobile)
+    dom.fabFilters.addEventListener('click', () => openFilters());
+
+    // ESC chiude pannelli
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (dom.filtersPanel.classList.contains('is-open')) closeFilters();
+        else if (dom.infoPanel.classList.contains('is-open')) toggleInfo(false);
+    });
+
+    // Resize -> ricalcola mappa
+    window.addEventListener('resize', () => {
+        if (state.map) setTimeout(() => state.map.invalidateSize(), 100);
     });
 }
 
-// Functions setOnboardingStep, toggleIntroScreen, updateOnboardingProgress removed
-// Replaced with unified single-screen onboarding logic
-
-async function handleOnboardingGps() {
-    if (!navigator.geolocation) {
-        showLocationMessage('Geolocalizzazione non disponibile', 'error');
-        return;
-    }
-
-    showLocationMessage('Richiesta posizione...', 'info');
-    
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            const { latitude, longitude } = position.coords;
-            appState.userLocation = { lat: latitude, lng: longitude };
-
-            ui.addressInput.value = '';
-            updateStatusLocation('Posizione GPS attiva');
-            completeOnboarding();
-            handleSearch();
-        },
-        (error) => {
-            console.warn('Geolocation error:', error);
-            showLocationMessage('Impossibile acquisire posizione', 'error');
-        },
-        { enableHighAccuracy: true, timeout: 10000 }
-    );
-}
-
-// Functions setSelectedFuel, syncOnboardingFuelSelection, setManualLocationVisible, showOnboardingLocationMessage removed
-// Replaced with unified single-screen helper functions
-
-async function handleOnboardingAddress() {
-    const address = ui.onboardingAddressInput.value.trim();
-    if (!address) {
-        showLocationMessage('Inserisci un indirizzo', 'error');
-        ui.onboardingAddressInput.focus();
-        return;
-    }
-
-    showLocationMessage('Ricerca indirizzo...', 'info');
-
-    try {
-        const coordinates = await geocodeAddress(address);
-        appState.userLocation = coordinates;
-
-        ui.addressInput.value = address;
-        appState.lastGpsAddress = null;
-        updateStatusLocation(address);
-        completeOnboarding();
-        await handleSearch();
-    } catch (error) {
-        showLocationMessage('Indirizzo non valido. Controlla e riprova.', 'error');
-    }
-}
-
-function completeOnboarding() {
-    if (appState.onboarding.isComplete || appState.onboarding.isTransitioning) {
-        return;
-    }
-
-    appState.onboarding.isComplete = true;
-    appState.onboarding.isTransitioning = true;
-
-    // Sheet chiuso all'apertura: l'utente lo apre manualmente
-    appState.sheetExpanded = false;
-    appState.sheetState = 'peek';
-    appState.sheetTab = 'setup';
-    appState.setupSection = 'basic';
-
-    // Sheet collapsed when app opens – user opens it manually
-    appState.sheetExpanded = false;
-    appState.sheetState = 'peek';
-    appState.sheetTab = 'setup';
-    appState.setupSection = 'basic';
-
-    ui.appShell.dataset.onboarding = 'revealing';
-    ui.onboardingLayer.classList.add('is-exiting');
-    ui.onboardingLayer.setAttribute('aria-hidden', 'true');
-
-    window.setTimeout(() => {
-        ui.onboardingLayer.hidden = true;
-        ui.appShell.dataset.onboarding = 'ready';
-        appState.onboarding.step = 'complete';
-        appState.onboarding.stepIndex = ONBOARDING_STEPS.length;
-        appState.onboarding.isTransitioning = false;
-        if (appState.map) {
-            window.setTimeout(() => appState.map.invalidateSize(), 120);
-        }
-    }, ONBOARDING_EXIT_DURATION);
-}
-
-// NEW HELPER FUNCTIONS FOR UNIFIED ONBOARDING
-
-function goToOnboardingStep(step) {
-    if (step === 2) {
-        ui.onboardingStep1.classList.add('slide-out-left');
-        ui.onboardingStep1.classList.remove('is-active');
-        ui.onboardingStep2.classList.add('is-active');
-    } else {
-        ui.onboardingStep2.classList.remove('is-active');
-        ui.onboardingStep1.classList.remove('slide-out-left');
-        ui.onboardingStep1.classList.add('is-active');
-    }
-}
-
-function syncFuelSelection() {
-    ui.fuelOptions.forEach((btn) => {
-        btn.classList.toggle('is-active', btn.dataset.fuel === appState.selectedFuel);
-    });
-}
-
-function updateOnboardingAverage() {
-    if (!ui.avgPrice) {
-        return;
-    }
-
-    const avgPrice = getAveragePriceForFuel(appState.selectedFuel);
-    ui.avgPrice.textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
-}
-
-function updateProgressDots() {
-    const isFuelDone = !!appState.selectedFuel;
-    const isLocationDone = appState.userLocation || ui.onboardingAddressInput.value.trim();
-    
-    if (ui.progressDots[0]) ui.progressDots[0].classList.toggle('is-active', isFuelDone);
-    if (ui.progressDots[1]) ui.progressDots[1].classList.toggle('is-active', isLocationDone);
-}
-
-function updateProgressText() {
-    const isFuelDone = !!appState.selectedFuel;
-    const isLocationDone = appState.userLocation || ui.onboardingAddressInput.value.trim();
-    
-    let count = 0;
-    if (isFuelDone) count++;
-    if (isLocationDone) count++;
-    
-    if (ui.stepCount) {
-        ui.stepCount.textContent = `${count}/2 completati`;
-    }
-}
-
-function showLocationMessage(message, type = 'info') {
-    ui.locationMessage.hidden = !message;
-    ui.locationMessage.textContent = message;
-    ui.locationMessage.className = `location-message ${type}`.trim();
+/* ============ STATE HELPERS ============ */
+function hasLocation() {
+    return Boolean(state.userLocation || dom.addressInput.value.trim());
 }
 
 function setView(view) {
-    appState.currentView = view;
-    ui.appShell.dataset.view = view;
-    document.getElementById('viewMapBtn').classList.toggle('is-active', view === 'map');
-    document.getElementById('viewListBtn').classList.toggle('is-active', view === 'list');
-
-    if (view === 'list') {
-        appState.sheetExpanded = true;
-        appState.listSetupOpen = false;
-        appState.sheetTab = 'results';
-        appState.setupSection = hasSearchContext() ? 'filters' : 'basic';
-    } else {
-        appState.listSetupOpen = true;
-        appState.sheetTab = 'setup';
-        if (!hasSearchContext()) {
-            appState.setupSection = 'basic';
-        }
-        if (isMobileViewport()) {
-            appState.sheetState = appState.currentResults.length > 0 ? 'peek' : 'half';
-        }
-    }
-
-    updateSheetPresentation();
-
-    if (appState.map) {
-        setTimeout(() => appState.map.invalidateSize(), 120);
-    }
+    state.view = view;
+    dom.body.dataset.view = view;
+    dom.viewMapBtn.classList.toggle('is-active', view === 'map');
+    dom.viewListBtn.classList.toggle('is-active', view === 'list');
+    dom.viewMapBtn.setAttribute('aria-selected', view === 'map');
+    dom.viewListBtn.setAttribute('aria-selected', view === 'list');
+    if (state.map) setTimeout(() => state.map.invalidateSize(), 150);
 }
 
-function toggleSheet() {
-    if (appState.currentView === 'list') {
-        openSetupPanel();
-        return;
-    }
-
-    if (isMobileViewport()) {
-        if (!appState.sheetExpanded || appState.sheetState === 'peek') {
-            appState.sheetState = 'full';
-            setSheetExpanded(true);
-            return;
-        }
-
-        setSheetExpanded(false);
-        return;
-    }
-
-    setSheetExpanded(!appState.sheetExpanded);
+function setHasLocation(yes) {
+    dom.body.dataset.hasLocation = yes ? 'true' : 'false';
+    dom.locationChip.hidden = !yes;
 }
 
-function enforceCalcSectionOpen() {
-    if (!ui.calcSection) {
-        return;
-    }
+function openFilters() {
+    dom.filtersPanel.classList.add('is-open');
+    dom.filtersPanel.setAttribute('aria-hidden', 'false');
+    dom.filtersBackdrop.hidden = false;
+    requestAnimationFrame(() => dom.filtersBackdrop.classList.add('is-visible'));
+}
 
-    ui.calcSection.open = true;
-    ui.calcSection.addEventListener('toggle', () => {
-        if (!ui.calcSection.open) {
-            ui.calcSection.open = true;
-        }
+function closeFilters() {
+    dom.filtersPanel.classList.remove('is-open');
+    dom.filtersPanel.setAttribute('aria-hidden', 'true');
+    dom.filtersBackdrop.classList.remove('is-visible');
+    setTimeout(() => { dom.filtersBackdrop.hidden = true; }, 200);
+}
+
+function toggleInfo(open) {
+    dom.infoPanel.classList.toggle('is-open', open);
+    dom.infoPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+
+function setLoading(on, text = 'Ricerca in corso…') {
+    dom.loadingOverlay.hidden = !on;
+    dom.loadingText.textContent = text;
+}
+
+function showToast(message, type = 'info', ms = 3000) {
+    if (!message) { dom.toast.hidden = true; return; }
+    dom.toast.textContent = message;
+    dom.toast.className = `toast${type === 'error' ? ' is-error' : type === 'success' ? ' is-success' : ''}`;
+    dom.toast.hidden = false;
+    if (state.toastTimer) clearTimeout(state.toastTimer);
+    state.toastTimer = setTimeout(() => { dom.toast.hidden = true; }, ms);
+}
+
+function setWelcomeMessage(msg, type = 'error') {
+    if (!msg) { dom.welcomeMessage.hidden = true; dom.welcomeMessage.textContent = ''; return; }
+    dom.welcomeMessage.textContent = msg;
+    dom.welcomeMessage.hidden = false;
+    dom.welcomeMessage.classList.toggle('is-info', type === 'info');
+}
+
+/* ============ DATASET INFO / AVERAGES ============ */
+function updateDatasetInfo() {
+    dom.dataTimestamp.textContent = (typeof DATA_TIMESTAMP !== 'undefined' && DATA_TIMESTAMP)
+        ? `Aggiornati ${DATA_TIMESTAMP}` : 'Dati MIMIT';
+    dom.infoTimestamp.textContent = (typeof DATA_TIMESTAMP !== 'undefined' && DATA_TIMESTAMP) || '—';
+    dom.infoStationCount.textContent = Array.isArray(realFuelStations)
+        ? realFuelStations.length.toLocaleString('it-IT')
+        : '0';
+    dom.infoDataSource.textContent = (typeof DATA_SOURCE !== 'undefined' && DATA_SOURCE) || 'MIMIT';
+}
+
+function getScopedStations() {
+    const radius = Number(dom.radiusRange.value);
+    const center = state.searchContext?.coordinates || state.userLocation;
+    if (!center) return realFuelStations;
+    return realFuelStations.filter((s) => {
+        const d = haversine(center.lat, center.lng, s.latitude, s.longitude);
+        return d <= radius;
     });
 }
 
-function cycleSheetState() {
-    const sequence = ['peek', 'half', 'full'];
-    const currentIndex = sequence.indexOf(appState.sheetState);
-    const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % sequence.length;
-    appState.sheetState = sequence[nextIndex];
-    appState.sheetExpanded = appState.sheetState !== 'peek';
-    updateSheetPresentation();
+function getAveragePrice(fuel = state.selectedFuel, stations = getScopedStations()) {
+    const prices = stations
+        .map((s) => s?.prices?.[fuel])
+        .filter((p) => Number.isFinite(p) && p > 0);
+    if (prices.length === 0) return null;
+    return prices.reduce((a, b) => a + b, 0) / prices.length;
 }
 
-function setSheetExpanded(expanded) {
-    appState.sheetExpanded = expanded;
-    if (isMobileViewport() && appState.currentView === 'map') {
-        appState.sheetState = expanded ? 'full' : 'peek';
-    }
-    updateSheetPresentation();
+function updateFuelAverageLabel() {
+    const avg = getAveragePrice();
+    const scope = (state.searchContext?.coordinates || state.userLocation)
+        ? `nel raggio di ${dom.radiusRange.value} km`
+        : 'media nazionale';
+    dom.fuelAvg.innerHTML = avg === null
+        ? `<span>${state.selectedFuel}: <strong>N/D</strong></span>`
+        : `<span>${state.selectedFuel}: <strong>€${avg.toFixed(3)}/L</strong> · <em style="font-style:normal;color:var(--text-soft)">${scope}</em></span>`;
 }
 
-function setListSetupOpen(open) {
-    appState.listSetupOpen = open;
-    if (appState.currentView === 'list') {
-        appState.sheetTab = 'results';
-    }
-    updateSheetPresentation();
-}
-
-function openSetupPanel() {
-    setView('map');
-    appState.sheetTab = 'setup';
-    appState.setupSection = hasSearchContext() ? 'filters' : 'basic';
-    if (isMobileViewport()) {
-        appState.sheetState = 'full';
-    }
-    setSheetExpanded(true);
-    updateSheetPresentation();
-    attachSwipeHandler();
-}
-
-function closeSetupPanel() {
-    appState.sheetTab = 'initial';
-    appState.sheetExpanded = false;
-    setSheetExpanded(false);
-    updateSheetPresentation();
-    detachSwipeHandler();
-}
-
-function attachSwipeHandler() {
-    if (!isMobileViewport()) {
-        return;
-    }
-
-    const sheet = document.getElementById('controlSheet');
-    if (!sheet || sheet._swipeHandler) {
-        return;
-    }
-
-    let touchStartY = 0;
-    const swipeHandler = (e) => {
-        if (e.type === 'touchstart') {
-            touchStartY = e.touches[0].clientY;
-        } else if (e.type === 'touchend') {
-            const touchEndY = e.changedTouches[0].clientY;
-            const swipeDistance = touchEndY - touchStartY;
-            if (swipeDistance > 80) {
-                closeSetupPanel();
-            }
-        }
-    };
-
-    sheet.addEventListener('touchstart', swipeHandler);
-    sheet.addEventListener('touchend', swipeHandler);
-    sheet._swipeHandler = swipeHandler;
-}
-
-function detachSwipeHandler() {
-    const sheet = document.getElementById('controlSheet');
-    if (sheet && sheet._swipeHandler) {
-        sheet.removeEventListener('touchstart', sheet._swipeHandler);
-        sheet.removeEventListener('touchend', sheet._swipeHandler);
-        delete sheet._swipeHandler;
-    }
-}
-
-function setSetupSection(sectionName) {
-    appState.setupSection = sectionName;
-    updateSetupSectionUi();
-}
-
-function setSheetTab(tabName) {
-    appState.sheetTab = tabName;
-    if (tabName === 'setup' && !hasSearchContext()) {
-        appState.setupSection = 'basic';
-    }
-
-    if (appState.currentView === 'list') {
-        appState.listSetupOpen = tabName === 'setup';
-    }
-
-    if (appState.currentView === 'map' && !appState.sheetExpanded) {
-        setSheetExpanded(true);
-        return;
-    }
-
-    updateSheetPresentation();
-}
-
-function updateSheetPresentation() {
-    const isListView = appState.currentView === 'list';
-    const collapseButton = document.getElementById('collapseSheetBtn');
-    const collapseIcon = collapseButton.querySelector('i');
-    const showResultsPanel = isListView || appState.sheetTab === 'results';
-
-    ui.sheet.classList.toggle('is-peek', !isListView && !appState.sheetExpanded);
-    ui.appShell.dataset.listSetup = appState.listSetupOpen ? 'open' : 'closed';
-    ui.appShell.dataset.sheetState = appState.sheetState;
-    ui.appShell.dataset.sheetTab = appState.sheetTab;
-    if (ui.resultsPanel) {
-        ui.resultsPanel.hidden = !showResultsPanel;
-    }
-    updateSetupSectionUi();
-
-    if (isListView) {
-        ui.sheetTitle.textContent = 'Lista risultati';
-        collapseIcon.className = 'fas fa-sliders';
-        collapseButton.setAttribute('aria-label', 'Apri modifica parametri');
-    } else {
-        ui.sheetTitle.textContent = 'Imposta la ricerca';
-        if (isMobileViewport()) {
-            collapseIcon.className = 'fas fa-grip-lines';
-            collapseButton.setAttribute('aria-label', 'Cambia stato pannello: peek, half, full');
-        } else {
-            collapseIcon.className = `fas ${appState.sheetExpanded ? 'fa-chevron-down' : 'fa-chevron-up'}`;
-            collapseButton.setAttribute('aria-label', appState.sheetExpanded ? 'Nascondi menu e mostra mappa' : 'Mostra menu');
-        }
-    }
-}
-
-function updateSetupSectionUi() {
-    const isBasic = appState.setupSection === 'basic';
-    const isFilters = appState.setupSection === 'filters';
-    const isCosts = appState.setupSection === 'costs';
-    const setupAvailable = appState.currentView === 'map';
-
-    ui.setupBasicTabBtn.classList.toggle('is-active', isBasic);
-    ui.setupFiltersTabBtn.classList.toggle('is-active', isFilters);
-    ui.setupCostsTabBtn.classList.toggle('is-active', isCosts);
-    ui.setupBasicTabBtn.setAttribute('aria-selected', isBasic ? 'true' : 'false');
-    ui.setupFiltersTabBtn.setAttribute('aria-selected', isFilters ? 'true' : 'false');
-    ui.setupCostsTabBtn.setAttribute('aria-selected', isCosts ? 'true' : 'false');
-
-    ui.basicSetupSection.hidden = !setupAvailable || !isBasic;
-    ui.filtersSetupSection.hidden = !setupAvailable || !isFilters;
-    ui.costsSetupSection.hidden = !setupAvailable || !isCosts;
-}
-
-function hasSearchContext() {
-    return Boolean(ui.addressInput.value.trim() || appState.userLocation);
-}
-
-function queueAutoSearch(sourceLabel) {
-    if (!hasSearchContext()) {
-        return;
-    }
-
-    if (appState.autoSearchTimer) {
-        clearTimeout(appState.autoSearchTimer);
-    }
-
-    appState.autoSearchTimer = setTimeout(() => {
-        appState.autoSearchTimer = null;
-        handleSearch({ auto: true, sourceLabel });
-    }, 350);
-}
-
-function toggleInfoPanel(open) {
-    ui.infoPanel.classList.toggle('is-open', open);
-    ui.infoPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
-}
-
-function setLoadingState(isLoading, title = 'Ricerca in corso', text = 'Sto cercando i distributori migliori per te') {
-    appState.loading = isLoading;
-    ui.loadingState.hidden = !isLoading;
-    ui.loadingTitle.textContent = title;
-    ui.loadingText.textContent = text;
-}
-
-function syncSearchHint() {
-    if (!ui.searchHint) {
-        return;
-    }
-
-    const address = ui.addressInput.value.trim();
-    const radius = Number(ui.radiusSelect.value);
-    const locationReady = Boolean(address || appState.userLocation);
-    ui.searchHint.textContent = locationReady
-        ? `${appState.selectedFuel} entro ${radius} km`
-        : 'Imposta prima una posizione';
-    appState.setupSection = locationReady ? 'filters' : 'basic';
-    updateSearchCtaState();
-    updateFlowGuide();
-    updateSetupSectionUi();
-}
-
-function updateSearchCtaState() {
-    const locationReady = hasSearchContext();
-    ui.searchBtn.disabled = !locationReady;
-    ui.searchBtn.classList.toggle('is-disabled', !locationReady);
-    ui.searchCtaTitle.textContent = locationReady ? 'Mostra risultati' : 'Imposta prima la posizione';
-}
-
-function syncRadiusMobileControl() {
-    const radiusValue = ui.radiusSelect.value;
-    ui.radiusRange.value = radiusValue;
-    ui.radiusRangeValue.textContent = `${radiusValue} km`;
-}
-
-function getMaxResultsOptions() {
-    return Array.from(ui.maxResultsSelect.options).map((option) => Number(option.value));
-}
-
-function syncMaxResultsMobileControl() {
-    const selectedValue = Number(ui.maxResultsSelect.value);
-    ui.maxResultsValue.textContent = selectedValue === 100 ? 'Tutti' : String(selectedValue);
-}
-
-function stepMaxResults(direction) {
-    const options = getMaxResultsOptions();
-    const currentValue = Number(ui.maxResultsSelect.value);
-    const currentIndex = options.indexOf(currentValue);
-    const safeIndex = currentIndex === -1 ? 0 : currentIndex;
-    const targetIndex = Math.max(0, Math.min(options.length - 1, safeIndex + direction));
-
-    if (targetIndex === safeIndex) {
-        return;
-    }
-
-    ui.maxResultsSelect.value = String(options[targetIndex]);
-    syncMaxResultsMobileControl();
-    syncSearchHint();
-    queueAutoSearch('numero risultati');
-}
-
-function updateFlowGuide() {
-    const locationReady = hasSearchContext();
-    const hasResults = appState.currentResults.length > 0;
-
-    if (!locationReady) {
-        ui.guideStatus.textContent = 'Step 1 di 3: imposta la posizione';
-        return;
-    }
-
-    if (!hasResults) {
-        ui.guideStatus.textContent = appState.setupSection === 'costs'
-            ? 'Step 3 di 3: controlla i costi e poi Cerca distributori'
-            : 'Step 2 di 3: scegli filtri e passa ai costi';
-        return;
-    }
-
-    ui.guideStatus.textContent = 'Step 3 di 3: risultati aggiornati, passa a Lista per confrontare';
-}
-
-function updateDatasetInfo() {
-    ui.statusTimestamp.textContent = DATA_TIMESTAMP ? `Aggiornati ${DATA_TIMESTAMP}` : 'Dati disponibili';
-    ui.infoTimestamp.textContent = DATA_TIMESTAMP || '-';
-    ui.infoStationCount.textContent = Array.isArray(realFuelStations)
-        ? realFuelStations.length.toLocaleString('it-IT')
-        : '0';
-    ui.infoDataSource.textContent = DATA_SOURCE || 'MIMIT';
-}
-
-function updateStatusLocation(label) {
-    ui.statusLocation.innerHTML = `<i class="fas fa-location-dot" aria-hidden="true"></i>${label}`;
-}
-
-function getSelectedCalcMode() {
+/* ============ CALC ============ */
+function getCalcMode() {
     return document.querySelector('input[name="calcMode"]:checked')?.value || 'liters';
 }
 
 function updateCalcUi() {
-    const mode = getSelectedCalcMode();
-    const rawValue = parseFloat(ui.calcInput.value) || 0;
-
-    document.querySelectorAll('.mode-pill').forEach((pill) => {
-        const input = pill.querySelector('input');
-        pill.classList.toggle('is-active', input.checked);
-    });
+    const mode = getCalcMode();
+    const val = parseFloat(dom.calcInput.value) || 0;
+    const avg = getAveragePrice();
 
     if (mode === 'liters') {
-        ui.calcInputLabel.textContent = 'Quanti litri vuoi acquistare?';
-        ui.calcInputUnit.textContent = 'L';
-        ui.calcInput.min = '1';
-        ui.calcInput.step = '0.1';
-        if (!ui.calcInput.value || Number(ui.calcInput.value) <= 0) {
-            ui.calcInput.value = '55';
-        }
+        dom.calcUnit.textContent = 'L';
+        dom.calcInput.step = '0.1';
+        dom.calcSummary.textContent = `${val || 0} L`;
+        dom.calcResult.textContent = avg === null ? '≈ —' : `≈ €${(val * avg).toFixed(2)}`;
     } else {
-        ui.calcInputLabel.textContent = 'Qual e il tuo budget?';
-        ui.calcInputUnit.textContent = '€';
-        ui.calcInput.min = '1';
-        ui.calcInput.step = '1';
-        if (!ui.calcInput.value || Number(ui.calcInput.value) <= 0) {
-            ui.calcInput.value = '50';
-        }
+        dom.calcUnit.textContent = '€';
+        dom.calcInput.step = '1';
+        dom.calcSummary.textContent = `€${val || 0}`;
+        dom.calcResult.textContent = avg === null ? '≈ —' : `≈ ${(val / avg).toFixed(1)} L`;
     }
 
-    ui.calcSummaryTag.textContent = mode === 'liters' ? `${rawValue || 0}L` : `€${rawValue || 0}`;
-
-    const avgPrice = getAveragePriceForFuel(appState.selectedFuel);
-    ui.avgPriceLabel.textContent = `Prezzo medio ${appState.selectedFuel.toLowerCase()}`;
-    ui.avgPriceValue.textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
-
-    if (avgPrice === null || rawValue <= 0) {
-        ui.calcPreviewValue.textContent = 'N/D';
-        return;
-    }
-
-    if (mode === 'liters') {
-        ui.calcPreviewValue.textContent = `€${(rawValue * avgPrice).toFixed(2)}`;
-    } else {
-        ui.calcPreviewValue.textContent = `${(rawValue / avgPrice).toFixed(1)}L`;
-    }
-
-    if (appState.currentResults.length > 0) {
-        renderResults(appState.currentResults);
-    }
+    if (state.results.length > 0) renderResults();
 }
 
-function refreshFuelSelection() {
-    document.querySelectorAll('.fuel-option').forEach((option) => {
-        option.classList.toggle('is-active', option.dataset.fuel === appState.selectedFuel);
-    });
-}
-
-function getCurrentAverageScope() {
-    const selectedRadius = parseInt(ui.radiusSelect.value, 10);
-
-    if (appState.currentSearchContext?.coordinates) {
-        return {
-            coordinates: appState.currentSearchContext.coordinates,
-            radius: selectedRadius
-        };
-    }
-
-    if (appState.userLocation) {
-        return {
-            coordinates: appState.userLocation,
-            radius: selectedRadius
-        };
-    }
-
-    return null;
-}
-
-function getScopedStationsForAverages() {
-    const scope = getCurrentAverageScope();
-
-    if (!scope) {
-        return realFuelStations;
-    }
-
-    return realFuelStations.filter((station) => {
-        const distance = calculateDistance(
-            scope.coordinates.lat,
-            scope.coordinates.lng,
-            station.latitude,
-            station.longitude
-        );
-        return distance <= scope.radius;
-    });
-}
-
-function getAveragePriceForFuel(fuelType, stations = getScopedStationsForAverages()) {
-    const prices = stations
-        .map((station) => station?.prices?.[fuelType])
-        .filter((price) => Number.isFinite(price) && price > 0);
-
-    if (prices.length === 0) {
-        return null;
-    }
-
-    const total = prices.reduce((sum, price) => sum + price, 0);
-    return total / prices.length;
-}
-
-function updateFuelAverages() {
-    const scopedStations = getScopedStationsForAverages();
-    const scopeLabel = getCurrentAverageScope() ? `Entro ${ui.radiusSelect.value} km` : 'Tutte le pompe';
-
-    document.querySelectorAll('#fuelGrid .fuel-option').forEach((option) => {
-        const fuelType = option.dataset.fuel;
-        const avgPrice = getAveragePriceForFuel(fuelType, scopedStations);
-        const avgPriceElement = option.querySelector('[data-role="avg-price"]');
-        const avgScopeElement = option.querySelector('[data-role="avg-scope"]');
-
-        if (avgPriceElement) {
-            avgPriceElement.textContent = avgPrice === null ? 'N/D' : `€${avgPrice.toFixed(3)}/L`;
-        }
-
-        if (avgScopeElement) {
-            avgScopeElement.textContent = scopeLabel;
-        }
-    });
-
-    updateOnboardingAverage();
-}
-
-async function handleGpsRequest() {
+/* ============ GPS / GEOCODING ============ */
+async function useGps() {
     if (!navigator.geolocation) {
-        const message = 'La geolocalizzazione non e supportata dal browser.';
-        showInlineMessage(message, 'error');
-        return { success: false, message };
+        setWelcomeMessage('Geolocalizzazione non disponibile sul dispositivo.');
+        showToast('Geolocalizzazione non disponibile', 'error');
+        return;
     }
-
-    setLoadingState(true, 'Sto rilevando la posizione', 'Uso il GPS per trovare il tuo punto di partenza');
+    setLoading(true, 'Rilevo la tua posizione…');
+    setWelcomeMessage(null);
     try {
-        const position = await new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject, {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 300000
-            });
-        });
-
-        appState.userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
-
-        appState.map.setView([appState.userLocation.lat, appState.userLocation.lng], 13);
-
-        setLoadingState(true, 'Sto traducendo la posizione', 'Converto le coordinate GPS in un indirizzo leggibile');
-        const address = await reverseGeocode(appState.userLocation.lat, appState.userLocation.lng);
-        ui.addressInput.value = address;
-        appState.lastGpsAddress = address;
-        updateStatusLocation(address);
-        updateFuelAverages();
-        updateCalcUi();
-        syncSearchHint();
-        showInlineMessage('Posizione rilevata. Puoi cercare subito oppure rifinire i filtri.', 'info');
-        return { success: true, address };
-    } catch (error) {
-        const code = error?.code;
-        const message = code === 1
-            ? 'Accesso alla posizione negato.'
-            : code === 2
-                ? 'Posizione non disponibile.'
-                : code === 3
-                    ? 'Timeout nella richiesta posizione.'
-                    : 'Impossibile ottenere la posizione GPS.';
-        showInlineMessage(message, 'error');
-        return { success: false, message };
+        const pos = await new Promise((res, rej) =>
+            navigator.geolocation.getCurrentPosition(res, rej, { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 })
+        );
+        state.userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        const address = await reverseGeocode(state.userLocation.lat, state.userLocation.lng).catch(() => null);
+        if (address) {
+            dom.addressInput.value = address;
+            state.lastGpsAddress = address;
+        }
+        commitLocation(address || 'Posizione GPS attiva');
+        await runSearch();
+    } catch (err) {
+        const msg = err?.code === 1 ? 'Permesso negato.' : err?.code === 3 ? 'Timeout.' : 'Posizione non disponibile.';
+        setWelcomeMessage(msg);
+        showToast(msg, 'error');
     } finally {
-        setLoadingState(false);
+        setLoading(false);
     }
 }
 
-async function handleSearch(options = {}) {
-    const normalizedOptions = options instanceof Event ? {} : options;
-    const isAuto = Boolean(normalizedOptions.auto);
-    const sourceLabel = normalizedOptions.sourceLabel || 'impostazioni';
-    const address = ui.addressInput.value.trim();
-    let coordinates = null;
-
-    if (appState.autoSearchTimer) {
-        clearTimeout(appState.autoSearchTimer);
-        appState.autoSearchTimer = null;
-    }
-
-    if (!isAuto) {
-        setLoadingState(true, 'Ricerca distributori', 'Sto preparando il contesto di ricerca');
-    }
-
+async function searchByAddress(address, msgTarget) {
+    setLoading(true, 'Cerco l\'indirizzo…');
     try {
-        const isManualAddress = address && address !== appState.lastGpsAddress;
-
-        if (isManualAddress) {
-            coordinates = await geocodeAddress(address);
-            appState.userLocation = coordinates;
-            appState.lastGpsAddress = null;
-            updateStatusLocation(address);
-        } else if (address && appState.userLocation) {
-            coordinates = appState.userLocation;
-            updateStatusLocation(address);
-        } else if (address) {
-            coordinates = await geocodeAddress(address);
-            appState.userLocation = coordinates;
-            updateStatusLocation(address);
-        } else if (appState.userLocation) {
-            coordinates = appState.userLocation;
-        }
-
-        if (!coordinates) {
-            updateFlowGuide();
-            if (!isAuto) {
-                showInlineMessage('Imposta un indirizzo oppure usa il GPS prima di cercare.', 'error');
-            }
-            return;
-        }
-
-        const radius = parseInt(ui.radiusSelect.value, 10);
-        const maxResults = parseInt(ui.maxResultsSelect.value, 10);
-        appState.currentSearchContext = { coordinates, radius };
-        updateFuelAverages();
-        updateCalcUi();
-
-        if (!isAuto) {
-            setLoadingState(true, 'Ricerca distributori', `Cerco ${appState.selectedFuel} entro ${radius} km`);
-        }
-        const stations = await searchFuelStations(coordinates, radius, appState.selectedFuel);
-
-        if (stations.length === 0) {
-            appState.currentResults = [];
-            appState.sheetTab = 'setup';
-            appState.setupSection = 'basic';
-            renderMapMarkers([]);
-            renderResults([]);
-            updateFlowGuide();
-            if (appState.currentView === 'list') {
-                setView('map');
-                appState.sheetTab = 'setup';
-                appState.setupSection = 'basic';
-                setSheetExpanded(true);
-            } else {
-                setSheetExpanded(true);
-            }
-            ui.emptyState.style.display = 'block';
-            showInlineMessage(`Nessun distributore con ${appState.selectedFuel} trovato entro ${radius} km.`, 'info');
-            return;
-        }
-
-        appState.currentResults = maxResults === 100 ? stations : stations.slice(0, maxResults);
-        appState.sheetTab = 'setup';
-        appState.setupSection = 'filters';
-        renderResults(appState.currentResults);
-        renderMapMarkers(appState.currentResults);
-        updateFlowGuide();
-        if (appState.currentView === 'list') {
-            setView('list');
-        } else {
-            setSheetExpanded(false);
-        }
-        ui.emptyState.style.display = 'none';
-        if (isAuto) {
-            showInlineMessage(`Risultati aggiornati automaticamente (${sourceLabel}).`, 'info');
-        } else {
-            showInlineMessage('', 'info');
-        }
-    } catch (error) {
-        showInlineMessage(`Errore durante la ricerca: ${error.message}`, 'error');
+        const coords = await geocodeAddress(address);
+        state.userLocation = coords;
+        state.lastGpsAddress = null;
+        if (msgTarget) setWelcomeMessage(null);
+        commitLocation(address);
+        await runSearch();
+    } catch {
+        const msg = 'Indirizzo non trovato. Riprova.';
+        if (msgTarget) setWelcomeMessage(msg);
+        showToast(msg, 'error');
     } finally {
-        if (!isAuto) {
-            setLoadingState(false);
-        }
+        setLoading(false);
     }
 }
 
-function renderResults(stations) {
-    ui.listContainer.innerHTML = '';
+function commitLocation(label) {
+    setHasLocation(true);
+    dom.locationChipText.textContent = label;
+}
 
-    if (stations.length === 0) {
-        ui.resultsHeadline.textContent = 'Nessun risultato disponibile';
-        updateResultsSummary();
-        updateFlowGuide();
+async function geocodeAddress(address) {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address + ', Italy')}&limit=1`;
+    const r = await fetch(url);
+    const data = await r.json();
+    if (!Array.isArray(data) || data.length === 0) throw new Error('not found');
+    return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+}
+
+async function reverseGeocode(lat, lng) {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
+    const r = await fetch(url);
+    const data = await r.json();
+    if (!data?.display_name) return `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+    const a = data.address || {};
+    const parts = [];
+    if (a.road) parts.push(a.road + (a.house_number ? ' ' + a.house_number : ''));
+    if (a.city || a.town || a.village) parts.push(a.city || a.town || a.village);
+    if (a.province) parts.push(a.province);
+    return parts.join(', ') || data.display_name.split(',').slice(0, 3).join(',');
+}
+
+/* ============ SEARCH ============ */
+function queueAutoSearch() {
+    if (state.autoSearchTimer) clearTimeout(state.autoSearchTimer);
+    state.autoSearchTimer = setTimeout(() => { state.autoSearchTimer = null; runSearch({ auto: true }); }, 350);
+}
+
+async function handleSearch() {
+    const addr = dom.addressInput.value.trim();
+    if (!state.userLocation && !addr) {
+        showToast('Inserisci un indirizzo o usa il GPS', 'error');
+        openFilters();
+        return;
+    }
+    setLoading(true, 'Cerco distributori…');
+    try {
+        if (addr && addr !== state.lastGpsAddress) {
+            const coords = await geocodeAddress(addr);
+            state.userLocation = coords;
+            state.lastGpsAddress = null;
+            commitLocation(addr);
+        } else if (state.userLocation && !dom.locationChip.hidden) {
+            // ok
+        } else if (state.userLocation) {
+            commitLocation(addr || 'Posizione GPS attiva');
+        }
+        await runSearch();
+    } catch {
+        showToast('Indirizzo non trovato', 'error');
+    } finally {
+        setLoading(false);
+    }
+}
+
+async function runSearch({ auto = false } = {}) {
+    if (!state.userLocation) return;
+
+    const radius = Number(dom.radiusRange.value);
+    const maxResults = Number(dom.maxResultsRange.value);
+    state.searchContext = { coordinates: state.userLocation, radius };
+
+    const stations = findStations(state.userLocation, radius, state.selectedFuel);
+    state.results = maxResults >= 100 ? stations : stations.slice(0, maxResults);
+
+    updateFuelAverageLabel();
+    updateCalcUi();
+    renderMarkers();
+    renderResults();
+
+    if (state.results.length === 0) {
+        showToast(`Nessun distributore con ${state.selectedFuel} entro ${radius} km`, 'info');
+    } else if (auto) {
+        // silenzioso
+    } else {
+        showToast(`${state.results.length} distributori trovati`, 'success', 1800);
+    }
+}
+
+function findStations(center, radius, fuel) {
+    return realFuelStations
+        .filter((s) => {
+            const d = haversine(center.lat, center.lng, s.latitude, s.longitude);
+            return d <= radius && Number.isFinite(s?.prices?.[fuel]);
+        })
+        .map((s) => ({
+            id: s.id,
+            name: s.name,
+            brand: s.brand,
+            address: s.address,
+            lat: s.latitude,
+            lng: s.longitude,
+            fuel,
+            price: parseFloat(s.prices[fuel].toFixed(3)),
+            distance: haversine(center.lat, center.lng, s.latitude, s.longitude)
+        }))
+        .sort((a, b) => a.price - b.price);
+}
+
+/* ============ RENDER ============ */
+function renderResults() {
+    if (state.results.length === 0) {
+        dom.listHeadline.textContent = 'Nessun risultato';
+        dom.listSubline.textContent = state.userLocation
+            ? `Nessun distributore con ${state.selectedFuel} nel raggio scelto`
+            : 'Imposta una posizione per iniziare';
+        dom.listContainer.innerHTML = `
+            <div class="list-empty">
+                <i class="fas fa-magnifying-glass"></i>
+                <p>${state.userLocation ? 'Prova ad aumentare il raggio di ricerca.' : 'Usa il GPS o inserisci un indirizzo.'}</p>
+            </div>`;
         return;
     }
 
-    const stationsWithCosts = calculateCosts(stations);
-    appState.currentResults = stationsWithCosts;
-    const bestPrice = Math.min(...stationsWithCosts.map((station) => station.price));
+    const withCosts = computeCosts(state.results);
+    const bestPrice = Math.min(...withCosts.map((s) => s.price));
 
-    stationsWithCosts.forEach((station) => {
-        const card = document.createElement('article');
-        const isBest = Math.abs(station.price - bestPrice) < 0.001;
-        card.className = `station-card ${isBest ? 'best' : ''}`;
-        card.dataset.stationId = String(station.id);
+    dom.listHeadline.textContent = `${withCosts.length} distributori`;
+    dom.listSubline.textContent = `${state.selectedFuel} · ${dom.radiusRange.value} km`;
 
-        const costMarkup = station.costInfo
-            ? `<div class="cost-chip ${station.costInfo.isBest ? 'best' : ''}">${station.costInfo.display}</div>`
-            : '';
-
-        card.innerHTML = `
-            <div class="station-main">
-                <div class="station-topline">
-                    <span class="station-name">${escapeHtml(station.name)}</span>
-                    <span class="station-brand">${escapeHtml(station.brand || 'Indipendente')}</span>
+    dom.listContainer.innerHTML = withCosts.map((s) => {
+        const isBest = Math.abs(s.price - bestPrice) < 0.001;
+        return `
+            <article class="station-card ${isBest ? 'best' : ''}" data-id="${s.id}">
+                <div>
+                    <span class="station-name">${esc(s.name)}</span>
+                    <span class="station-brand">${esc(s.brand || 'Indipendente')}</span>
+                    <div class="station-address">${esc(s.address)}</div>
+                    <div class="station-meta">
+                        <span class="meta-chip"><i class="fas fa-route"></i> ${s.distance.toFixed(1)} km</span>
+                        <span class="meta-chip"><i class="fas fa-gas-pump"></i> ${esc(s.fuel)}</span>
+                        ${isBest ? '<span class="meta-chip best"><i class="fas fa-award"></i> Migliore</span>' : ''}
+                    </div>
                 </div>
-                <div class="station-address">${escapeHtml(station.address)}</div>
-                <div class="station-meta">
-                    <span class="meta-chip"><i class="fas fa-route" aria-hidden="true"></i>${station.distance.toFixed(1)} km</span>
-                    <span class="meta-chip"><i class="fas fa-gas-pump" aria-hidden="true"></i>${escapeHtml(station.fuel)}</span>
-                    ${isBest ? '<span class="meta-chip"><i class="fas fa-award" aria-hidden="true"></i>Miglior prezzo</span>' : ''}
+                <div class="station-side">
+                    <div class="price-tag">
+                        <strong>€${s.price.toFixed(3)}</strong>
+                        <span>al litro</span>
+                    </div>
+                    ${s.costInfo ? `<div class="cost-chip ${s.costInfo.isBest ? 'best' : ''}">${s.costInfo.display}</div>` : ''}
+                    <button class="directions-btn" type="button" data-role="directions" data-id="${s.id}">
+                        <i class="fas fa-diamond-turn-right"></i> Indicazioni
+                    </button>
                 </div>
-            </div>
-            <div class="station-side">
-                <div class="price-tag">
-                    <strong>€${station.price.toFixed(3)}</strong>
-                    <span>al litro</span>
-                </div>
-                ${costMarkup}
-                <button class="direction-button" type="button" data-role="directions" data-station-id="${station.id}">Indicazioni</button>
-            </div>
-        `;
-        ui.listContainer.appendChild(card);
-    });
-
-    ui.resultsHeadline.textContent = `${stationsWithCosts.length} distributori trovati`;
-    updateResultsSummary();
-    updateFlowGuide();
+            </article>`;
+    }).join('');
 }
 
-function updateResultsSummary() {
-    ui.resultsSummaryChips.innerHTML = '';
-
-    if (appState.currentResults.length === 0) {
-        ui.resultsHeadline.textContent = 'Nessuna ricerca eseguita';
-        return;
-    }
-
-    const chips = [
-        appState.selectedFuel,
-        `${ui.radiusSelect.value} km`
-    ];
-
-    if (appState.currentView !== 'list') {
-        chips.push(`${appState.currentResults.length} risultati`);
-    }
-
-    chips.forEach((label) => {
-        const chip = document.createElement('span');
-        chip.className = 'status-chip';
-        chip.textContent = label;
-        ui.resultsSummaryChips.appendChild(chip);
-    });
-}
-
-function calculateCosts(stations) {
-    const mode = getSelectedCalcMode();
-    const calcValue = parseFloat(ui.calcInput.value) || 0;
-    if (calcValue <= 0 || stations.length === 0) {
-        return stations.map((station) => ({ ...station, costInfo: null }));
-    }
-
-    const bestPrice = Math.min(...stations.map((station) => station.price));
-
-    return stations.map((station) => {
-        const isBest = Math.abs(station.price - bestPrice) < 0.001;
+function computeCosts(stations) {
+    const mode = getCalcMode();
+    const v = parseFloat(dom.calcInput.value) || 0;
+    if (v <= 0) return stations.map((s) => ({ ...s, costInfo: null }));
+    const best = Math.min(...stations.map((s) => s.price));
+    return stations.map((s) => {
+        const isBest = Math.abs(s.price - best) < 0.001;
         if (mode === 'liters') {
-            const totalCost = station.price * calcValue;
-            const extraCost = Math.max(0, (station.price - bestPrice) * calcValue);
-            return {
-                ...station,
-                costInfo: {
-                    isBest,
-                    display: isBest ? `€${totalCost.toFixed(2)}` : `+€${extraCost.toFixed(2)}`
-                }
-            };
+            const tot = s.price * v;
+            const extra = Math.max(0, (s.price - best) * v);
+            return { ...s, costInfo: { isBest, display: isBest ? `€${tot.toFixed(2)}` : `+€${extra.toFixed(2)}` } };
         }
-
-        const liters = calcValue / station.price;
-        const bestLiters = calcValue / bestPrice;
-        const lessLiters = Math.max(0, bestLiters - liters);
-        return {
-            ...station,
-            costInfo: {
-                isBest,
-                display: isBest ? `${liters.toFixed(1)}L` : `-${lessLiters.toFixed(1)}L`
-            }
-        };
+        const liters = v / s.price;
+        const bestLiters = v / best;
+        const less = Math.max(0, bestLiters - liters);
+        return { ...s, costInfo: { isBest, display: isBest ? `${liters.toFixed(1)} L` : `-${less.toFixed(1)} L` } };
     });
 }
 
-function renderMapMarkers(stations) {
-    appState.markersLayer.clearLayers();
+function renderMarkers() {
+    state.markersLayer.clearLayers();
 
-    if (appState.userLocation) {
+    if (state.userLocation) {
         const userIcon = L.divIcon({
             className: 'user-location-icon',
             html: '<div class="user-pin"></div>',
             iconSize: [18, 18],
             iconAnchor: [9, 9]
         });
-
-        L.marker([appState.userLocation.lat, appState.userLocation.lng], { icon: userIcon })
-            .bindPopup('<div class="popup-card"><strong>La tua posizione</strong><span>Punto di partenza attuale</span></div>')
-            .addTo(appState.markersLayer);
+        L.marker([state.userLocation.lat, state.userLocation.lng], { icon: userIcon })
+            .bindPopup('<div class="popup-card"><strong>La tua posizione</strong></div>')
+            .addTo(state.markersLayer);
     }
 
-    if (stations.length === 0) {
+    if (state.results.length === 0) {
+        if (state.userLocation) state.map.setView([state.userLocation.lat, state.userLocation.lng], 13);
         return;
     }
 
-    const bestPrice = Math.min(...stations.map((station) => station.price));
+    const best = Math.min(...state.results.map((s) => s.price));
     const bounds = [];
 
-    stations.forEach((station) => {
-        const isBest = Math.abs(station.price - bestPrice) < 0.001;
-        const stationIcon = L.divIcon({
+    state.results.forEach((s) => {
+        const isBest = Math.abs(s.price - best) < 0.001;
+        const icon = L.divIcon({
             className: 'station-location-icon',
             html: `<div class="station-pin ${isBest ? 'best' : ''}"></div>`,
             iconSize: [18, 18],
             iconAnchor: [9, 9]
         });
-
-        const marker = L.marker([station.lat, station.lng], {
-            icon: stationIcon,
-            zIndexOffset: isBest ? 1200 : 0
-        })
+        const marker = L.marker([s.lat, s.lng], { icon, zIndexOffset: isBest ? 1000 : 0 })
             .bindPopup(`
                 <div class="popup-card">
-                    <strong>${escapeHtml(station.name)}</strong>
-                    <span>${escapeHtml(station.brand || 'Indipendente')}</span>
-                    <span class="popup-price">€${station.price.toFixed(3)}/L</span>
-                    <span>${station.distance.toFixed(1)} km</span>
-                    ${isBest ? '<span><i class="fas fa-award" aria-hidden="true"></i> Miglior prezzo in area</span>' : ''}
+                    <strong>${esc(s.name)}</strong>
+                    <span>${esc(s.brand || 'Indipendente')}</span>
+                    <span class="popup-price">€${s.price.toFixed(3)}/L</span>
+                    <span>${s.distance.toFixed(1)} km</span>
+                    ${isBest ? '<span class="popup-best">Miglior prezzo</span>' : ''}
                 </div>
             `)
-            .addTo(appState.markersLayer);
-
-        marker.stationId = station.id;
-        bounds.push([station.lat, station.lng]);
+            .addTo(state.markersLayer);
+        marker.stationId = s.id;
+        bounds.push([s.lat, s.lng]);
     });
 
-    if (appState.userLocation) {
-        bounds.push([appState.userLocation.lat, appState.userLocation.lng]);
-    }
-
-    if (bounds.length > 0) {
-        appState.map.fitBounds(bounds, { padding: [56, 56] });
-    }
+    if (state.userLocation) bounds.push([state.userLocation.lat, state.userLocation.lng]);
+    if (bounds.length > 0) state.map.fitBounds(bounds, { padding: [48, 48] });
 }
 
 function focusStationOnMap(station) {
-    setView('map');
-    appState.sheetTab = 'setup';
-    updateSheetPresentation();
-    appState.map.setView([station.lat, station.lng], 16);
-
-    appState.markersLayer.eachLayer((layer) => {
-        if (layer instanceof L.Marker) {
-            const latLng = layer.getLatLng();
-            if (Math.abs(latLng.lat - station.lat) < 0.0001 && Math.abs(latLng.lng - station.lng) < 0.0001) {
-                layer.openPopup();
-            }
-        }
+    state.map.setView([station.lat, station.lng], 16);
+    state.markersLayer.eachLayer((layer) => {
+        if (layer.stationId === station.id) layer.openPopup();
     });
 }
 
-function openDirections(station) {
-    const userAddress = ui.addressInput.value.trim();
+function openDirections(s) {
+    const addr = dom.addressInput.value.trim();
     let origin = '';
+    if (addr) origin = encodeURIComponent(addr);
+    else if (state.userLocation) origin = `${state.userLocation.lat},${state.userLocation.lng}`;
 
-    if (userAddress) {
-        origin = encodeURIComponent(userAddress);
-    } else if (appState.userLocation) {
-        origin = `${appState.userLocation.lat},${appState.userLocation.lng}`;
-    } else {
-        const destinationOnly = `https://www.google.com/maps/search/?api=1&query=${station.lat},${station.lng}`;
-        window.open(destinationOnly, '_blank', 'noopener');
-        return;
-    }
-
-    const destination = `${station.lat},${station.lng}`;
-    const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+    const dest = `${s.lat},${s.lng}`;
+    const url = origin
+        ? `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&travelmode=driving`
+        : `https://www.google.com/maps/search/?api=1&query=${dest}`;
     window.open(url, '_blank', 'noopener');
 }
 
-function showInlineMessage(message, type = 'info') {
-    if (!message) {
-        ui.inlineMessage.textContent = '';
-        ui.inlineMessage.className = 'inline-message is-hidden';
-        return;
-    }
-
-    ui.inlineMessage.textContent = message;
-    ui.inlineMessage.className = `inline-message ${type}`;
-}
-
-async function geocodeAddress(address) {
-    const encodedAddress = encodeURIComponent(`${address}, Italy`);
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}&limit=1`);
-    const data = await response.json();
-
-    if (!Array.isArray(data) || data.length === 0) {
-        throw new Error('Indirizzo non trovato');
-    }
-
-    return {
-        lat: parseFloat(data[0].lat),
-        lng: parseFloat(data[0].lon)
-    };
-}
-
-async function reverseGeocode(lat, lng) {
-    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
-    const data = await response.json();
-    if (!data.display_name) {
-        return `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-    }
-
-    const address = data.address || {};
-    const parts = [];
-    if (address.road) parts.push(address.road);
-    if (address.house_number && parts.length > 0) parts[parts.length - 1] += ` ${address.house_number}`;
-    if (address.city || address.town || address.village) parts.push(address.city || address.town || address.village);
-    if (address.province) parts.push(address.province);
-    return parts.join(', ') || data.display_name.split(',').slice(0, 3).join(',');
-}
-
-async function searchFuelStations(coordinates, radius, fuelType) {
-    return realFuelStations
-        .filter((station) => {
-            const distance = calculateDistance(
-                coordinates.lat,
-                coordinates.lng,
-                station.latitude,
-                station.longitude
-            );
-            return distance <= radius && Number.isFinite(station?.prices?.[fuelType]);
-        })
-        .map((station) => ({
-            id: station.id,
-            name: station.name,
-            brand: station.brand,
-            address: station.address,
-            lat: station.latitude,
-            lng: station.longitude,
-            price: parseFloat(station.prices[fuelType].toFixed(3)),
-            fuel: fuelType,
-            distance: calculateDistance(
-                coordinates.lat,
-                coordinates.lng,
-                station.latitude,
-                station.longitude
-            )
-        }))
-        .sort((a, b) => a.price - b.price);
-}
-
-function calculateDistance(lat1, lng1, lat2, lng2) {
-    const earthRadius = 6371;
+/* ============ UTILS ============ */
+function haversine(lat1, lng1, lat2, lng2) {
+    const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLng = (lng2 - lng1) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    const a = Math.sin(dLat / 2) ** 2 +
         Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-        Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return earthRadius * c;
+        Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-function escapeHtml(value) {
-    return String(value)
+function esc(v) {
+    return String(v ?? '')
         .replaceAll('&', '&amp;')
         .replaceAll('<', '&lt;')
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#39;');
 }
-
