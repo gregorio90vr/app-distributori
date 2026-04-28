@@ -192,6 +192,18 @@
                 <div><strong id="infoDataSource">MIMIT</strong><small>fonte</small></div>
             </div>
             <p class="info-tip">Suggerimento: cambia carburante in alto e i risultati si aggiornano automaticamente.</p>
+            <div class="info-legal">
+                <p><strong>Disclaimer</strong></p>
+                <p>I prezzi sono comunicati dai gestori al MIMIT e potrebbero non essere aggiornati in tempo reale. Questa applicazione è fornita <em>a solo scopo informativo</em>. L'autore non si assume alcuna responsabilità per errori, omissioni o decisioni basate su questi dati. Verificare sempre il prezzo indicato presso il distributore.</p>
+                <p><strong>Licenze</strong></p>
+                <p>
+                    Dati: <a href="https://www.dati.gov.it/content/italian-open-data-license-v20" target="_blank" rel="noopener noreferrer">IODL 2.0</a> &mdash;
+                    Fonte: <a href="https://www.mise.gov.it" target="_blank" rel="noopener noreferrer">MIMIT</a><br>
+                    Software: <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a><br>
+                    Mappe: &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> / <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>
+                </p>
+                <p class="info-compat-note">MIT (codice) e IODL 2.0 (dati) sono licenze distinte e compatibili: coprono oggetti diversi e non si contraddicono.</p>
+            </div>
         </div>
     </div>
 
@@ -203,6 +215,24 @@
 
     <!-- TOAST -->
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- DISCLAIMER LEGALE -->
+    <footer class="legal-footer" role="contentinfo">
+        <p class="legal-text">
+            <strong>Solo a scopo informativo.</strong>
+            I prezzi mostrati derivano dai dati comunicati dai gestori al
+            <a href="https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti" target="_blank" rel="noopener noreferrer">MIMIT</a>
+            e potrebbero non rispecchiare la situazione attuale al momento della consultazione.
+            L'autore declina ogni responsabilità per imprecisioni, omissioni o variazioni di prezzo successive all'aggiornamento.
+            Verificare sempre il prezzo esposto al distributore prima di effettuare il rifornimento.
+        </p>
+        <p class="legal-attrib">
+            Dati: <a href="https://www.mise.gov.it" target="_blank" rel="noopener noreferrer">MIMIT</a>
+            &mdash; <a href="https://www.dati.gov.it/content/italian-open-data-license-v20" target="_blank" rel="noopener noreferrer">Italian Open Data License v2.0 (IODL 2.0)</a>
+            &mdash; Mappe: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> / <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>
+            &mdash; Software: <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>
+        </p>
+    </footer>
 
     <script src="data.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
