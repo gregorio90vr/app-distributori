@@ -3,409 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f766e">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>FuelExplorer Flow</title>
+    <title>FuelExplorer · Distributori convenienti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- ONBOARDING: DUE STEP CONSECUTIVI -->
-    <div id="appOnboarding" class="onboarding-layer" aria-hidden="false">
-        <div class="onboarding-gradient" aria-hidden="true"></div>
+<body data-view="map" data-has-location="false">
 
-        <!-- STEP 1: SELEZIONE CARBURANTE -->
-        <div class="onboarding-step is-active" id="onboardingStep1">
-            <div class="onboarding-step-inner">
-                <div class="onboarding-header">
-                    <div class="splash-brand-inline">
-                        <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                        <span>FuelExplorer</span>
-                    </div>
-                    <div class="onboarding-progress" aria-label="Progresso configurazione">
-                        <span class="progress-dot is-active"></span>
-                        <span class="progress-dot"></span>
-                    </div>
-                </div>
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-mark"><i class="fas fa-gas-pump" aria-hidden="true"></i></span>
+            <span class="brand-name">FuelExplorer</span>
+        </div>
 
-                <div class="onboarding-step-content">
-                    <div class="onboarding-intro">
-                        <h1>Che carburante cerchi?</h1>
-                        <p>Sceglilo per vedere le medie aggiornate</p>
-                    </div>
+        <div class="view-toggle" role="tablist" aria-label="Visualizzazione">
+            <button id="viewMapBtn" class="view-btn is-active" type="button" role="tab" aria-selected="true">
+                <i class="fas fa-map-location-dot" aria-hidden="true"></i><span>Mappa</span>
+            </button>
+            <button id="viewListBtn" class="view-btn" type="button" role="tab" aria-selected="false">
+                <i class="fas fa-list-ul" aria-hidden="true"></i><span>Lista</span>
+            </button>
+        </div>
 
-                    <div class="onboarding-section">
-                        <div class="onboarding-fuel-grid" role="list" aria-label="Scelta carburante">
-                            <button class="fuel-option is-active" type="button" data-fuel="Benzina">
-                                <span class="fuel-badge benzina">
-                                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                                </span>
-                                <span>Benzina</span>
-                            </button>
-                            <button class="fuel-option" type="button" data-fuel="Gasolio">
-                                <span class="fuel-badge gasolio">
-                                    <i class="fas fa-truck" aria-hidden="true"></i>
-                                </span>
-                                <span>Gasolio</span>
-                            </button>
-                            <button class="fuel-option" type="button" data-fuel="GPL">
-                                <span class="fuel-badge gpl">
-                                    <i class="fas fa-fire" aria-hidden="true"></i>
-                                </span>
-                                <span>GPL</span>
-                            </button>
-                            <button class="fuel-option" type="button" data-fuel="Metano">
-                                <span class="fuel-badge metano">
-                                    <i class="fas fa-wind" aria-hidden="true"></i>
-                                </span>
-                                <span>Metano</span>
-                            </button>
-                        </div>
-                        <div class="fuel-preview">
-                            <small>Media nazionale: <strong data-role="avg-price">—</strong></small>
-                        </div>
-                    </div>
-                </div>
+        <div class="topbar-actions">
+            <button id="openFiltersBtn" class="icon-btn" type="button" aria-label="Apri filtri">
+                <i class="fas fa-sliders" aria-hidden="true"></i>
+                <span class="icon-btn-label">Filtri</span>
+            </button>
+            <button id="infoBtn" class="icon-btn ghost" type="button" aria-label="Informazioni">
+                <i class="fas fa-circle-info" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
 
-                <div class="onboarding-step-footer">
-                    <button id="fuelNextBtn" class="intro-primary-button full-width" type="button">
-                        Avanti <i class="fas fa-arrow-right" aria-hidden="true"></i>
+    <!-- FUEL BAR (sempre visibile) -->
+    <nav class="fuel-bar" aria-label="Tipo di carburante">
+        <div id="fuelPills" class="fuel-pills" role="tablist"></div>
+        <div class="fuel-bar-meta">
+            <span id="fuelAvg" class="fuel-avg">Media: —</span>
+            <span id="dataTimestamp" class="data-timestamp">Caricamento dati…</span>
+        </div>
+    </nav>
+
+    <!-- CONTAINER PRINCIPALE -->
+    <main class="main">
+
+        <!-- BANNER BENVENUTO (compatto, sopra la mappa, chiudibile dopo prima posizione) -->
+        <div id="welcomeBanner" class="welcome-banner" role="region" aria-label="Imposta posizione">
+            <div class="welcome-content">
+                <p class="welcome-title">Dove cerchiamo il distributore?</p>
+                <div class="welcome-actions">
+                    <button id="welcomeGpsBtn" class="btn btn-primary" type="button">
+                        <i class="fas fa-location-crosshairs" aria-hidden="true"></i> Usa la mia posizione
                     </button>
-                    <p class="step-indicator">Passaggio 1 di 2</p>
+                    <div class="welcome-or">oppure</div>
+                    <form id="welcomeAddressForm" class="welcome-address">
+                        <input id="welcomeAddressInput" type="text" placeholder="Indirizzo o città" autocomplete="street-address">
+                        <button type="submit" class="btn btn-ghost" aria-label="Cerca indirizzo">
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </div>
+                <p id="welcomeMessage" class="welcome-message" hidden></p>
             </div>
         </div>
 
-        <!-- STEP 2: SELEZIONE POSIZIONE -->
-        <div class="onboarding-step" id="onboardingStep2">
-            <div class="onboarding-step-inner">
-                <div class="onboarding-header">
-                    <button id="locationBackBtn" class="onboarding-back-btn" type="button">
-                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        <span>Indietro</span>
+        <!-- MAPPA -->
+        <section class="map-wrap" aria-label="Mappa distributori">
+            <div id="map" class="map"></div>
+
+            <!-- Chip stato (sopra la mappa, basso) -->
+            <div id="locationChip" class="location-chip" hidden>
+                <i class="fas fa-location-dot" aria-hidden="true"></i>
+                <span id="locationChipText">—</span>
+                <button id="changeLocationBtn" type="button" class="link-btn">Cambia</button>
+            </div>
+
+            <!-- FAB Filtri (mobile) -->
+            <button id="fabFilters" class="fab-filters" type="button">
+                <i class="fas fa-sliders" aria-hidden="true"></i>
+                <span>Filtri</span>
+            </button>
+        </section>
+
+        <!-- LISTA -->
+        <section class="list-wrap" aria-label="Lista risultati">
+            <div class="list-toolbar">
+                <div class="list-toolbar-text">
+                    <strong id="listHeadline">Nessun risultato</strong>
+                    <small id="listSubline">Imposta una posizione per iniziare</small>
+                </div>
+                <div class="list-toolbar-actions">
+                    <button class="btn btn-ghost btn-sm" type="button" data-go-map>
+                        <i class="fas fa-map" aria-hidden="true"></i> Mappa
                     </button>
-                    <div class="onboarding-progress" aria-label="Progresso configurazione">
-                        <span class="progress-dot"></span>
-                        <span class="progress-dot is-active"></span>
-                    </div>
-                </div>
-
-                <div class="onboarding-step-content">
-                    <div class="onboarding-intro">
-                        <h1>Dove cerchiamo?</h1>
-                        <p>Scegli come impostare la tua area di ricerca</p>
-                    </div>
-
-                    <div class="onboarding-section">
-                        <div class="location-grid">
-                            <div class="location-panel">
-                                <button id="grantPermissionBtn" class="location-action primary" type="button">
-                                    <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                                    <span>Usa la mia posizione</span>
-                                </button>
-                                <small>Consigliato: usa il GPS del dispositivo</small>
-                            </div>
-                            <div class="location-panel">
-                                <div class="location-input-wrapper">
-                                    <input id="onboardingAddressInput" class="text-input" type="text" placeholder="Es: Via Roma 1, Milano" aria-label="Indirizzo ricerca">
-                                    <button id="onboardingAddressBtn" class="btn-compact" type="button">Cerca</button>
-                                </div>
-                                <small>Oppure inserisci un indirizzo</small>
-                            </div>
-                        </div>
-                        <div id="locationMessage" class="location-message" hidden role="alert"></div>
-                    </div>
-                </div>
-
-                <div class="onboarding-step-footer">
-                    <p class="step-indicator">Passaggio 2 di 2</p>
+                    <button class="btn btn-ghost btn-sm" type="button" data-open-filters>
+                        <i class="fas fa-sliders" aria-hidden="true"></i> Filtri
+                    </button>
                 </div>
             </div>
+            <div id="listContainer" class="list-container"></div>
+        </section>
+    </main>
+
+    <!-- BOTTOM SHEET FILTRI (drawer laterale su desktop) -->
+    <aside id="filtersPanel" class="filters-panel" aria-hidden="true" aria-label="Filtri ricerca">
+        <div class="filters-header">
+            <h2>Filtri</h2>
+            <button id="closeFiltersBtn" class="icon-btn ghost" type="button" aria-label="Chiudi filtri">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
         </div>
-    </div>
 
-    <!-- APP SHELL PRINCIPALE (originale da version3.0) -->
-    <div class="app-shell" data-view="map">
-        <header class="topbar">
-            <div class="brand-lockup">
-                <div class="brand-mark">
-                    <i class="fas fa-gas-pump" aria-hidden="true"></i>
-                </div>
-                <div>
-                    <p class="eyebrow">FuelExplorer</p>
-                    <h1>Trova il distributore giusto, senza attriti</h1>
-                </div>
-            </div>
-            <div class="topbar-actions">
-                <div class="view-switch" role="tablist" aria-label="Visualizzazione risultati">
-                    <button id="viewMapBtn" class="view-pill is-active" type="button" data-view="map">Mappa</button>
-                    <button id="viewListBtn" class="view-pill" type="button" data-view="list">Lista</button>
-                </div>
-                <button id="openSetupBtn" class="icon-button" type="button" aria-label="Apri menu parametri">
-                    <i class="fas fa-sliders" aria-hidden="true"></i>
-                </button>
-                <button id="infoToggleBtn" class="icon-button" type="button" aria-label="Informazioni app">
-                    <i class="fas fa-circle-info" aria-hidden="true"></i>
-                </button>
-            </div>
-        </header>
-
-        <main class="workspace">
-            <section class="hero-stage">
-                <div id="map" class="map-canvas" aria-label="Mappa distributori"></div>
-
-                <div class="stage-overlay">
-                    <div class="status-ribbon">
-                        <span id="statusLocation" class="status-chip">
-                            <i class="fas fa-location-dot" aria-hidden="true"></i>
-                            Posizione da impostare
-                        </span>
-                        <span id="statusTimestamp" class="status-chip subdued">Caricamento dati...</span>
-                    </div>
-
-                    <div id="emptyState" class="hero-card">
-                        <div class="hero-copy">
-                            <p class="eyebrow">Flusso Unificato</p>
-                            <h2>Imposta contesto, avvia la ricerca, confronta subito.</h2>
-                            <p>Posizione, filtri e stima costi sono nello stesso spazio operativo. Nessun pannello separato da inseguire.</p>
-                        </div>
-                        <div class="hero-actions">
-                            <button id="heroGpsBtn" class="primary-inline" type="button">
-                                <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                                Usa la mia posizione
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <aside id="controlSheet" class="control-sheet is-peek" aria-label="Controlli ricerca e risultati">
-                <button id="sheetHandleBtn" class="sheet-handle" type="button" aria-label="Espandi pannello controlli"></button>
-
-                <div class="sheet-header">
-                    <div>
-                        <h2 id="sheetTitle">Imposta la ricerca</h2>
-                    </div>
-                    <button id="collapseSheetBtn" class="icon-button subtle" type="button" aria-label="Chiudi impostazioni">
-                        <i class="fas fa-times setup-close-icon" aria-hidden="true"></i>
+        <div class="filters-body">
+            <div class="field">
+                <label class="field-label" for="addressInput">Posizione</label>
+                <div class="field-row">
+                    <input id="addressInput" type="text" placeholder="Indirizzo o città" autocomplete="street-address">
+                    <button id="gpsBtn" class="icon-btn" type="button" aria-label="Usa GPS">
+                        <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
                     </button>
                 </div>
+            </div>
 
-                <div id="guideStatus" class="guide-status" aria-live="polite">Step 1 di 3: imposta la posizione</div>
+            <div class="field">
+                <label class="field-label" for="radiusRange">
+                    Raggio di ricerca · <strong id="radiusValue">5 km</strong>
+                </label>
+                <input id="radiusRange" type="range" min="1" max="30" step="1" value="5">
+                <div class="range-marks"><span>1</span><span>15</span><span>30 km</span></div>
+            </div>
 
-                <section class="setup-panel">
-                    <div class="setup-subtabs" role="tablist" aria-label="Dettaglio specifiche">
-                        <button id="setupBasicTabBtn" class="setup-subtab is-active" type="button" role="tab" aria-selected="true">1. Posizione</button>
-                        <button id="setupFiltersTabBtn" class="setup-subtab" type="button" role="tab" aria-selected="false">2. Filtri</button>
-                        <button id="setupCostsTabBtn" class="setup-subtab" type="button" role="tab" aria-selected="false">3. Costi</button>
+            <div class="field">
+                <label class="field-label" for="maxResultsRange">
+                    Numero risultati · <strong id="maxResultsValue">10</strong>
+                </label>
+                <input id="maxResultsRange" type="range" min="5" max="100" step="5" value="10">
+                <div class="range-marks"><span>5</span><span>50</span><span>Tutti</span></div>
+            </div>
+
+            <details id="calcSection" class="calc-section">
+                <summary>
+                    <span><i class="fas fa-calculator" aria-hidden="true"></i> Calcolatore costi</span>
+                    <span class="calc-summary" id="calcSummary">55 L</span>
+                </summary>
+                <div class="calc-body">
+                    <div class="calc-mode" role="radiogroup" aria-label="Modalità">
+                        <label><input type="radio" name="calcMode" value="liters" checked> Litri → Costo</label>
+                        <label><input type="radio" name="calcMode" value="budget"> Budget → Litri</label>
                     </div>
-
-                    <section id="basicSetupSection" class="setup-subsection">
-                        <div class="section-head">
-                            <div>
-                                <h3>1. Posizione</h3>
-                                <p>Usa GPS oppure inserisci un indirizzo manualmente.</p>
-                            </div>
-                            <button id="gpsBtn" class="ghost-action" type="button">
-                                <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
-                                GPS
-                            </button>
-                        </div>
-
-                        <div class="address-box">
-                            <label class="field-label" for="addressInput">Indirizzo di partenza</label>
-                            <div class="address-input-row">
-                                <input id="addressInput" class="text-input" type="text" placeholder="Via Roma 1, Milano">
-                                <button id="addressSearchBtn" class="icon-button accent" type="button" aria-label="Usa questo indirizzo">
-                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="filtersSetupSection" class="setup-subsection" hidden>
-                        <div class="section-head tight">
-                            <div>
-                                <h3>2. Filtri</h3>
-                                <p>Le medie mostrate sono reali e aggiornate sul contesto attivo.</p>
-                            </div>
-                        </div>
-
-                        <div id="fuelGrid" class="fuel-grid" role="list"></div>
-
-                        <div class="control-grid">
-                            <div class="control-card">
-                                <label class="field-label" for="radiusSelect">Raggio</label>
-                                <select id="radiusSelect" class="select-input legacy-select">
-                                    <option value="1">1 km</option>
-                                    <option value="2">2 km</option>
-                                    <option value="5" selected>5 km</option>
-                                    <option value="10">10 km</option>
-                                    <option value="15">15 km</option>
-                                    <option value="20">20 km</option>
-                                    <option value="30">30 km</option>
-                                </select>
-                                <div class="radius-mobile-control" aria-hidden="true">
-                                    <div class="radius-mobile-head">
-                                        <span>Area di ricerca</span>
-                                        <strong id="radiusRangeValue">5 km</strong>
-                                    </div>
-                                    <input id="radiusRange" class="radius-range" type="range" min="1" max="30" step="1" value="5">
-                                </div>
-                            </div>
-                            <div class="control-card">
-                                <label class="field-label" for="maxResultsSelect">Risultati</label>
-                                <select id="maxResultsSelect" class="select-input legacy-select">
-                                    <option value="5">5</option>
-                                    <option value="10" selected>10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="40">40</option>
-                                    <option value="50">50</option>
-                                    <option value="75">75</option>
-                                    <option value="100">Tutti</option>
-                                </select>
-                                <div class="stepper-control" role="group" aria-label="Numero risultati">
-                                    <button id="maxResultsMinusBtn" class="stepper-btn" type="button" aria-label="Riduci risultati">
-                                        <i class="fas fa-minus" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepper-value-wrap">
-                                        <strong id="maxResultsValue">10</strong>
-                                        <small>distributori</small>
-                                    </div>
-                                    <button id="maxResultsPlusBtn" class="stepper-btn" type="button" aria-label="Aumenta risultati">
-                                        <i class="fas fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="costsSetupSection" class="setup-subsection" hidden>
-                        <div class="section-head tight">
-                            <div>
-                                <h3>3. Costi</h3>
-                                <p>Simula subito spesa o litri con il carburante selezionato.</p>
-                            </div>
-                        </div>
-
-                        <details id="calcSection" class="calc-section" open>
-                            <summary>
-                                <span>
-                                    <i class="fas fa-calculator" aria-hidden="true"></i>
-                                    Calcolatore costi
-                                </span>
-                                <span id="calcSummaryTag" class="summary-tag">55L</span>
-                            </summary>
-                            <div class="calc-body">
-                                <div class="mode-toggle" role="radiogroup" aria-label="Modalita calcolo">
-                                    <label class="mode-pill is-active">
-                                        <input type="radio" name="calcMode" value="liters" checked>
-                                        Litri → Costo
-                                    </label>
-                                    <label class="mode-pill">
-                                        <input type="radio" name="calcMode" value="budget">
-                                        Budget → Litri
-                                    </label>
-                                </div>
-                                <div class="calc-input-row">
-                                    <div class="calc-input-card">
-                                        <label id="calcInputLabel" class="field-label" for="calcInput">Quanti litri vuoi acquistare?</label>
-                                        <div class="calc-number-wrap">
-                                            <input id="calcInput" class="text-input" type="number" value="55" min="1" step="0.1">
-                                            <span id="calcInputUnit" class="calc-unit">L</span>
-                                        </div>
-                                    </div>
-                                    <div class="calc-preview-card">
-                                        <p id="avgPriceLabel" class="preview-overline">Prezzo medio benzina</p>
-                                        <strong id="avgPriceValue">€1.650/L</strong>
-                                        <span id="calcPreviewValue">€90.75</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </details>
-                    </section>
-
-                    <button id="searchBtn" class="search-cta" type="button">
-                        <span class="cta-copy">
-                            <strong id="searchCtaTitle">Mostra risultati</strong>
-                        </span>
-                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                    </button>
-                </section>
-
-                <section id="resultsPanel" class="results-panel" hidden>
-                    <div id="resultsHeader" class="results-header">
-                        <div>
-                            <p class="eyebrow">Risultati</p>
-                            <h3 id="resultsHeadline">Seleziona un distributore</h3>
-                        </div>
-                        <div class="results-toolbar">
-                            <div id="resultsSummaryChips" class="results-summary-chips"></div>
-                            <button id="listOpenFiltersBtn" class="list-filters-btn" type="button" aria-label="Modifica filtri">
-                                <i class="fas fa-sliders" aria-hidden="true"></i>
-                            </button>
-                        </div>
+                    <div class="calc-input-row">
+                        <input id="calcInput" type="number" min="1" step="0.1" value="55">
+                        <span id="calcUnit" class="calc-unit">L</span>
+                        <span id="calcResult" class="calc-result">≈ —</span>
                     </div>
+                </div>
+            </details>
+        </div>
 
-                    <div id="listContainer" class="results-list"></div>
-                </section>
+        <div class="filters-footer">
+            <button id="searchBtn" class="btn btn-primary btn-block" type="button">
+                <i class="fas fa-magnifying-glass" aria-hidden="true"></i> Cerca distributori
+            </button>
+        </div>
+    </aside>
 
-                <div id="inlineMessage" class="inline-message" hidden role="status" aria-live="polite"></div>
-            </aside>
-        </main>
-    </div>
+    <div id="filtersBackdrop" class="filters-backdrop" hidden></div>
 
     <!-- INFO PANEL -->
     <div id="infoPanel" class="info-panel" aria-hidden="true" role="dialog" aria-labelledby="infoTitle">
-        <div class="info-panel-inner">
-            <div class="info-card">
-                <span style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                    <h3 id="infoTitle">Informazioni</h3>
-                    <button id="closeInfoBtn" class="icon-button" type="button" aria-label="Chiudi pannello info">
-                        <i class="fas fa-times" aria-hidden="true"></i>
-                    </button>
-                </span>
-                <p>FuelExplorer ti aiuta a trovare i distributori di carburante più convenienti nella tua area.</p>
-                <ul>
-                    <li>Scegli il carburante che preferisci (Benzina, Gasolio, GPL, Metano)</li>
-                    <li>Imposta la tua area di ricerca via GPS o indirizzo</li>
-                    <li>Visualizza i prezzi medi e scegli il migliore per il tuo budget</li>
-                    <li>Ottieni indicazioni stradali direttamente verso il distributore</li>
-                </ul>
+        <div class="info-card">
+            <div class="info-head">
+                <h2 id="infoTitle">Informazioni</h2>
+                <button id="closeInfoBtn" class="icon-btn ghost" type="button" aria-label="Chiudi">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
-            <div class="info-card">
-                <h3>Statistiche</h3>
-                <div class="mini-stats">
-                    <div>
-                        <span id="infoStationCount">0</span>
-                        <small>distributori</small>
-                    </div>
-                    <div>
-                        <span id="infoTimestamp">-</span>
-                        <small>aggiornamento</small>
-                    </div>
-                </div>
+            <p>FuelExplorer ti aiuta a trovare i distributori più convenienti vicino a te. I dati provengono dal Ministero delle Imprese e del Made in Italy (MIMIT).</p>
+            <div class="info-stats">
+                <div><strong id="infoStationCount">0</strong><small>distributori</small></div>
+                <div><strong id="infoTimestamp">—</strong><small>aggiornamento</small></div>
+                <div><strong id="infoDataSource">MIMIT</strong><small>fonte</small></div>
             </div>
-            <div class="info-card">
-                <p><strong>Fonte dati:</strong> <span id="infoDataSource">MIMIT</span></p>
-            </div>
+            <p class="info-tip">Suggerimento: cambia carburante in alto e i risultati si aggiornano automaticamente.</p>
         </div>
     </div>
 
-    <!-- LOADING STATE -->
-    <div id="loadingState" class="loading-state" hidden>
-        <div class="loading-card">
-            <div class="loader-orbit"></div>
-            <h3 id="loadingTitle">Ricerca in corso</h3>
-            <p id="loadingText">Sto cercando i distributori migliori per te</p>
-        </div>
+    <!-- LOADING -->
+    <div id="loadingOverlay" class="loading-overlay" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <p id="loadingText">Ricerca in corso…</p>
     </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="data.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
