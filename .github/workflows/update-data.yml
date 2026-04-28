@@ -59,7 +59,34 @@ jobs:
       run: |
         echo "✅ Data successfully updated and pushed!"
         echo "🌐 GitHub Pages will automatically deploy the updated data"
-        
+
+    - name: 🚀 Notify Hugging Face Space (refresh cache)
+      if: steps.check_changes.outputs.changed == 'true' && env.HF_SPACE_URL != ''
+      env:
+        HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
+        HF_REFRESH_TOKEN: ${{ secrets.HF_REFRESH_TOKEN }}
+      run: |
+        # Aspetta che GitHub Pages propaghi il nuovo data.js (~30-60s).
+        echo "⏳ Waiting 60s for GitHub Pages propagation..."
+        sleep 60
+        echo "📡 Pinging HF Space refresh endpoint..."
+        # Retry fino a 3 volte: lo Space free può essere in sleep e
+        # avere bisogno di tempo per il cold start.
+        for i in 1 2 3; do
+          status=$(curl -s -o /tmp/refresh.txt -w "%{http_code}" \
+            -X POST "${HF_SPACE_URL%/}/api/refresh" \
+            -H "X-Refresh-Token: ${HF_REFRESH_TOKEN}" \
+            --max-time 60 || echo "000")
+          echo "Attempt $i: HTTP $status"
+          if [ "$status" = "200" ]; then
+            cat /tmp/refresh.txt
+            echo "✅ HF Space cache refreshed"
+            exit 0
+          fi
+          sleep 30
+        done
+        echo "⚠️ HF Space refresh failed after 3 attempts (Space may be sleeping; will refresh on first request)"
+
     - name: ℹ️ No update needed
       if: steps.check_changes.outputs.changed == 'false'
       run: |
