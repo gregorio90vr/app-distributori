@@ -632,6 +632,25 @@ input[type="range"]::-moz-range-thumb {
 .info-head h2 { margin: 0; font-size: 17px; }
 .info-card p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--text-muted); }
 .info-tip { font-size: 12px; color: var(--text-soft); font-style: italic; }
+.info-legal {
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.info-legal p { margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.info-legal strong { color: var(--text); font-size: 12px; }
+.info-legal a { color: var(--primary); text-decoration: none; }
+.info-legal a:hover { text-decoration: underline; }
+.info-compat-note {
+    font-size: 11px !important;
+    color: var(--text-soft) !important;
+    font-style: italic;
+    background: var(--surface-soft);
+    padding: 6px 8px;
+    border-radius: var(--r-sm);
+}
 .info-stats {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
     padding: 12px; background: var(--surface-soft); border-radius: var(--r-md);
@@ -683,6 +702,66 @@ input[type="range"]::-moz-range-thumb {
 @keyframes toast-in {
     from { opacity: 0; transform: translate(-50%, 8px); }
     to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ====== FOOTER DISCLAIMER ====== */
+.legal-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top: 1px solid var(--line);
+    padding: 6px 16px;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 16px;
+    pointer-events: auto;
+}
+.legal-footer p { margin: 0; }
+.legal-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    flex: 1;
+    min-width: 200px;
+}
+.legal-text strong { color: var(--text); }
+.legal-attrib {
+    font-size: 10px;
+    color: var(--text-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+.legal-footer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+.legal-footer a:hover { text-decoration: underline; }
+
+/* Spazio sotto la mappa per non sovrapporsi al footer */
+.main { padding-bottom: 48px; }
+
+/* Su mobile nasconde la parte attribuzione per non occupare troppo spazio */
+@media (max-width: 720px) {
+    .legal-footer {
+        padding: 5px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+    .legal-attrib { display: none; }
+    .legal-text { font-size: 10px; }
+    .main { padding-bottom: 44px; }
+    .toast { bottom: 58px; }
+    .fab-filters { bottom: 60px; }
+    .location-chip { bottom: 58px; }
 }
 
 /* ====== RESPONSIVE ====== */
