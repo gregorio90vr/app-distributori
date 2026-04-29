@@ -122,7 +122,10 @@ function bindEvents() {
 
     // Topbar
     dom.openFiltersBtn.addEventListener('click', () => openFilters());
-    dom.infoBtn.addEventListener('click', () => toggleInfo(true));
+    dom.infoBtn.addEventListener('click', () => {
+        const isOpen = dom.infoPanel.classList.contains('is-open');
+        toggleInfo(!isOpen);
+    });
     dom.closeInfoBtn.addEventListener('click', () => toggleInfo(false));
     dom.infoPanel.addEventListener('click', (e) => { if (e.target === dom.infoPanel) toggleInfo(false); });
 
