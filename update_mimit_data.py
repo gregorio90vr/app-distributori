@@ -202,10 +202,22 @@ class MIMITDataUpdater:
                 fuel_type = None
                 fuel_desc_lower = fuel_desc.lower()
                 
+                # Premium variant markers
+                gasolio_premium_markers = ['premium', 'speciale', 'artico', 'super', 'plus', 'energy', 'oro', 'eco']
+                diesel_premium_markers = ['hiq', 'hi-q', 'blue', 'supreme', 'excellium', 'vpower', 'v-power', 'performance', 'perform+', 'shell', 'hvo', 'gnl']
+                
                 if 'benzina' in fuel_desc_lower:
                     fuel_type = 'Benzina'
-                elif 'gasolio' in fuel_desc_lower or 'diesel' in fuel_desc_lower:
-                    fuel_type = 'Gasolio'
+                elif 'gasolio' in fuel_desc_lower:
+                    # Separate pure Gasolio from premium variants
+                    is_premium_gasolio = any(marker in fuel_desc_lower for marker in gasolio_premium_markers)
+                    if is_premium_gasolio:
+                        fuel_type = 'Diesel Premium'
+                    else:
+                        fuel_type = 'Gasolio'
+                elif 'diesel' in fuel_desc_lower:
+                    # All branded diesels (Hi-Q, Blue, Supreme, HVO, etc.) -> Diesel Premium
+                    fuel_type = 'Diesel Premium'
                 elif 'gpl' in fuel_desc_lower:
                     fuel_type = 'GPL'
                 elif 'metano' in fuel_desc_lower:
