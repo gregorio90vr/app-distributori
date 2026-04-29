@@ -3,10 +3,11 @@
    Stato semplificato: view, hasLocation, fuel, results
    ===================================================== */
 
-const FUEL_TYPES = ['Benzina', 'Gasolio', 'GPL', 'Metano'];
+const FUEL_TYPES = ['Benzina', 'Gasolio', 'Diesel Premium', 'GPL', 'Metano'];
 const FUEL_META = {
     Benzina: { icon: 'fa-gas-pump' },
     Gasolio: { icon: 'fa-truck' },
+    'Diesel Premium': { icon: 'fa-oil-can' },
     GPL:     { icon: 'fa-fire' },
     Metano:  { icon: 'fa-wind' }
 };
